@@ -6,7 +6,7 @@
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 10:59:39 by ggobert           #+#    #+#             */
-/*   Updated: 2022/01/27 15:12:05 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/01/27 18:02:27 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	*ft_read_until(int fd, char *ret)
 			return (0);
 		}
 		buf[count] = 0;
-		ret = ft_strjoin(ret, (char *)buf);
+		ret = ft_strjoin(ret, buf);
 	}
 	free(buf);
 	return (ret);
