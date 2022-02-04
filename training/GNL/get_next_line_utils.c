@@ -6,9 +6,11 @@
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 18:48:44 by ggobert           #+#    #+#             */
-/*   Updated: 2022/01/27 19:21:38 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/02/04 15:16:59 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "get_next_line.h"
 
 int	ft_strlen(char *str)
 {
@@ -46,7 +48,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (new_str);
 }
 
-char	*ft_strdup(char str)
+char	*ft_strdup(char *str)
 {
 	int	len;
 	int	i;
@@ -62,5 +64,39 @@ char	*ft_strdup(char str)
 		new[i] = str[i];
 		i++;
 	}
+	new[i] = 0;
+	return (new);
+}
 
+char	*cut_at(char *str, int n)
+{
+	int		i;
+	char	*new;
+	
+	i = 0;
+	new = malloc(sizeof(char) * (n + 1));
+	if (!new)
+		return (0);
+	while (i < n)
+	{
+		new[i] = str[i];
+		i++;
+	}
+	new[i] = 0;
+	free (str);
+	return (new);
+}
+
+char	*after_line(char *str, int n)
+{
+	int		i;
+	int		j;
+	char	new[BUFFER_SIZE + 1];
+
+	j = 0;
+	i = n;
+	while (str[i])
+		new[j++] = str[i++];
+	new[j] = 0;
+	return (new);
 }

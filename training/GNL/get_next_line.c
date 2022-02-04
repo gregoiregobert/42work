@@ -6,7 +6,7 @@
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 18:32:52 by ggobert           #+#    #+#             */
-/*   Updated: 2022/01/27 19:21:49 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/02/04 15:17:04 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,16 @@ int ft_nl(char *ret)
 {
 	int	i;
 
+	i = 0;
 	if (!ret)
 		return(-1);
 	while (ret[i])
-		if (ret[i++] = '\n')
+		if (ret[i++] == '\n')
 			return (1);
 	return (0);	
 }
 
-int	ft_n_nl(ret);
+int	ft_n_nl(char *ret)
 {
 	int	i;
 
@@ -35,18 +36,18 @@ int	ft_n_nl(ret);
 	return (i);
 }
 
-char	*ft_read(char *ret, int fd)
+char	*ft_read(char *show, int fd)
 {
 	int	count;
 	char	*buf;
 	
 	count = BUFFER_SIZE;
-	buf = malloc(sizeoif(char) * (BUFFER_SIZE = 1));
+	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
 		return (0);
-	if (!ret)
-		ret = ft_strdup("");
-	while (ft_nl(ret) < 1 && count == BUFFER_SIZE)
+	if (!show)
+		show = ft_strdup("");
+	while (ft_nl(show) < 1 && count == BUFFER_SIZE)
 	{
 		count = read(fd, buf, BUFFER_SIZE);
 		if (count < 1)
@@ -55,24 +56,21 @@ char	*ft_read(char *ret, int fd)
 			return(0);
 		}
 		buf[count] = 0;
-		ret = ft_strjoin(ret, buf);
+		show = ft_strjoin(show, buf);
 	}
-	return (ret);
+	return (show);
 }
 
 
 char	*get_next_line(int fd)
 {
-	int		i;
+	int			i;
+	int 		len;
 	char		*show;
-	static char	ret;
+	static char	ret[BUFFER_SIZE + 1];
 	
-	ret = ft_read(ret, fd);
-	while (ft_nl(ret) < 1 && ret)
-	{
-		show[i] = ret[i];
-		i++;
-	}
-	ret = ft_strnback(ret, ft_n_nl(ret);
+	show = ft_read(show, fd);
+	ret = after_line(show, ft_n_nl(show));
+	show = cut_at(show, ft_n_nl(show));
 	return (show);
 }
