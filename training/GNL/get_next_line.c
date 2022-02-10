@@ -6,7 +6,7 @@
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 18:32:52 by ggobert           #+#    #+#             */
-/*   Updated: 2022/02/04 15:17:04 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/02/07 17:56:51 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ char	*ft_read(char *show, int fd)
 	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
 		return (0);
-	if (!show)
-		show = ft_strdup("");
 	while (ft_nl(show) < 1 && count == BUFFER_SIZE)
 	{
 		count = read(fd, buf, BUFFER_SIZE);
@@ -64,13 +62,14 @@ char	*ft_read(char *show, int fd)
 
 char	*get_next_line(int fd)
 {
-	int			i;
-	int 		len;
 	char		*show;
 	static char	ret[BUFFER_SIZE + 1];
-	
+
+	if (fd < 0 || read(fd, ret, 0) < 0)
+		return (0);
+	show = ft_strdup("");	
 	show = ft_read(show, fd);
-	ret = after_line(show, ft_n_nl(show));
+	after_line(show, ret, ft_n_nl(show));
 	show = cut_at(show, ft_n_nl(show));
 	return (show);
 }

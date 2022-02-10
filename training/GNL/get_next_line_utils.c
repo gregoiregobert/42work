@@ -6,7 +6,7 @@
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 18:48:44 by ggobert           #+#    #+#             */
-/*   Updated: 2022/02/04 15:16:59 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/02/07 17:47:49 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,16 +87,15 @@ char	*cut_at(char *str, int n)
 	return (new);
 }
 
-char	*after_line(char *str, int n)
+char	*after_line(char *str, char *ret,  int n)
 {
 	int		i;
 	int		j;
-	char	new[BUFFER_SIZE + 1];
 
 	j = 0;
 	i = n;
 	while (str[i])
-		new[j++] = str[i++];
-	new[j] = 0;
-	return (new);
+		ret[j++] = str[i++];
+	ret[j] = 0;
+	return (ret);
 }
