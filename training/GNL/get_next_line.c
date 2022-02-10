@@ -6,32 +6,35 @@
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 18:32:52 by ggobert           #+#    #+#             */
-/*   Updated: 2022/02/07 17:56:51 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/02/10 20:21:32 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
 
-int ft_nl(char *ret)
+int ft_nl(char *str)
 {
 	int	i;
 
 	i = 0;
-	if (!ret)
+	if (!str)
 		return(-1);
-	while (ret[i])
-		if (ret[i++] == '\n')
+	while (str[i])
+		if (str[i++] == '\n')
 			return (1);
 	return (0);	
 }
 
-int	ft_n_nl(char *ret)
+int	ft_n_nl(char *str)
 {
 	int	i;
 
 	i = 0;
-	while (ret[i])
-		if (ret[i++] == '\n')
+	if (!str)
+		return (0);
+	while (str[i])
+		if (str[i++] == '\n')
 			return (i);
 	return (i);
 }
@@ -56,6 +59,7 @@ char	*ft_read(char *show, int fd)
 		buf[count] = 0;
 		show = ft_strjoin(show, buf);
 	}
+	free(buf);
 	return (show);
 }
 
@@ -67,9 +71,16 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || read(fd, ret, 0) < 0)
 		return (0);
-	show = ft_strdup("");	
+	show = ft_strdup("");
+	if (*ret)
+		show = ft_strjoin(show, ret);
 	show = ft_read(show, fd);
-	after_line(show, ret, ft_n_nl(show));
-	show = cut_at(show, ft_n_nl(show));
+	if (*show)
+	{
+		after_line(show, ret, ft_n_nl(show));
+		show = cut_at(show, ft_n_nl(show));
+	}
+	else
+		return (NULL);
 	return (show);
 }
