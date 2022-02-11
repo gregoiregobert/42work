@@ -6,7 +6,7 @@
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 18:32:52 by ggobert           #+#    #+#             */
-/*   Updated: 2022/02/10 20:21:32 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/02/11 14:03:07 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*ft_read(char *show, int fd)
 		if (count < 1)
 		{
 			free(buf);
-			return(0);
+			return(show);
 		}
 		buf[count] = 0;
 		show = ft_strjoin(show, buf);
@@ -75,12 +75,12 @@ char	*get_next_line(int fd)
 	if (*ret)
 		show = ft_strjoin(show, ret);
 	show = ft_read(show, fd);
-	if (*show)
+	if (!*show)
 	{
-		after_line(show, ret, ft_n_nl(show));
-		show = cut_at(show, ft_n_nl(show));
+		free(show);
+		return (0);
 	}
-	else
-		return (NULL);
+	after_line(show, ret, ft_n_nl(show));
+	show = cut_at(show, ft_n_nl(show));
 	return (show);
 }
