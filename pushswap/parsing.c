@@ -1,18 +1,15 @@
 #include "push_swap.h"
 
-int	*reader(char *inner)
+t_list	*reader(char *inner)
 {
 	int	i;
 	int	j;
-	int	*stack_a;
+	list	*stack_a;
 	char	*nbr;
 
 	i = nbr_of(inner);
 	nbr = malloc(sizeof(char) * (arglen(inner) + 1));
 	if (!nbr)
-		return (0);
-	stack_a = malloc(sizeof(int) * (nbr_of(inner) + 1));
-	if (!stack_a)
 		return (0);
 	while (*inner)
 	{
@@ -21,7 +18,7 @@ int	*reader(char *inner)
 			nbr[j++] = *inner++;
 		nbr[j] = 0;
 		if (j > 0)
-			stack_a[--i] = ft_atoi(nbr);
+			ft_lstadd_front(&stack_a, ft_lstnew(ft_atoi(nbr)));	
 		inner++;
 	}
 	return (stack_a);
