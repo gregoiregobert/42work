@@ -5,21 +5,24 @@
 # include <stdlib.h>
 # include <stdio.h>
 
-typedef struct s_list
+typedef	struct List
 {
-	int	*data;
-	struct	s_list;
-}		list;
+	int		content;
+	struct	List	*next;
+}			list;
 
-int	*reader(char *inner);
+list	*reader(char *inner);
+list	*ft_lstnew_int(int content);
+list	*ft_lstlast_int(list *lst);
+void	swap(list **lst);
+void	push(list **a, list **b);
+void	rotate(list **lst);
+void	ft_lstdelone_int(list *lst, void (*del)(int));
+void	ft_lstadd_front_int(list **alst, list *new);
+void	ft_lstadd_back_int(list **alst, list *new);
+void	ft_printlst(list *lst);
+int	ft_lstsize_int(list *lst);
 int	arglen(char *str);
 int	nbr_of(char *str);
-int	*init_stack_b(char *inner);
-int	sb(int *stack_b, char *inner);
-int	ss(int *stack_a, int *stack_b, char *inner);
-int	is_empty(int *stack, char *inner);
-int	first_element(int *stack_a, char *inner);
-int	organized(int *stack, char *inner);
-
 
 #endif
