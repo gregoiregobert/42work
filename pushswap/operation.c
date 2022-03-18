@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	swap(list **lst)
+int	swap(list **lst)
 {
 	list	*temp;
 
@@ -8,19 +8,21 @@ void	swap(list **lst)
 	(*lst)->next = temp->next;
 	temp->next = *lst;
 	*lst = temp;
+	return (1);
 }
 
-void	push(list **a, list **b)
+int	push(list **from, list **to)
 {
 	list	*temp;
 
-	temp = *a;
-	*a =(*a)->next;
-	temp->next = *b;
-	*b = temp;
+	temp = *from;
+	*from =(*from)->next;
+	temp->next = *to;
+	*to = temp;
+	return(1);
 }
 
-void	rotate(list **lst)
+int	rotate(list **lst)
 {
 	list	*before_last;
 	int	i;
@@ -36,10 +38,17 @@ void	rotate(list **lst)
 	temp = ft_lstlast_int(*lst);
 	ft_lstlast_int(*lst)->next = *lst;
 	*lst = temp;
-	before_last->next = 0; 
+	before_last->next = 0;
+	return (1);
 }
 
-/*void	reverse(list **lst)
+int	reverse(list **lst)
 {
-	ft
-}*/
+	list	*temp;
+
+	temp = *lst;
+	*lst = (*lst)->next;
+	temp->next = 0;
+	ft_lstlast_int(*lst)->next = temp;
+	return (1);
+}

@@ -16,7 +16,7 @@ list	*reader(char *inner)
 	while (*inner)
 	{
 		j = 0;
-		while (ft_isdigit(*inner) > 0)
+		while (*inner == '-' || ft_isdigit(*inner) > 0)
 			nbr[j++] = *inner++;
 		nbr[j] = 0;
 		if (j > 0)
