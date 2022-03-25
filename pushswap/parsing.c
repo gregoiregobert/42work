@@ -2,14 +2,11 @@
 
 list	*reader(char *inner)
 {
-	int	i;
 	int	j;
-	int	k;
 	list	*stack_a;
 	char	*nbr;
 
 	stack_a = 0;
-	i = nbr_of(inner);
 	nbr = malloc(sizeof(char) * (arglen(inner) + 1));
 	if (!nbr)
 		return (0);
@@ -24,4 +21,31 @@ list	*reader(char *inner)
 		inner++;
 	}
 	return (stack_a);
+}
+
+int	*parsing_int(char *inner)
+{
+	int	i;
+	int	j;
+	int	*stack_int;
+	char	*nbr;
+
+	stack_int = malloc(sizeof(int) * (nbr_of(inner)));
+	if (!stack_int)
+		return (0);
+	i = 0;
+	nbr = malloc(sizeof(char) * (arglen(inner) + 1));
+	if (!nbr)
+		return (0);
+	while (*inner)
+	{
+		j = 0;
+		while (*inner == '-' || ft_isdigit(*inner) > 0)
+			nbr[j++] = *inner++;
+		nbr[j] = 0;
+		if (j > 0)
+			stack_int[i++] = ft_atoi(nbr);
+		inner++;
+	}
+	return (stack_int);
 }

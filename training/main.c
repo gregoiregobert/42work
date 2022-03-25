@@ -1,13 +1,9 @@
 #include "../libft/libft.h"
+#include <stdio.h>
 
 int	main()
 {
-	t_list	*list;
-	char	*str = "123456789";
-
-	list = 0;
-	while (*str)
-		ft_lstadd_back(&list, ft_lstnew(ft_atoi(str++)));
-	ft_printlst(list);
+	if (5 > (1 & 9))
+		printf("marche\n");
 	return 0;
 }

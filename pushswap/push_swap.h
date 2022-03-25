@@ -19,21 +19,18 @@ int	swap(list **lst);
 int	push(list **a, list **b);
 int	rotate(list **lst);
 int	reverse(list **lst);
-void	ft_lstdelone_int(list *lst, void (*del)(int));
+void	ft_lstclear_int(list **lst, void (*del)(int));
 void	ft_lstadd_front_int(list **alst, list *new);
 void	ft_lstadd_back_int(list **alst, list *new);
 void	ft_printlst(list *lst);
-int	half(list **a, list **b);
-int	ft_sort(list **a, list **b);
-int	ft_sort_rest(list **lst);
-int	ft_merge(list **a, list **b);
+void	ft_lis(int *seq, int **L, int **sub, int len);
 int	ft_lstsize_int(list *lst);
 int	arglen(char *str);
 int	nbr_of(char *str);
-int	check_all(list *lst);
-int	check_next(list *lst);
-int	rcheck_all(list *lst);
-int	rcheck_next(list *lst);
-int	higher(list *lst);
+int	*parsing_int(char *inner);
+int	highest(int *L, int len);
+int	*new_lis(int *seq, int *sub , int *L, int highest);
+void	ret_lis(int **lis, int *seq, int len);
+int	push_lis(list **a, list **b, int len_lis, int *lis);
 
 #endif
