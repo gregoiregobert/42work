@@ -33,3 +33,35 @@ int	nbr_of(char *str)
 	}
 	return (len);
 }
+
+int	highest_lst(list *lst)
+{
+	int	highest;
+
+	highest = lst->content;
+	if (lst->next)
+		lst = lst->next;
+	while (lst)
+	{
+		if (lst->content > highest)
+			highest = lst->content;
+		lst = lst->next;
+	}
+	return (highest);
+}
+
+int	smallest_lst(list *lst)
+{
+	int	smallest;
+
+	smallest = lst->content;
+	if (lst->next)
+		lst = lst->next;
+	while (lst)
+	{
+		if (lst->content < smallest)
+			smallest = lst->content;
+		lst = lst->next;
+	}
+	return (smallest);
+}

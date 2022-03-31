@@ -11,7 +11,7 @@ int	push_lis(list **a, list **b, int max_len, int *lis)
 		if ((*a)->content == *lis)
 		{
 			lis++;
-			reverse(a);
+			len += rotate(a);
 			max_len--;
 		}
 		if ((*a)->content != *lis)
@@ -22,3 +22,14 @@ int	push_lis(list **a, list **b, int max_len, int *lis)
 	}
 	return len;
 }
+
+/*int	better_move(list *a, list *b)
+{
+	int	move;
+
+	better move = 0;
+	while (b)
+	{
+
+	}
+}*/

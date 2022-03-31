@@ -22,7 +22,7 @@ int	push(list **from, list **to)
 	return(1);
 }
 
-int	rotate(list **lst)
+int	reverse(list **lst)
 {
 	list	*before_last;
 	int	i;
@@ -42,7 +42,7 @@ int	rotate(list **lst)
 	return (1);
 }
 
-int	reverse(list **lst)
+int	rotate(list **lst)
 {
 	list	*temp;
 
@@ -51,4 +51,15 @@ int	reverse(list **lst)
 	temp->next = 0;
 	ft_lstlast_int(*lst)->next = temp;
 	return (1);
+}
+
+list     *rotate_test(list *lst)
+{
+	list    *temp;
+
+	temp = lst;
+	lst = lst->next;
+	temp->next = 0;
+	ft_lstlast_int(lst)->next = temp;
+	return (lst);
 }
