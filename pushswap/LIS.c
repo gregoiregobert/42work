@@ -1,5 +1,6 @@
 #include "push_swap.h"
 
+//L'algorythme de LIS.
 void	ft_lis(int *seq, int **L, int **sub, int len)
 {
 	int	i;
@@ -25,6 +26,7 @@ void	ft_lis(int *seq, int **L, int **sub, int len)
 	}
 }
 
+//Renvoie le plus grand élément du TABLEAU d'INT L.
 int	highest(int *L, int len)
 {
 	int	i;
@@ -40,7 +42,7 @@ int	highest(int *L, int len)
 	}
 	return (highest);
 }
-
+//Renvoie un TABLEAU d'INT LIS après exectution de l'algorytme LIS.
 int	*new_lis(int *seq, int *sub , int *L, int highest)
 {
 	int	*lis;
@@ -63,6 +65,7 @@ int	*new_lis(int *seq, int *sub , int *L, int highest)
 	return (lis);
 } 
 
+//FCT général qui initie les tableaux, et renvoie la LIS.
 void	ret_lis(int **lis, int *seq, int len)
 {
 	int	i;

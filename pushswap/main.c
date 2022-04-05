@@ -9,7 +9,6 @@ int main()
 	int	*m = parsing_int(f);
 	int	len = 0;
 	int	*lis;
-	int	move = 0;
 
 	ft_printlst(a);
 	printf("............\n");
@@ -22,6 +21,4 @@ int main()
 	rotate (&b);
 	ft_printlst(b);
 	printf("_________\n");
-	move = many_rot_rev(a, b->content);
-	printf("%d\n", move);
 }

@@ -1,5 +1,6 @@
 #include "push_swap.h"
 
+//Renvoie les nombres de la chaine de caractères en LISTE CHAINEE. 
 list	*reader(char *inner)
 {
 	int	j;
@@ -23,6 +24,7 @@ list	*reader(char *inner)
 	return (stack_a);
 }
 
+//Renvoie les nombres de la chaine de caractères en TABLEAU d'INT. 
 int	*parsing_int(char *inner)
 {
 	int	i;

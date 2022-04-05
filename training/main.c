@@ -1,9 +1,20 @@
 #include "../libft/libft.h"
 #include <stdio.h>
 
+int	toto(int index)
+{
+	return (index * index);
+}
+
 int	main()
 {
-	if (5 > (1 & 9))
-		printf("marche\n");
+	int	i = 0;
+	int	koko;
+
+	koko = toto(i);
+	while (i++ < 10)
+	{
+		printf("%d\n", toto(i));
+	}
 	return 0;
 }

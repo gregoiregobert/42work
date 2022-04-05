@@ -1,5 +1,7 @@
 #include "push_swap.h"
 
+
+//Compte le nombre de caractère du nombre le plus grand dans la CHAINE DE CARACTERE.
 int	arglen(char *str)
 {
 	int	len;
@@ -17,6 +19,7 @@ int	arglen(char *str)
 	return (len);
 }
 
+//Compte le nombre de nombres dans la CHAINE DE CARACTERES.
 int	nbr_of(char *str)
 {
 	int	len;
@@ -34,6 +37,7 @@ int	nbr_of(char *str)
 	return (len);
 }
 
+//Renvoie le nombre le plus grand de la LISTE CHAINEE.
 int	highest_lst(list *lst)
 {
 	int	highest;
@@ -50,6 +54,7 @@ int	highest_lst(list *lst)
 	return (highest);
 }
 
+//Renvoie le nombre le plus petit de la LISTE CHAINEE.
 int	smallest_lst(list *lst)
 {
 	int	smallest;
