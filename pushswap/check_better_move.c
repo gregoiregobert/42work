@@ -4,15 +4,17 @@
 int	many_move_est(list *a, int b)
 {
 	int	move;
+	int	size;
 
 	move = 0;
+	size = ft_lstsize_int(a);
 	while (a->content != smallest_lst(a))
 	{
 		a = a->next;
 		move++;
 	}
-	if (move > (ft_lstsize_int(a) / 2))
-		move -= ft_lstsize_int(a);
+	if (move > (size / 2))
+		move -= size;
 	return (move);
 }
 
@@ -20,15 +22,17 @@ int	many_move_est(list *a, int b)
 int	between(list *a, int b_cont)
 {
 	int	move;
+	int	size;
 
+	size = ft_lstsize_int(a);
 	move = 0;
-	while (!(a->content > b_cont) || !(ft_lstlast_int(a)->content < b_cont))
+	while (a->content < b_cont)
 	{
-		a = rotate_test(a);
+		a = a->next;
 		move++;
 	}
-	if (move > (ft_lstsize_int(a) / 2))
-		move -= ft_lstsize_int(a);
+	if (move > (size / 2))
+		move -= size;
 	return (move);
 }
 
@@ -40,6 +44,7 @@ int	ft_rra(list *a, int b_cont)
 	move = 0;
 	if (b_cont < smallest_lst(a) || b_cont > highest_lst(a))
 	{
+		
 		move += many_move_est(a, b_cont);
 		return (move);
 	}
@@ -62,14 +67,14 @@ int	how_many(int rr_a, int rr_b)
 {
 	if (rr_a < 0 && rr_b < 0)
 	{
-		if (rr_a > rr_b)
-			return (rr_a);
+		if (rr_a < rr_b)
+			return (rr_a * -1);
 		else
-			return (rr_b);
+			return (rr_b * -1);
 	}
 	if (rr_a > 0 && rr_b > 0)
 	{
-		if (rr_a < rr_b)
+		if (rr_a > rr_b)
 			return (rr_a);
 		else
 			return (rr_b);
@@ -82,3 +87,4 @@ int	how_many(int rr_a, int rr_b)
 			rr_b *= -1;
 	}
 	return (rr_a + rr_b);
+}

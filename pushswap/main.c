@@ -3,7 +3,7 @@
 
 int main()
 {
-	char	*f = "28 -21 60 8 -68 36 91 -93 -72 -36";
+	char	*f = "-99 -60 -21 60 8 -68 36 91 -93 -72 -36";
 	list	*a = reader(f);
 	list	*b = 0;
 	int	*m = parsing_int(f);
@@ -11,14 +11,13 @@ int main()
 	int	*lis;
 
 	ft_printlst(a);
-	printf("............\n");
+	printf("\nLIS a :\n\n");
 	ret_lis(&lis, m, nbr_of(f));
 	len += push_lis(&a, &b, nbr_of(f), lis);
 	ft_printlst(a);
+	printf("\nlist b :\n\n");
+	ft_printlst(b);
 	printf("....\n");
-	ft_printlst(b);
-	printf("............\n");
-	rotate (&b);
-	ft_printlst(b);
-	printf("_________\n");
+	push_swap(&a, &b);
+	ft_printlst(a);
 }
