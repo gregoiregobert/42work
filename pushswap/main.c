@@ -1,9 +1,19 @@
 #include "push_swap.h"
 #include <stdio.h>
 
+int	ft_test(list **lst)
+{
+	int len;
+
+	len = 0;
+
+	len += reverse(lst);
+	return (len);
+}	
+
 int main()
 {
-	char	*f = "99 81 -1 -29 -14 47 -60 90 78 26";
+	char	*f = "-10 54 -87 -47 -67 59 48 -71 -16 6";
 	list	*a = reader(f);
 	list	*b = 0;
 	int	*m = parsing_int(f);
@@ -17,7 +27,7 @@ int main()
 	ft_printlst(a);
 	printf("\nlist b :\n\n");
 	ft_printlst(b);
-	printf("....\n");
+	printf("..........\n");
 	push_swap(&a, &b);
 	ft_printlst(a);
 }

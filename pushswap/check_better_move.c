@@ -46,7 +46,6 @@ int	between(list *a, int b_cont)
 	}
 	if (move > (size / 2))
 		move -= size;
-	printf("move in beet = %d\n", move);
 	return (move);
 }
 
@@ -72,7 +71,6 @@ int	ft_rrb(int size, int index)
 		return index;
 	if (index > (size / 2))
 		index -= size;
-	printf("rrb = %d\n", index); 
 	return index;
 }
 

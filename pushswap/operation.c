@@ -30,11 +30,8 @@ int	reverse(list **lst)
 
 	i = 1;
 	before_last = *lst;
-	while (i < (ft_lstsize_int(*lst) - 1))
-	{
+	while (i++ < (ft_lstsize_int(*lst) - 1))
 		before_last = before_last->next;
-		i++;
-	}
 	temp = ft_lstlast_int(*lst);
 	ft_lstlast_int(*lst)->next = *lst;
 	*lst = temp;
@@ -51,15 +48,4 @@ int	rotate(list **lst)
 	temp->next = 0;
 	ft_lstlast_int(*lst)->next = temp;
 	return (1);
-}
-
-list     *rotate_test(list *lst)
-{
-	list    *temp;
-
-	temp = lst;
-	lst = lst->next;
-	temp->next = 0;
-	ft_lstlast_int(lst)->next = temp;
-	return (lst);
 }

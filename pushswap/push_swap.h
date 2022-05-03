@@ -40,9 +40,9 @@ int	ft_rrb(int size, int index);
 int	between(list *a, int b_cont);
 int	how_many(int rr_a, int rr_b);
 int	best_move(list *a, list *b, int *move_a);
-int	sort_rrr(list **a, list **b, int rrb, int mova);
-int	sort_rr(list **a, list **b, int rrb, int mova);
-int	sort_dif(list **a, list **b, int rrb, int mova);
+int	sort_rrr(list **a, list **b, int rrb, int move_a);
+int	sort_rr(list **a, list **b, int rrb, int move_a);
+int	sort_dif(list **a, list **b, int rrb, int move_a);
 int	push_swap(list **a, list **b);
 int	sort_best(list **a, list **b, int best_move, int *move_a);
 
