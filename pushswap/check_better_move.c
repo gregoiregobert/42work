@@ -23,16 +23,30 @@ int	between(list *a, int b_cont)
 {
 	int	move;
 	int	size;
+	int	i;
+	int	dif;
+	int	bestdif;
 
+	i = 0;
 	size = ft_lstsize_int(a);
-	move = 0;
-	while (a->content < b_cont)
+	bestdif = 0;
+	while (i < size)
 	{
+		dif = a->content - b_cont;
+		if (dif > 0)
+		{
+			if (!bestdif || bestdif > dif)
+			{
+				bestdif = dif;
+				move = i;
+			}
+		}	
 		a = a->next;
-		move++;
+		i++;
 	}
 	if (move > (size / 2))
 		move -= size;
+	printf("move in beet = %d\n", move);
 	return (move);
 }
 
@@ -52,14 +66,13 @@ int	ft_rra(list *a, int b_cont)
 }
 
 //Renvoie le nombres d'opérations nécéssaires pour changer le 1er element de B.
-int	ft_rrb(list *b, int index)
+int	ft_rrb(int size, int index)
 {
-	int	rrb;
-
-	if (ft_lstsize_int(b) <= 2)
+	if (size <= 2)
 		return index;
-	if (index > (ft_lstsize_int(b) - 1) / 2)
-		index -= ft_lstsize_int(b);
+	if (index > (size / 2))
+		index -= size;
+	printf("rrb = %d\n", index); 
 	return index;
 }
 

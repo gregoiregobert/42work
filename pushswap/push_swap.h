@@ -36,7 +36,7 @@ int	smallest_lst(list *lst);
 int	highest_lst(list *lst);
 int	many_move_est(list *a, int b);
 int	ft_rra(list *a, int b_cont);
-int	ft_rrb(list *b, int index);
+int	ft_rrb(int size, int index);
 int	between(list *a, int b_cont);
 int	how_many(int rr_a, int rr_b);
 int	best_move(list *a, list *b, int *move_a);

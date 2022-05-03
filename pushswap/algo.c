@@ -28,19 +28,20 @@ int	best_move(list *a, list *b, int *move_a)
 	int	i;
 	int	move;
 	int	index;
+	int	size_b;
 
 	i = 0;
 	index = 0;
-	move = how_many(ft_rra(a, b->content), ft_rrb(b, i));
+	size_b = ft_lstsize_int(b);
+	move = how_many(ft_rra(a, b->content), ft_rrb(size_b, i));
 	*move_a = ft_rra(a, b->content);
-	while (i < ft_lstsize_int(b) && ft_lstsize_int(b) <= 1)
+	while (++i < size_b && size_b >= 1)
 	{
-		
-		i++;
 		b = b->next;
-		if (how_many(ft_rra(a, b->content), ft_rrb(b, i)) < move)
+		if (how_many(ft_rra(a, b->content), ft_rrb(size_b, i)) < move)
 		{
-			move = how_many(ft_rra(a, b->content), ft_rrb(b, i));
+			move = how_many(ft_rra(a, b->content), ft_rrb(size_b, i));
+			printf("move = %d\n", move);
 			index = i;
 			*move_a = ft_rra(a, b->content);
 		}
@@ -51,14 +52,16 @@ int	best_move(list *a, list *b, int *move_a)
 int	sort_best(list **a, list **b, int best_move, int *move_a)
 {
 	int	len;
+	int	size_b;
 
 	len = 0;
-	if (ft_rrb(*b, best_move) < 0 && *move_a < 0)
-		len += sort_rrr(a, b, ft_rrb(*b, best_move), *move_a);
-	if (ft_rrb(*b, best_move) > 0 && *move_a > 0)
-		len += sort_rr(a, b, ft_rrb(*b, best_move), *move_a);
+	size_b = ft_lstsize_int(*b);
+	if (ft_rrb(size_b, best_move) < 0 && *move_a < 0)
+		len += sort_rrr(a, b, ft_rrb(size_b, best_move), *move_a);
+	else if (ft_rrb(size_b, best_move) > 0 && *move_a > 0)
+		len += sort_rr(a, b, ft_rrb(size_b, best_move), *move_a);
 	else
-		sort_dif(a, b, ft_rrb(*b, best_move), *move_a);
+		sort_dif(a, b, ft_rrb(size_b, best_move), *move_a);
 	len += push(b, a);
 	return (len);
 }
@@ -81,7 +84,6 @@ int	push_swap(list **a, list **b)
 		printf("list B\n");
                 ft_printlst(*b);
 		printf("-------------\n");
-
 	}
 	return (len);
 }

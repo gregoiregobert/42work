@@ -7,7 +7,7 @@ int	sort_rrr(list **a, list **b, int rrb, int move_a)
 
 	i = 0;
 	len = 0;
-	printf("RR\nft_rrb : %d\nmove_a : %d\n", rrb, move_a);
+	printf("RRR\n");
 	if (rrb <= move_a)
 	{
 		while (i-- > move_a)
@@ -38,7 +38,7 @@ int	sort_rr(list **a, list **b, int rrb, int move_a)
 
 	i = 0;
 	len = 0;
-	printf("RRR\nft_rrb : %d\nmove_a : %d\n", rrb, move_a);
+	printf("RR\n");
 	if (rrb >= move_a)
 	{
 		while (i++ < move_a)
@@ -67,7 +67,7 @@ int	sort_dif(list **a, list **b, int rrb, int mova)
 	int	len;
 
 	len = 0;
-	printf("DIF \nft_rrb : %d\nmova : %d\n", rrb, mova);
+	printf("DIF\n");
 	if (rrb < 0)
 		while (rrb++ < 0)
 			len += reverse(b);
