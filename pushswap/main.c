@@ -3,7 +3,7 @@
 
 int main()
 {
-	char	*f = "-99 -60 -21 60 8 -68 36 91 -93 -72 -36";
+	char	*f = "79 -62 10 -100 -23 -76 -27 75 -33 14";
 	list	*a = reader(f);
 	list	*b = 0;
 	int	*m = parsing_int(f);

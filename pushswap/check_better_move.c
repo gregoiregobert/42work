@@ -44,7 +44,6 @@ int	ft_rra(list *a, int b_cont)
 	move = 0;
 	if (b_cont < smallest_lst(a) || b_cont > highest_lst(a))
 	{
-		
 		move += many_move_est(a, b_cont);
 		return (move);
 	}
@@ -57,6 +56,8 @@ int	ft_rrb(list *b, int index)
 {
 	int	rrb;
 
+	if (ft_lstsize_int(b) <= 2)
+		return index;
 	if (index > (ft_lstsize_int(b) - 1) / 2)
 		index -= ft_lstsize_int(b);
 	return index;

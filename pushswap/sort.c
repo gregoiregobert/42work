@@ -7,6 +7,7 @@ int	sort_rrr(list **a, list **b, int rrb, int move_a)
 
 	i = 0;
 	len = 0;
+	printf("RR\nft_rrb : %d\nmove_a : %d\n", rrb, move_a);
 	if (rrb <= move_a)
 	{
 		while (i-- > move_a)
@@ -37,6 +38,7 @@ int	sort_rr(list **a, list **b, int rrb, int move_a)
 
 	i = 0;
 	len = 0;
+	printf("RRR\nft_rrb : %d\nmove_a : %d\n", rrb, move_a);
 	if (rrb >= move_a)
 	{
 		while (i++ < move_a)
@@ -52,7 +54,7 @@ int	sort_rr(list **a, list **b, int rrb, int move_a)
 		while (i++ < rrb)
 		{
 			len += rotate(a);
-			reverse(b);
+			rotate(b);
 		}
 		while (i++ < move_a)
 			len += rotate(a);
@@ -60,22 +62,26 @@ int	sort_rr(list **a, list **b, int rrb, int move_a)
 	return (len);
 }
 
-int	sort_dif(list **a, list **b, int rrb, int move_a)
+int	sort_dif(list **a, list **b, int rrb, int mova)
 {
 	int	len;
 
 	len = 0;
+	printf("DIF \nft_rrb : %d\nmova : %d\n", rrb, mova);
 	if (rrb < 0)
 		while (rrb++ < 0)
 			len += reverse(b);
 	if (rrb > 0)
 		while (rrb-- > 0)
 			len += rotate(b);
-	if (move_a < 0)
-		while (move_a++ < 0)
+	if (mova < 0)
+		while (mova < 0)
+		{
 			len += reverse(a);
-	if (move_a > 0)
-		while (move_a-- > 0)
+			mova++;
+		}
+	if (mova > 0)
+		while (mova-- > 0)
 			len += rotate (a);
 	return (len);
 }
