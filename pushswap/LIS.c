@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   LIS.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/04 14:32:33 by ggobert           #+#    #+#             */
+/*   Updated: 2022/05/04 14:32:36 by ggobert          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 //L'algorythme de LIS.
@@ -42,8 +54,9 @@ int	highest(int *L, int len)
 	}
 	return (highest);
 }
+
 //Renvoie un TABLEAU d'INT LIS après exectution de l'algorytme LIS.
-int	*new_lis(int *seq, int *sub , int *L, int highest)
+int	*new_lis(int *seq, int *sub, int *L, int highest)
 {
 	int	*lis;
 	int	i;
@@ -53,7 +66,7 @@ int	*new_lis(int *seq, int *sub , int *L, int highest)
 	previous = 0;
 	lis = malloc(sizeof(int) * highest);
 	if (!lis)
-		return 0;
+		return (0);
 	while (L[previous] != highest)
 		previous++;
 	i = highest;
@@ -63,24 +76,24 @@ int	*new_lis(int *seq, int *sub , int *L, int highest)
 		previous = sub[previous];
 	}
 	return (lis);
-} 
+}
 
 //FCT général qui initie les tableaux, et renvoie la LIS.
 void	ret_lis(int **lis, int *seq, int len)
 {
 	int	i;
-	int	*L;
+	int	*l;
 	int	*sub;
 
 	i = 0;
-	L = malloc(sizeof(int) * len);
-	if (!L)
+	l = malloc(sizeof(int) * len);
+	if (!l)
 		return ;
 	sub = malloc(sizeof(int) * len);
 	if (!sub)
 		return ;
 	while (i < len)
-		L[i++] = 1;
+		l[i++] = 1;
 	ft_lis(seq, &L, &sub, len);
-	*lis = new_lis(seq, sub, L, highest(L, len));
+	*lis = new_lis(seq, sub, l, highest(l, len));
 }

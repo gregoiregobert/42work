@@ -1,6 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_better_move.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/04 14:22:03 by ggobert           #+#    #+#             */
+/*   Updated: 2022/05/04 14:22:07 by ggobert          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-//Trier 1er element de b, s'il est le plus grand ou le plus petit.
 int	many_move_est(list *a, int b)
 {
 	int	move;
@@ -18,7 +29,6 @@ int	many_move_est(list *a, int b)
 	return (move);
 }
 
-//Trier 1er element de b, s'il n'est PAS le plus grand ou le plus petit. 
 int	between(list *a, int b_cont)
 {
 	int	move;
@@ -27,10 +37,10 @@ int	between(list *a, int b_cont)
 	int	dif;
 	int	bestdif;
 
-	i = 0;
+	i = -1;
 	size = ft_lstsize_int(a);
 	bestdif = 0;
-	while (i < size)
+	while (++i < size)
 	{
 		dif = a->content - b_cont;
 		if (dif > 0)
@@ -42,14 +52,12 @@ int	between(list *a, int b_cont)
 			}
 		}	
 		a = a->next;
-		i++;
 	}
 	if (move > (size / 2))
 		move -= size;
 	return (move);
 }
 
-//Renvoie nombres d'opérations nécessaires au tri du 1er element de B vers A.
 int	ft_rra(list *a, int b_cont)
 {
 	int	move;
@@ -64,17 +72,15 @@ int	ft_rra(list *a, int b_cont)
 	return (move);
 }
 
-//Renvoie le nombres d'opérations nécéssaires pour changer le 1er element de B.
 int	ft_rrb(int size, int index)
 {
 	if (size <= 2)
-		return index;
+		return (index);
 	if (index > (size / 2))
 		index -= size;
-	return index;
+	return (index);
 }
 
-//Renvoie le nombre d'operations pour trier un element de la LISTE CHAINEE B en fonction de son index.
 int	how_many(int rr_a, int rr_b)
 {
 	if (rr_a < 0 && rr_b < 0)

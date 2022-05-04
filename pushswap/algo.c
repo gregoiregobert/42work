@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   algo.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/04 13:53:46 by ggobert           #+#    #+#             */
+/*   Updated: 2022/05/04 14:13:29 by ggobert          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	push_lis(list **a, list **b, int max_len, int *lis)
 {
-	int	len;
+	int		len;
 	list	*temp;
 
 	len = 0;
@@ -16,11 +28,11 @@ int	push_lis(list **a, list **b, int max_len, int *lis)
 		}
 		if ((*a)->content != *lis)
 		{
-			len += push(a ,b);
+			len += push(a, b);
 			max_len--;
 		}
 	}
-	return len;
+	return (len);
 }
 
 int	best_move(list *a, list *b, int *move_a)
@@ -76,13 +88,7 @@ int	push_swap(list **a, list **b)
 	while (*b)
 	{
 		best_m = best_move(*a, *b, &move_a);
-		printf("BEST %d\n", best_m);
 		len += sort_best(a, b, best_m, &move_a);
-		printf("list A\n");
-		ft_printlst(*a);
-		printf("list B\n");
-                ft_printlst(*b);
-		printf("-------------\n");
 	}
 	return (len);
 }
