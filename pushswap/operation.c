@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   operation.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/05 10:22:37 by ggobert           #+#    #+#             */
+/*   Updated: 2022/05/05 10:22:40 by ggobert          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	swap(list **lst)
@@ -16,16 +28,16 @@ int	push(list **from, list **to)
 	list	*temp;
 
 	temp = *from;
-	*from =(*from)->next;
+	*from = (*from)->next;
 	temp->next = *to;
 	*to = temp;
-	return(1);
+	return (1);
 }
 
 int	reverse(list **lst)
 {
 	list	*before_last;
-	int	i;
+	int		i;
 	list	*temp;
 
 	i = 1;

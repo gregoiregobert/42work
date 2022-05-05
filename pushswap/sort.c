@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/05 10:30:35 by ggobert           #+#    #+#             */
+/*   Updated: 2022/05/05 10:30:37 by ggobert          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	sort_rrr(list **a, list **b, int rrb, int move_a)
@@ -7,7 +19,6 @@ int	sort_rrr(list **a, list **b, int rrb, int move_a)
 
 	i = 0;
 	len = 0;
-	printf("++++++ RRR\nrb = %d\nmova = %d\n", rrb, move_a);
 	if (rrb <= move_a)
 	{
 		while (i > move_a)
@@ -40,7 +51,6 @@ int	sort_rr(list **a, list **b, int rrb, int move_a)
 
 	i = 0;
 	len = 0;
-	printf("++++++ RR\nrrb = %d\nmova = %d\n", rrb, move_a);
 	if (rrb >= move_a)
 	{
 		while (i < move_a)
@@ -71,7 +81,6 @@ int	sort_dif(list **a, list **b, int rrb, int move_a)
 	int	len;
 
 	len = 0;
-	printf("++++++ DIF\nrrb = %d\nmova = %d\n", rrb, move_a);
 	if (rrb < 0)
 		while (rrb++ < 0)
 			len += reverse(b);

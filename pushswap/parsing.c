@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/05 10:23:35 by ggobert           #+#    #+#             */
+/*   Updated: 2022/05/05 10:23:40 by ggobert          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 //Renvoie les nombres de la chaine de caractères en LISTE CHAINEE. 
 list	*reader(char *inner)
 {
-	int	j;
+	int		j;
 	list	*stack_a;
 	char	*nbr;
 
@@ -27,9 +39,9 @@ list	*reader(char *inner)
 //Renvoie les nombres de la chaine de caractères en TABLEAU d'INT. 
 int	*parsing_int(char *inner)
 {
-	int	i;
-	int	j;
-	int	*stack_int;
+	int		i;
+	int		j;
+	int		*stack_int;
 	char	*nbr;
 
 	stack_int = malloc(sizeof(int) * (nbr_of(inner)));
