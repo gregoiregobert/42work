@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/05 11:10:15 by ggobert           #+#    #+#             */
+/*   Updated: 2022/05/05 11:10:17 by ggobert          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-
-//Compte le nombre de caractère du nombre le plus grand dans la CHAINE DE CARACTERE.
+//Compte le nombre de caractère du nombre le plus grand dans la str.
 int	arglen(char *str)
 {
 	int	len;
@@ -30,7 +41,7 @@ int	nbr_of(char *str)
 		if (ft_isdigit(*str) < 1)
 			str++;
 		if (ft_isdigit(*str) > 0)
-			len++;	
+			len++;
 		while (ft_isdigit(*str) > 0)
 			str++;
 	}
@@ -38,7 +49,7 @@ int	nbr_of(char *str)
 }
 
 //Renvoie le nombre le plus grand de la LISTE CHAINEE.
-int	highest_lst(list *lst)
+int	highest_lst(t_list1 *lst)
 {
 	int	highest;
 
@@ -55,7 +66,7 @@ int	highest_lst(list *lst)
 }
 
 //Renvoie le nombre le plus petit de la LISTE CHAINEE.
-int	smallest_lst(list *lst)
+int	smallest_lst(t_list1 *lst)
 {
 	int	smallest;
 

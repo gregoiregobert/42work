@@ -13,10 +13,10 @@
 #include "push_swap.h"
 
 //Renvoie les nombres de la chaine de caractères en LISTE CHAINEE. 
-list	*reader(char *inner)
+t_list1	*reader(char *inner)
 {
 	int		j;
-	list	*stack_a;
+	t_list1	*stack_a;
 	char	*nbr;
 
 	stack_a = 0;

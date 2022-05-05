@@ -12,9 +12,9 @@
 
 #include "push_swap.h"
 
-void	ft_lstclear_int(list **lst, void (*del)(int))
+void	ft_lstclear_int(t_list1 **lst, void (*del)(int))
 {
-	list	*k;
+	t_list1	*k;
 
 	if (!*lst)
 		return ;
@@ -28,7 +28,7 @@ void	ft_lstclear_int(list **lst, void (*del)(int))
 	}
 }
 
-void	ft_lstadd_front_int(list **alst, list *new)
+void	ft_lstadd_front_int(t_list1 **alst, t_list1 *new)
 {
 	if (alst && new)
 	{

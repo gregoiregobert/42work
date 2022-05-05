@@ -12,9 +12,9 @@
 
 #include "push_swap.h"
 
-int	swap(list **lst)
+int	swap(t_list1 **lst)
 {
-	list	*temp;
+	t_list1	*temp;
 
 	temp = (*lst)->next;
 	(*lst)->next = temp->next;
@@ -23,9 +23,9 @@ int	swap(list **lst)
 	return (1);
 }
 
-int	push(list **from, list **to)
+int	push(t_list1 **from, t_list1 **to)
 {
-	list	*temp;
+	t_list1	*temp;
 
 	temp = *from;
 	*from = (*from)->next;
@@ -34,11 +34,11 @@ int	push(list **from, list **to)
 	return (1);
 }
 
-int	reverse(list **lst)
+int	reverse(t_list1 **lst)
 {
-	list	*before_last;
+	t_list1	*before_last;
 	int		i;
-	list	*temp;
+	t_list1	*temp;
 
 	i = 1;
 	before_last = *lst;
@@ -51,9 +51,9 @@ int	reverse(list **lst)
 	return (1);
 }
 
-int	rotate(list **lst)
+int	rotate(t_list1 **lst)
 {
-	list	*temp;
+	t_list1	*temp;
 
 	temp = *lst;
 	*lst = (*lst)->next;

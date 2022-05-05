@@ -12,10 +12,10 @@
 
 #include "push_swap.h"
 
-int	push_lis(list **a, list **b, int max_len, int *lis)
+int	push_lis(t_list1 **a, t_list1 **b, int max_len, int *lis)
 {
 	int		len;
-	list	*temp;
+	t_list1	*temp;
 
 	len = 0;
 	while (max_len > 0)
@@ -35,7 +35,7 @@ int	push_lis(list **a, list **b, int max_len, int *lis)
 	return (len);
 }
 
-int	best_move(list *a, list *b, int *move_a)
+int	best_move(t_list1 *a, t_list1 *b, int *move_a)
 {
 	int	i;
 	int	move;
@@ -60,7 +60,7 @@ int	best_move(list *a, list *b, int *move_a)
 	return (index);
 }
 
-int	sort_best(list **a, list **b, int best_move, int *move_a)
+int	sort_best(t_list1 **a, t_list1 **b, int best_move, int *move_a)
 {
 	int	len;
 	int	size_b;
@@ -77,7 +77,7 @@ int	sort_best(list **a, list **b, int best_move, int *move_a)
 	return (len);
 }
 
-int	push_swap(list **a, list **b)
+int	push_swap(t_list1 **a, t_list1 **b)
 {
 	int	len;
 	int	best_m;

@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int	many_move_est(list *a, int b)
+int	many_move_est(t_list1 *a, int b)
 {
 	int	move;
 	int	size;
@@ -29,7 +29,7 @@ int	many_move_est(list *a, int b)
 	return (move);
 }
 
-int	between(list *a, int b_cont)
+int	between(t_list1 *a, int b_cont)
 {
 	int	move;
 	int	size;
@@ -58,7 +58,7 @@ int	between(list *a, int b_cont)
 	return (move);
 }
 
-int	ft_rra(list *a, int b_cont)
+int	ft_rra(t_list1 *a, int b_cont)
 {
 	int	move;
 

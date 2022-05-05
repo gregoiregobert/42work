@@ -13,7 +13,7 @@
 #include "push_swap.h"
 #include <stdio.h>
 
-void	ft_printlst(list *lst)
+void	ft_printlst(t_list1 *lst)
 {
 	if (!lst)
 	{
@@ -28,7 +28,7 @@ void	ft_printlst(list *lst)
 	printf("%d\n", lst->content);
 }
 
-void	ft_lstadd_back_int(list **alst, list *new)
+void	ft_lstadd_back_int(t_list1 **alst, t_list1 *new)
 {
 	if (!*alst)
 		*alst = new;
@@ -36,10 +36,10 @@ void	ft_lstadd_back_int(list **alst, list *new)
 		ft_lstlast_int(*alst)->next = new;
 }
 
-int	ft_lstsize_int(list *lst)
+int	ft_lstsize_int(t_list1 *lst)
 {
 	int		i;
-	list	*cursor;
+	t_list1	*cursor;
 
 	i = 0;
 	cursor = lst;
@@ -51,18 +51,18 @@ int	ft_lstsize_int(list *lst)
 	return (i);
 }
 
-list	*ft_lstlast_int(list *lst)
+t_list1	*ft_lstlast_int(t_list1 *lst)
 {
 	while (lst->next)
 		lst = lst->next;
 	return (lst);
 }
 
-list	*ft_lstnew_int(int content)
+t_list1	*ft_lstnew_int(int content)
 {
-	list	*new;
+	t_list1	*new;
 
-	new = malloc(sizeof(list));
+	new = malloc(sizeof(t_list1));
 	if (!new)
 		return (0);
 	if (!content)

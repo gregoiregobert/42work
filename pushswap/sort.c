@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int	sort_rrr(list **a, list **b, int rrb, int move_a)
+int	sort_rrr(t_list1 **a, t_list1 **b, int rrb, int move_a)
 {
 	int	i;
 	int	len;
@@ -21,30 +21,28 @@ int	sort_rrr(list **a, list **b, int rrb, int move_a)
 	len = 0;
 	if (rrb <= move_a)
 	{
-		while (i > move_a)
+		while (--i >= move_a)
 		{
 			len += reverse(a);
 			reverse(b);
-			i--;
 		}
-		while (i-- > rrb)
+		while (i-- >= rrb)
 			len += reverse(b);
 	}
 	if (rrb >= move_a)
 	{
-		while (i > rrb)
+		while (--i >= rrb)
 		{
 			len += reverse(a);
 			reverse(b);
-			i--;
 		}
-		while (i-- > move_a)
+		while (i-- >= move_a)
 			len += reverse(a);
 	}	
 	return (len);
 }
 
-int	sort_rr(list **a, list **b, int rrb, int move_a)
+int	sort_rr(t_list1 **a, t_list1 **b, int rrb, int move_a)
 {
 	int	i;
 	int	len;
@@ -53,30 +51,28 @@ int	sort_rr(list **a, list **b, int rrb, int move_a)
 	len = 0;
 	if (rrb >= move_a)
 	{
-		while (i < move_a)
+		while (++i <= move_a)
 		{
 			len += rotate(a);
 			rotate(b);
-			i++;
 		}
-		while (i++ < rrb)
+		while (i++ <= rrb)
 			len += rotate(b);
 	}
 	if (rrb <= move_a)
 	{
-		while (i < rrb)
+		while (++i <= rrb)
 		{
 			len += rotate(a);
 			rotate(b);
-			i++;
 		}
-		while (i++ < move_a)
+		while (i++ <= move_a)
 			len += rotate(a);
 	}
 	return (len);
 }
 
-int	sort_dif(list **a, list **b, int rrb, int move_a)
+int	sort_dif(t_list1 **a, t_list1 **b, int rrb, int move_a)
 {
 	int	len;
 
@@ -84,7 +80,7 @@ int	sort_dif(list **a, list **b, int rrb, int move_a)
 	if (rrb < 0)
 		while (rrb++ < 0)
 			len += reverse(b);
-	else if(rrb > 0)
+	else if (rrb > 0)
 		while (rrb-- > 0)
 			len += rotate(b);
 	if (move_a < 0)
