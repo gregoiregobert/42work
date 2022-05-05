@@ -57,5 +57,6 @@ int		sort_rr(t_list1 **a, t_list1 **b, int rrb, int move_a);
 int		sort_dif(t_list1 **a, t_list1 **b, int rrb, int move_a);
 int		push_swap(t_list1 **a, t_list1 **b);
 int		sort_best(t_list1 **a, t_list1 **b, int best_move, int *move_a);
+int		check_inner(char *inner);
 
 #endif

@@ -12,6 +12,7 @@
 
 #include "push_swap.h"
 
+//Compare la LIS(*int) et A, et push la non-LIS en B.
 int	push_lis(t_list1 **a, t_list1 **b, int max_len, int *lis)
 {
 	int		len;
@@ -35,6 +36,7 @@ int	push_lis(t_list1 **a, t_list1 **b, int max_len, int *lis)
 	return (len);
 }
 
+//Renvoie index du trie de B vers A qui executera le moins d'operations.
 int	best_move(t_list1 *a, t_list1 *b, int *move_a)
 {
 	int	i;
@@ -60,6 +62,7 @@ int	best_move(t_list1 *a, t_list1 *b, int *move_a)
 	return (index);
 }
 
+//execute le trie avec best_move, en optimisant avec les doubles (rrr, rr)
 int	sort_best(t_list1 **a, t_list1 **b, int best_move, int *move_a)
 {
 	int	len;

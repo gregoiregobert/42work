@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-//L'algorythme de LIS.
+//L'algorythme plus longue suite croissante (Longuest Increased Sub-sequence (LIS)).
 void	ft_lis(int *seq, int **L, int **sub, int len)
 {
 	int	i;
@@ -78,7 +78,7 @@ int	*new_lis(int *seq, int *sub, int *L, int highest)
 	return (lis);
 }
 
-//FCT général qui initie les tableaux, et renvoie la LIS.
+//Fct général, initie les tableaux, et renvoie la LIS.
 void	ret_lis(int **lis, int *seq, int len)
 {
 	int	i;

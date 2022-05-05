@@ -12,7 +12,6 @@
 
 #include "push_swap.h"
 
-//Renvoie les nombres de la chaine de caractères en LISTE CHAINEE. 
 t_list1	*reader(char *inner)
 {
 	int		j;
@@ -36,7 +35,6 @@ t_list1	*reader(char *inner)
 	return (stack_a);
 }
 
-//Renvoie les nombres de la chaine de caractères en TABLEAU d'INT. 
 int	*parsing_int(char *inner)
 {
 	int		i;
@@ -62,4 +60,24 @@ int	*parsing_int(char *inner)
 		inner++;
 	}
 	return (stack_int);
+}
+
+int	check_inner(char *inner)
+{
+	int	i;
+
+	i = 0;
+	if (!inner || !*inner || nbr_of(inner) == 1)
+		return (1);
+	while (inner[i])
+	{
+		if (ft_isdigit(inner[i]) == 1 || inner[i] == '-' || inner[i] == ' ')
+			i++;
+		else
+		{
+			write(1, "Error\n", 6);
+			return (1);
+		}
+	}
+	return (0);		
 }
