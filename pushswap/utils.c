@@ -6,7 +6,7 @@
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 11:10:15 by ggobert           #+#    #+#             */
-/*   Updated: 2022/05/05 11:10:17 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/05/13 11:22:30 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,14 @@ int	arglen(char *str)
 	while (*str)
 	{
 		temp = 0;
-		while (ft_isdigit(*str++) > 0)
+		while (*str == '-' || ft_isdigit(*str) > 0)
+		{
 			temp++;
+			str++;
+		}
 		if (temp > len)
 			len = temp;
+		str++;
 	}
 	return (len);
 }
@@ -38,11 +42,11 @@ int	nbr_of(char *str)
 	len = 0;
 	while (*str)
 	{
-		if (ft_isdigit(*str) < 1)
+		if (*str != '-' || ft_isdigit(*str) < 1)
 			str++;
-		if (ft_isdigit(*str) > 0)
+		if (*str == '-' || ft_isdigit(*str) > 0)
 			len++;
-		while (ft_isdigit(*str) > 0)
+		while (*str == '-' || ft_isdigit(*str) > 0)
 			str++;
 	}
 	return (len);
@@ -80,4 +84,25 @@ int	smallest_lst(t_list1 *lst)
 		lst = lst->next;
 	}
 	return (smallest);
+}
+
+int	ft_atoi_check(char *str)
+{
+	int		pos;
+	long	ret;
+
+	pos = 1;
+	ret = 0;
+	if (ft_strlen(str) > 11)
+		return (1);
+	while ((*str >= 9 && *str <= 13) || *str == ' ')
+		str++;
+	if (*str == '-' || *str == '+')
+		if (*str++ == '-')
+			pos *= -1;
+	while (*str >= '0' && *str <= '9')
+		ret = ret * 10 + (*str++ - '0');
+	if ((ret * pos) > 2147483647 || (ret * pos) < -2147483648)
+		return (1);
+	return (0);
 }

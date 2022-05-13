@@ -37,6 +37,8 @@ void	ft_lstadd_back_int(t_list1 **alst, t_list1 *new);
 void	ft_printlst(t_list1 *lst);
 void	ft_lis(int *seq, int **L, int **sub, int len);
 void	ret_lis(int **lis, int *seq, int len);
+void    double_reverse(t_list1 **a, t_list1 **b);
+void    double_rotate(t_list1 **a, t_list1 **b);
 int		ft_lstsize_int(t_list1 *lst);
 int		arglen(char *str);
 int		nbr_of(char *str);
@@ -57,6 +59,10 @@ int		sort_rr(t_list1 **a, t_list1 **b, int rrb, int move_a);
 int		sort_dif(t_list1 **a, t_list1 **b, int rrb, int move_a);
 int		push_swap(t_list1 **a, t_list1 **b);
 int		sort_best(t_list1 **a, t_list1 **b, int best_move, int *move_a);
-int		check_inner(char *inner);
+int		check_digit(char *inner);
+int		check_double_minus(char *inner);
+int		check_doublon(int *stack_int, int nbr_of);
+int		check_buffer(int *stack_int, char *inner, int nbr_of);
+int		ft_atoi_check(char *str);
 
 #endif

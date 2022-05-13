@@ -15,25 +15,25 @@
 //Compare la LIS(*int) et A, et push la non-LIS en B.
 int	push_lis(t_list1 **a, t_list1 **b, int max_len, int *lis)
 {
-	int		len;
 	t_list1	*temp;
 
-	len = 0;
 	while (max_len > 0)
 	{
 		if ((*a)->content == *lis)
 		{
 			lis++;
-			len += rotate(a);
+			rotate(a);
+			write(1, "ra\n", 4);
 			max_len--;
 		}
-		if ((*a)->content != *lis)
+		else if ((*a)->content != *lis)
 		{
-			len += push(a, b);
+			push(a, b);
+			write(1, "pb\n", 4);
 			max_len--;
 		}
 	}
-	return (len);
+	return (1);
 }
 
 //Renvoie index du trie de B vers A qui executera le moins d'operations.
@@ -65,33 +65,32 @@ int	best_move(t_list1 *a, t_list1 *b, int *move_a)
 //execute le trie avec best_move, en optimisant avec les doubles (rrr, rr)
 int	sort_best(t_list1 **a, t_list1 **b, int best_move, int *move_a)
 {
-	int	len;
 	int	size_b;
 
-	len = 0;
 	size_b = ft_lstsize_int(*b);
 	if (ft_rrb(size_b, best_move) < 0 && *move_a < 0)
-		len += sort_rrr(a, b, ft_rrb(size_b, best_move), *move_a);
+		sort_rrr(a, b, ft_rrb(size_b, best_move), *move_a);
 	else if (ft_rrb(size_b, best_move) > 0 && *move_a > 0)
-		len += sort_rr(a, b, ft_rrb(size_b, best_move), *move_a);
+		sort_rr(a, b, ft_rrb(size_b, best_move), *move_a);
 	else
-		len += sort_dif(a, b, ft_rrb(size_b, best_move), *move_a);
-	len += push(b, a);
-	return (len);
+		sort_dif(a, b, ft_rrb(size_b, best_move), *move_a);
+	push(b, a);
+	write(1, "pa\n", 4);
+	return (1);
 }
 
 int	push_swap(t_list1 **a, t_list1 **b)
 {
-	int	len;
 	int	best_m;
 	int	move_a;
 
-	len = 0;
 	move_a = 0;
 	while (*b)
 	{
 		best_m = best_move(*a, *b, &move_a);
-		len += sort_best(a, b, best_m, &move_a);
+		sort_best(a, b, best_m, &move_a);
 	}
-	return (len);
+	while ((*a)->content != smallest_lst(*a))
+		rotate(a);
+	return (1);
 }

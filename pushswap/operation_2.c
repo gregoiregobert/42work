@@ -12,7 +12,16 @@
 
 #include "push_swap.h"
 
-void    double_reverse_rotate(t_list1 **a, t_list1 **b)
+void    double_reverse(t_list1 **a, t_list1 **b)
 {
-    
+    reverse(a);
+    reverse(b);
+    write(1, "rrr\n", 4);
+}
+
+void    double_rotate(t_list1 **a, t_list1 **b)
+{
+    rotate(a);
+    rotate(b);
+    write(1, "rr\n", 4);
 }

@@ -55,29 +55,11 @@ int	*parsing_int(char *inner)
 		while (*inner == '-' || ft_isdigit(*inner) > 0)
 			nbr[j++] = *inner++;
 		nbr[j] = 0;
+		if (ft_atoi_check(nbr) > 0)
+			return (0);
 		if (j > 0)
 			stack_int[i++] = ft_atoi(nbr);
 		inner++;
 	}
 	return (stack_int);
-}
-
-int	check_inner(char *inner)
-{
-	int	i;
-
-	i = 0;
-	if (!inner || !*inner || nbr_of(inner) == 1)
-		return (1);
-	while (inner[i])
-	{
-		if (ft_isdigit(inner[i]) == 1 || inner[i] == '-' || inner[i] == ' ')
-			i++;
-		else
-		{
-			write(1, "Error\n", 6);
-			return (1);
-		}
-	}
-	return (0);		
 }

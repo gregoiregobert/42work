@@ -6,7 +6,7 @@
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 11:11:35 by ggobert           #+#    #+#             */
-/*   Updated: 2022/05/05 11:11:37 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/05/13 11:13:40 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,26 @@
 
 int	main(void)
 {
-	char	*f = "123-23-99";
+	char	*f = "-29 -72 26 -78 2147483647 11";
 	t_list1	*a = reader(f);
 	t_list1	*b = 0;
-	int		*m = parsing_int(f);
-	int		len = 0;
+	int		*m;
 	int		*lis;
 
-	if (check_inner(f) == 1)
-			return (0);
-	ft_printlst(a);
-	printf("\nLIS a :\n\n");
+	
+	m = parsing_int(f);
+	if (m == 0)
+	{
+		write(1, "error\n", 6);
+		return (0);
+	}
+	if (check_buffer(m, f ,nbr_of(f)) > 0)
+	{
+		write(1, "error\n", 6);
+		return (0);
+	}
 	ret_lis(&lis, m, nbr_of(f));
-	len += push_lis(&a, &b, nbr_of(f), lis);
-	ft_printlst(a);
-	printf("\nlist b :\n\n");
-	ft_printlst(b);
-	printf("..........\n");
+	push_lis(&a, &b, nbr_of(f), lis);
 	push_swap(&a, &b);
-	while (a->content != smallest_lst(a))
-		rotate(&a);
 	ft_printlst(a);
-	printf("len = %d\n", len);
 }
