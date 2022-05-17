@@ -16,23 +16,28 @@
 int	push_lis(t_list1 **a, t_list1 **b, int max_len, int *lis)
 {
 	t_list1	*temp;
-
+	
+	printf("maxlen %d\n", max_len);
 	while (max_len > 0)
 	{
+		printf("lis %d\n", *lis);
 		if ((*a)->content == *lis)
 		{
-			lis++;
 			rotate(a);
-			write(1, "ra\n", 4);
+			lis++;
+			write(1, "ra\n", 3);
 			max_len--;
 		}
-		else if ((*a)->content != *lis)
+		else
 		{
 			push(a, b);
-			write(1, "pb\n", 4);
-			max_len--;
+			write(1, "pb\n", 3);
 		}
 	}
+	ft_printlst(*a);
+	printf("..........\n");
+	ft_printlst(*b);
+	printf("..........\n");
 	return (1);
 }
 

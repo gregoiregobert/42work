@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-//L'algorythme plus longue suite croissante (Longuest Increased Sub-sequence (LIS)).
+//L'algorythme plus longue suite croissante 
 void	ft_lis(int *seq, int **L, int **sub, int len)
 {
 	int	i;
