@@ -18,26 +18,22 @@ int	main(void)
 	char	*f;
 	t_list1	*a;
 	t_list1	*b;
-	int		*m;
 	int		*lis;
-	int		len_lis;
+	int		*parsing;
 
 	f = "-29 -72 26 -78 214 11 -5 56 -9";
+	parsing = parsing_int(f);
 	a = reader(f);
 	b = 0;
-	m = parsing_int(f);
-	if (m == 0)
+	if (check_buffer(parsing, f, nbr_of(f)) > 0)
 	{
 		write(1, "error\n", 6);
 		return (0);
 	}
-	if (check_buffer(m, f, nbr_of(f)) > 0)
-	{
-		write(1, "error\n", 6);
-		return (0);
-	}
-	len_lis = ret_lis(&lis, m, nbr_of(f));
-	push_lis(&a, &b, len_lis, lis);
+	ret_lis(&lis, parsing, nbr_of(f));
+	push_lis(&a, &b, nbr_of(f), lis);
 	push_swap(&a, &b);
-	ft_printlst(a);
+	free (parsing);
+	free (lis);
+	ft_lstclear_int(&a, NULL);
 }

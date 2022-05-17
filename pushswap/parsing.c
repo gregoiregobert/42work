@@ -32,6 +32,7 @@ t_list1	*reader(char *inner)
 			ft_lstadd_back_int(&stack_a, ft_lstnew_int(ft_atoi(nbr)));
 		inner++;
 	}
+	free (nbr);
 	return (stack_a);
 }
 
@@ -61,5 +62,6 @@ int	*parsing_int(char *inner)
 			stack_int[i++] = ft_atoi(nbr);
 		inner++;
 	}
+	free (nbr);
 	return (stack_int);
 }

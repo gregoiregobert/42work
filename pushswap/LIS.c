@@ -96,4 +96,6 @@ void	ret_lis(int **lis, int *seq, int len)
 		l[i++] = 1;
 	ft_lis(seq, &l, &sub, len);
 	*lis = new_lis(seq, sub, l, highest(l, len));
+	free (l);
+	free (sub);
 }
