@@ -23,6 +23,13 @@ typedef struct List
 	struct List	*next;
 }			t_list1;
 
+typedef struct len
+{
+	int		len_tot;
+	int		len_lis;
+	int		*parsing;
+}			t_len;
+
 t_list1	*reader(char *inner);
 t_list1	*ft_lstnew_int(int content);
 t_list1	*ft_lstlast_int(t_list1 *lst);
@@ -38,14 +45,14 @@ void	ft_printlst(t_list1 *lst);
 void	ft_lis(int *seq, int **L, int **sub, int len);
 void	double_reverse(t_list1 **a, t_list1 **b);
 void	double_rotate(t_list1 **a, t_list1 **b);
-void	ret_lis(int **lis, int *seq, int len);
+int		ret_lis(int **lis, int *seq, int len);
 int		ft_lstsize_int(t_list1 *lst);
 int		arglen(char *str);
 int		nbr_of(char *str);
 int		*parsing_int(char *inner);
 int		highest(int *L, int len);
 int		*new_lis(int *seq, int *sub, int *L, int highest);
-int		push_lis(t_list1 **a, t_list1 **b, int max_len, int *lis);
+int		push_lis(t_list1 **a, t_list1 **b, t_len *len, int *lis);
 int		smallest_lst(t_list1 *lst);
 int		highest_lst(t_list1 *lst);
 int		many_move_est(t_list1 *a, int b);
@@ -61,8 +68,8 @@ int		push_swap(t_list1 **a, t_list1 **b);
 int		sort_best(t_list1 **a, t_list1 **b, int best_move, int *move_a);
 int		check_digit(char *inner);
 int		check_double_minus(char *inner);
-int		check_doublon(int *stack_int, int nbr_of);
-int		check_buffer(int *stack_int, char *inner, int nbr_of);
+int		check_doublon(int *stack_int, int len);
+int		check_buffer(int *stack_int, char *inner, int len);
 int		ft_atoi_check(char *str);
 
 #endif

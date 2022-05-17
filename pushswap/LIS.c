@@ -79,23 +79,26 @@ int	*new_lis(int *seq, int *sub, int *L, int highest)
 }
 
 //Fct général, initie les tableaux, et renvoie la LIS.
-void	ret_lis(int **lis, int *seq, int len)
+int	ret_lis(int **lis, int *seq, int len)
 {
 	int	i;
 	int	*l;
 	int	*sub;
+	int	high;
 
 	i = 0;
 	l = malloc(sizeof(int) * len);
 	if (!l)
-		return ;
+		return (0);
 	sub = malloc(sizeof(int) * len);
 	if (!sub)
-		return ;
+		return (0);
 	while (i < len)
 		l[i++] = 1;
 	ft_lis(seq, &l, &sub, len);
-	*lis = new_lis(seq, sub, l, highest(l, len));
+	high = highest(l, len);
+	*lis = new_lis(seq, sub, l, high);
 	free (l);
 	free (sub);
+	return (high);
 }

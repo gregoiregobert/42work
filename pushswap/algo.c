@@ -13,21 +13,18 @@
 #include "push_swap.h"
 
 //Compare la LIS(*int) et A, et push la non-LIS en B.
-int	push_lis(t_list1 **a, t_list1 **b, int max_len, int *lis)
+int	push_lis(t_list1 **a, t_list1 **b, t_len *len, int *lis)
 {
-	int	len_lis;
-
-	len_lis = sizeof(*lis);
-	while (max_len > 0)
+	while (len->len_tot > 0)
 	{
-		if (len_lis > 0)
+		if (len->len_lis > 0)
 		{
 			if ((*a)->content == *lis)
 			{
 				rotate(a);
 				write(1, "ra\n", 3);
 				lis++;
-				len_lis--;
+				len->len_lis--;
 			}
 			else
 			{
@@ -40,7 +37,7 @@ int	push_lis(t_list1 **a, t_list1 **b, int max_len, int *lis)
 			push(a, b);
 			write(1, "pb\n", 3);
 		}
-		max_len--;
+		len->len_tot--;
 	}
 	return (1);
 }

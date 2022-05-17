@@ -44,13 +44,13 @@ int	check_double_minus(char *inner)
 	return (0);
 }
 
-int	check_doublon(int *stack_int, int nbr_of)
+int	check_doublon(int *stack_int, int len)
 {
 	int	i;
 	int	j;
 
 	i = 1;
-	while (i < nbr_of)
+	while (i < len)
 	{
 		j = i;
 		while (--j >= 0)
@@ -63,11 +63,11 @@ int	check_doublon(int *stack_int, int nbr_of)
 	return (0);
 }
 
-int	check_buffer(int *stack_int, char *inner, int nbr_of)
+int	check_buffer(int *stack_int, char *inner, int len)
 {
 	if (check_digit(inner) == 1
 		|| check_double_minus(inner) == 1
-		|| check_doublon(stack_int, nbr_of) == 1)
+		|| check_doublon(stack_int, len) == 1)
 		return (1);
 	return (0);
 }
