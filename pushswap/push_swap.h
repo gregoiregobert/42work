@@ -31,10 +31,12 @@ typedef struct len
 	int		i;
 }			t_len;
 
-t_list1	*reader(char *inner);
+t_list1	*parsing_chained(char *inner);
+t_list1 *parsing_chained_av(char **av, int len);
 t_list1	*ft_lstnew_int(int content);
 t_list1	*ft_lstlast_int(t_list1 *lst);
 t_list1	*rotate_test(t_list1 *lst);
+t_list1	*arg_number(int ac, char **av, t_len *len);
 int		swap(t_list1 **lst);
 int		push(t_list1 **a, t_list1 **b);
 int		rotate(t_list1 **lst);
@@ -53,6 +55,7 @@ int		ft_lstsize_int(t_list1 *lst);
 int		arglen(char *str);
 int		nbr_of(char *str);
 int		*parsing_int(char *inner, int i);
+int		*parsing_int_av(char **av, int len);
 int		highest(int *L, int len);
 int		*new_lis(int *seq, int *sub, int *L, int highest);
 int		push_lis(t_list1 **a, t_list1 **b, t_len *len, int *lis);
@@ -72,7 +75,7 @@ int		sort_best(t_list1 **a, t_list1 **b, int best_move, int *move_a);
 int		check_digit(char *inner);
 int		check_double_minus(char *inner);
 int		check_doublon(int *stack_int, int len);
-int		check_buffer(int *stack_int, char *inner, int len);
+int		check_buffer(int *stack_int, int len);
 int		ft_atoi_check(char *str);
 
 #endif

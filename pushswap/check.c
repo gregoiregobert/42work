@@ -63,11 +63,19 @@ int	check_doublon(int *stack_int, int len)
 	return (0);
 }
 
-int	check_buffer(int *stack_int, char *inner, int len)
+int	check_buffer(int *stack_int, int len)
 {
-	if (check_digit(inner) == 1
-		|| check_double_minus(inner) == 1
-		|| check_doublon(stack_int, len) == 1)
+	int	i;
+
+	i = -1;
+	if (check_doublon(stack_int, len) == 1)
 		return (1);
+	while (++i < len)
+	{
+		if (check_digit(stack_int[i]) == 1)
+			return (1);
+		if (check_double_minus(stack_int[i]) == 1)
+			return (1);
+	}
 	return (0);
 }

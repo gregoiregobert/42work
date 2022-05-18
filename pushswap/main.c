@@ -13,21 +13,18 @@
 #include "push_swap.h"
 #include <stdio.h>
 
-int	main(void)
+int	main(int ac, char **av)
 {
-	char	*f;
 	t_list1	*a;
 	t_list1	*b;
 	int		*lis;
 	t_len	len;
 
-	f = "2 1 3 6 5 5 8";
-	len.len_tot = nbr_of(f);
+
 	len.i = 0;
-	len.parsing = parsing_int(f, len.i);
-	a = reader(f);
+	a = arg_number(ac, av, &len);
 	b = 0;
-	if (check_buffer(len.parsing, f, len.len_tot) > 0)
+	if (check_buffer(len.parsing, len.len_tot) > 0)
 	{
 		write(1, "error\n", 6);
 		free (len.parsing);

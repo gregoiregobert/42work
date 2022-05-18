@@ -1,31 +1,38 @@
-CC = gcc 
-CFLAGS = -Wall -Werror -Wextra
-EXEC = push_swap
-SRC = 	algo.c \
-		check_better_move.c \
-		check.c \
-		LIS.c \
-		lst_utils.c \
-		lst_utils_2.c \
-		main.c \
-		operation.c \
-		operation_2.c \
-		parsing.c \
-		sort.c \
-		utils.c \
-		../libft/ft_isdigit.c 
-OBJ = $(SRC:.c=.o)
+CC		=	gcc 
+CFLAGS	=	-Wall -Werror -Wextra
+NAME	=	push_swap
+SRC		=	algo.c \
+			check_better_move.c \
+			check.c \
+			LIS.c \
+			lst_utils.c \
+			lst_utils_2.c \
+			main.c \
+			operation.c \
+			operation_2.c \
+			parsing.c \
+			sort.c \
+			utils.c \
+			../libft/ft_isdigit.c \
+			../libft/ft_atoi.c \
+			../libft/ft_strlen.c
+OBJ		=	$(SRC:.c=.o)
+RM 		=	rm -rf
 
-all : $(EXEC)
+all		:	$(NAME)
 
-$(EXEC) : $(OBJ)
-	$(CC) -o $@ $^
+$(NAME)	:	$(OBJ)
+	$(CC) $(CFLAGS) -o $@ $^
 
-%.o : %.c
+%.o		:	%.c
 	$(CC) -o $@ -c $<
 
-clean :
-	rm -rf *.o
+clean	:
+	@$(RM) *.o
 
-fclean : clean
-	rm -rf $(EXEC)
+fclean	:	clean
+	@$(RM) $(NAME)
+
+re		:	fclean all
+
+.PHONY	:	all clean fclean re
