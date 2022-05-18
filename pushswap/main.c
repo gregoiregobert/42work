@@ -21,14 +21,17 @@ int	main(void)
 	int		*lis;
 	t_len	len;
 
-	f = "-29 -72 26 -78 214 11 -5 56 -9";
+	f = "2 1 3 6 5 5 8";
 	len.len_tot = nbr_of(f);
-	len.parsing = parsing_int(f);
+	len.i = 0;
+	len.parsing = parsing_int(f, len.i);
 	a = reader(f);
 	b = 0;
 	if (check_buffer(len.parsing, f, len.len_tot) > 0)
 	{
 		write(1, "error\n", 6);
+		free (len.parsing);
+		ft_lstclear_int(&a, NULL);
 		return (0);
 	}
 	len.len_lis = ret_lis(&lis, len.parsing, len.len_tot);

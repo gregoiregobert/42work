@@ -97,6 +97,9 @@ int	push_swap(t_list1 **a, t_list1 **b)
 		sort_best(a, b, best_m, &move_a);
 	}
 	while ((*a)->content != smallest_lst(*a))
+	{
 		rotate(a);
+		write(1, "ra\n", 3);
+	}
 	return (1);
 }

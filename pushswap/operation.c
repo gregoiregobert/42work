@@ -34,7 +34,7 @@ int	push(t_list1 **from, t_list1 **to)
 	return (1);
 }
 
-int	reverse(t_list1 **lst)
+int	reverse_a(t_list1 **lst)
 {
 	t_list1	*before_last;
 	int		i;
@@ -48,6 +48,25 @@ int	reverse(t_list1 **lst)
 	ft_lstlast_int(*lst)->next = *lst;
 	*lst = temp;
 	before_last->next = 0;
+	write(1, "rra\n", 4);
+	return (1);
+}
+
+int	reverse_b(t_list1 **lst)
+{
+	t_list1	*before_last;
+	int		i;
+	t_list1	*temp;
+
+	i = 1;
+	before_last = *lst;
+	while (i++ < (ft_lstsize_int(*lst) - 1))
+		before_last = before_last->next;
+	temp = ft_lstlast_int(*lst);
+	ft_lstlast_int(*lst)->next = *lst;
+	*lst = temp;
+	before_last->next = 0;
+	write(1, "rrb\n", 4);
 	return (1);
 }
 

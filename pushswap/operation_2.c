@@ -12,6 +12,23 @@
 
 #include "push_swap.h"
 
+int	reverse(t_list1 **lst)
+{
+	t_list1	*before_last;
+	int		i;
+	t_list1	*temp;
+
+	i = 1;
+	before_last = *lst;
+	while (i++ < (ft_lstsize_int(*lst) - 1))
+		before_last = before_last->next;
+	temp = ft_lstlast_int(*lst);
+	ft_lstlast_int(*lst)->next = *lst;
+	*lst = temp;
+	before_last->next = 0;
+	return (1);
+}
+
 void	double_reverse(t_list1 **a, t_list1 **b)
 {
 	reverse(a);

@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int	many_move_est(t_list1 *a, int b)
+int	many_move_est(t_list1 *a)
 {
 	int	move;
 	int	size;
@@ -65,7 +65,7 @@ int	ft_rra(t_list1 *a, int b_cont)
 	move = 0;
 	if (b_cont < smallest_lst(a) || b_cont > highest_lst(a))
 	{
-		move += many_move_est(a, b_cont);
+		move += many_move_est(a);
 		return (move);
 	}
 	move += between(a, b_cont);

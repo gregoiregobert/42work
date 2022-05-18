@@ -36,17 +36,15 @@ t_list1	*reader(char *inner)
 	return (stack_a);
 }
 
-int	*parsing_int(char *inner)
+int	*parsing_int(char *inner, int i)
 {
-	int		i;
 	int		j;
 	int		*stack_int;
 	char	*nbr;
 
-	stack_int = malloc(sizeof(int) * (nbr_of(inner)));
+	stack_int = malloc(sizeof(int) * (nbr_of(inner) + 1));
 	if (!stack_int)
 		return (0);
-	i = 0;
 	nbr = malloc(sizeof(char) * (arglen(inner) + 1));
 	if (!nbr)
 		return (0);

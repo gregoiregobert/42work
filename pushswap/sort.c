@@ -71,13 +71,8 @@ int	sort_rr(t_list1 **a, t_list1 **b, int rrb, int move_a)
 int	sort_dif(t_list1 **a, t_list1 **b, int rrb, int move_a)
 {
 	if (rrb < 0)
-	{
 		while (rrb++ < 0)
-		{
-			reverse(b);
-			write(1, "rrb\n", 4);
-		}
-	}
+			reverse_b(b);
 	else if (rrb > 0)
 	{
 		while (rrb-- > 0)
@@ -87,13 +82,8 @@ int	sort_dif(t_list1 **a, t_list1 **b, int rrb, int move_a)
 		}
 	}
 	if (move_a < 0)
-	{
 		while (move_a++ < 0)
-		{
-			reverse(a);
-			write(1, "rra\n", 4);
-		}
-	}
+			reverse_a(a);
 	else if (move_a > 0)
 	{
 		while (move_a-- > 0)
