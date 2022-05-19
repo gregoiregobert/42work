@@ -32,7 +32,7 @@ typedef struct len
 }			t_len;
 
 t_list1	*parsing_chained(char *inner);
-t_list1 *parsing_chained_av(char **av, int len);
+t_list1	*parsing_chained_av(char **av, int len);
 t_list1	*ft_lstnew_int(int content);
 t_list1	*ft_lstlast_int(t_list1 *lst);
 t_list1	*rotate_test(t_list1 *lst);
@@ -75,7 +75,7 @@ int		sort_best(t_list1 **a, t_list1 **b, int best_move, int *move_a);
 int		check_digit(char *inner);
 int		check_double_minus(char *inner);
 int		check_doublon(int *stack_int, int len);
-int		check_buffer(int *stack_int, int len);
+int		check_buffer(int *stack_int, int len, char **av);
 int		ft_atoi_check(char *str);
 
 #endif

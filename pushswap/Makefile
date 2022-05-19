@@ -1,5 +1,5 @@
 CC		=	gcc 
-CFLAGS	=	-Wall -Werror -Wextra
+CFLAGS	=	-Wall -Werror -Wextra -g3
 NAME	=	push_swap
 SRC		=	algo.c \
 			check_better_move.c \

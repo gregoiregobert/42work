@@ -63,18 +63,18 @@ int	check_doublon(int *stack_int, int len)
 	return (0);
 }
 
-int	check_buffer(int *stack_int, int len)
+int	check_buffer(int *stack_int, int len, char **av)
 {
 	int	i;
 
-	i = -1;
+	i = 0;
 	if (check_doublon(stack_int, len) == 1)
 		return (1);
-	while (++i < len)
+	while (++i < len - 1)
 	{
-		if (check_digit(stack_int[i]) == 1)
+		if (check_digit(av[i]) == 1)
 			return (1);
-		if (check_double_minus(stack_int[i]) == 1)
+		if (check_double_minus(av[i]) == 1)
 			return (1);
 	}
 	return (0);

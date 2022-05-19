@@ -49,6 +49,7 @@ int	nbr_of(char *str)
 		while (*str == '-' || ft_isdigit(*str) > 0)
 			str++;
 	}
+	len++;
 	return (len);
 }
 

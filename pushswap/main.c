@@ -20,11 +20,11 @@ int	main(int ac, char **av)
 	int		*lis;
 	t_len	len;
 
-
 	len.i = 0;
 	a = arg_number(ac, av, &len);
+	ft_printlst(a);
 	b = 0;
-	if (check_buffer(len.parsing, len.len_tot) > 0)
+	if (check_buffer(len.parsing, ac, av) > 0)
 	{
 		write(1, "error\n", 6);
 		free (len.parsing);
@@ -36,5 +36,6 @@ int	main(int ac, char **av)
 	push_swap(&a, &b);
 	free (lis);
 	free (len.parsing);
+	ft_printlst(a);
 	ft_lstclear_int(&a, NULL);
 }
