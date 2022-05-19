@@ -77,5 +77,6 @@ int		check_double_minus(char *inner);
 int		check_doublon(int *stack_int, int len);
 int		check_buffer(int *stack_int, int len, char **av);
 int		ft_atoi_check(char *str);
+int		check_int_max_min(char *inner);
 
 #endif

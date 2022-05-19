@@ -82,4 +82,21 @@ int	check_buffer(int *stack_int, int len, char **av)
 	return (0);
 }
 
-int	check_int_max_min()
+int	check_int_max_min(char *inner)
+{
+	char	*nbr;
+
+	nbr = malloc(sizeof(char) * (arglen(inner) + 1));
+	if (!nbr)
+		return (0);
+	while(*inner)
+	{
+		j = 0;
+		while (*inner == '-' || ft_isdigit(*inner) > 0)
+			nbr[j++] = *inner++;
+		nbr[j] = 0;
+		if (ft_atoi_check(nbr) == 1)
+		return (1);
+	}
+	return (0);
+}

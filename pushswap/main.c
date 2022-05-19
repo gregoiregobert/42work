@@ -22,6 +22,8 @@ int	main(int ac, char **av)
 
 	len.i = 0;
 	a = arg_number(ac, av, &len);
+	if (check_int_max_min(av[1] == 1))
+		printf("lol");
 	if (a == 0)
 		return (0);
 	b = 0;
