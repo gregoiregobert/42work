@@ -68,6 +68,8 @@ int	check_buffer(int *stack_int, int len, char **av)
 	int	i;
 
 	i = 0;
+	if (!stack_int)
+		return (1);
 	if (check_doublon(stack_int, len) == 1)
 		return (1);
 	while (++i < len - 1)
@@ -79,3 +81,5 @@ int	check_buffer(int *stack_int, int len, char **av)
 	}
 	return (0);
 }
+
+int	check_int_max_min()

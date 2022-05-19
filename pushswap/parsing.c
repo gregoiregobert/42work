@@ -54,8 +54,12 @@ int	*parsing_int(char *inner, int i)
 		while (*inner == '-' || ft_isdigit(*inner) > 0)
 			nbr[j++] = *inner++;
 		nbr[j] = 0;
-		if (ft_atoi_check(nbr) > 0)
+		if (ft_atoi_check(nbr) == 1)
+		{
+			free (nbr);
+			free (stack_int);
 			return (0);
+		}
 		if (j > 0)
 			stack_int[i++] = ft_atoi(nbr);
 		inner++;
@@ -75,8 +79,11 @@ int	*parsing_int_av(char **av, int len)
 		return (0);
 	while (++i < len)
 	{
-		if (ft_atoi_check(av[i + 1]) > 0)
+		if (ft_atoi_check(av[i + 1]) == 1)
+		{
+			free (stack_int);
 			return (0);
+		}
 		stack_int[i] = ft_atoi(av[i + 1]);
 	}
 	return (stack_int);
@@ -91,19 +98,24 @@ t_list1	*parsing_chained_av(char **av, int len)
 	stack_a = 0;
 	while (++i < len)
 	{
-		ft_lstadd_back_int(&stack_a, ft_lstnew_int(ft_atoi(av[i])));
+		ft_lstadd_back_int(&stack_a, ft_lstnew_int(ft_atoi(av[i + 1])));
 	}
 	return (stack_a);
 }
 
 t_list1	*arg_number(int ac, char **av, t_len *len)
 {
+	if (ac == 1)
+	{
+		len->parsing = 0;
+		return (0);
+	}
 	if (ac == 2)
 	{
 		if (nbr_of(av[1]) > 1)
 		{
-			len->parsing = parsing_int(av[1], len->i);
 			len->len_tot = nbr_of(av[1]);
+			len->parsing = parsing_int(av[1], len->i);
 			return (parsing_chained(av[1]));
 		}
 	}
