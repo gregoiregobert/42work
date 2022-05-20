@@ -3,8 +3,14 @@
 
 int	main()
 {
-	long	i;
+	char *pote;
 
-	i = -214748364;
-	printf("%d\n", (int)i);
+	pote = malloc(sizeof(char) * 6);
+	pote = "12345";
+	while (*pote)
+	{
+		while ((*pote)-- > 0)
+			printf("%c\n", *pote);
+		pote++;
+	}
 }

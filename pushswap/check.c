@@ -63,40 +63,50 @@ int	check_doublon(int *stack_int, int len)
 	return (0);
 }
 
-int	check_buffer(int *stack_int, int len, char **av)
-{
-	int	i;
-
-	i = 0;
-	if (!stack_int)
-		return (1);
-	if (check_doublon(stack_int, len) == 1)
-		return (1);
-	while (++i < len - 1)
-	{
-		if (check_digit(av[i]) == 1)
-			return (1);
-		if (check_double_minus(av[i]) == 1)
-			return (1);
-	}
-	return (0);
-}
-
 int	check_int_max_min(char *inner)
 {
+	int		j;
 	char	*nbr;
 
+	if (!inner)
+		return (0);
 	nbr = malloc(sizeof(char) * (arglen(inner) + 1));
 	if (!nbr)
 		return (0);
-	while(*inner)
+	while (*inner)
 	{
 		j = 0;
 		while (*inner == '-' || ft_isdigit(*inner) > 0)
 			nbr[j++] = *inner++;
 		nbr[j] = 0;
 		if (ft_atoi_check(nbr) == 1)
+		{
+			free (nbr);
+			return (1);
+		}
+		inner++;
+	}
+	free (nbr);
+	return (0);
+}
+
+int	check_buffer(int *stack_int, int len, char **av)
+{
+	int	i;
+
+	i = 0;
+	if (check_int_max_min(av[1]) == 1)
 		return (1);
+	if (check_doublon(stack_int, len) == 1)
+		return (1);
+	while (++i <= len)
+	{
+		if (check_digit(av[i]) == 1)
+			return (1);
+		if (check_double_minus(av[i]) == 1)
+			return (1);
+		if (check_int_max_min(av[i]) == 1)
+			return (1);
 	}
 	return (0);
 }

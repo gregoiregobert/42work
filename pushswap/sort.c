@@ -94,3 +94,23 @@ int	sort_dif(t_list1 **a, t_list1 **b, int rrb, int move_a)
 	}
 	return (1);
 }
+
+void	last_sort(t_list1 **a, int move)
+{
+	int	i;
+
+	i = 0;
+	if (move >= 0)
+	{
+		while (i++ < move)
+		{
+			rotate(a);
+			write(1, "ra\n", 3);
+		}
+	}
+	if (move < 0)
+	{
+		while (i-- > move)
+			reverse_a(a);
+	}
+}

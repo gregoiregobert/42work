@@ -85,21 +85,20 @@ int	sort_best(t_list1 **a, t_list1 **b, int best_move, int *move_a)
 	return (1);
 }
 
+//programme final
 int	push_swap(t_list1 **a, t_list1 **b)
 {
 	int	best_m;
 	int	move_a;
+	int	i;
 
+	i = 0;
 	move_a = 0;
 	while (*b)
 	{
 		best_m = best_move(*a, *b, &move_a);
 		sort_best(a, b, best_m, &move_a);
 	}
-	while ((*a)->content != smallest_lst(*a))
-	{
-		rotate(a);
-		write(1, "ra\n", 3);
-	}
+	last_sort(a, better_last_sort(*a));
 	return (1);
 }

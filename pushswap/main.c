@@ -22,18 +22,18 @@ int	main(int ac, char **av)
 
 	len.i = 0;
 	a = arg_number(ac, av, &len);
-	if (check_int_max_min(av[1] == 1))
-		printf("lol");
-	if (a == 0)
-		return (0);
 	b = 0;
-	if (check_buffer(len.parsing, (ac - 1), av) > 0)
+	if (check_buffer(len.parsing, (ac - 1), av) == 1
+		|| check_already(a, len.len_tot) == 1)
 	{
-		write(1, "Error\n", 6);
+		if (check_buffer(len.parsing, (ac - 1), av) == 1)
+			write(1, "Error\n", 6);
 		free (len.parsing);
 		ft_lstclear_int(&a, NULL);
 		return (0);
 	}
+	if (a == 0 || len.len_tot == 1)
+		return (0);
 	len.len_lis = ret_lis(&lis, len.parsing, len.len_tot);
 	push_lis(&a, &b, &len, lis);
 	push_swap(&a, &b);

@@ -51,15 +51,9 @@ int	*parsing_int(char *inner, int i)
 	while (*inner)
 	{
 		j = 0;
-		while (*inner == '-' || ft_isdigit(*inner) > 0)
+		while (*inner == '-' || ft_isdigit(*inner) == 1)
 			nbr[j++] = *inner++;
 		nbr[j] = 0;
-		if (ft_atoi_check(nbr) == 1)
-		{
-			free (nbr);
-			free (stack_int);
-			return (0);
-		}
 		if (j > 0)
 			stack_int[i++] = ft_atoi(nbr);
 		inner++;
@@ -118,6 +112,9 @@ t_list1	*arg_number(int ac, char **av, t_len *len)
 			len->parsing = parsing_int(av[1], len->i);
 			return (parsing_chained(av[1]));
 		}
+		len->len_tot = nbr_of(av[1]);
+		len->parsing = 0;
+		return (0);
 	}
 	else
 	{

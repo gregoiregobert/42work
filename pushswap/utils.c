@@ -38,18 +38,22 @@ int	arglen(char *str)
 int	nbr_of(char *str)
 {
 	int	len;
+	int	j;
 
 	len = 0;
 	while (*str)
 	{
-		if (*str != '-' || ft_isdigit(*str) < 1)
+		j = 0;
+		while (ft_isdigit(*str) == 0 && *str)
 			str++;
-		if (*str == '-' || ft_isdigit(*str) > 0)
+		while (ft_isdigit(*str) == 1 && *str)
+		{
+			j = 1;
+			str++;
+		}
+		if (j == 1)
 			len++;
-		while (*str == '-' || ft_isdigit(*str) > 0)
-			str++;
 	}
-	len++;
 	return (len);
 }
 

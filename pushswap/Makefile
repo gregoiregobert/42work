@@ -3,7 +3,9 @@ CFLAGS	=	-Wall -Werror -Wextra -g3
 NAME	=	push_swap
 SRC		=	algo.c \
 			check_better_move.c \
+			check_better_move_2.c \
 			check.c \
+			check_2.c \
 			LIS.c \
 			lst_utils.c \
 			lst_utils_2.c \
