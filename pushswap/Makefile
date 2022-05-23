@@ -14,6 +14,8 @@ SRC		=	algo.c \
 			operation_2.c \
 			parsing.c \
 			sort.c \
+			small_sort.c \
+			small_sort_2.c \
 			utils.c \
 			../libft/ft_isdigit.c \
 			../libft/ft_atoi.c \

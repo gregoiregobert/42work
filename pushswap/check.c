@@ -50,6 +50,8 @@ int	check_doublon(int *stack_int, int len)
 	int	j;
 
 	i = 1;
+	if (!stack_int)
+		return (0);
 	while (i < len)
 	{
 		j = i;
@@ -95,8 +97,6 @@ int	check_buffer(int *stack_int, int len, int ac, char **av)
 	int	i;
 
 	i = 0;
-	if (stack_int == 0)
-		return (0);
 	if (check_int_max_min(av[1]) == 1)
 		return (1);
 	if (check_doublon(stack_int, len) == 1)

@@ -22,7 +22,7 @@ int	push_lis(t_list1 **a, t_list1 **b, t_len *len, int *lis)
 			if ((*a)->content == *lis)
 			{
 				rotate(a);
-				write(1, "ra\n", 4);
+				write(1, "ra\n", 3);
 				lis++;
 				len->len_lis--;
 			}

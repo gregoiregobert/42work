@@ -111,6 +111,6 @@ void	last_sort(t_list1 **a, int move)
 	if (move < 0)
 	{
 		while (i-- > move)
-			reverse_a(a);
+			reverse(a);
 	}
 }
