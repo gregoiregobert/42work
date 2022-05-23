@@ -17,6 +17,8 @@ int	check_already(t_list1 *a, int len)
 	int	i;
 
 	i = 0;
+	if (!a)
+		return (1);
 	while (i++ < (len - 1))
 	{
 		if (a->content > a->next->content)

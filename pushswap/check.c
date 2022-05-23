@@ -90,16 +90,18 @@ int	check_int_max_min(char *inner)
 	return (0);
 }
 
-int	check_buffer(int *stack_int, int len, char **av)
+int	check_buffer(int *stack_int, int len, int ac, char **av)
 {
 	int	i;
 
 	i = 0;
+	if (stack_int == 0)
+		return (0);
 	if (check_int_max_min(av[1]) == 1)
 		return (1);
 	if (check_doublon(stack_int, len) == 1)
 		return (1);
-	while (++i <= len)
+	while (++i <= ac)
 	{
 		if (check_digit(av[i]) == 1)
 			return (1);

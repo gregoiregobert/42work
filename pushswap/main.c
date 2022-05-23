@@ -23,10 +23,10 @@ int	main(int ac, char **av)
 	len.i = 0;
 	a = arg_number(ac, av, &len);
 	b = 0;
-	if (check_buffer(len.parsing, (ac - 1), av) == 1
+	if (check_buffer(len.parsing, len.len_tot, (ac - 1), av) == 1
 		|| check_already(a, len.len_tot) == 1)
 	{
-		if (check_buffer(len.parsing, (ac - 1), av) == 1)
+		if (check_buffer(len.parsing, len.len_tot, (ac - 1), av) == 1)
 			write(1, "Error\n", 6);
 		free (len.parsing);
 		ft_lstclear_int(&a, NULL);

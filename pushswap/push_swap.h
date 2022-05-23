@@ -76,7 +76,7 @@ int		sort_best(t_list1 **a, t_list1 **b, int best_move, int *move_a);
 int		check_digit(char *inner);
 int		check_double_minus(char *inner);
 int		check_doublon(int *stack_int, int len);
-int		check_buffer(int *stack_int, int len, char **av);
+int		check_buffer(int *stack_int, int len, int ac, char **av);
 int		ft_atoi_check(char *str);
 int		check_int_max_min(char *inner);
 int		better_last_sort(t_list1 *a);
