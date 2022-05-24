@@ -29,16 +29,24 @@ int	reverse(t_list1 **lst)
 	return (1);
 }
 
-void	double_reverse(t_list1 **a, t_list1 **b)
+void	double_reverse(t_list1 **a, t_list1 **b, int ok)
 {
 	reverse(a);
 	reverse(b);
-	write(1, "rrr\n", 4);
+	if (ok == 1)
+		write(1, "rrr\n", 4);
 }
 
-void	double_rotate(t_list1 **a, t_list1 **b)
+void	double_rotate(t_list1 **a, t_list1 **b, int ok)
 {
 	rotate(a);
 	rotate(b);
-	write(1, "rr\n", 3);
+	if (ok == 1)
+		write(1, "rr\n", 3);
+}
+
+void	double_swap(t_list1 **a, t_list1 **b)
+{
+	swap(a);
+	swap(b);
 }

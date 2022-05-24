@@ -25,9 +25,9 @@ int	ft_strlen(char *str)
 
 char	*ft_strjoin(char *s1, char *s2)
 {
-	int	len;
-	int	i;
-	int	j;
+	int		len;
+	int		i;
+	int		j;
 	char	*ret;
 
 	i = 0;
@@ -50,8 +50,8 @@ char	*ft_strjoin(char *s1, char *s2)
 
 char	*ft_strnback(char *s, size_t n)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	*new;
 
 	if (!s)
@@ -72,9 +72,9 @@ char	*ft_strnback(char *s, size_t n)
 
 char	*ft_strdup(char *s1)
 {
-	int	len;
+	int		len;
 	char	*ret;
-	int	i;
+	int		i;
 
 	i = 0;
 	len = 0;

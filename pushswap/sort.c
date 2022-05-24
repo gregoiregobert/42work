@@ -20,7 +20,7 @@ int	sort_rrr(t_list1 **a, t_list1 **b, int rrb, int move_a)
 	if (rrb <= move_a)
 	{
 		while (--i >= move_a)
-			double_reverse(a, b);
+			double_reverse(a, b, 1);
 		while (i-- >= rrb)
 		{
 			reverse(b);
@@ -30,7 +30,7 @@ int	sort_rrr(t_list1 **a, t_list1 **b, int rrb, int move_a)
 	if (rrb >= move_a)
 	{
 		while (--i >= rrb)
-			double_reverse(a, b);
+			double_reverse(a, b, 1);
 		while (i-- >= move_a)
 		{
 			reverse(a);
@@ -48,7 +48,7 @@ int	sort_rr(t_list1 **a, t_list1 **b, int rrb, int move_a)
 	if (rrb >= move_a)
 	{
 		while (++i <= move_a)
-			double_rotate(a, b);
+			double_rotate(a, b, 1);
 		while (i++ <= rrb)
 		{
 			rotate(b);
@@ -58,7 +58,7 @@ int	sort_rr(t_list1 **a, t_list1 **b, int rrb, int move_a)
 	if (rrb <= move_a)
 	{
 		while (++i <= rrb)
-			double_rotate(a, b);
+			double_rotate(a, b, 1);
 		while (i++ <= move_a)
 		{
 			rotate(a);

@@ -67,7 +67,7 @@ char	*ft_read_until(int fd, char *ret)
 
 char	*get_next_line(int fd)
 {
-	int		i;
+	int			i;
 	char		*readline;
 	static char	*ret;
 
