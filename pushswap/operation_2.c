@@ -40,5 +40,5 @@ void	double_rotate(t_list1 **a, t_list1 **b)
 {
 	rotate(a);
 	rotate(b);
-	write(1, "rr\n", 4);
+	write(1, "rr\n", 3);
 }

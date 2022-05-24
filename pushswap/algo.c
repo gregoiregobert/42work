@@ -81,7 +81,7 @@ int	sort_best(t_list1 **a, t_list1 **b, int best_move, int *move_a)
 	else
 		sort_dif(a, b, ft_rrb(size_b, best_move), *move_a);
 	push(b, a);
-	write(1, "pa\n", 4);
+	write(1, "pa\n", 3);
 	return (1);
 }
 

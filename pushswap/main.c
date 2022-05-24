@@ -35,7 +35,12 @@ int	main(int ac, char **av)
 	if (a == 0 || len.len_tot == 1)
 		return (0);
 	if (len.len_tot <= 5 && len.len_tot >= 3)
-		small_sort(a);
+	{
+		small_sort(&a, &b, len.parsing, len.len_tot);
+		free (len.parsing);
+		ft_lstclear_int(&a, NULL);
+		return (0);
+	}
 	len.len_lis = ret_lis(&lis, len.parsing, len.len_tot);
 	push_lis(&a, &b, &len, lis);
 	push_swap(&a, &b);
