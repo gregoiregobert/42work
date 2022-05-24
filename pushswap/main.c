@@ -25,26 +25,19 @@ int	main(int ac, char **av)
 	b = 0;
 	if (check_buffer(len.parsing, len.len_tot, (ac - 1), av) == 1
 		|| check_already(a, len.len_tot) == 1)
-	{
 		if (check_buffer(len.parsing, len.len_tot, (ac - 1), av) == 1)
 			write(2, "Error\n", 6);
-		free (len.parsing);
-		ft_lstclear_int(&a, NULL);
+	else if (a == 0 || len.len_tot == 1)
 		return (0);
-	}
-	if (a == 0 || len.len_tot == 1)
-		return (0);
-	if (len.len_tot <= 5 && len.len_tot >= 3)
-	{
+	else if (len.len_tot <= 5 && len.len_tot >= 3)
 		small_sort(&a, &b, len.parsing, len.len_tot);
-		free (len.parsing);
-		ft_lstclear_int(&a, NULL);
-		return (0);
+	else
+	{
+		len.len_lis = ret_lis(&lis, len.parsing, len.len_tot);
+		push_lis(&a, &b, &len, lis);
+		push_swap(&a, &b);
+		free (lis);
 	}
-	len.len_lis = ret_lis(&lis, len.parsing, len.len_tot);
-	push_lis(&a, &b, &len, lis);
-	push_swap(&a, &b);
-	free (lis);
 	free (len.parsing);
 	ft_lstclear_int(&a, NULL);
 }
