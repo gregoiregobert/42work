@@ -73,7 +73,8 @@ void	sort_5(t_list1 **a, t_list1 **b, int len)
 		push(a, b);
 		write(1, "pb\n", 3);
 	}
-	sort_3(a);
+	if (check_already(*a, 3) == 0)
+		sort_3(a);
 	rest_sort(a, b);
 	last_sort(a, better_last_sort(*a));
 	if (len == 5)
