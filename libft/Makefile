@@ -62,12 +62,8 @@ CFLAGS	=	-Wall -Wextra -Werror
 SUPPR	=	\033[00m
 GRAS	=	\033[01m
 CLIGNO	=	\033[05m
-YELLOW 	=	\033[33m
 RED		=	\033[31m
 GREEN	=	\033[32m
-BLUE	=	\033[34m
-PURPLE	=	\033[35m
-CYAN	=	\033[36m
 WHITE	=	\033[37m
 INVERSE	=	\033[07m
 
@@ -76,7 +72,7 @@ INVERSE	=	\033[07m
 
 ${NAME}	:	${OBJS}
 	@ar rcs ${NAME} ${OBJS}
-	@echo "	$(WHITE)Compilation $(GRAS)LIBFT $(YELLOW)$(GRAS)$(CLIGNO)OK"
+	@echo "$(WHITE)Compilation $(GRAS)LIBFT $(GREEN)$(GRAS)$(CLIGNO)OK$(SUPPR)"
 
 all		:	${NAME}
 
@@ -85,7 +81,7 @@ clean	:
 
 fclean	:	clean
 	@${RM} ${NAME}
-	@echo "		$(GRAS)$(RED)Trash all"
+	@echo "$(WHITE)Libtf is $(GRAS)$(RED)$(CLIGNO)DEAD"
 
 re		:	fclean all
 

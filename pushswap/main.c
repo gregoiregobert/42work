@@ -30,7 +30,7 @@ int	main(int ac, char **av)
 	else if (check_already(a, len.len_tot) == 1)
 		;
 	else if (len.len_tot <= 5 && len.len_tot >= 3)
-		small_sort(&a, &b, len.parsing, len.len_tot);
+		small_sort(&a, &b, len.len_tot);
 	else
 	{
 		len.len_lis = ret_lis(&lis, len.parsing, len.len_tot);

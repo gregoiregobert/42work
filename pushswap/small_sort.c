@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	small_sort(t_list1 **a, t_list1 **b, int *stack_int, int len)
+void	small_sort(t_list1 **a, t_list1 **b, int len)
 {
 	if (len == 3)
 		sort_3(a);

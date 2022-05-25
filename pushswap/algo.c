@@ -90,9 +90,7 @@ int	push_swap(t_list1 **a, t_list1 **b)
 {
 	int	best_m;
 	int	move_a;
-	int	i;
 
-	i = 0;
 	move_a = 0;
 	while (*b)
 	{

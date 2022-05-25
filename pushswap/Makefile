@@ -1,6 +1,9 @@
 CC		=	gcc 
 CFLAGS	=	-Wall -Werror -Wextra -g3
 NAME	=	push_swap
+NAMEB	=	my_checker
+LIBFT	=	../libft/libft.a
+LIB_DIR	=	../libft
 SRC		=	algo.c \
 			check_better_move.c \
 			check_better_move_2.c \
@@ -16,47 +19,46 @@ SRC		=	algo.c \
 			sort.c \
 			small_sort.c \
 			small_sort_2.c \
-			utils.c \
-			../libft/ft_isdigit.c \
-			../libft/ft_atoi.c \
-			../libft/ft_strlen.c
-SRCB	=	my_checker/main.c \
-			my_checker/checker_fct.c 
+			utils.c 
+SRCB	=	./my_checker/main_bonus.c \
+			./my_checker/checker_fct.c 
 OBJ		=	$(SRC:.c=.o)
 OBJB	=	$(SRCB:.c=.o)
 RM 		=	rm -rf
 SUPPR	=	\033[00m
 GRAS	=	\033[01m
 CLIGNO	=	\033[05m
-YELLOW 	=	\033[33m
-GREY	=	\033[30m
-RED		=	\033[31m
 GREEN	=	\033[32m
-BLUE	=	\033[34m
-PURPLE	=	\033[35m
-CYAN	=	\033[36m
+RED		=	\033[31m
 WHITE	=	\033[37m
-INVERSE	=	\033[07m
 
-all		:	$(NAME)
+all			:	$(NAME)
 
-$(NAME)	:	$(OBJ)
-	@$(CC) $(CFLAGS) -o $@ $^
-	@echo "	$(WHITE)Compilation $(YELLOW)$(GRAS)$(CLIGNO)OK"
+bonus		:	$(NAMEB)
 
-bonus	:	$(OBJB)
-	$(CC) $(CFLAGS) -o $@ $^
+$(LIBFT)	:
+	@make -sC $(LIB_DIR)
 
-%.o		:	%.c
+$(NAME)		:	$(OBJ) $(LIBFT)
+	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LIBFT)
+	@echo "$(WHITE)Compilation $(GRAS)Push_Swap $(GREEN)$(GRAS)$(CLIGNO)OK$(SUPPR)"
+
+$(NAMEB)	:	$(OBJB) $(LIBFT)
+	@$(CC) $(CFLAGS) $(OBJB) -o $(NAMEB) $(LIBFT)
+	@echo "$(YELLOW)BONUS DONE"
+
+%.o			:	%.c libft/*.c
 	@$(CC) -o $@ -c $<
 
-clean	:
-	@$(RM) *.o
+clean		:
+	@make clean -sC $(LIB_DIR)
+	@$(RM) $(OBJ) $(OBJB)
 
-fclean	:	clean
-	@$(RM) $(NAME)
-	@echo "$(GRAS)$(RED)Trash all"
+fclean		:	clean
+	@make fclean -sC $(LIB_DIR)
+	@$(RM) $(NAME) $(NAMEB)
+	@echo "$(SUPPR)$(WHITE)Push_Swap is $(RED)$(GRAS)$(CLIGNO)DEAD"
 
-re		:	fclean all
+re			:	fclean all
 
-.PHONY	:	all clean fclean re
+.PHONY		:	all clean fclean re

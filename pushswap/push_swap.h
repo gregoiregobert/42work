@@ -51,7 +51,7 @@ void	ft_lis(int *seq, int **L, int **sub, int len);
 void	double_reverse(t_list1 **a, t_list1 **b, int ok);
 void	double_rotate(t_list1 **a, t_list1 **b, int ok);
 void	last_sort(t_list1 **a, int move);
-void	small_sort(t_list1 **a, t_list1 **b, int *stack_int, int len);
+void	small_sort(t_list1 **a, t_list1 **b, int len);
 void	sort_3(t_list1 **a);
 void	sort_5(t_list1 **a, t_list1 **b, int len);
 void	case_1(t_list1 **a);
