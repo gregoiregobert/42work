@@ -17,7 +17,6 @@ int	main(int ac, char **av)
 {
 	t_list1	*a;
 	t_list1	*b;
-	int		*lis;
 	t_len	len;
 
 	len.i = 0;

@@ -13,6 +13,7 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include "../libft/libft.h"
+# include "../../GNL/get_next_line.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
@@ -57,6 +58,8 @@ void	sort_5(t_list1 **a, t_list1 **b, int len);
 void	case_1(t_list1 **a);
 void	case_5(t_list1 **a);
 void	rest_sort(t_list1 **a, t_list1 **b);
+void	exec(t_list1 **a, t_list1 **b, char *command);
+void    command_sort(t_list1 **a, t_list1 **b);
 int		ret_lis(int **lis, int *seq, int len);
 int		ft_lstsize_int(t_list1 *lst);
 int		arglen(char *str);
@@ -87,5 +90,6 @@ int		ft_atoi_check(char *str);
 int		check_int_max_min(char *inner);
 int		better_last_sort(t_list1 *a);
 int		check_already(t_list1 *a, int len);
+
 
 #endif

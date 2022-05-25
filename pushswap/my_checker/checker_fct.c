@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "~/push_swap.h"
-#include "~/GNL/get_next_line.h"
+#include "../push_swap.h"
+#include "../../GNL/get_next_line.h"
 #define BUFFER_SIZE 42
 
-void exec(t_list1 **a, t_list1 **b, char *command)
+void    exec(t_list1 **a, t_list1 **b, char *command)
 {
     if (ft_strncmp(command, "sa\n", 3) == 0)
         swap(a);
@@ -40,7 +40,7 @@ void exec(t_list1 **a, t_list1 **b, char *command)
         double_reverse(a, b, 0);    
 }
 
-void    commamd_sort(t_list1 **a, t_list1 **b)
+void    command_sort(t_list1 **a, t_list1 **b)
 {
     char *command;
 

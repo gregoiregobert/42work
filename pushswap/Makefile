@@ -20,8 +20,9 @@ SRC		=	algo.c \
 			small_sort.c \
 			small_sort_2.c \
 			utils.c 
-SRCB	=	./my_checker/main_bonus.c \
-			./my_checker/checker_fct.c 
+SRCB	=	my_checker/main_bonus.c \
+			my_checker/checker_fct.c 
+			../GNL/get_next_line.h
 OBJ		=	$(SRC:.c=.o)
 OBJB	=	$(SRCB:.c=.o)
 RM 		=	rm -rf
