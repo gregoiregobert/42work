@@ -1,7 +1,7 @@
 CC		=	gcc 
 CFLAGS	=	-Wall -Werror -Wextra -g3
 NAME	=	push_swap
-NAMEB	=	my_checker
+NAMEB	=	checker_ggobert
 LIBFT	=	../libft/libft.a
 LIB_DIR	=	../libft
 SRC		=	algo.c \
