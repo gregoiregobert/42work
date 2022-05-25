@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
-#include "../../GNL/get_next_line.h"
+#include "~/push_swap.h"
+#include "~/GNL/get_next_line.h"
 #define BUFFER_SIZE 42
 
 void exec(t_list1 **a, t_list1 **b, char *command)

@@ -44,7 +44,6 @@ SRCS	=	ft_atoi.c \
 			ft_putendl_fd.c \
 			ft_putnbr_fd.c \
 			ft_striteri.c
-
 SRCS2	=	ft_lstnew.c \
 			ft_lstadd_front.c \
 			ft_lstsize.c \
@@ -54,36 +53,43 @@ SRCS2	=	ft_lstnew.c \
 			ft_lstclear.c \
 			ft_lstiter.c \
 			ft_lstmap.c
-
 OBJS	=	${SRCS:.c=.o}
-
 OBJSB	=	${SRCS2:.c=.o}
-
 NAME	=	libft.a
-
 CC		=	gcc
-
 RM		=	rm -f
-
 CFLAGS	=	-Wall -Wextra -Werror
+SUPPR	=	\033[00m
+GRAS	=	\033[01m
+CLIGNO	=	\033[05m
+YELLOW 	=	\033[33m
+RED		=	\033[31m
+GREEN	=	\033[32m
+BLUE	=	\033[34m
+PURPLE	=	\033[35m
+CYAN	=	\033[36m
+WHITE	=	\033[37m
+INVERSE	=	\033[07m
 
-.c.o:
-		${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+.c.o	:
+	@${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
-${NAME}:	${OBJS}
-			ar rcs ${NAME} ${OBJS}
+${NAME}	:	${OBJS}
+	@ar rcs ${NAME} ${OBJS}
+	@echo "	$(WHITE)Compilation $(GRAS)LIBFT $(YELLOW)$(GRAS)$(CLIGNO)OK"
 
-all:		${NAME}
+all		:	${NAME}
 
-clean: 
-			${RM} ${OBJS} ${OBJSB}
+clean	: 
+	@${RM} ${OBJS} ${OBJSB}
 
-fclean:		clean
-			${RM} ${NAME}
+fclean	:	clean
+	@${RM} ${NAME}
+	@echo "		$(GRAS)$(RED)Trash all"
 
-re:			fclean all
+re		:	fclean all
 
-bonus :		${OBJSB}
-			ar rcs ${NAME} ${OBJSB}	
+bonus	:	${OBJSB}
+	ar rcs ${NAME} ${OBJSB}	
 
 .PHONY:		all clean fclean re
