@@ -59,7 +59,7 @@ void	case_1(t_list1 **a);
 void	case_5(t_list1 **a);
 void	rest_sort(t_list1 **a, t_list1 **b);
 void	exec(t_list1 **a, t_list1 **b, char *command);
-void    sort_command(t_list1 **a, t_list1 **b);
+int		sort_command(t_list1 **a, t_list1 **b);
 int		ret_lis(int **lis, int *seq, int len);
 int		ft_lstsize_int(t_list1 *lst);
 int		arglen(char *str);

@@ -25,8 +25,9 @@ int	main(int ac, char **av)
 		write(2, "Error\n", 6);
 	else if (a == 0 || len.len_tot == 1)
 		return (0);
-	sort_command(&a, &b);
-	if (check_already(a, len.len_tot) == 1)
+	if (sort_command(&a, &b) == 0)
+		;
+	else if (check_already(a, len.len_tot) == 1)
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);

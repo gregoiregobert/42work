@@ -37,6 +37,7 @@ SUPPR	=	\033[00m
 GRAS	=	\033[01m
 CLIGNO	=	\033[05m
 GREEN	=	\033[32m
+YELLOW	=	\033[33m
 RED		=	\033[31m
 WHITE	=	\033[37m
 
@@ -49,7 +50,7 @@ $(LIBFT)	:
 
 $(NAMEB)	:	$(OBJB) $(LIBFT)
 	@$(CC) $(CFLAGS) $(OBJB) -o $(NAMEB) $(LIBFT)
-	@echo "$(YELLOW)BONUS DONE"
+	@echo "$(GRAS)$(YELLOW)BONUS DONE"
 
 $(NAME)		:	$(OBJ) $(LIBFT)
 	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LIBFT)
