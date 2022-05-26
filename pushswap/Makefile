@@ -20,9 +20,16 @@ SRC		=	algo.c \
 			small_sort.c \
 			small_sort_2.c \
 			utils.c 
-SRCB	=	my_checker/main_bonus.c \
-			my_checker/checker_fct.c 
-			../GNL/get_next_line.h
+SRCB	=	main_bonus.c \
+			checker_fct.c \
+			parsing.c \
+			check.c \
+			check_2.c \
+			operation.c \
+			operation_2.c \
+			lst_utils.c \
+			lst_utils_2.c \
+			utils.c 
 OBJ		=	$(SRC:.c=.o)
 OBJB	=	$(SRCB:.c=.o)
 RM 		=	rm -rf
@@ -40,13 +47,13 @@ bonus		:	$(NAMEB)
 $(LIBFT)	:
 	@make -sC $(LIB_DIR)
 
-$(NAME)		:	$(OBJ) $(LIBFT)
-	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LIBFT)
-	@echo "$(WHITE)Compilation $(GRAS)Push_Swap $(GREEN)$(GRAS)$(CLIGNO)OK$(SUPPR)"
-
 $(NAMEB)	:	$(OBJB) $(LIBFT)
 	@$(CC) $(CFLAGS) $(OBJB) -o $(NAMEB) $(LIBFT)
 	@echo "$(YELLOW)BONUS DONE"
+
+$(NAME)		:	$(OBJ) $(LIBFT)
+	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LIBFT)
+	@echo "$(WHITE)Compilation $(GRAS)Push_Swap $(GREEN)$(GRAS)$(CLIGNO)OK$(SUPPR)"
 
 %.o			:	%.c libft/*.c
 	@$(CC) -o $@ -c $<

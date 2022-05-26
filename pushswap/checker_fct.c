@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
-#include "../../GNL/get_next_line.h"
+#include "push_swap.h"
 #define BUFFER_SIZE 42
 
 void    exec(t_list1 **a, t_list1 **b, char *command)
@@ -21,7 +20,7 @@ void    exec(t_list1 **a, t_list1 **b, char *command)
     if (ft_strncmp(command, "sb\n", 3) == 0)
         swap(b);
     if (ft_strncmp(command, "ss\n", 3) == 0)
-        swap_ab(a, b);
+        double_swap(a, b);
     if (ft_strncmp(command, "pa\n", 3) == 0)
         push(b, a);
     if (ft_strncmp(command, "pb\n", 3) == 0)
@@ -40,15 +39,16 @@ void    exec(t_list1 **a, t_list1 **b, char *command)
         double_reverse(a, b, 0);    
 }
 
-void    command_sort(t_list1 **a, t_list1 **b)
+void   sort_command(t_list1 **a, t_list1 **b)
 {
     char *command;
 
     command = get_next_line(0);
-    exec(a, b, len, command);
+    if (*command)
+        exec(a, b, command);
     while (command)
     {
         command = get_next_line(0);
-        exec(a, b, len, command);
+        exec(a, b, command);
     }
 }

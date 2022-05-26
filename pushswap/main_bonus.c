@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
-#include "../../GNL/get_next_line.h"
+#include "push_swap.h"
 
 int	main(int ac, char **av)
 {
