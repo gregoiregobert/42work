@@ -40,54 +40,45 @@ int	ft_len_newline(char *str)
 char	*ft_read_until(int fd, char *ret)
 {
 	ssize_t	count;
-	char	*buf;
+	char	*temp;
 
-	count = BUFFER_SIZE;
-	buf = malloc(sizeof(char) * BUFFER_SIZE + 1);
-	if (!buf)
-		return (0);
-	if (!ret)
-		ret = ft_strdup("");
+	count = read(fd, ret, BUFFER_SIZE);
+	ret[count] = 0;
+	temp = ft_strdup(ret);
 	while (ft_check_newline(ret) < 0 && count == BUFFER_SIZE)
 	{
-		count = read(fd, buf, BUFFER_SIZE);
-		if (count < 1 && !*ret)
-		{
-			if (!*ret)
-				free(ret);
-			free(buf);
-			return (0);
-		}
-		buf[count] = 0;
-		ret = ft_strjoin(ret, buf);
+		count = read(fd, ret, BUFFER_SIZE);
+		ret[count] = 0;
+		temp = ft_strdjoin(temp, ret);
 	}
-	free(buf);
-	return (ret);
+	return (temp);
 }
 
 char	*get_next_line(int fd)
 {
 	int			i;
+	int			j;
 	char		*readline;
-	static char	*ret;
+	char		*temp;
+	static char	ret[BUFFER_SIZE + 1];
 
-	i = -1;
 	if (fd < 0 || read(fd, ret, 0) < 0)
 		return (0);
-	if (ft_check_newline(ret) < 0 || !ret)
-		ret = ft_read_until(fd, ret);
-	if (!ret)
+	temp = ft_read_until(fd, &ret);
+	if (!*temp)
 		return (0);
-	if (!*ret)
-	{
-		free(ret);
-		return (0);
-	}
-	readline = malloc(sizeof(char) * (ft_len_newline(ret) + 1));
+	readline = malloc(sizeof(char) * (ft_len_newline(temp) + 1);
 	if (!readline)
 		return (0);
-	while (++i < ft_len_newline(ret))
-		readline[i] = ret[i];
+	i = 0;
+	j = 0;
+	if (ft_check_newline(temp) == 1 && *ret)
+	{
+		while (ret[i])
+			readline[i] = ret[i];
+	}
+	while (i++ < ft_len_newline(temp))
+		readline[i] = temp[i];
 	readline[i] = 0;
 	ret = ft_strnback(ret, ft_len_newline(ret));
 	return (readline);
