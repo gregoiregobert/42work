@@ -59,18 +59,19 @@ int   sort_command(t_list1 **a, t_list1 **b)
 {
     char *command;
 
-    command = get_next_line(0);
+    command = get_next_line(0, 0);
     while (command)
     {
         if (check_command(command) == 0)
         {
             write(2, "Error\n", 6);
             free (command);
+            get_next_line(0, 1);
             return (0);
         }
         exec(a, b, command);   
         free (command);
-        command = get_next_line(0);
+        command = get_next_line(0, 0);
     }
     free (command);
     return (1);

@@ -65,13 +65,15 @@ char	*ft_read_until(int fd, char *ret)
 	return (ret);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line(int fd, int check)
 {
 	int			i;
 	char		*readline;
 	static char	*ret;
 
 	i = -1;
+	if (check)
+		return(free(ret), NULL);
 	if (fd < 0 || read(fd, ret, 0) < 0)
 		return (0);
 	if (ft_check_newline(ret) < 0 || !ret)
@@ -79,10 +81,7 @@ char	*get_next_line(int fd)
 	if (!ret)
 		return (0);
 	if (!*ret)
-	{
-		free(ret);
-		return (0);
-	}
+		return (free (ret), NULL);
 	readline = malloc(sizeof(char) * (ft_len_newline(ret) + 1));
 	if (!readline)
 		return (0);
