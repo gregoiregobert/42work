@@ -24,7 +24,7 @@ char	*ft_strjoin_g(char *s1, char *s2)
 	j = 0;
 	if (!s1 || !s2)
 		return (0);
-	len = ft_strlen_g(s1) + ft_strlen_g(s2);
+	len = ft_strlen(s1) + ft_strlen(s2);
 	ret = malloc(sizeof(char) * (len + 1));
 	if (ret == NULL)
 		return (NULL);
@@ -47,7 +47,7 @@ char	*ft_strnback(char *s, size_t n)
 	if (!s)
 		return (0);
 	j = 0;
-	new = malloc(sizeof(char) * (ft_strlen_g(s) - n + 1));
+	new = malloc(sizeof(char) * (ft_strlen(s) - n + 1));
 	if (!new)
 		return (0);
 	i = n;
