@@ -13,7 +13,6 @@
 #include "libft.h"
 #include <stdio.h>
 
-
 char	*ft_strjoin_g(char *s1, char *s2)
 {
 	int		len;
@@ -60,4 +59,3 @@ char	*ft_strnback(char *s, size_t n)
 	free(s);
 	return (new);
 }
-
