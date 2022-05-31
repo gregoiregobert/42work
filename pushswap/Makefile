@@ -50,7 +50,7 @@ $(LIBFT)	:
 
 $(NAMEB)	:	$(OBJB) $(LIBFT)
 	@$(CC) $(CFLAGS) $(OBJB) -o $(NAMEB) $(LIBFT)
-	@echo "$(GRAS)$(YELLOW)BONUS DONE"
+	@echo "$(GRAS)$(WHITE)Bonus $(YELLOW)$(CLIGNO)DONE$(SUPPR)"
 
 $(NAME)		:	$(OBJ) $(LIBFT)
 	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LIBFT)

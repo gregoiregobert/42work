@@ -6,7 +6,7 @@
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 10:24:35 by ggobert           #+#    #+#             */
-/*   Updated: 2022/05/05 10:24:37 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/05/31 16:56:23 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,5 @@ int		ft_atoi_check(char *str);
 int		check_int_max_min(char *inner);
 int		better_last_sort(t_list1 *a);
 int		check_already(t_list1 *a, int len);
-
 
 #endif

@@ -22,7 +22,12 @@ int	main(int ac, char **av)
 	a = arg_number(ac, av, &len);
 	b = 0;
 	if (check_buffer(len.parsing, len.len_tot, (ac - 1), av) == 1)
+	{
 		write(2, "Error\n", 6);
+		free (len.parsing);
+		ft_lstclear_int(&a, NULL);
+		return (0);
+	}
 	else if (a == 0 || len.len_tot == 1)
 		return (0);
 	if (sort_command(&a, &b) == 0)

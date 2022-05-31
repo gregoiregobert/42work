@@ -19,9 +19,18 @@ int	check_digit(char *inner)
 	i = 0;
 	while (inner[i])
 	{
-		if (inner[i] != '-' && ft_isdigit(inner[i]) == 0 && inner[i] != ' ')
+		if (inner[i] == '-')
+		{
+			i++;
+			if (ft_isdigit(inner[i]) != 1)
+				return (1);
+		}
+		while (ft_isdigit(inner[i]) == 1)
+			i++;
+		if (inner[i] != ' ' && inner[i])
 			return (1);
-		i++;
+		while (inner[i] == ' ')
+			i++;
 	}
 	return (0);
 }
@@ -97,10 +106,6 @@ int	check_buffer(int *stack_int, int len, int ac, char **av)
 	int	i;
 
 	i = 0;
-	if (check_int_max_min(av[1]) == 1)
-		return (1);
-	if (check_doublon(stack_int, len) == 1)
-		return (1);
 	while (++i <= ac)
 	{
 		if (check_digit(av[i]) == 1)
@@ -110,5 +115,9 @@ int	check_buffer(int *stack_int, int len, int ac, char **av)
 		if (check_int_max_min(av[i]) == 1)
 			return (1);
 	}
+	if (check_doublon(stack_int, len) == 1)
+		return (1);
+	if (check_int_max_min(av[1]) == 1)
+		return (1);
 	return (0);
 }
