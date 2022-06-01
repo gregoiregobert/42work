@@ -20,7 +20,7 @@ void	ft_printlst(t_list1 *lst)
 		printf("null\n");
 		return ;
 	}
-	while (lst->next != 0)
+	while (lst->next)
 	{
 		printf("%d\n", lst->content);
 		lst = lst->next;
@@ -53,9 +53,8 @@ int	ft_lstsize_int(t_list1 *lst)
 
 t_list1	*ft_lstlast_int(t_list1 *lst)
 {
-	if (!lst->next)
-		while (lst->next)
-			lst = lst->next;
+	while (lst->next)
+		lst = lst->next;
 	return (lst);
 }
 

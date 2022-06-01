@@ -89,6 +89,6 @@ int		check_buffer(int *stack_int, int len, int ac, char **av);
 int		ft_atoi_check(char *str);
 int		check_int_max_min(char *inner);
 int		better_last_sort(t_list1 *a);
-int		check_already(t_list1 *a, int len);
+int		check_already(t_list1 *a);
 
 #endif

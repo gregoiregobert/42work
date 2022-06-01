@@ -91,9 +91,7 @@ t_list1	*parsing_chained_av(char **av, int len)
 	i = -1;
 	stack_a = 0;
 	while (++i < len)
-	{
 		ft_lstadd_back_int(&stack_a, ft_lstnew_int(ft_atoi(av[i + 1])));
-	}
 	return (stack_a);
 }
 

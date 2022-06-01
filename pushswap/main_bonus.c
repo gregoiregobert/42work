@@ -22,20 +22,18 @@ int	main(int ac, char **av)
 	a = arg_number(ac, av, &len);
 	b = 0;
 	if (check_buffer(len.parsing, len.len_tot, (ac - 1), av) == 1)
-	{
 		write(2, "Error\n", 6);
-		free (len.parsing);
-		ft_lstclear_int(&a, NULL);
-		return (0);
-	}
 	else if (a == 0 || len.len_tot == 1)
 		return (0);
-	if (sort_command(&a, &b) == 0)
+	else if (sort_command(&a, &b) == 0)
 		;
-	else if (check_already(a, len.len_tot) == 1)
+	else if (check_already(a) == 1 && b == 0)
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);
 	free (len.parsing);
-	ft_lstclear_int(&a, NULL);
+	if (a)
+		ft_lstclear_int(&a, NULL);
+	if (b)
+		ft_lstclear_int(&b, NULL);
 }

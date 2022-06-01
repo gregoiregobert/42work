@@ -12,14 +12,11 @@
 
 #include "push_swap.h"
 
-int	check_already(t_list1 *a, int len)
+int	check_already(t_list1 *a)
 {
-	int	i;
-
-	i = 0;
 	if (!a)
-		return (1);
-	while (i++ < (len - 1))
+		return (0);
+	while (a->next)
 	{
 		if (a->content > a->next->content)
 			return (0);

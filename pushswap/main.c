@@ -27,7 +27,7 @@ int	main(int ac, char **av)
 		write(2, "Error\n", 6);
 	else if (a == 0 || len.len_tot == 1)
 		return (0);
-	else if (check_already(a, len.len_tot) == 1)
+	else if (check_already(a) == 1)
 		;
 	else if (len.len_tot <= 5 && len.len_tot >= 3)
 		small_sort(&a, &b, len.len_tot);

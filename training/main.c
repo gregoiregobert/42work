@@ -1,10 +1,8 @@
-#include "../libft/libft.h"
-#include "../push_swap/push_swap.h"
-#include <stdio.h>
+#include <unistd.h>
 
 int	main()
 {
-	int	f;
+	int h = 456;
 
-	f = 
+	write(1, &h, 4);
 }

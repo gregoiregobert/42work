@@ -31,28 +31,28 @@ int	reverse(t_list1 **lst)
 
 void	double_reverse(t_list1 **a, t_list1 **b, int ok)
 {
-	if (!*a || !*b)
-		return;
-	reverse(a);
-	reverse(b);
+	if (*a)
+		reverse(a);
+	if (*b)
+		reverse(b);
 	if (ok == 1)
 		write(1, "rrr\n", 4);
 }
 
 void	double_rotate(t_list1 **a, t_list1 **b, int ok)
 {
-	if (!*a || !*b)
-		return;
-	rotate(a);
-	rotate(b);
+	if (*a)
+		rotate(a);
+	if (*b)
+		rotate(b);
 	if (ok == 1)
 		write(1, "rr\n", 3);
 }
 
 void	double_swap(t_list1 **a, t_list1 **b)
 {
-	if (!*a || !*b)
-		return;
-	swap(a);
-	swap(b);
+	if (*a)
+		swap(a);
+	if (*b)
+		swap(b);
 }

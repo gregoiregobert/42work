@@ -16,6 +16,8 @@ int	swap(t_list1 **lst)
 {
 	t_list1	*temp;
 
+	if (!(*lst)->next)
+		return (0);
 	temp = (*lst)->next;
 	(*lst)->next = temp->next;
 	temp->next = *lst;
@@ -27,6 +29,8 @@ int	push(t_list1 **from, t_list1 **to)
 {
 	t_list1	*temp;
 
+	if (!*from)
+		return (0);
 	temp = *from;
 	*from = (*from)->next;
 	temp->next = *to;
