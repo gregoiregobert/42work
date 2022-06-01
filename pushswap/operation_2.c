@@ -31,6 +31,8 @@ int	reverse(t_list1 **lst)
 
 void	double_reverse(t_list1 **a, t_list1 **b, int ok)
 {
+	if (!*a || !*b)
+		return;
 	reverse(a);
 	reverse(b);
 	if (ok == 1)
@@ -39,6 +41,8 @@ void	double_reverse(t_list1 **a, t_list1 **b, int ok)
 
 void	double_rotate(t_list1 **a, t_list1 **b, int ok)
 {
+	if (!*a || !*b)
+		return;
 	rotate(a);
 	rotate(b);
 	if (ok == 1)
@@ -47,6 +51,8 @@ void	double_rotate(t_list1 **a, t_list1 **b, int ok)
 
 void	double_swap(t_list1 **a, t_list1 **b)
 {
+	if (!*a || !*b)
+		return;
 	swap(a);
 	swap(b);
 }

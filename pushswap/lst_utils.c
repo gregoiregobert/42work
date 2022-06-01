@@ -53,8 +53,9 @@ int	ft_lstsize_int(t_list1 *lst)
 
 t_list1	*ft_lstlast_int(t_list1 *lst)
 {
-	while (lst->next)
-		lst = lst->next;
+	if (!lst->next)
+		while (lst->next)
+			lst = lst->next;
 	return (lst);
 }
 
