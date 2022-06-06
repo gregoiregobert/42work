@@ -24,7 +24,7 @@ int	ft_strlen(char *str)
 	return (len);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin_g(char *s1, char *s2)
 {
 	int	i;
 	int	j;

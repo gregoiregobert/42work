@@ -57,7 +57,7 @@ char	*ft_read(char *show, int fd)
 			return(show);
 		}
 		buf[count] = 0;
-		show = ft_strjoin(show, buf);
+		show = ft_strjoin_g(show, buf);
 	}
 	free(buf);
 	return (show);
@@ -73,7 +73,7 @@ char	*get_next_line(int fd)
 		return (0);
 	show = ft_strdup("");
 	if (*ret)
-		show = ft_strjoin(show, ret);
+		show = ft_strjoin_g(show, ret);
 	show = ft_read(show, fd);
 	if (!*show)
 	{
