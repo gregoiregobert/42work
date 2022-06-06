@@ -10,70 +10,46 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= push_swap
+NAME	=	training
+SRCS	=	main.c 
+OBJS	=	$(SRCS:.c=.o)
+RM		=	rm -f
+CC		=	gcc
+LIBFT	=	../libft/libft.a
+LIB_DIR	=	../libft
+CFLAGS	=	-Wall -Werror -Wextra -g3
+SUPPR	=	\033[00m
+GRAS	=	\033[01m
+CLIGNO	=	\033[05m
+GREEN	=	\033[32m
+YELLOW	=	\033[33m
+BLUE	=	\033[34m
+RED		=	\033[31m
+WHITE	=	\033[37m
 
-NAMEBONUS	= checker
+all			: $(NAME)
 
-LIB_DIR		= ./libft
+$(LIBFT)	:	
+	@make -sC $(LIB_DIR)
 
-LIBFT		= ./libft/libft.a
+$(NAME)		: $(OBJS) $(LIBFT)
+	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBFT)
+	@echo "$(GRAS)$(YELLOW)Training $(SUPPR)$(CLIGNO)Compilation$(SUPPR)"
 
-HEADER		= -I./push_swap.h
-
-SRCS		= main.c list_utils.c parsing.c \
-		  push_a.c push_b.c swaps.c rotates.c r_rotates.c \
-		  algo_back_to_a.c algo_fill_b.c algo.c algo_utils.c \
-
-SRCSBONUS	= push_a_only.c push_b_only.c rotates.c r_rotates.c swaps.c \
-		  parsing.c list_utils.c algo_utils.c checker.c checker_utils.c checker_util.c
-
-OBJS		= ${SRCS:.c=.o}
-
-OBJSBONUS	= ${SRCSBONUS:.c=.o}
-
-RM		= rm -f
-
-CC		= gcc
-
-FLAGS		= -Wall -Werror -Wextra -g3
-
-all		: ${NAME}
-
-bonus		: ${NAMEBONUS}
-
-${NAMEBONUS}	: ${OBJSBONUS} ${LIBFT}
-			@echo "\033[33m---Compiling Bonus--"
-			@${CC} ${FLAGS} ${OBJSBONUS} -o ${NAMEBONUS} ${LIBFT}
-			@echo "\033[33m >>OK"
-
-${NAME}		: ${OBJS} ${LIBFT}
-			@echo "\033[35m-----Compiling------"
-			@${CC} ${FLAGS} ${OBJS} -o ${NAME} ${LIBFT}
-			@echo "\033[35m >>OK"
-			
-${LIBFT}	:
-			@echo "\033[34m---Building Libft---"
-			@make -sC libft
-			@echo "\033[34m >>OK"
-			
-%.o		: %.c libft/*.c
-			@${CC} ${CFLAGS} -c $< -o $@
+%.o			: %.c libft/*.c
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 
 clean		:
-			@echo "\033[32m---Cleaning Libft---"
-			@make clean -sC ${LIB_DIR}
-			@echo "\033[32m >>OK"
-			@echo "\033[32m--Cleaning Objects--"
-			${RM} ${OBJS} ${OBJSBONUS}
-			@echo "\033[32m >>OK"
+	@make clean -sC $(LIB_DIR)
+	@$(RM) $(OBJS)
+	@echo "$(BLUE)$(GRAS)CLEAN$(SUPPR)"
 
 fclean		: clean
-			@echo "\033[32m----Cleaning All----"
-			@make fclean -sC ${LIB_DIR}
-			${RM} ${NAME} ${NAMEBONUS}
-			@echo "\033[32m >>OK"
+	@make fclean -sC $(LIB_DIR)
+	@$(RM) $(NAME) 
+	@echo "$(GRAS)$(WHITE)All $(RED)gone...$(SUPPR)"
 
-re		: fclean all
+re			: fclean all
 
 .PHONY		: all clean fclean re bonus

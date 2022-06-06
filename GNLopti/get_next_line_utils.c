@@ -5,90 +5,98 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/17 11:10:32 by ggobert           #+#    #+#             */
-/*   Updated: 2022/01/27 17:55:47 by ggobert          ###   ########.fr       */
+/*   Created: 2022/01/27 18:48:44 by ggobert           #+#    #+#             */
+/*   Updated: 2022/02/11 13:56:20 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
 int	ft_strlen(char *str)
 {
 	int	i;
+	int	len;
 
+	len = 0;
 	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	while (str[i++])
+		len++;
+	return (len);
 }
 
 char	*ft_strjoin(char *s1, char *s2)
 {
-	int		len;
-	int		i;
-	int		j;
-	char	*ret;
+	int	i;
+	int	j;
+	int 	len;
+	char	*new_str;
 
 	i = 0;
 	j = 0;
-	if (!s1 || !s2)
-		return (0);
 	len = ft_strlen(s1) + ft_strlen(s2);
-	ret = malloc(sizeof(char) * (len + 1));
-	if (ret == NULL)
-		return (NULL);
+	new_str = malloc(sizeof(char) * (len + 1));
+	if (!new_str)
+		return (0);
 	while (s1[i])
-		ret[j++] = s1[i++];
+		new_str[j++] = s1[i++];
 	i = 0;
 	while (s2[i])
-		ret[j++] = s2[i++];
-	ret[j] = 0;
+		new_str[j++] = s2[i++];
+	new_str[j] = 0;
 	free(s1);
-	return (ret);
+	return (new_str);
 }
 
-char	*ft_strnback(char *s, size_t n)
+char	*ft_strdup(char *str)
 {
-	int		i;
-	int		j;
+	int	len;
+	int	i;
 	char	*new;
 
-	if (!s)
-		return (0);
-	j = 0;
-	new = malloc(sizeof(char) * (ft_strlen(s) - n + 1));
+	i = 0;
+	len = ft_strlen(str);
+	new = malloc(sizeof(char) * (len + 1));
 	if (!new)
 		return (0);
-	i = n;
-	while (s[i])
+	while (len--)
 	{
-		new[j++] = s[i++];
+		new[i] = str[i];
+		i++;
 	}
-	new[j] = 0;
-	free(s);
+	new[i] = 0;
 	return (new);
 }
 
-char	*ft_strdup(char *s1)
+char	*cut_at(char *str, int n)
 {
-	int		len;
-	char	*ret;
 	int		i;
-
+	char	*new;
+	
 	i = 0;
-	len = 0;
-	while (s1[i++])
-		len++;
-	ret = malloc(sizeof(char) * (len + 1));
-	if (ret == NULL)
-		return (NULL);
-	i = 0;
-	while (len--)
+	new = malloc(sizeof(char) * (n + 1));
+	if (!new)
+		return (0);
+	while (i < n)
 	{
-		ret[i] = s1[i];
+		new[i] = str[i];
 		i++;
 	}
-	ret[i] = 0;
-	return (ret);
+	new[i] = 0;
+	free(str);
+	return (new);
+}
+
+char	*after_line(char *str, char *stat,  int n)
+{
+	int		i;
+	int		j;
+
+	j = 0;
+	i = n;
+	if (!n)
+		return (stat);
+	while (str[i])
+		stat[j++] = str[i++];
+	stat[j] = 0;
+	return (stat);
 }

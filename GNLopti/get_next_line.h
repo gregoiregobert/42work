@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/17 11:04:04 by ggobert           #+#    #+#             */
-/*   Updated: 2021/12/21 18:20:25 by ggobert          ###   ########.fr       */
+/*   Created: 2022/01/28 15:32:09 by ggobert           #+#    #+#             */
+/*   Updated: 2022/02/10 18:45:08 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 # include <unistd.h>
 # include <stdlib.h>
 
+int		ft_nl(char *str);
+int		ft_n_nl(char *str);
 int		ft_strlen(char *str);
-int		ft_check_newline(char *line);
-int		ft_len_newline(char *str);
+char	*ft_read(char *show, int fd);
 char	*get_next_line(int fd);
 char	*ft_strjoin(char *s1, char *s2);
-char	*ft_strnback(char *s, size_t n);
-char	*ft_read_until(int fd, char *dest);
-char	*ft_strdup(char *s1);
+char	*ft_strdup(char *str);
+char	*cut_at(char *str, int n);
+char	*after_line(char *str, char *stat, int n);
 
-#endif
+# endif
