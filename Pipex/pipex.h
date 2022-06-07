@@ -32,13 +32,13 @@ typedef struct  t_cmd
 }               s_cmd;
 
 void	parsing_gest(int ac, char **av, char **ev, s_cmd *command);
-void    err_findp(s_cmd *command);
-void    err_grbc(int grb_c, s_cmd *command);
-void    err_accessr(s_cmd *command);
+void    err_findp(int find_p, s_cmd *command, int msg_err);
+void    err_grbc(s_cmd *command, int _msg_err);
+void    err_accessr(s_cmd *command, int msg_err);
 char    *access_command1(s_cmd *command, int i);
 char    *access_command2(s_cmd *command, int i);
-int    find_path(char **ev, s_cmd *command);
-int    grab_cmd(int ac, char **av, s_cmd *command);
+int    find_path(int ac, char **ev, s_cmd *command);
+int    grab_cmd(char **av, s_cmd *command);
 int    access_right(s_cmd *command);
 
 #endif

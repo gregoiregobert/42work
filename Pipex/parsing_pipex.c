@@ -12,16 +12,14 @@
 
 #include "pipex.h"
 
-int grab_cmd(int ac, char **av, s_cmd *command)
+int grab_cmd(char **av, s_cmd *command)
 {
-    if (ac != 5)
-        return (1) ;
     command->filein = av[1];
     command->cmd1 = ft_split(av[2], ' ');
     command->cmd2 = ft_split(av[3], ' ');
     command->fileout = av[4];
     if (command->cmd1 == 0 || command->cmd2 == 0)
-        return (2);
+        return (1);
     return (0);
 }
 
@@ -72,8 +70,10 @@ int access_right(s_cmd *command)
     return (0);
 }
 
-int    find_path(char **ev, s_cmd *command)
+int    find_path(int ac, char **ev, s_cmd *command)
 {
+    if (ac != 5)
+        return (1);
     while (*ev)
     {
         if (ft_strncmp(*ev , "PATH=", 5) == 0)
@@ -81,6 +81,6 @@ int    find_path(char **ev, s_cmd *command)
         ev++;
     }
     if (command->path == 0)
-        return (1);
+        return (2);
     return (0);
 }
