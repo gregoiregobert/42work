@@ -11,16 +11,3 @@
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-char    **find_path(char **ev)
-{
-    char    **path;
-
-    while (*ev)
-    {
-        if (ft_strncmp(*ev , "PATH=", 5) == 0)
-            path = ft_split(*ev, ':');
-        ev++;
-    }
-    return (path);
-}

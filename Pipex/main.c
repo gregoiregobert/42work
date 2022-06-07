@@ -16,8 +16,6 @@ int main(int ac, char **av, char **ev)
 {
     s_cmd   command;
 
-    command.access_path = find_path(ev);
-    parsing(ac, av, &command);
-    access_command(&command);
+    parsing_gest(ac, av, ev, &command);
     return (0);
 }

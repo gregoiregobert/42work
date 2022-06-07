@@ -4,7 +4,7 @@ NAME	=	pipex
 LIBFT	=	../libft/libft.a
 LIB_DIR	=	../libft
 SRC		=	main.c	\
-			utils_pipex.c \
+			parsing_err.c	\
 			parsing_pipex.c
 OBJ		=	$(SRC:.c=.o)
 OBJB	=	$(SRCB:.c=.o)
