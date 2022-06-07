@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/06 15:29:46 by ggobert           #+#    #+#             */
-/*   Updated: 2022/06/06 15:30:47 by ggobert          ###   ########.fr       */
+/*   Created: 2022/06/06 16:42:57 by ggobert           #+#    #+#             */
+/*   Updated: 2022/06/06 16:43:05 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#ifndef PIPEX_H
+# define PIPEX_H
 
-int main(int ac, char **av, char **ev)
+# include "../libft/libft.h"
+# include <fcntl.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <string.h>
+
+typedef struct  t_cmd
 {
-    s_cmd   command;
+    char    **cmd1;
+    char    **cmd2;
+    char    **access_path;
+}               s_cmd;
 
-    command.access_path = find_path(ev);
-    parsing(ac, av, &command);
-    access_command(&command);
-    return (0);
-}
+int    access_command(s_cmd *command);
+char    **find_path(char **ev);
+void    parsing(int ac, char **av, s_cmd *command);
+
+#endif

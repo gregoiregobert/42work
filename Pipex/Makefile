@@ -1,0 +1,44 @@
+CC		=	gcc 
+CFLAGS	=	-Wall -Werror -Wextra -g3
+NAME	=	pipex
+LIBFT	=	../libft/libft.a
+LIB_DIR	=	../libft
+SRC		=	main.c	\
+			utils_pipex.c \
+			parsing_pipex.c
+OBJ		=	$(SRC:.c=.o)
+OBJB	=	$(SRCB:.c=.o)
+RM 		=	rm -rf
+SUPPR	=	\033[00m
+GRAS	=	\033[01m
+CLIGNO	=	\033[05m
+GREEN	=	\033[32m
+YELLOW	=	\033[33m
+RED		=	\033[31m
+WHITE	=	\033[37m
+
+all			:	$(NAME)
+
+
+$(LIBFT)	:
+	@make -sC $(LIB_DIR)
+
+$(NAME)		:	$(OBJ) $(LIBFT)
+	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LIBFT)
+	@echo "$(WHITE)Compilation $(GRAS)Pipex $(GREEN)$(GRAS)$(CLIGNO)OK$(SUPPR)"
+
+%.o			:	%.c libft/*.c
+	@$(CC) -o $@ -c $<
+
+clean		:
+	@make clean -sC $(LIB_DIR)
+	@$(RM) $(OBJ) $(OBJB)
+
+fclean		:	clean
+	@make fclean -sC $(LIB_DIR)
+	@$(RM) $(NAME) $(NAMEB)
+	@echo "$(SUPPR)$(WHITE)Pipex is $(RED)$(GRAS)$(CLIGNO)DEAD"
+
+re		:	fclean all
+
+.PHONY		:	all clean fclean re

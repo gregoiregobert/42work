@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils_pipex.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/06 15:29:46 by ggobert           #+#    #+#             */
-/*   Updated: 2022/06/06 15:30:47 by ggobert          ###   ########.fr       */
+/*   Created: 2022/06/06 16:50:59 by ggobert           #+#    #+#             */
+/*   Updated: 2022/06/06 16:51:04 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int main(int ac, char **av, char **ev)
+char    **find_path(char **ev)
 {
-    s_cmd   command;
+    char    **path;
 
-    command.access_path = find_path(ev);
-    parsing(ac, av, &command);
-    access_command(&command);
-    return (0);
+    while (*ev)
+    {
+        if (ft_strncmp(*ev , "PATH=", 5) == 0)
+            path = ft_split(*ev, ':');
+        ev++;
+    }
+    return (path);
 }
