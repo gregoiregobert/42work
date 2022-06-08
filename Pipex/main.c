@@ -6,7 +6,7 @@
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 15:29:46 by ggobert           #+#    #+#             */
-/*   Updated: 2022/06/08 12:42:17 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/06/08 13:35:18 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int ac, char **av, char **ev)
 {
-	s_cmd   command;
+	t_cmd	command;
 
 	parsing_gest(ac, av, ev, &command);
 	return (0);

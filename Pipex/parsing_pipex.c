@@ -6,13 +6,13 @@
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 17:19:27 by ggobert           #+#    #+#             */
-/*   Updated: 2022/06/08 12:42:47 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/06/08 13:40:05 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int grab_cmd(char **av, s_cmd *command)
+int	grab_cmd(char **av, t_cmd *command)
 {
 	command->filein = av[1];
 	command->cmd1 = ft_split(av[2], ' ');
@@ -23,56 +23,58 @@ int grab_cmd(char **av, s_cmd *command)
 	return (0);
 }
 
-char    *access_command1(s_cmd *command, int i)
+char	*access_command1(t_cmd *command, int i)
 {
-	char    *path_access;
-	int     k;
-	int     j;
+	char	*path_access;
+	int		k;
+	int		j;
 
 	k = -1;
 	j = k;
-	path_access = malloc(sizeof(char) * (ft_strlen(command->path[i]) + ft_strlen(command->cmd1[0]) + 2));
+	path_access = malloc(sizeof(char)
+			* (ft_strlen(command->path[i]) + ft_strlen(command->cmd1[0]) + 2));
 	if (!path_access)
 		return (0);
 	while (command->path[i][++k])
 		path_access[k] = command->path[i][k];
 	path_access[k++] = '/';
 	while (command->cmd1[0][++j])
-		path_access[k++] = command->cmd1[0][j]; 
+		path_access[k++] = command->cmd1[0][j];
 	path_access[k] = 0;
 	return (path_access);
 }
 
-char    *access_command2(s_cmd *command, int i)
+char	*access_command2(t_cmd *command, int i)
 {
-	char    *path_access;
-	int     k;
-	int     j;
+	char	*path_access;
+	int		k;
+	int		j;
 
 	k = -1;
 	j = k;
-	path_access = malloc(sizeof(char) * (ft_strlen(command->path[i]) + ft_strlen(command->cmd2[0]) + 2));
+	path_access = malloc(sizeof(char)
+			* (ft_strlen(command->path[i]) + ft_strlen(command->cmd2[0]) + 2));
 	if (!path_access)
 		return (0);
 	while (command->path[i][++k])
 		path_access[k] = command->path[i][k];
 	path_access[k++] = '/';
 	while (command->cmd2[0][++j])
-		path_access[k++] = command->cmd2[0][j]; 
+		path_access[k++] = command->cmd2[0][j];
 	path_access[k] = 0;
 	return (path_access);
 }
 
-int access_right(s_cmd *command)
+int	access_right(t_cmd *command)
 {
-	int i;
-	int j;
-	int sizeEv;
+	int	i;
+	int	j;
+	int	sizeev;
 
-	sizeEv = 0;
-	while (command->path[sizeEv])
-		sizeEv++;
-	i = --sizeEv;
+	sizeev = 0;
+	while (command->path[sizeev])
+		sizeev++;
+	i = --sizeev;
 	j = i;
 	command->path_cmd1 = access_command1(command, i--);
 	while (access(command->path_cmd1, X_OK) == -1 && i != 0)
@@ -91,13 +93,13 @@ int access_right(s_cmd *command)
 	return (0);
 }
 
-int    find_path(int ac, char **ev, s_cmd *command)
+int	find_path(int ac, char **ev, t_cmd *command)
 {
 	if (ac != 5)
 		return (1);
 	while (*ev)
 	{
-		if (ft_strncmp(*ev , "PATH=", 5) == 0)
+		if (ft_strncmp(*ev, "PATH=", 5) == 0)
 			command->path = ft_split(*ev, ':');
 		ev++;
 	}

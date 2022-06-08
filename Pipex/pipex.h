@@ -6,7 +6,7 @@
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 16:42:57 by ggobert           #+#    #+#             */
-/*   Updated: 2022/06/08 12:44:08 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/06/08 13:33:41 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <stdio.h>
 # include <string.h>
 
-typedef struct	t_cmd
+typedef struct s_cmd
 {
 	char	**cmd1;
 	char	**cmd2;
@@ -29,16 +29,16 @@ typedef struct	t_cmd
 	char	*path_cmd2;
 	char	*filein;
 	char	*fileout;
-}		s_cmd;
+}		t_cmd;
 
-void	parsing_gest(int ac, char **av, char **ev, s_cmd *command);
-void    err_findp(int find_p, s_cmd *command, int msg_err);
-void    err_grbc(s_cmd *command, int _msg_err);
-void    err_accessr(s_cmd *command, int msg_err);
-char    *access_command1(s_cmd *command, int i);
-char    *access_command2(s_cmd *command, int i);
-int     find_path(int ac, char **ev, s_cmd *command);
-int     grab_cmd(char **av, s_cmd *command);
-int     access_right(s_cmd *command);
+void	parsing_gest(int ac, char **av, char **ev, t_cmd *command);
+void	err_findp(int find_p, t_cmd *command, int msg_err);
+void	err_grbc(t_cmd *command, int _msg_err);
+void	err_accessr(t_cmd *command, int msg_err);
+char	*access_command1(t_cmd *command, int i);
+char	*access_command2(t_cmd *command, int i);
+int		find_path(int ac, char **ev, t_cmd *command);
+int		grab_cmd(char **av, t_cmd *command);
+int		access_right(t_cmd *command);
 
 #endif
