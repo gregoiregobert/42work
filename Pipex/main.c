@@ -6,16 +6,16 @@
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 15:29:46 by ggobert           #+#    #+#             */
-/*   Updated: 2022/06/06 15:30:47 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/06/08 12:42:17 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int main(int ac, char **av, char **ev)
+int	main(int ac, char **av, char **ev)
 {
-    s_cmd   command;
+	s_cmd   command;
 
-    parsing_gest(ac, av, ev, &command);
-    return (0);
+	parsing_gest(ac, av, ev, &command);
+	return (0);
 }
