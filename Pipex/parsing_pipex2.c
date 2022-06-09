@@ -1,22 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parsing_pipex2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/06 15:29:46 by ggobert           #+#    #+#             */
-/*   Updated: 2022/06/08 13:35:18 by ggobert          ###   ########.fr       */
+/*   Created: 2022/06/09 12:18:28 by ggobert           #+#    #+#             */
+/*   Updated: 2022/06/09 12:18:33 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
-
-int	main(int ac, char **av, char **ev)
+int nbof_cmd(int ac, t_cmd *cmd)
 {
-	t_cmd	command;
-
-	parsing_gest(ac, av, ev, &command);
-	execute_cmd(&command);
-	return (0);
+    if (ac <= 5)
+        
 }
