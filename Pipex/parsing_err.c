@@ -17,8 +17,12 @@ void	parsing_gest(int ac, char **av, char **ev, t_cmd *command)
 	int	find_p;
 	int	grb_c;
 	int	access_r;
+	int	n_cmd;
 
-	find_p = find_path(ac, ev, command);
+	n_cmd = nbof_cmd(ac, command);
+	if (n_cmd != 0)
+		err_ncmd();
+	find_p = find_path(ev, command);
 	if (find_p != 0)
 		err_findp(find_p, command, 1);
 	grb_c = grab_cmd(av, command);
@@ -36,16 +40,16 @@ void	parsing_gest(int ac, char **av, char **ev, t_cmd *command)
 	}
 }
 
+void	err_ncmd()
+{
+	perror("An error ocurred with number of arguments ");
+	exit(EXIT_FAILURE);
+}
 void	err_findp(int find_p, t_cmd *command, int msg_err)
 {
 	int	i;
 
 	i = 0;
-	if (find_p == 1 && msg_err == 1)
-	{
-		perror("An error ocurred with number of arguments ");
-		exit(EXIT_FAILURE);
-	}
 	if (find_p == 2)
 	{
 		while (command->path[i])
@@ -63,17 +67,18 @@ void	err_findp(int find_p, t_cmd *command, int msg_err)
 void	err_grbc(t_cmd *command, int msg_err)
 {
 	int	i;
+	int	j;
 
 	i = 0;
-	while (command->cmd1[i])
-		free(command->cmd1[i++]);
-	if (command->cmd1)
-		free(command->cmd1);
-	i = 0;
-	while (command->cmd2[i])
-		free(command->cmd2[i++]);
-	if (command->cmd2)
-		free(command->cmd2);
+	j = 0;
+	while(command->cmd[j])
+	{
+		while (command->cmd[j][i])
+			free(command->cmd[i++]);
+		j++;
+	}
+	if (command->cmd)
+		free(command->cmd);
 	if (msg_err == 1)
 	{
 		perror("An error ocurred with malloc of command ");
@@ -83,8 +88,11 @@ void	err_grbc(t_cmd *command, int msg_err)
 
 void	err_accessr(t_cmd *command, int msg_err)
 {
-	free(command->path_cmd1);
-	free(command->path_cmd2);
+	int	i;
+
+	i = 0;
+	while (command->path_cmd[i])
+		free(command->path_cmd[i++]);
 	if (msg_err == 1)
 	{
 		perror("Command not found ");

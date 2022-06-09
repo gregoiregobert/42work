@@ -17,6 +17,6 @@ int	main(int ac, char **av, char **ev)
 	t_cmd	command;
 
 	parsing_gest(ac, av, ev, &command);
-	execute_cmd(&command);
+	/*execute_cmd(&command);*/
 	return (0);
 }

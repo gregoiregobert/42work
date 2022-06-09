@@ -10,8 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "pipex.h"
+
 int nbof_cmd(int ac, t_cmd *cmd)
 {
-    if (ac <= 5)
-        
+    if (ac < 5)
+        return (1);
+    else
+        cmd->nb_cmd = ac - 3;
+    return (0);
 }

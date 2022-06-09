@@ -69,7 +69,7 @@ int start_pid(int *fd, int *fd_file, t_cmd *cmd)
     dup2(fd_file[0], STDIN_FILENO);
     dup2(fd[1], STDOUT_FILENO);
     close(fd[1]);
-    execve(cmd->path_cmd1, cmd->cmd1, NULL);
+    execve(cmd->path_cmd[l], cmd->cmd, NULL);
     perror("An error ocurred with execve cmd1 ");
     exit(EXIT_FAILURE);
 }
