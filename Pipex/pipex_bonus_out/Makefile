@@ -1,11 +1,12 @@
 CC		=	gcc 
 CFLAGS	=	-Wall -Werror -Wextra -g3
 NAME	=	pipex
-LIBFT	=	../libft/libft.a
-LIB_DIR	=	../libft
+LIBFT	=	../../libft/libft.a
+LIB_DIR	=	../../libft
 SRC		=	main.c	\
 			parsing_err.c	\
 			parsing_pipex.c	\
+			free_all.c	\
 			exec_pipex.c
 OBJ		=	$(SRC:.c=.o)
 OBJB	=	$(SRCB:.c=.o)

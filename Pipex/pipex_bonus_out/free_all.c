@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/06 15:29:46 by ggobert           #+#    #+#             */
-/*   Updated: 2022/06/08 13:35:18 by ggobert          ###   ########.fr       */
+/*   Created: 2022/06/09 16:38:50 by ggobert           #+#    #+#             */
+/*   Updated: 2022/06/09 16:38:53 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	main(int ac, char **av, char **ev)
+void    free_all(t_cmd *command)
 {
-	t_cmd	command;
-
-	parsing_gest(ac, av, ev, &command);
-	execute_cmd(&command);
-	free_all(&command);
-	return (0);
+    err_findp(2, command, 0);
+    err_grbc(command, 0);
+    err_accessr(command, 0);
 }

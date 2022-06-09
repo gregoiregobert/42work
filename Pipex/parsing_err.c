@@ -74,7 +74,7 @@ void	err_grbc(t_cmd *command, int msg_err)
 	while(command->cmd[j])
 	{
 		while (command->cmd[j][i])
-			free(command->cmd[i++]);
+			free(command->cmd[j][i++]);
 		j++;
 	}
 	if (command->cmd)
@@ -93,6 +93,7 @@ void	err_accessr(t_cmd *command, int msg_err)
 	i = 0;
 	while (command->path_cmd[i])
 		free(command->path_cmd[i++]);
+	free(command->path_cmd);
 	if (msg_err == 1)
 	{
 		perror("Command not found ");

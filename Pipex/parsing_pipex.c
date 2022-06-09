@@ -18,12 +18,16 @@ int	grab_cmd(char **av, t_cmd *command)
 
 	i = 1;
 	command->filein = av[i++];
+	command->cmd = malloc(sizeof(char) * (command->nb_cmd + 1));
 	while (i < command->nb_cmd + 2)
 	{
-		printf("nb of command = %d\n", command->nb_cmd);
 		command->cmd[i - 2] = ft_split(av[i], ' ');
+		int l = 0;
+		while (command->cmd[i - 2][l])
+			printf("cmd%d = %s\n", i - 2, command->cmd[i - 2][l++]);
 		i++;
 	}
+	command->cmd[i - 2] = 0;
 	command->fileout = av[i];
 	i = command->nb_cmd;
 	while (i-- > 0)
@@ -61,6 +65,7 @@ int	access_right(t_cmd *command)
 
 	sizeev = 0;
 	l = 0;
+	command->path_cmd = malloc(sizeof(char) * (command->nb_cmd + 1));
 	while (command->path[sizeev])
 		sizeev++;
 	while (l < command->nb_cmd)
@@ -72,10 +77,12 @@ int	access_right(t_cmd *command)
 			free (command->path_cmd[l]);
 			command->path_cmd[l] = access_command(command, i--, l);
 		}
+		printf("command path cmd = %s & i = %d\n", command->path_cmd[l], i);
+		if (i == 0)
+			return (1);
 		l++;
 	}
-	if (i == 0)
-		return (1);
+	command->path_cmd[l] = 0;
 	return (0);
 }
 

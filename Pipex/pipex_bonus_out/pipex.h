@@ -13,7 +13,7 @@
 #ifndef PIPEX_H
 # define PIPEX_H
 
-# include "../libft/libft.h"
+# include "../../libft/libft.h"
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -37,6 +37,7 @@ void	parsing_gest(int ac, char **av, char **ev, t_cmd *command);
 void	err_findp(int find_p, t_cmd *command, int msg_err);
 void	err_grbc(t_cmd *command, int _msg_err);
 void	err_accessr(t_cmd *command, int msg_err);
+void    free_all(t_cmd *command);
 char	*access_command1(t_cmd *command, int i);
 char	*access_command2(t_cmd *command, int i);
 int		find_path(int ac, char **ev, t_cmd *command);

@@ -75,7 +75,7 @@ char	**undertab(char **tab, const char *s, char c)
 			tab[j++][i] = 0;
 		}
 	}
-	tab[j] = NULL;
+	tab[j] = 0;
 	return (tab);
 }
 
