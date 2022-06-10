@@ -91,13 +91,3 @@ char	**ft_split(const char *s, char c)
 	return (undertab(tab, s, c));
 }
 
-/*int main()
-  {
-  char	c = ' ';
-  char	*b = "   flit pofl   ";
-  int 	i = 0;
-
-  while (ft_split(b, c)[i])
-  printf("%s\n", ft_split(b, c)[i++]);
-  return (0);
-  }*/

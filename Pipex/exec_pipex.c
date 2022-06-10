@@ -14,73 +14,104 @@
 
 int    execute_cmd(t_cmd *cmd)
 {
-    int fd[2];
-    int fd_file[2];
-    int pid1;
-    int pid2;
+    int **fd;
+    int pid[cmd->nb_cmd];
+    int i;
+    int j;
 
-    if (pipe(fd) == -1)
-        return (1);
-    fd_file [0] = ft_open(cmd->filein, 1);
-    fd_file [1] = ft_open(cmd->fileout, 2);
-    if (fd_file[0] < 0 || fd_file[1] < 0)
+    i = 0;
+    j = cmd->nb_cmd;
+    fd = malloc(sizeof(int *) * cmd->nb_cmd);
+// init pipe
+    while (j < cmd->nb_cmd)
+        if (pipe(fd[j++]) == -1)
+            return (1);
+// open file
+    if (ft_open(cmd) == 1)
         return (2);
-    pid1 = fork();
-    if (pid1 < 0)
-        return (3);
-    if (pid1 == 0)
-        start_pid(fd, fd_file, cmd);
-    pid2 = fork();
-    if (pid2 < 0)
-        return (4);
-    if (pid2 == 0)
-        end_pid(fd, fd_file, cmd);
-    close(fd[0]);
-    close(fd[1]);
-    waitpid(pid1, NULL, 0);
-    waitpid(pid2, NULL, 0);
-    close(fd_file[0]);
-    close(fd_file[1]);
+// fork
+    while (i < cmd->nb_cmd)
+    {
+        pid[i] = fork();
+        if (pid[i] < 0)
+            return (3);
+        if (pid[i] == 0)
+            multi_pid(i, fd, cmd);
+        i++;
+    }
+    ft_close_all(fd, cmd);
+    ft_wait(pid ,cmd);
     return(0);
 }
 
-int ft_open(char *file, int arg)
+int ft_open(t_cmd *cmd)
 {
-    int fd;
+    cmd->fd_file = malloc(sizeof(int) * 2);
+    cmd->fd_file[0] = open(cmd->filein, O_RDONLY, 0777);
+    if (cmd->fd_file[0] < 0)
+        return (1);
+    cmd->fd_file[1] = open(cmd->fileout, O_CREAT | O_WRONLY, 0777);
+    if (cmd->fd_file[1] < 0)
+        return (1);
+    return (0);
+}
 
-    if (arg == 1)
+void    ft_close(int i, int **fd, t_cmd *cmd)
+{
+    int j;
+    int x;
+    
+    j = 0;
+    while (j < cmd->nb_cmd)
     {
-        fd = open(file, O_RDONLY, 0777);
-        if (fd < 0)
-            return (1);
+        x = 0;
+        while (x < 2)
+        {
+            if ((j != i - 1 && x != 0) || (j != i && x != 1))
+                close(fd[j][x]);
+            x++;
+        }
+        j++;
     }
-    if (arg == 2)
-     {
-        fd = open(file, O_CREAT | O_WRONLY, 0777);
-        if (fd < 0)
-            return (1);
-     }
-    return (fd);
 }
 
-int start_pid(int *fd, int *fd_file, t_cmd *cmd)
+void    ft_close_all(int **fd, t_cmd *cmd)
 {
-    close(fd[0]);
-    dup2(fd_file[0], STDIN_FILENO);
-    dup2(fd[1], STDOUT_FILENO);
-    close(fd[1]);
-    execve(cmd->path_cmd[l], cmd->cmd, NULL);
-    perror("An error ocurred with execve cmd1 ");
-    exit(EXIT_FAILURE);
+    int j;
+    int x;
+
+    while (j < cmd->nb_cmd)
+    {
+        x = 0;
+        while (x < 2)
+            close(fd[j][x++]);
+        j++;
+    }
 }
 
-int end_pid(int *fd, int *fd_file, t_cmd *cmd)
+void    ft_wait(int *pid, t_cmd *cmd)
 {
-    close(fd[1]);
-    dup2(fd[0], STDIN_FILENO);
-    dup2(fd_file[1], STDOUT_FILENO);
-    close(fd[0]);
-    execve(cmd->path_cmd2, cmd->cmd2, NULL);
-    perror("An error ocurred with execve cmd2 ");
-    exit(EXIT_FAILURE);
+    int i;
+
+    i = 0;
+    while (i < cmd->nb_cmd)
+        waitpid(pid[i], NULL, 0);
+}
+
+int multi_pid(int i, int **fd, t_cmd *cmd)
+{
+    ft_close(i, fd, cmd);
+    if (i == 0)
+        dup2(cmd->fd_file[0], STDIN_FILENO);
+    else
+        dup2(fd[i - 1][0], STDIN_FILENO);
+    if (i == cmd->nb_cmd)
+        dup2(cmd->fd_file[1], STDOUT_FILENO);
+    else
+        dup2(fd[i][1], STDIN_FILENO);
+    close(fd[i - 1][0]);
+    close(fd[i][1]);
+    execve(cmd->path_cmd[i], cmd->cmd[i], NULL);
+    perror("An error ocurred with a execve ");
+    return (i + 2);
 }

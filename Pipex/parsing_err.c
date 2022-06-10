@@ -70,6 +70,7 @@ void	err_grbc(t_cmd *command, int msg_err)
 	j = 0;
 	while(command->cmd[j])
 	{
+		i = 0;
 		while (command->cmd[j][i])
 			free(command->cmd[j][i++]);
 		free(command->cmd[j++]);
