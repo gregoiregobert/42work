@@ -6,7 +6,8 @@ LIB_DIR	=	../libft
 SRC		=	main.c	\
 			parsing_err.c	\
 			parsing_pipex2.c	\
-			parsing_pipex.c	
+			parsing_pipex.c	\
+			free_all.c
 OBJ		=	$(SRC:.c=.o)
 OBJB	=	$(SRCB:.c=.o)
 RM 		=	rm -rf

@@ -18,5 +18,6 @@ int	main(int ac, char **av, char **ev)
 
 	parsing_gest(ac, av, ev, &command);
 	/*execute_cmd(&command);*/
+	free_all(&command);
 	return (0);
 }

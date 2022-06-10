@@ -24,17 +24,17 @@ void	parsing_gest(int ac, char **av, char **ev, t_cmd *command)
 		err_ncmd();
 	find_p = find_path(ev, command);
 	if (find_p != 0)
-		err_findp(find_p, command, 1);
+		err_findp(command, 1);
 	grb_c = grab_cmd(av, command);
 	if (grb_c != 0)
 	{
-		err_findp(2, command, 0);
+		err_findp(command, 0);
 		err_grbc(command, 1);
 	}
 	access_r = access_right(command);
 	if (access_r != 0)
 	{
-		err_findp(2, command, 0);
+		err_findp(command, 0);
 		err_grbc(command, 0);
 		err_accessr(command, 1);
 	}
@@ -45,22 +45,19 @@ void	err_ncmd()
 	perror("An error ocurred with number of arguments ");
 	exit(EXIT_FAILURE);
 }
-void	err_findp(int find_p, t_cmd *command, int msg_err)
+void	err_findp(t_cmd *command, int msg_err)
 {
 	int	i;
 
 	i = 0;
-	if (find_p == 2)
+	while (command->path[i])
+		free(command->path[i++]);
+	if (command->path)
+		free(command->path);
+	if (msg_err == 1)
 	{
-		while (command->path[i])
-			free(command->path[i++]);
-		if (command->path)
-			free(command->path);
-		if (msg_err == 1)
-		{
-			perror("An error occured with malloc env Path ");
-			exit(EXIT_FAILURE);
-		}
+		perror("An error occured with malloc env Path ");
+		exit(EXIT_FAILURE);
 	}
 }
 
@@ -75,7 +72,7 @@ void	err_grbc(t_cmd *command, int msg_err)
 	{
 		while (command->cmd[j][i])
 			free(command->cmd[j][i++]);
-		j++;
+		free(command->cmd[j++]);
 	}
 	if (command->cmd)
 		free(command->cmd);

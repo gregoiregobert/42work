@@ -10,4 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "pipex.h"
 
+void    free_all(t_cmd *command)
+{
+    err_findp(command, 0);
+	err_grbc(command, 0);
+	err_accessr(command, 0);
+}
