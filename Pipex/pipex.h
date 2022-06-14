@@ -46,10 +46,9 @@ int		grab_cmd(char **av, t_cmd *command);
 int		access_right(t_cmd *command);
 int		execute_cmd(t_cmd *cmd);
 int		ft_open(t_cmd *cmd);
-int 	*init_fd(t_cmd *cmd);
+int 	**init_fd(t_cmd *cmd);
 
 void    ft_close_all(int **fd, t_cmd *cmd);
-void    ft_close(int i, int **fd, t_cmd *cmd);
 int		multi_pid(int i, int **fd, t_cmd *cmd);
 
 #endif
