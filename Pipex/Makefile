@@ -8,6 +8,8 @@ SRC		=	main.c	\
 			parsing_pipex2.c	\
 			parsing_pipex.c	\
 			exec_pipex.c	\
+			exec_pipex2.c	\
+			exec_err.c	\
 			free_all.c
 OBJ		=	$(SRC:.c=.o)
 OBJB	=	$(SRCB:.c=.o)

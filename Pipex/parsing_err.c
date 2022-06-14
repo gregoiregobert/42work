@@ -50,10 +50,12 @@ void	err_findp(t_cmd *command, int msg_err)
 	int	i;
 
 	i = 0;
-	while (command->path[i])
-		free(command->path[i++]);
 	if (command->path)
+	{
+		while (command->path[i])
+			free(command->path[i++]);
 		free(command->path);
+	}
 	if (msg_err == 1)
 	{
 		perror("An error occured with malloc env Path ");
@@ -89,9 +91,12 @@ void	err_accessr(t_cmd *command, int msg_err)
 	int	i;
 
 	i = 0;
-	while (command->path_cmd[i])
-		free(command->path_cmd[i++]);
-	free(command->path_cmd);
+	if (command->path_cmd)
+	{
+		while (command->path_cmd[i])
+			free(command->path_cmd[i++]);
+		free(command->path_cmd);
+	}
 	if (msg_err == 1)
 	{
 		perror("Command not found ");

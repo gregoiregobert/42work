@@ -1,23 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_all.c                                         :+:      :+:    :+:   */
+/*   exec_pipex2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/09 16:49:38 by ggobert           #+#    #+#             */
-/*   Updated: 2022/06/09 16:49:58 by ggobert          ###   ########.fr       */
+/*   Created: 2022/06/14 16:37:36 by ggobert           #+#    #+#             */
+/*   Updated: 2022/06/14 16:38:01 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	free_all(t_cmd *command)
+int	init_fd(t_cmd *cmd)
 {
-	err_findp(command, 0);
-	err_grbc(command, 0);
-	err_accessr(command, 0);
-	err_init(command, 0);
+	int	i;
+
+	i = 0;
+	cmd->fd = malloc(sizeof(int *) * cmd->nb_cmd);
+	if (!cmd->fd)
+		return (1);
+	while (i < cmd->nb_cmd)
+	{
+		cmd->fd[i] = malloc(sizeof(int) * 2);
+		if (!cmd->fd[i])
+		{
+			while (i >= 0)
+				free(cmd->fd[i--]);
+			free(cmd->fd);
+			return (1);
+		}
+		i++;
+	}
+	return (0);
 }
 
-void	free
+int	init_pid(t_cmd *cmd)
+{
+	cmd->pid = malloc(sizeof(int) * cmd->nb_cmd);
+	if (!cmd->pid)
+		return (1);
+	return (0);
+}
