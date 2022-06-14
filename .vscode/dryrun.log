@@ -1,6 +1,5 @@
-make --dry-run --keep-going --print-directory
+make --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/mnt/nfs/homes/ggobert/Documents/42work'
- 
 make: Leaving directory '/mnt/nfs/homes/ggobert/Documents/42work'
  
 make: *** No targets specified and no makefile found.  Stop.

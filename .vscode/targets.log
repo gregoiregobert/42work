@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri Jun 10 13:29:30 2022
+# Make data base, printed on Tue Jun 14 10:42:17 2022
 
 # Variables
 
@@ -41,13 +41,11 @@ CURDIR := /mnt/nfs/homes/ggobert/Documents/42work
 # makefile
 SHELL = /bin/sh
 # environment
-GDM_LANG = en
-# environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
 _ = /usr/share/code/code
 # environment
-JOURNAL_STREAM = 9:1176864
+JOURNAL_STREAM = 9:1212621
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # makefile
@@ -67,15 +65,15 @@ DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/101293/bus
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-MANAGERPID = 279142
+MANAGERPID = 327537
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/101293/vscode-ipc-343f981b-b453-4c2f-8c89-a077a506eddf.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/101293/vscode-ipc-b88d4858-ff20-4956-b1ba-67ced46d3e79.sock
 # environment
 VSCODE_CWD = /mnt/nfs/homes/ggobert
 # environment
-XDG_SESSION_PATH = /org/freedesktop/DisplayManager/Session5
+XDG_SESSION_PATH = /org/freedesktop/DisplayManager/Session6
 # environment
-KRB5CCNAME = FILE:/tmp/krb5cc_101293_qbLLoA
+KRB5CCNAME = FILE:/tmp/krb5cc_101293_vvKxIL
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
 # environment
@@ -85,7 +83,7 @@ GPG_AGENT_INFO = /run/user/101293/gnupg/S.gpg-agent:0:1
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
 # environment
-SESSION_MANAGER = local/e1r5p1.42.fr:@/tmp/.ICE-unix/279566,unix/e1r5p1.42.fr:/tmp/.ICE-unix/279566
+SESSION_MANAGER = local/e3r8p4.clusters.42paris.fr:@/tmp/.ICE-unix/327987,unix/e3r8p4.clusters.42paris.fr:/tmp/.ICE-unix/327987
 # environment
 XDG_RUNTIME_DIR = /run/user/101293
 # environment
@@ -95,7 +93,7 @@ VSCODE_LOG_STACK = false
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = 79fd24208dfd4ac0a5fdec778e8c8a3c
+INVOCATION_ID = ef2f0fbf8cc245f08fb5343ba7782036
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -107,7 +105,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/101293/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 298054
+GIO_LAUNCHED_DESKTOP_FILE_PID = 328369
 # automatic
 %F = $(notdir $%)
 # environment
@@ -119,7 +117,7 @@ PWD = /mnt/nfs/homes/ggobert/Documents/42work
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 279456
+SSH_AGENT_PID = 327890
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -177,8 +175,6 @@ OLDPWD = /mnt/nfs/homes/ggobert
 # automatic
 *F = $(notdir $*)
 # environment
-LANGUAGE = en
-# environment
 XDG_SEAT_PATH = /org/freedesktop/DisplayManager/Seat0
 # environment
 VSCODE_IPC_HOOK = /run/user/101293/vscode-1c49445b-1.67.2-main.sock
@@ -225,9 +221,9 @@ LANG = C
 # environment
 DOCKER_HOST = unix:///run/user/101293/docker.sock
 # environment
-VSCODE_PID = 298054
+VSCODE_PID = 328369
 # variable set hash-table stats:
-# Load=107/1024=10%, Rehash=0, Collisions=7/129=5%
+# Load=105/1024=10%, Rehash=0, Collisions=7/127=6%
 
 # Pattern-specific Variable Values
 
@@ -235,7 +231,7 @@ VSCODE_PID = 298054
 
 # Directories
 
-# . (device 61, inode 3352602): 14 files, no impossibilities.
+# . (device 60, inode 3352602): 14 files, no impossibilities.
 
 # 14 files, no impossibilities in 1 directories.
 
@@ -284,16 +280,16 @@ GNUmakefile:
 # VPATH Search Paths
 
 # No 'vpath' search paths.
- 
 
 # No general ('VPATH' variable) search path.
 
 # strcache buffers: 1 (0) / strings = 22 / storage = 183 B / avg = 8 B
+ 
 # current buf: size = 8162 B / used = 183 B / count = 22 / avg = 8 B
 
 # strcache performance: lookups = 25 / hit rate = 12%
 # hash-table stats:
 # Load=22/8192=0%, Rehash=0, Collisions=1/25=4%
-# Finished Make data base on Fri Jun 10 13:29:30 2022
+# Finished Make data base on Tue Jun 14 10:42:17 2022
 
  

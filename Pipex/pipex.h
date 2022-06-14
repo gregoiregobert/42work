@@ -37,8 +37,6 @@ void	err_findp(t_cmd *command, int msg_err);
 void	err_grbc(t_cmd *command, int _msg_err);
 void	err_accessr(t_cmd *command, int msg_err);
 void	err_ncmd();
-void    ft_close(int i, int **fd, t_cmd *cmd);
-void    ft_close_all(int **fd, t_cmd *cmd);
 void    ft_wait(int *pid, t_cmd *cmd);
 void	free_all();
 char	*access_command(t_cmd *command, int i, int l);
@@ -48,6 +46,10 @@ int		grab_cmd(char **av, t_cmd *command);
 int		access_right(t_cmd *command);
 int		execute_cmd(t_cmd *cmd);
 int		ft_open(t_cmd *cmd);
+int 	*init_fd(t_cmd *cmd);
+
+void    ft_close_all(int **fd, t_cmd *cmd);
+void    ft_close(int i, int **fd, t_cmd *cmd);
 int		multi_pid(int i, int **fd, t_cmd *cmd);
 
 #endif
