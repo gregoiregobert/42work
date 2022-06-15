@@ -6,15 +6,15 @@
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 16:38:50 by ggobert           #+#    #+#             */
-/*   Updated: 2022/06/09 16:38:53 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/06/15 11:51:01 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void    free_all(t_cmd *command)
+void	free_all(t_cmd *command)
 {
-    err_findp(2, command, 0);
-    err_grbc(command, 0);
-    err_accessr(command, 0);
+	err_findp(2, command, 0);
+	err_grbc(command, 0);
+	err_accessr(command, 0);
 }

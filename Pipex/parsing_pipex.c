@@ -6,7 +6,7 @@
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 17:19:27 by ggobert           #+#    #+#             */
-/*   Updated: 2022/06/08 13:40:05 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/06/15 11:45:58 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	grab_cmd(char **av, t_cmd *command)
 {
-	int i;
+	int	i;
 
 	i = 1;
 	command->filein = av[i++];
@@ -42,7 +42,8 @@ char	*access_command(t_cmd *command, int i, int l)
 	k = -1;
 	j = k;
 	path_access = malloc(sizeof(char)
-			* (ft_strlen(command->path[i]) + ft_strlen(command->cmd[l][0]) + 2));
+			* (ft_strlen(command->path[i])
+				+ ft_strlen(command->cmd[l][0]) + 2));
 	if (!path_access)
 		return (0);
 	while (command->path[i][++k])

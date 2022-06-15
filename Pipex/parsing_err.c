@@ -6,7 +6,7 @@
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:59:32 by ggobert           #+#    #+#             */
-/*   Updated: 2022/06/08 13:45:01 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/06/15 11:48:23 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,12 @@ void	parsing_gest(int ac, char **av, char **ev, t_cmd *command)
 	}
 }
 
-void	err_ncmd()
+void	err_ncmd(void)
 {
 	perror("An error ocurred with number of arguments ");
 	exit(EXIT_FAILURE);
 }
+
 void	err_findp(t_cmd *command, int msg_err)
 {
 	int	i;
@@ -70,7 +71,7 @@ void	err_grbc(t_cmd *command, int msg_err)
 
 	i = 0;
 	j = 0;
-	while(command->cmd[j])
+	while (command->cmd[j])
 	{
 		i = 0;
 		while (command->cmd[j][i])
