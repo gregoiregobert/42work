@@ -20,3 +20,10 @@ int	nbof_cmd(int ac, t_cmd *cmd)
 		cmd->nb_cmd = ac - 3;
 	return (0);
 }
+
+void	path_zero(t_cmd *cmd, int l)
+{
+	free(cmd->path_cmd[l]);
+	cmd->path_cmd[l] = 0;
+	perror("Command not found ");
+}

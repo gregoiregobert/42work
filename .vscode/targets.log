@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu Jun 16 10:08:44 2022
+# Make data base, printed on Thu Jun 16 13:37:01 2022
 
 # Variables
 
@@ -67,7 +67,7 @@ VSCODE_VERBOSE_LOGGING = true
 # environment
 MANAGERPID = 110061
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/101293/vscode-ipc-3484d5c1-a70f-495f-ab87-c960590bf1d9.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/101293/vscode-ipc-f6ed7d56-44bb-43a7-af12-38f10566b695.sock
 # environment
 VSCODE_CWD = /mnt/nfs/homes/ggobert
 # environment
@@ -105,7 +105,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/101293/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 110877
+GIO_LAUNCHED_DESKTOP_FILE_PID = 156078
 # automatic
 %F = $(notdir $%)
 # environment
@@ -221,7 +221,7 @@ LANG = C
 # environment
 DOCKER_HOST = unix:///run/user/101293/docker.sock
 # environment
-VSCODE_PID = 110877
+VSCODE_PID = 156078
 # variable set hash-table stats:
 # Load=105/1024=10%, Rehash=0, Collisions=7/127=6%
 
@@ -283,13 +283,13 @@ GNUmakefile:
 
 # No general ('VPATH' variable) search path.
 
+ 
 # strcache buffers: 1 (0) / strings = 22 / storage = 183 B / avg = 8 B
 # current buf: size = 8162 B / used = 183 B / count = 22 / avg = 8 B
 
 # strcache performance: lookups = 25 / hit rate = 12%
 # hash-table stats:
- 
 # Load=22/8192=0%, Rehash=0, Collisions=1/25=4%
-# Finished Make data base on Thu Jun 16 10:08:44 2022
+# Finished Make data base on Thu Jun 16 13:37:01 2022
 
  

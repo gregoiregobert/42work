@@ -62,11 +62,11 @@ int	access_right(t_cmd *command)
 	int	sizeev;
 
 	sizeev = 0;
-	l = 0;
+	l = -1;
 	command->path_cmd = malloc(sizeof(char *) * (command->nb_cmd + 1));
 	while (command->path[sizeev])
 		sizeev++;
-	while (l < command->nb_cmd)
+	while (++l < command->nb_cmd)
 	{
 		i = sizeev - 1;
 		command->path_cmd[l] = access_command(command, i--, l);
@@ -76,12 +76,7 @@ int	access_right(t_cmd *command)
 			command->path_cmd[l] = access_command(command, i--, l);
 		}
 		if (i == 0)
-		{
-			free(command->path_cmd[l]);
-			command->path_cmd[l] = 0;
-			perror("Command not found ");
-		}
-		l++;
+			path_zero(command, l);
 	}
 	command->path_cmd[l] = 0;
 	return (0);

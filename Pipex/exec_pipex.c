@@ -72,11 +72,11 @@ int	multi_pid(int i, t_cmd *cmd, char **ev)
 {
 	if (i == 0)
 		dup2(cmd->fd_file[0], STDIN_FILENO);
-	else 
+	else
 		dup2(cmd->fd[i][0], STDIN_FILENO);
 	if (i == cmd->nb_cmd - 1)
 		dup2(cmd->fd_file[1], STDOUT_FILENO);
-	else
+	else if (cmd->path_cmd[i])
 		dup2(cmd->fd[i + 1][1], STDOUT_FILENO);
 	ft_close_all(cmd);
 	execve(cmd->path_cmd[i], cmd->cmd[i], ev);
