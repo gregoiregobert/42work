@@ -12,13 +12,13 @@
 
 #include "pipex.h"
 
-void	execution_manager(t_cmd *cmd)
+void	execution_manager(t_cmd *cmd, char **ev)
 {
 	int	err;
 
 	if (init_fd(cmd) == 1 || init_pid(cmd) == 1)
 		err_init(cmd);
-	err = execute_cmd(cmd);
+	err = execute_cmd(cmd, ev);
 	if (err == 1)
 		err_pipe(cmd);
 	if (err == 2)

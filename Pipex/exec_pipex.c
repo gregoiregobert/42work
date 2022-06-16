@@ -12,7 +12,7 @@
 
 #include "pipex.h"
 
-int	execute_cmd(t_cmd *cmd)
+int	execute_cmd(t_cmd *cmd, char **ev)
 {
 	int	i;
 
@@ -29,7 +29,7 @@ int	execute_cmd(t_cmd *cmd)
 		if (cmd->pid[i] < 0)
 			return (3);
 		if (cmd->pid[i] == 0)
-			multi_pid(i, cmd);
+			multi_pid(i, cmd, ev);
 		i++;
 	}
 	i = -1;
@@ -68,19 +68,19 @@ void	ft_close_all(t_cmd *cmd)
 	close(cmd->fd_file[1]);
 }
 
-int	multi_pid(int i, t_cmd *cmd)
+int	multi_pid(int i, t_cmd *cmd, char **ev)
 {
-	printf("process num %d\n", i);
 	if (i == 0)
 		dup2(cmd->fd_file[0], STDIN_FILENO);
-	else
+	else 
 		dup2(cmd->fd[i][0], STDIN_FILENO);
 	if (i == cmd->nb_cmd - 1)
 		dup2(cmd->fd_file[1], STDOUT_FILENO);
 	else
 		dup2(cmd->fd[i + 1][1], STDOUT_FILENO);
 	ft_close_all(cmd);
-	execve(cmd->path_cmd[i], cmd->cmd[i], NULL);
-	perror("An error ocurred with a execve ");
+	execve(cmd->path_cmd[i], cmd->cmd[i], ev);
+	if (i == cmd->nb_cmd - 1)
+		perror("An error ocurred with a execve ");
 	return (i + 2);
 }

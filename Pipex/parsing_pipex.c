@@ -72,11 +72,15 @@ int	access_right(t_cmd *command)
 		command->path_cmd[l] = access_command(command, i--, l);
 		while (access(command->path_cmd[l], X_OK) == -1 && i != 0)
 		{
-			free (command->path_cmd[l]);
+			free(command->path_cmd[l]);
 			command->path_cmd[l] = access_command(command, i--, l);
 		}
 		if (i == 0)
-			return (1);
+		{
+			free(command->path_cmd[l]);
+			command->path_cmd[l] = 0;
+			perror("Command not found ");
+		}
 		l++;
 	}
 	command->path_cmd[l] = 0;

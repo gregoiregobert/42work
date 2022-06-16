@@ -47,15 +47,15 @@ void	err_fork(t_cmd *cmd);
 void	ft_close_all(t_cmd *cmd);
 void	free_all(t_cmd *command);
 void	free_fd_pid(t_cmd *cmd);
-void	execution_manager(t_cmd *cmd);
+void	execution_manager(t_cmd *cmd, char **ev);
 char	*access_command(t_cmd *command, int i, int l);
 int		nbof_cmd(int ac, t_cmd *cmd);
 int		find_path(char **ev, t_cmd *command);
 int		grab_cmd(char **av, t_cmd *command);
 int		access_right(t_cmd *command);
-int		execute_cmd(t_cmd *cmd);
+int		execute_cmd(t_cmd *cmd, char **ev);
 int		ft_open(t_cmd *cmd);
-int		multi_pid(int i, t_cmd *cmd);
+int		multi_pid(int i, t_cmd *cmd, char **ev);
 int		init_fd(t_cmd *cmd);
 int		init_pid(t_cmd *cmd);
 

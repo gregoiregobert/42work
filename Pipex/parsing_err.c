@@ -89,13 +89,16 @@ void	err_grbc(t_cmd *command, int msg_err)
 
 void	err_accessr(t_cmd *command, int msg_err)
 {
-	int	i;
+	int	j;
 
-	i = 0;
+	j = -1;
 	if (command->path_cmd)
 	{
-		while (command->path_cmd[i])
-			free(command->path_cmd[i++]);
+		while (++j < command->nb_cmd)
+		{
+			if (command->path_cmd[j])
+				free(command->path_cmd[j]);
+		}
 		free(command->path_cmd);
 	}
 	if (msg_err == 1)
