@@ -44,6 +44,6 @@ fclean		:	clean
 	@$(RM) $(NAME) $(NAMEB)
 	@echo "$(SUPPR)$(WHITE)Pipex is $(RED)$(GRAS)$(CLIGNO)DEAD"
 
-re		:	fclean all
+re			:	fclean all
 
 .PHONY		:	all clean fclean re

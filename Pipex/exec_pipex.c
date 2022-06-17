@@ -42,10 +42,10 @@ int	execute_cmd(t_cmd *cmd, char **ev)
 int	ft_open(t_cmd *cmd)
 {
 	cmd->fd_file = malloc(sizeof(int) * 2);
-	cmd->fd_file[0] = open(cmd->filein, O_RDONLY, 0777);
+	cmd->fd_file[0] = open(cmd->filein, O_RDONLY);
 	if (cmd->fd_file[0] < 0)
 		return (1);
-	cmd->fd_file[1] = open(cmd->fileout, O_CREAT | O_WRONLY | O_TRUNC, 0777);
+	cmd->fd_file[1] = open(cmd->fileout, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (cmd->fd_file[1] < 0)
 		return (1);
 	return (0);

@@ -90,4 +90,3 @@ char	**ft_split(const char *s, char c)
 		return (NULL);
 	return (undertab(tab, s, c));
 }
-

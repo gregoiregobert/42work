@@ -70,14 +70,4 @@ t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstnew(void *content);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
-/*Get Next Line*/
-
-int		ft_nl(char *str);
-int		ft_n_nl(char *str);
-char	*ft_read(char *show, int fd);
-char	*get_next_line(int fd);
-char	*cut_at(char *str, int n);
-char	*after_line(char *str, char *stat, int n);
-char	*ft_strjoin_g(char *s1, char *s2);
-
 #endif
