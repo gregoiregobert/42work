@@ -79,6 +79,11 @@ int	multi_pid(int i, t_cmd *cmd, char **ev)
 	else 
 		dup2(cmd->fd[i + 1][1], STDOUT_FILENO);
 	ft_close_all(cmd);
+	if (strncmp(cmd->cmd[i][0], "\0", 1) == 0)
+	{
+		write (2, "permission denied:", 18);
+		write(2, "\n", 1);
+	}
 	execve(cmd->path_cmd[i], cmd->cmd[i], ev);
 	free_all(cmd);
 	exit(EXIT_FAILURE);

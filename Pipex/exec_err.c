@@ -44,7 +44,7 @@ void	err_pipe(t_cmd *cmd)
 void	err_open(t_cmd *cmd)
 {
 	free_all(cmd);
-	perror("An error ocurred with the open function ");
+	perror("");
 	exit(EXIT_FAILURE);
 }
 

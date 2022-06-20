@@ -21,8 +21,14 @@ int	grab_cmd(char **av, t_cmd *command)
 	command->cmd = malloc(sizeof(char **) * (command->nb_cmd + 1));
 	while (i < command->nb_cmd + 2)
 	{
-		if (av[i])
+		if (*av[i])
 			command->cmd[i - 2] = ft_split(av[i], ' ');
+		else
+		{
+			command->cmd[i - 2] = malloc(sizeof(char *) * 2);
+			command->cmd[i - 2][0] = ft_strdup("\0");
+			command->cmd[i - 2][1] = 0;
+		}
 		i++;
 	}
 	command->cmd[i - 2] = 0;
