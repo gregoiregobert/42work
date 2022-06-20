@@ -42,7 +42,8 @@ void	parsing_gest(int ac, char **av, char **ev, t_cmd *command)
 
 void	err_ncmd(void)
 {
-	perror("An error ocurred with number of arguments ");
+	write(2, "An error ocurred with number of arguments.", 42);
+	write(2, "\n", 1);
 	exit(EXIT_FAILURE);
 }
 

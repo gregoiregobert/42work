@@ -50,6 +50,7 @@ void	free_all(t_cmd *command);
 void	free_fd_pid(t_cmd *cmd);
 void	execution_manager(t_cmd *cmd, char **ev);
 void	path_zero(t_cmd *cmd, int l);
+void	err_msg(t_cmd *cmd, int l);
 char	*access_command(t_cmd *command, int i, int l);
 int		nbof_cmd(int ac, t_cmd *cmd);
 int		find_path(char **ev, t_cmd *command);

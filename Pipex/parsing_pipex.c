@@ -21,7 +21,8 @@ int	grab_cmd(char **av, t_cmd *command)
 	command->cmd = malloc(sizeof(char **) * (command->nb_cmd + 1));
 	while (i < command->nb_cmd + 2)
 	{
-		command->cmd[i - 2] = ft_split(av[i], ' ');
+		if (av[i])
+			command->cmd[i - 2] = ft_split(av[i], ' ');
 		i++;
 	}
 	command->cmd[i - 2] = 0;
@@ -76,7 +77,7 @@ int	access_right(t_cmd *command)
 			command->path_cmd[l] = access_command(command, i--, l);
 		}
 		if (i == 0)
-			path_zero(command, l);
+			err_msg(command, l);
 	}
 	command->path_cmd[l] = 0;
 	return (0);

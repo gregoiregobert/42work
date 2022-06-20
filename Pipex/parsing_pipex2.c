@@ -21,9 +21,9 @@ int	nbof_cmd(int ac, t_cmd *cmd)
 	return (0);
 }
 
-void	path_zero(t_cmd *cmd, int l)
+void	err_msg(t_cmd *cmd, int l)
 {
-	free(cmd->path_cmd[l]);
-	cmd->path_cmd[l] = 0;
-	perror("Command not found ");
+	write(2 , "Command not found : ", 20);
+	write(2, cmd->cmd[l][0], ft_strlen(cmd->cmd[l][0]));
+	write(2, "\n", 1);
 }

@@ -42,11 +42,11 @@ int	execute_cmd(t_cmd *cmd, char **ev)
 int	ft_open(t_cmd *cmd)
 {
 	cmd->fd_file = malloc(sizeof(int) * 2);
-	cmd->fd_file[0] = open(cmd->filein, O_RDONLY);
-	if (cmd->fd_file[0] < 0)
-		return (1);
 	cmd->fd_file[1] = open(cmd->fileout, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (cmd->fd_file[1] < 0)
+		return (1);
+	cmd->fd_file[0] = open(cmd->filein, O_RDONLY);
+	if (cmd->fd_file[0] < 0)
 		return (1);
 	return (0);
 }
@@ -76,11 +76,10 @@ int	multi_pid(int i, t_cmd *cmd, char **ev)
 		dup2(cmd->fd[i][0], STDIN_FILENO);
 	if (i == cmd->nb_cmd - 1)
 		dup2(cmd->fd_file[1], STDOUT_FILENO);
-	else if (cmd->path_cmd[i])
+	else 
 		dup2(cmd->fd[i + 1][1], STDOUT_FILENO);
 	ft_close_all(cmd);
 	execve(cmd->path_cmd[i], cmd->cmd[i], ev);
-	if (i == cmd->nb_cmd - 1)
-		perror("An error ocurred with a execve ");
-	return (i + 2);
+	free_all(cmd);
+	exit(EXIT_FAILURE);
 }
