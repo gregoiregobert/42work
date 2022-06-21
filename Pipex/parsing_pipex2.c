@@ -23,7 +23,7 @@ int	nbof_cmd(int ac, t_cmd *cmd)
 
 void	err_msg(t_cmd *cmd, int l)
 {
-	write(2 , "command not found : ", 20);
+	write(2, "command not found : ", 20);
 	write(2, cmd->cmd[l][0], ft_strlen(cmd->cmd[l][0]));
 	write(2, "\n", 1);
 }

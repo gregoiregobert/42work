@@ -58,7 +58,7 @@ int		grab_cmd(char **av, t_cmd *command);
 int		access_right(t_cmd *command);
 int		execute_cmd(t_cmd *cmd, char **ev);
 int		ft_open(t_cmd *cmd);
-int		multi_pid(int i, t_cmd *cmd, char **ev);
+int		multi_pid(int i, t_cmd *cmd, char **ev, int err);
 int		init_fd(t_cmd *cmd);
 int		init_pid(t_cmd *cmd);
 

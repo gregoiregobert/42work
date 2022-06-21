@@ -15,27 +15,31 @@
 int	execute_cmd(t_cmd *cmd, char **ev)
 {
 	int	i;
+	int	err;
 
+	err = 0;
 	i = 0;
 	while (i < cmd->nb_cmd)
 		if (pipe(cmd->fd[i++]) == -1)
 			return (1);
-	i = 0;
 	if (ft_open(cmd) == 1)
-		return (2);
+		err = 1;
+	i = 0;
 	while (i < cmd->nb_cmd)
 	{
 		cmd->pid[i] = fork();
 		if (cmd->pid[i] < 0)
 			return (3);
 		if (cmd->pid[i] == 0)
-			multi_pid(i, cmd, ev);
+			multi_pid(i, cmd, ev, err);
 		i++;
 	}
 	i = -1;
 	ft_close_all(cmd);
 	while (++i < cmd->nb_cmd)
 		wait(NULL);
+	if (err != 0)
+		return (2);
 	return (0);
 }
 
@@ -68,7 +72,7 @@ void	ft_close_all(t_cmd *cmd)
 	close(cmd->fd_file[1]);
 }
 
-int	multi_pid(int i, t_cmd *cmd, char **ev)
+int	multi_pid(int i, t_cmd *cmd, char **ev, int err)
 {
 	if (i == 0)
 		dup2(cmd->fd_file[0], STDIN_FILENO);
@@ -76,10 +80,10 @@ int	multi_pid(int i, t_cmd *cmd, char **ev)
 		dup2(cmd->fd[i][0], STDIN_FILENO);
 	if (i == cmd->nb_cmd - 1)
 		dup2(cmd->fd_file[1], STDOUT_FILENO);
-	else 
+	else
 		dup2(cmd->fd[i + 1][1], STDOUT_FILENO);
 	ft_close_all(cmd);
-	if (strncmp(cmd->cmd[i][0], "\0", 1) == 0)
+	if (strncmp(cmd->cmd[i][0], "\0", 1) == 0 && err == 0)
 	{
 		write (2, "permission denied:", 18);
 		write(2, "\n", 1);
