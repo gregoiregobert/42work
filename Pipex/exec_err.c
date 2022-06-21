@@ -12,7 +12,7 @@
 
 #include "pipex.h"
 
-void	execution_manager(t_cmd *cmd, char **ev)
+void	execution_manager(t_cmd *cmd, char **ev, char **av)
 {
 	int	err;
 
@@ -22,7 +22,7 @@ void	execution_manager(t_cmd *cmd, char **ev)
 	if (err == 1)
 		err_pipe(cmd);
 	if (err == 2)
-		err_open(cmd);
+		err_open(cmd, av);
 	if (err == 3)
 		err_fork(cmd);
 }
@@ -41,10 +41,12 @@ void	err_pipe(t_cmd *cmd)
 	exit(EXIT_FAILURE);
 }
 
-void	err_open(t_cmd *cmd)
+void	err_open(t_cmd *cmd, char **av)
 {
 	free_all(cmd);
-	perror("");
+	write(2, "no such file or directory: ", 27);
+	write(2, av[1], ft_strlen(av[1]));
+	write(2, "\n", 1);
 	exit(EXIT_FAILURE);
 }
 

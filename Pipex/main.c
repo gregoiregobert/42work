@@ -17,7 +17,7 @@ int	main(int ac, char **av, char **ev)
 	t_cmd	command;
 
 	parsing_gest(ac, av, ev, &command);
-	execution_manager(&command, ev);
+	execution_manager(&command, ev, av);
 	free_all(&command);
 	return (0);
 }
