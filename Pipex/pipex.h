@@ -33,6 +33,7 @@ typedef struct s_cmd
 	int		*fd_file;
 	int		*pid;
 	int		nb_cmd;
+	int		err;
 
 }		t_cmd;
 

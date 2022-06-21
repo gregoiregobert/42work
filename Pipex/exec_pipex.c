@@ -15,15 +15,12 @@
 int	execute_cmd(t_cmd *cmd, char **ev)
 {
 	int	i;
-	int	err;
 
-	err = 0;
 	i = 0;
 	while (i < cmd->nb_cmd)
 		if (pipe(cmd->fd[i++]) == -1)
 			return (1);
-	if (ft_open(cmd) == 1)
-		err = 1;
+	cmd->err = ft_open(cmd);
 	i = 0;
 	while (i < cmd->nb_cmd)
 	{
@@ -31,14 +28,14 @@ int	execute_cmd(t_cmd *cmd, char **ev)
 		if (cmd->pid[i] < 0)
 			return (3);
 		if (cmd->pid[i] == 0)
-			multi_pid(i, cmd, ev, err);
+			multi_pid(i, cmd, ev, cmd->err);
 		i++;
 	}
 	i = -1;
 	ft_close_all(cmd);
 	while (++i < cmd->nb_cmd)
 		wait(NULL);
-	if (err != 0)
+	if (cmd->err != 0)
 		return (2);
 	return (0);
 }
@@ -48,7 +45,7 @@ int	ft_open(t_cmd *cmd)
 	cmd->fd_file = malloc(sizeof(int) * 2);
 	cmd->fd_file[1] = open(cmd->fileout, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (cmd->fd_file[1] < 0)
-		return (1);
+		return (2);
 	cmd->fd_file[0] = open(cmd->filein, O_RDONLY);
 	if (cmd->fd_file[0] < 0)
 		return (1);
@@ -95,6 +92,5 @@ int	multi_pid(int i, t_cmd *cmd, char **ev, int err)
 		write(2, "\n", 1);
 	}
 	execve(cmd->path_cmd[i], cmd->cmd[i], ev);
-	free_all(cmd);
 	exit(EXIT_FAILURE);
 }

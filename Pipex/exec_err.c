@@ -16,6 +16,8 @@ void	execution_manager(t_cmd *cmd, char **ev, char **av)
 {
 	int	err;
 
+	err = 0;
+	cmd->err = 0;
 	if (init_fd(cmd) == 1 || init_pid(cmd) == 1)
 		err_init(cmd);
 	err = execute_cmd(cmd, ev);
@@ -45,7 +47,10 @@ void	err_open(t_cmd *cmd, char **av)
 {
 	free_all(cmd);
 	write(2, "no such file or directory: ", 27);
-	write(2, av[1], ft_strlen(av[1]));
+	if (cmd->err == 1)
+		write(2, av[1], ft_strlen(av[1]));
+	if (cmd->err == 2)
+		write(2, av[cmd->nb_cmd], ft_strlen(av[cmd->nb_cmd]));
 	write(2, "\n", 1);
 	exit(EXIT_FAILURE);
 }
