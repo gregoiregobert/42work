@@ -12,6 +12,6 @@ Creer le OutFile avec 644 et non 777 pour reproduire le vrai pipe [OK]
 
 Gerer quand les args sont vides '' [OK]
 
-Gerer le cas avec env -i 
+Gerer le cas avec env -i [non géré]
 
-Gerer execve echoue ???
+Gerer execve echoue ??? [OK]

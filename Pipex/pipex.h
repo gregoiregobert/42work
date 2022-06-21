@@ -40,12 +40,14 @@ typedef struct s_cmd
 void	parsing_gest(int ac, char **av, char **ev, t_cmd *command);
 void	err_findp(t_cmd *command, int msg_err);
 void	err_grbc(t_cmd *command, int _msg_err);
-void	err_accessr(t_cmd *command, int msg_err);
+void	err_accessr(t_cmd *command);
 void	err_ncmd(void);
 void	err_init(t_cmd *cmd);
 void	err_pipe(t_cmd *cmd);
 void	err_open(t_cmd *cmd, char **av);
 void	err_fork(t_cmd *cmd);
+void	err_exve(void);
+void	err_cmd(void);
 void	ft_close_all(t_cmd *cmd);
 void	free_all(t_cmd *command);
 void	free_fd_pid(t_cmd *cmd);

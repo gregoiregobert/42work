@@ -42,3 +42,15 @@ int	init_pid(t_cmd *cmd)
 		return (1);
 	return (0);
 }
+
+void	err_exve(void)
+{
+	write(2, "An error ocurred with execve function", 38);
+	write(2, "\n", 2);
+}
+
+void	err_cmd(void)
+{
+	write (2, "permission denied:", 18);
+	write(2, "\n", 1);
+}

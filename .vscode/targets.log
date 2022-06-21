@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Jun 21 17:39:22 2022
+# Make data base, printed on Tue Jun 21 19:28:10 2022
 
 # Variables
 
@@ -283,13 +283,13 @@ GNUmakefile:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 23 / storage = 191 B / avg = 8 B
  
+# strcache buffers: 1 (0) / strings = 23 / storage = 191 B / avg = 8 B
 # current buf: size = 8162 B / used = 191 B / count = 23 / avg = 8 B
 
 # strcache performance: lookups = 26 / hit rate = 11%
 # hash-table stats:
 # Load=23/8192=0%, Rehash=0, Collisions=1/26=4%
-# Finished Make data base on Tue Jun 21 17:39:22 2022
+# Finished Make data base on Tue Jun 21 19:28:10 2022
 
  

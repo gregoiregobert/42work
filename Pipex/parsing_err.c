@@ -36,7 +36,7 @@ void	parsing_gest(int ac, char **av, char **ev, t_cmd *command)
 	{
 		err_findp(command, 0);
 		err_grbc(command, 0);
-		err_accessr(command, 1);
+		err_accessr(command);
 	}
 }
 
@@ -87,7 +87,7 @@ void	err_grbc(t_cmd *command, int msg_err)
 	}
 }
 
-void	err_accessr(t_cmd *command, int msg_err)
+void	err_accessr(t_cmd *command)
 {
 	int	j;
 
@@ -100,10 +100,5 @@ void	err_accessr(t_cmd *command, int msg_err)
 				free(command->path_cmd[j]);
 		}
 		free(command->path_cmd);
-	}
-	if (msg_err == 1)
-	{
-		perror("Command not found ");
-		exit(EXIT_FAILURE);
 	}
 }

@@ -46,12 +46,18 @@ void	err_pipe(t_cmd *cmd)
 void	err_open(t_cmd *cmd, char **av)
 {
 	free_all(cmd);
-	write(2, "no such file or directory: ", 27);
-	if (cmd->err == 1)
-		write(2, av[1], ft_strlen(av[1]));
-	if (cmd->err == 2)
+	if (cmd->err == 2 || cmd->err == 3)
+	{
+		write(2, "no such file or directory: ", 27);
 		write(2, av[cmd->nb_cmd], ft_strlen(av[cmd->nb_cmd]));
-	write(2, "\n", 1);
+		write(2, "\n", 1);
+	}
+	if (cmd->err == 1 || cmd->err == 3)
+	{
+		write(2, "no such file or directory: ", 27);
+		write(2, av[1], ft_strlen(av[1]));
+		write(2, "\n", 1);
+	}
 	exit(EXIT_FAILURE);
 }
 

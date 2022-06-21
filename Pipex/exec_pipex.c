@@ -45,11 +45,11 @@ int	ft_open(t_cmd *cmd)
 	cmd->fd_file = malloc(sizeof(int) * 2);
 	cmd->fd_file[1] = open(cmd->fileout, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (cmd->fd_file[1] < 0)
-		return (2);
+		cmd->err += 2;
 	cmd->fd_file[0] = open(cmd->filein, O_RDONLY);
 	if (cmd->fd_file[0] < 0)
-		return (1);
-	return (0);
+		cmd->err += 1;
+	return (cmd->err);
 }
 
 void	ft_close_all(t_cmd *cmd)
@@ -86,11 +86,12 @@ int	multi_pid(int i, t_cmd *cmd, char **ev, int err)
 	else
 		dup2(cmd->fd[i + 1][1], STDOUT_FILENO);
 	ft_close_all(cmd);
-	if (strncmp(cmd->cmd[i][0], "\0", 1) == 0 && err == 0)
-	{
-		write (2, "permission denied:", 18);
-		write(2, "\n", 1);
-	}
-	execve(cmd->path_cmd[i], cmd->cmd[i], ev);
+	if (ft_strncmp(cmd->cmd[i][0], "\0", 1) == 0
+			&& cmd->err != i + 1 && cmd->err != 3)
+		err_cmd();
+	if (execve(cmd->path_cmd[i], cmd->cmd[i], ev) == -1
+		&& access(cmd->path_cmd[i], X_OK) != -1)
+		err_exve();
+	free_all(cmd);
 	exit(EXIT_FAILURE);
 }
