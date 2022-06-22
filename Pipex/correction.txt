@@ -1,6 +1,6 @@
 Probleme avec pipex sans argument car affichage success au lieu d'un retour erreur [OK]
 
-Probleme avec nombre d'argument pour la partie mandatory et la partie bonus
+Probleme avec nombre d'argument pour la partie mandatory et la partie bonus [OK]
 
 
 /!\ Mettre un message d'erreur par pipe ==> verifie l'originale

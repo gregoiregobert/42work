@@ -91,13 +91,16 @@ int	access_right(t_cmd *command)
 
 int	find_path(char **ev, t_cmd *command)
 {
-	while (*ev)
+	int i;
+
+	i = 0;
+	while (ev[i])
 	{
-		if (ft_strncmp(*ev, "PATH=", 5) == 0)
-			command->path = ft_split(*ev, ':');
-		ev++;
+		if (ft_strncmp(ev[i], "PATH=", 5) == 0)
+			command->path = ft_split(ev[i], ':');
+		i++;
 	}
-	if (command->path == 0)
+	if (!*ev)
 		return (2);
 	return (0);
 }

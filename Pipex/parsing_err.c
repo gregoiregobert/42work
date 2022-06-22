@@ -60,7 +60,8 @@ void	err_findp(t_cmd *command, int msg_err)
 	}
 	if (msg_err == 1)
 	{
-		perror("An error occured with malloc env Path ");
+		write(2, "An error occured with env Path", 31);
+		write(2, "\n", 2);
 		exit(EXIT_FAILURE);
 	}
 }

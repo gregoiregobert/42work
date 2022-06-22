@@ -65,13 +65,15 @@ void	ft_close_all(t_cmd *cmd)
 			close(cmd->fd[j][x++]);
 		j++;
 	}
-	close(cmd->fd_file[0]);
-	close(cmd->fd_file[1]);
+	if (cmd->fd_file[0] >= 0)
+		close(cmd->fd_file[0]);
+	if (cmd->fd_file[1] >= 0)
+		close(cmd->fd_file[1]);
 }
 
 int	multi_pid(int i, t_cmd *cmd, char **ev, int err)
 {
-	if (err == 1 && i == 0)
+	if ((err == 1 || err == 3) && i == 0)
 	{
 		ft_close_all(cmd);
 		free_all(cmd);
@@ -90,7 +92,8 @@ int	multi_pid(int i, t_cmd *cmd, char **ev, int err)
 			&& cmd->err != i + 1 && cmd->err != 3)
 		err_cmd();
 	if (execve(cmd->path_cmd[i], cmd->cmd[i], ev) == -1
-		&& access(cmd->path_cmd[i], X_OK) != -1)
+		&& access(cmd->path_cmd[i], X_OK) != -1
+		&& ft_strncmp(cmd->cmd[i][0], "\0", 1) != 0)
 		err_exve();
 	free_all(cmd);
 	exit(EXIT_FAILURE);
