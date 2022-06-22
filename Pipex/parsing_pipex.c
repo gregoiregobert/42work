@@ -91,7 +91,7 @@ int	access_right(t_cmd *command)
 
 int	find_path(char **ev, t_cmd *command)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (ev[i])
@@ -101,6 +101,6 @@ int	find_path(char **ev, t_cmd *command)
 		i++;
 	}
 	if (!*ev)
-		return (2);
+		env_null();
 	return (0);
 }

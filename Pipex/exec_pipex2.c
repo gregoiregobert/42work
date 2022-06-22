@@ -54,3 +54,10 @@ void	err_cmd(void)
 	write (2, "permission denied:", 18);
 	write(2, "\n", 1);
 }
+
+void	close_exit(t_cmd *cmd)
+{
+	ft_close_all(cmd);
+	free_all(cmd);
+	exit(EXIT_FAILURE);
+}

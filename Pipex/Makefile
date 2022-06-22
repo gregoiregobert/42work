@@ -6,6 +6,7 @@ LIBFT	=	../libft/libft.a
 LIB_DIR	=	../libft
 SRC		=	main.c	\
 			parsing_err.c	\
+			parsing_err2.c	\
 			parsing_pipex2_out_bonus.c	\
 			parsing_pipex.c	\
 			exec_pipex.c	\
@@ -14,6 +15,7 @@ SRC		=	main.c	\
 			free_all.c
 SRCB	=	main.c	\
 			parsing_err.c	\
+			parsing_err2.c	\
 			parsing_pipex2.c	\
 			parsing_pipex.c	\
 			exec_pipex.c	\

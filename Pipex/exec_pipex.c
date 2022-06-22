@@ -74,11 +74,9 @@ void	ft_close_all(t_cmd *cmd)
 int	multi_pid(int i, t_cmd *cmd, char **ev, int err)
 {
 	if ((err == 1 || err == 3) && i == 0)
-	{
-		ft_close_all(cmd);
-		free_all(cmd);
-		exit(EXIT_FAILURE);
-	}
+		close_exit(cmd);
+	if (err >= 2 && i == cmd->nb_cmd - 1)
+		close_exit(cmd);
 	if (i == 0)
 		dup2(cmd->fd_file[0], STDIN_FILENO);
 	else
