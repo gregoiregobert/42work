@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/23 12:40:14 by ggobert           #+#    #+#             */
-/*   Updated: 2022/06/23 12:40:17 by ggobert          ###   ########.fr       */
+/*   Created: 2022/06/23 13:05:48 by ggobert           #+#    #+#             */
+/*   Updated: 2022/06/23 13:23:12 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#ifndef SO_LONG_H
+# define SO_LONG_H
 
-int	main()
+# include "minilibx-linux/mlx.h"
+# include <stdlib.h>
+# include <X11/X.h>
+
+typedef struct	s_data
 {
-	t_data	data;
+	void	*mlx_ptr;
+	void	*win_ptr;
+}		t_data;
 
-	data.mlx_ptr = mlx_init();
-	if (!data.mlx_ptr)
-		return (0);
-	data.win_ptr = mlx_new_window(data.mlx_ptr, 600, 300, "first window");
-	if (!data.win_ptr)
-	{
-		free(data.win_ptr);
-		return (0);
-	}
-}
+#endif
+
