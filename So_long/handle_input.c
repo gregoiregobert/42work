@@ -1,36 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   handle_input.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/23 13:05:48 by ggobert           #+#    #+#             */
-/*   Updated: 2022/06/23 13:23:12 by ggobert          ###   ########.fr       */
+/*   Created: 2022/06/23 15:56:44 by ggobert           #+#    #+#             */
+/*   Updated: 2022/06/23 15:58:17 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "so_long.h"
 
-# include "minilibx-linux/mlx.h"
-# include "minilibx-linux/mlx_int.h"
-# include <stdlib.h>
-# include <X11/X.h>
-# include <X11/keysym.h>
-
-typedef struct	s_data
+int	handle_input(int keysym, t_data *data)
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}		t_data;
-
-int	handle_input(int keysym, t_data *data);
-
-#endif
-
+	if (keysym == XK_Escape)
+		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	return (0);
+}

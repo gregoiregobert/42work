@@ -1,36 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   handle_no_event.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/23 13:05:48 by ggobert           #+#    #+#             */
-/*   Updated: 2022/06/23 13:23:12 by ggobert          ###   ########.fr       */
+/*   Created: 2022/06/23 16:38:57 by ggobert           #+#    #+#             */
+/*   Updated: 2022/06/23 16:39:01 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
-
-# include "minilibx-linux/mlx.h"
-# include "minilibx-linux/mlx_int.h"
-# include <stdlib.h>
-# include <X11/X.h>
-# include <X11/keysym.h>
-
-typedef struct	s_data
-{
-	void	*mlx_ptr;
-	void	*win_ptr;
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}		t_data;
-
-int	handle_input(int keysym, t_data *data);
-
-#endif
 

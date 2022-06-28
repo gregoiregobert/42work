@@ -1,12 +1,13 @@
 CC			=	gcc 
 CFLAGS		=	-Wall -Werror -Wextra
-FLAGS_LIB	=	-lXext -lX11 -lmlx -lm
+FLAGS_LIB	=	-lmlx -lm -lXext -lX11 
 NAME		=	so_long
 MLX			=	minilibx-linux/libmlx.a
 MLX_DIR 	=	minilibx-linux
 LIBFT		=	../libft/libft.a
 LIB_DIR		=	../libft
-SRC			=	main.c	
+SRC			=	main.c	\
+				handle_input.c
 OBJ			=	$(SRC:.c=.o)
 RM 			=	rm -rf
 SUPPR		=	\033[00m
