@@ -17,7 +17,6 @@
 # include "minilibx-linux/mlx_int.h"
 # include <stdlib.h>
 # include <X11/X.h>
-# include <X11/keysym.h>
 
 typedef struct	s_data
 {
@@ -30,7 +29,19 @@ typedef struct	s_data
 	int		endian;
 }		t_data;
 
-int	handle_input(int keysym, t_data *data);
+typedef struct s_rect
+{
+	int	x;
+	int	y;
+	int width;
+	int height;
+	int color;
+}	t_rect;
+
+int	handle_keypress(int keysym, t_data *data);
+int	handle_keyrelease(int keysym, void *data);
+int	render(t_data *data);
+int render_rect(t_data *data, t_rect rect);
 
 #endif
 

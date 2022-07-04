@@ -1,5 +1,5 @@
 CC			=	gcc 
-CFLAGS		=	-Wall -Werror -Wextra
+CFLAGS		=	
 FLAGS_LIB	=	-lmlx -lm -lXext -lX11 
 NAME		=	so_long
 MLX			=	minilibx-linux/libmlx.a
@@ -7,7 +7,10 @@ MLX_DIR 	=	minilibx-linux
 LIBFT		=	../libft/libft.a
 LIB_DIR		=	../libft
 SRC			=	main.c	\
-				handle_input.c
+				handle_keypress.c	\
+				handle_keyrelease.c	\
+				render.c	\
+				render_rect.c
 OBJ			=	$(SRC:.c=.o)
 RM 			=	rm -rf
 SUPPR		=	\033[00m
@@ -27,7 +30,7 @@ $(MLX)		:
 	@make -sC $(MLX_DIR)
 
 $(NAME)		:	$(OBJ) $(LIBFT) $(MLX)
-	@$(CC) $(CFLAGS) $(OBJ) -L $(MLX_DIR) $(FLAGS_LIB) -o $(NAME) $(LIBFT)
+	@$(CC) $(OBJ) -L $(MLX_DIR) $(FLAGS_LIB) -o $(NAME) $(LIBFT)
 	@echo "$(WHITE)Compilation $(GRAS)so_long $(GREEN)$(GRAS)$(CLIGNO)OK$(SUPPR)"
 
 %.o			:	%.c libft/*.c
@@ -41,7 +44,7 @@ clean		:
 fclean		:	clean
 	@make fclean -sC $(LIB_DIR)
 	@$(RM) $(NAME) $(NAMEB)
-	@echo "$(SUPPR)$(WHITE)so_long is $(RED)$(GRAS)$(CLIGNO)DEAD"
+	@echo "$(WHITE)so_long is $(RED)$(GRAS)$(CLIGNO)DEAD$(SUPPR)"
 
 re			:	fclean all
 

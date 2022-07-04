@@ -10,4 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "so_long.h"
 
+int	render(t_data *data)
+{
+	render_rect(data, (t_rect){600 - 100, 300 - 100, 100, 100, 0xFF00});
+	render_rect(data, (t_rect){0, 0, 100, 100, 0xFF});
+
+	return (0);
+}

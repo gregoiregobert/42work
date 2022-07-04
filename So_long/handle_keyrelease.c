@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_input.c                                     :+:      :+:    :+:   */
+/*   handle_keyrelease.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/23 15:56:44 by ggobert           #+#    #+#             */
-/*   Updated: 2022/06/23 15:58:17 by ggobert          ###   ########.fr       */
+/*   Created: 2022/07/04 12:58:36 by ggobert           #+#    #+#             */
+/*   Updated: 2022/07/04 12:58:42 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	handle_input(int keysym, t_data *data)
+int	handle_keyrelease(int keysym, void *data)
 {
-	if (keysym == XK_Escape)
-		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	printf("Keyrelease: %d\n", keysym);
 	return (0);
 }
