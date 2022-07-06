@@ -1,6 +1,6 @@
 CC			=	gcc 
 CFLAGS		=	
-FLAGS_LIB	=	-lmlx -lm -lXext -lX11 
+FLAGS_LIB	=	-Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 NAME		=	so_long
 MLX			=	minilibx-linux/libmlx.a
 MLX_DIR 	=	minilibx-linux
@@ -10,7 +10,9 @@ SRC			=	main.c	\
 				handle_keypress.c	\
 				handle_keyrelease.c	\
 				render.c	\
-				render_rect.c
+				render_rect.c	\
+				render_background.c	\
+				img_pixel_put.c	
 OBJ			=	$(SRC:.c=.o)
 RM 			=	rm -rf
 SUPPR		=	\033[00m

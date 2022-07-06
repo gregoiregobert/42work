@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_rect.c                                      :+:      :+:    :+:   */
+/*   render_background.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/04 14:33:24 by ggobert           #+#    #+#             */
-/*   Updated: 2022/07/04 14:33:27 by ggobert          ###   ########.fr       */
+/*   Created: 2022/07/06 13:39:29 by ggobert           #+#    #+#             */
+/*   Updated: 2022/07/06 13:39:32 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int render_rect(t_data *data, t_rect rect)
+void	render_background(t_data *data, int color)
 {
 	int	i;
-	int j;
+	int	j;
 
-	if (data->win_ptr == NULL)
-		return (1);
-	i = rect.y;
-	while (i < rect.y + rect.height)
+	i = 0;
+	while (i < WINDOW_HEIGHT)
 	{
-		j = rect.x;
-		while (j < rect.x + rect.width)
-			img_pixel_put(data, j++, i, rect.color);
+		j = 0;
+		while (j < WINDOW_WIDTH)
+		{
+			img_pixel_put(data, j++, i, color);
+		}
 		++i;
 	}
-	return (0);
 }
