@@ -18,33 +18,32 @@
 # include <stdlib.h>
 # include <X11/X.h>
 
-#define WINDOW_WIDTH 600
-#define WINDOW_HEIGHT 300
+#define WINDOW_WIDTH 1920
+#define WINDOW_HEIGHT 1080
+
+typedef struct s_imag
+{
+	void	*img;
+	char	*addr;
+	int 	bpp;
+	int 	line_len;
+	int 	endian;
+}	t_imag;
 
 typedef struct	s_data
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
-	void	*img;
+	t_imag	test;
 	char	*addr;
 	int		bpp;
 	int		line_len;
 	int		endian;
 }		t_data;
 
-typedef struct s_rect
-{
-	int	x;
-	int	y;
-	int width;
-	int height;
-	int color;
-}	t_rect;
-
 int		handle_keypress(int keysym, t_data *data);
 int		handle_keyrelease(int keysym, void *data);
 int		render(t_data *data);
-int 	render_rect(t_data *data, t_rect rect);
 void	render_background(t_data *data, int color);
 void	img_pixel_put(t_data *data, int x, int y, int color);
 

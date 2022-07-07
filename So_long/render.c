@@ -14,12 +14,13 @@
 
 int	render(t_data *data)
 {
+
 	if (!data->win_ptr)
 		return (1);
-	render_background(data, 0xFFFFFF);
-	render_rect(data, (t_rect){WINDOW_WIDTH - 100, WINDOW_HEIGHT - 100, 100, 100, 0xFF00});
-	render_rect(data, (t_rect){0, 0, 100, 100, 0xFF});
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img, 0, 0);
+	/*render_background(data, 0xFFFFFF);*/
+	data->test.img = mlx_xpm_file_to_image(data->mlx_ptr, "./Texture/Food.xpm", &data->test.bpp, &data->test.line_len);
+	data->test.addr = mlx_get_data_addr(data->test.img, &data->test.bpp, &data->test.line_len, &data->test.endian);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->test.img, 0, 0);
 
 	return (0);
 }

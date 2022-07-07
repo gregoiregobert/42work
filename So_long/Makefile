@@ -10,8 +10,6 @@ SRC			=	main.c	\
 				handle_keypress.c	\
 				handle_keyrelease.c	\
 				render.c	\
-				render_rect.c	\
-				render_background.c	\
 				img_pixel_put.c	
 OBJ			=	$(SRC:.c=.o)
 RM 			=	rm -rf
