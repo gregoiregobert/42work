@@ -34,7 +34,8 @@ typedef struct	s_data
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
-	t_imag	test;
+	t_imag	space;
+	t_imag	ship;
 	char	*addr;
 	int		bpp;
 	int		line_len;
@@ -42,10 +43,8 @@ typedef struct	s_data
 }		t_data;
 
 int		handle_keypress(int keysym, t_data *data);
-int		handle_keyrelease(int keysym, void *data);
 int		render(t_data *data);
 void	render_background(t_data *data, int color);
-void	img_pixel_put(t_data *data, int x, int y, int color);
 
 #endif
 

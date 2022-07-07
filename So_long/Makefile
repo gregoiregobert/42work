@@ -8,9 +8,7 @@ LIBFT		=	../libft/libft.a
 LIB_DIR		=	../libft
 SRC			=	main.c	\
 				handle_keypress.c	\
-				handle_keyrelease.c	\
-				render.c	\
-				img_pixel_put.c	
+				render.c	
 OBJ			=	$(SRC:.c=.o)
 RM 			=	rm -rf
 SUPPR		=	\033[00m

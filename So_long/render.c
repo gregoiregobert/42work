@@ -17,10 +17,17 @@ int	render(t_data *data)
 
 	if (!data->win_ptr)
 		return (1);
-	/*render_background(data, 0xFFFFFF);*/
-	data->test.img = mlx_xpm_file_to_image(data->mlx_ptr, "./Texture/Food.xpm", &data->test.bpp, &data->test.line_len);
-	data->test.addr = mlx_get_data_addr(data->test.img, &data->test.bpp, &data->test.line_len, &data->test.endian);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->test.img, 0, 0);
+	
+	data->space.img = mlx_xpm_file_to_image(data->mlx_ptr, "./Texture/space.xpm", &data->space.bpp, &data->space.line_len);
+	data->space.addr = mlx_get_data_addr(data->space.img, &data->space.bpp, &data->space.line_len, &data->space.endian);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->space.img, 0, 0);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->space.img, 1024, 0);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->space.img, 0, 1024);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->space.img, 1024, 1024);
+
+	data->ship.img = mlx_xpm_file_to_image(data->mlx_ptr, "./Texture/titan.xpm", &data->ship.bpp, &data->ship.line_len);
+	data->ship.addr = mlx_get_data_addr(data->ship.img, &data->ship.bpp, &data->ship.line_len, &data->ship.endian);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->ship.img, 0, 0);
 
 	return (0);
 }
