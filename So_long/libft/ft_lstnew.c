@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/23 12:40:14 by ggobert           #+#    #+#             */
-/*   Updated: 2022/06/23 12:40:17 by ggobert          ###   ########.fr       */
+/*   Created: 2021/12/08 11:26:42 by ggobert           #+#    #+#             */
+/*   Updated: 2021/12/09 15:47:03 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-int	main()
+t_list	*ft_lstnew(void *content)
 {
-	t_data	data;
+	t_list	*new;
 
-	initialize(&data);
-	mlx_loop_hook(data.mlx_ptr, &render, &data);
-	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &handle_keypress, &data);
-	mlx_loop(data.mlx_ptr);
-	mlx_destroy_display(data.mlx_ptr);
-	free(data.mlx_ptr);
+	new = malloc(sizeof(t_list));
+	if (!new)
+		return (0);
+	if (!content)
+		new->content = 0;
+	else
+	{
+		new->content = content;
+	}
+	new->next = 0;
+	return (new);
 }

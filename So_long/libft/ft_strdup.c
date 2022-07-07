@@ -1,26 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_no_event.c                                  :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/23 16:38:57 by ggobert           #+#    #+#             */
-/*   Updated: 2022/06/23 16:39:01 by ggobert          ###   ########.fr       */
+/*   Created: 2021/11/27 12:12:20 by ggobert           #+#    #+#             */
+/*   Updated: 2021/12/17 16:19:12 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include <stdlib.h>
+#include <stdio.h>
 
-int	render(t_data *data)
+char	*ft_strdup(const char *s1)
 {
+	int		len;
+	char	*ret;
+	int		i;
 
-	if (!data->win_ptr)
-		return (1);
-	
-	data->grass.img = mlx_xpm_file_to_image(data->mlx_ptr, "./Texture/grass.xpm", &data->grass.bpp, &data->grass.line_len);
-	data->grass.addr = mlx_get_data_addr(data->grass.img, &data->grass.bpp, &data->grass.line_len, &data->grass.endian);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->grass.img, 0, 0);
-
-	return (0);
+	i = 0;
+	len = 0;
+	while (s1[i++])
+		len++;
+	ret = malloc(sizeof(char) * (len + 1));
+	if (ret == NULL)
+		return (NULL);
+	i = 0;
+	while (len --)
+	{
+		ret[i] = s1[i];
+		i++;
+	}
+	ret[i] = 0;
+	return (ret);
 }
+
+/*int main()
+{
+	char	*str = "polol";
+	int len = 0;
+
+	while (len < 6)
+		printf("%c", ft_strdup(str)[len++]);
+	return (0);
+}*/

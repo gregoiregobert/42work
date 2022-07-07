@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/23 12:40:14 by ggobert           #+#    #+#             */
-/*   Updated: 2022/06/23 12:40:17 by ggobert          ###   ########.fr       */
+/*   Created: 2021/11/25 17:33:01 by ggobert           #+#    #+#             */
+/*   Updated: 2021/12/03 11:55:30 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include <stdlib.h>
+#include <stdio.h>
 
-int	main()
+char	*ft_strchr(const char *s, int c)
 {
-	t_data	data;
-
-	initialize(&data);
-	mlx_loop_hook(data.mlx_ptr, &render, &data);
-	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &handle_keypress, &data);
-	mlx_loop(data.mlx_ptr);
-	mlx_destroy_display(data.mlx_ptr);
-	free(data.mlx_ptr);
+	while (*s)
+	{
+		if (*s == (unsigned char)c)
+			return ((char *) s);
+		s++;
+	}
+	if (c == '\0')
+		return ((char *) s);
+	return (NULL);
 }
+
+/*int main()
+{
+	char	*str = "f";
+	int c = 'f';
+
+	printf("%s\n", ft_strchr(str, c));
+	return(0);
+}*/

@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/23 12:40:14 by ggobert           #+#    #+#             */
-/*   Updated: 2022/06/23 12:40:17 by ggobert          ###   ########.fr       */
+/*   Created: 2021/12/08 12:01:22 by ggobert           #+#    #+#             */
+/*   Updated: 2021/12/08 12:06:21 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
+#include <stdlib.h>
 
-int	main()
+void	ft_striteri(char const *s, void (*f)(unsigned int, char*))
 {
-	t_data	data;
+	char	*k;
+	int		i;
 
-	initialize(&data);
-	mlx_loop_hook(data.mlx_ptr, &render, &data);
-	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &handle_keypress, &data);
-	mlx_loop(data.mlx_ptr);
-	mlx_destroy_display(data.mlx_ptr);
-	free(data.mlx_ptr);
+	i = 0;
+	if (!s)
+		return ;
+	k = (char *)s;
+	while (s[i])
+	{
+		f(i, k++);
+		i++;
+	}
 }

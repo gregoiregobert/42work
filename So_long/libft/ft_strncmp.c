@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_no_event.c                                  :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/23 16:38:57 by ggobert           #+#    #+#             */
-/*   Updated: 2022/06/23 16:39:01 by ggobert          ###   ########.fr       */
+/*   Created: 2021/11/26 11:12:25 by ggobert           #+#    #+#             */
+/*   Updated: 2021/12/03 12:38:19 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include <stdlib.h>
+#include <stdio.h>
 
-int	render(t_data *data)
+int	ft_strncmp(const char *first, const char *second, size_t length)
 {
-
-	if (!data->win_ptr)
-		return (1);
-	
-	data->grass.img = mlx_xpm_file_to_image(data->mlx_ptr, "./Texture/grass.xpm", &data->grass.bpp, &data->grass.line_len);
-	data->grass.addr = mlx_get_data_addr(data->grass.img, &data->grass.bpp, &data->grass.line_len, &data->grass.endian);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->grass.img, 0, 0);
-
-	return (0);
+	if ((!*first && !*second) || !length)
+		return (0);
+	length--;
+	while (*first == *second && *first && *second && length--)
+	{
+		first++;
+		second++;
+	}
+	return ((unsigned char) *first - (unsigned char)*second);
 }
+
+/*int main(int ac, char **av)
+{
+	(void)ac;
+	printf("%d", ft_strncmp(av[1], av[2], 7));
+	return (0);
+}*/

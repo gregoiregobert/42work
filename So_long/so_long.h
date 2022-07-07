@@ -17,9 +17,7 @@
 # include "minilibx-linux/mlx_int.h"
 # include <stdlib.h>
 # include <X11/X.h>
-
-#define WINDOW_WIDTH 1920
-#define WINDOW_HEIGHT 1080
+#include <fcntl.h>
 
 typedef struct s_imag
 {
@@ -45,6 +43,7 @@ typedef struct	s_data
 int		handle_keypress(int keysym, t_data *data);
 int		render(t_data *data);
 void	render_background(t_data *data, int color);
+void	initialize(t_data *data);
 
 #endif
 

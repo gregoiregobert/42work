@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_no_event.c                                  :+:      :+:    :+:   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/23 16:38:57 by ggobert           #+#    #+#             */
-/*   Updated: 2022/06/23 16:39:01 by ggobert          ###   ########.fr       */
+/*   Created: 2021/11/25 14:09:35 by ggobert           #+#    #+#             */
+/*   Updated: 2021/12/02 12:00:08 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
-
-int	render(t_data *data)
+int	ft_isprint(int c)
 {
-
-	if (!data->win_ptr)
+	if (c >= 32 && c <= 126)
 		return (1);
-	
-	data->grass.img = mlx_xpm_file_to_image(data->mlx_ptr, "./Texture/grass.xpm", &data->grass.bpp, &data->grass.line_len);
-	data->grass.addr = mlx_get_data_addr(data->grass.img, &data->grass.bpp, &data->grass.line_len, &data->grass.endian);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->grass.img, 0, 0);
-
-	return (0);
+	else
+		return (0);
 }
