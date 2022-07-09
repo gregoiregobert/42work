@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialize.c                                       :+:      :+:    :+:   */
+/*   height_rect.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/07 16:18:15 by ggobert           #+#    #+#             */
-/*   Updated: 2022/07/07 16:18:17 by ggobert          ###   ########.fr       */
+/*   Created: 2022/07/09 17:03:32 by ggobert           #+#    #+#             */
+/*   Updated: 2022/07/09 17:06:21 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	initialize(t_data *data)
+int	dimension_rect(char **av, t_data *data)
 {
-	data->mlx_ptr = mlx_init();
-	if (!data->mlx_ptr)
+	int	fd;
+
+	fd = open(av[1], O_RDONLY);
+	if (fd == 0)
 		return (0);
-	data->win_ptr = mlx_new_window(data->mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "so_long");
-	if (!data->win_ptr)
+	tmp = get_next_line(fd);
+	while (tmp[data->width_window])
+		data->width_window++;
+	while (tmp)
 	{
-		free(data->win_ptr);
-		return (0);
+		data->height_window++;
+		tmp = get_next_line(fd);
 	}
-	data->height_window = 0;
-	data->width_window = 0;
+	close(fd);
 }

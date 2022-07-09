@@ -70,4 +70,13 @@ t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstnew(void *content);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
+/*Get Next Line*/
+
+char	*ft_read_until(int fd, char *ret);
+char	*get_next_line(int fd, int check);
+char	*ft_strjoin_g(char *s1, char *s2);
+char	*ft_strnback(char *s, size_t n);
+int		ft_check_newline(char *ret);
+int		ft_len_newline(char *str);
+
 #endif

@@ -32,18 +32,23 @@ typedef struct	s_data
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
-	t_imag	space;
-	t_imag	ship;
-	char	*addr;
-	int		bpp;
-	int		line_len;
-	int		endian;
-}		t_data;
+	char 	**map;
+	t_imag	grass;
+	t_imag	bee;
+	t_imag	flower;
+	t_imag	bush;
+	t_imag	hive;
+	int		width_window;
+	int		height_window;
+}	t_data;
 
 int		handle_keypress(int keysym, t_data *data);
 int		render(t_data *data);
+int		dimension_rect(char **av, t_data *data);
 void	render_background(t_data *data, int color);
 void	initialize(t_data *data);
+void	free_map(char **map);
+void	parsing(char **av, t_data *data);
 
 #endif
 

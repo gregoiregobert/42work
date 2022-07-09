@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialize.c                                       :+:      :+:    :+:   */
+/*   free_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/07 16:18:15 by ggobert           #+#    #+#             */
-/*   Updated: 2022/07/07 16:18:17 by ggobert          ###   ########.fr       */
+/*   Created: 2022/07/09 17:23:36 by ggobert           #+#    #+#             */
+/*   Updated: 2022/07/09 17:23:38 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	initialize(t_data *data)
+void	free_map(char **map)
 {
-	data->mlx_ptr = mlx_init();
-	if (!data->mlx_ptr)
-		return (0);
-	data->win_ptr = mlx_new_window(data->mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "so_long");
-	if (!data->win_ptr)
+	if (map)
 	{
-		free(data->win_ptr);
-		return (0);
+		while (map[i])
+			free(map[i++]);
+		free(map);
 	}
-	data->height_window = 0;
-	data->width_window = 0;
 }

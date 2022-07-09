@@ -9,7 +9,10 @@ LIB_DIR		=	../libft
 SRC			=	main.c	\
 				handle_keypress.c	\
 				render.c	\
-				initialize.c
+				initialize.c	\
+				dimension_rect.c	\
+				free_map.c	\
+				parsing.c
 OBJ			=	$(SRC:.c=.o)
 RM 			=	rm -rf
 SUPPR		=	\033[00m
