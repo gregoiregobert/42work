@@ -12,7 +12,10 @@ SRC			=	main.c	\
 				initialize.c	\
 				dimension_rect.c	\
 				free_map.c	\
-				parsing.c
+				parsing.c	\
+				rect_check.c	\
+				wall_check.c	\
+				item_position_out_check.c
 OBJ			=	$(SRC:.c=.o)
 RM 			=	rm -rf
 SUPPR		=	\033[00m

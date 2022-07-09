@@ -45,6 +45,9 @@ typedef struct	s_data
 int		handle_keypress(int keysym, t_data *data);
 int		render(t_data *data);
 int		dimension_rect(char **av, t_data *data);
+int		rect_check(t_data *data);
+int		wall_check(t_data *data);
+int		item_position_out_check(t_data *data);
 void	render_background(t_data *data, int color);
 void	initialize(t_data *data);
 void	free_map(char **map);
