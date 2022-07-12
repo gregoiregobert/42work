@@ -29,5 +29,5 @@ int	wall_check(t_data *data)
 	while (data->map[j][i])
 		if (data->map[j][i++] != 1)
 			return (1);
-	
+	return (0);
 }

@@ -52,6 +52,11 @@ void	render_background(t_data *data, int color);
 void	initialize(t_data *data);
 void	free_map(char **map);
 void	parsing(char **av, t_data *data);
+void	pars_manager(char **av, t_data *data);
+void	msg_err_1(t_data *data);
+void	msg_err_2(t_data *data);
+void	msg_err_3(t_data *data);
+void	msg_err_4(t_data *data);
 
 #endif
 

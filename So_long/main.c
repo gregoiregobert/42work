@@ -17,9 +17,10 @@ int	main()
 	t_data	data;
 
 	initialize(&data);
-	mlx_loop_hook(data.mlx_ptr, &render, &data);
+	parsing_manager(av, &data);
 	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &handle_keypress, &data);
 	mlx_loop(data.mlx_ptr);
 	mlx_destroy_display(data.mlx_ptr);
 	free(data.mlx_ptr);
+	free_map(&data);
 }
