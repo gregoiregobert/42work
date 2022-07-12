@@ -17,13 +17,15 @@ int	symbole_check(t_data *data)
 	int	i;
 	int	j;
 
-	i = -1;
 	j = -1;
 	while(data->map[++j])
+	{
+		i = -1;
 		while(data->map[j][++i])
 			if (data->map[j][i] != 1 || data->map[j][i] != 0
 				|| data->map[j][i] != C || data->map[j][i] != E
 				||	data->map[j][i] != P)
 				return (1);
+	}
 	return (0);
 }

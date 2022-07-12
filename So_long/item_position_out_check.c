@@ -21,20 +21,19 @@ int	item_position_out_check(t_data *data)
 	int	out;
 
 	j = -1;
-	i = -1;
 	item = 0;
 	position = 0;
 	out = 0;
 	while (data->map[++j])
 	{
-		i = 0;
+		i = -1;
 		while (data-map[j][++i])
 		{
-			if (data-map[j][i] == C)
+			if (data-map[j][i] == 'C')
 				item++;
-			if (data-map[j][i] == E)
+			if (data-map[j][i] == 'E')
 				out++;
-			if (data-map[j][i] == P)
+			if (data-map[j][i] == 'P')
 				position++;
 		}
 	}

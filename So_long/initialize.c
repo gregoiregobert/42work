@@ -16,12 +16,16 @@ void	initialize(t_data *data)
 {
 	data->mlx_ptr = mlx_init();
 	if (!data->mlx_ptr)
-		return (0);
+	{
+		perror(stderror(errno));
+		exit(EXIT_FAILURE);
+	}
 	data->win_ptr = mlx_new_window(data->mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "so_long");
 	if (!data->win_ptr)
 	{
 		free(data->win_ptr);
-		return (0);
+		perror(stderror(errno));
+		exit(EXIT_FAILURE);
 	}
 	data->height_window = 0;
 	data->width_window = 0;
