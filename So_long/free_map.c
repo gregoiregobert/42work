@@ -12,12 +12,12 @@
 
 #include "so_long.h"
 
-void	free_map(char **map)
+void	free_map(t_data *data)
 {
-	if (map)
+	if (data->map)
 	{
-		while (map[i])
-			free(map[i++]);
-		free(map);
+		while (data->map[i])
+			free(data->map[i++]);
+		free(data->map);
 	}
 }

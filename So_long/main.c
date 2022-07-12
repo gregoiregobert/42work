@@ -12,15 +12,15 @@
 
 #include "so_long.h"
 
-int	main()
+int	main(int ac, char **av)
 {
 	t_data	data;
 
-	initialize(&data);
-	parsing_manager(av, &data);
+	pars_manager(av, &data);
+/*	initialize(&data);
 	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &handle_keypress, &data);
 	mlx_loop(data.mlx_ptr);
 	mlx_destroy_display(data.mlx_ptr);
-	free(data.mlx_ptr);
+	free(data.mlx_ptr);*/
 	free_map(&data);
 }

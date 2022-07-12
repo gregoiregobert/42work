@@ -17,7 +17,9 @@
 # include "minilibx-linux/mlx_int.h"
 # include <stdlib.h>
 # include <X11/X.h>
-#include <fcntl.h>
+# include <fcntl.h>
+# include <errno.h>
+# include <stdio.h>
 
 typedef struct s_imag
 {
@@ -50,7 +52,7 @@ int		wall_check(t_data *data);
 int		item_position_out_check(t_data *data);
 void	render_background(t_data *data, int color);
 void	initialize(t_data *data);
-void	free_map(char **map);
+void	free_map(t_data *data);
 void	parsing(char **av, t_data *data);
 void	pars_manager(char **av, t_data *data);
 void	msg_err_1(t_data *data);
