@@ -20,9 +20,6 @@ int	main(int ac, char **av)
 	initialize(&data);
 	map_manager(&data);
 	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &handle_keypress, &data);
-	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &handle_direction, &data);
 	mlx_loop(data.mlx_ptr);
-	mlx_destroy_display(data.mlx_ptr);
-	free_map(&data);
-	free(data.mlx_ptr);
+	exit_properly(&data);
 }

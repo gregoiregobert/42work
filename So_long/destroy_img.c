@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pars_manager.c                                     :+:      :+:    :+:   */
+/*   destroy_img.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/12 14:46:41 by ggobert           #+#    #+#             */
-/*   Updated: 2022/07/12 14:46:43 by ggobert          ###   ########.fr       */
+/*   Created: 2022/07/13 17:00:35 by ggobert           #+#    #+#             */
+/*   Updated: 2022/07/13 17:00:37 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	pars_manager(int ac, char **av, t_data *data)
+void	destroy_img(t_data *data)
 {
-	int	i;
-
-	i = -1;
-	data->height_window = 0;
-	data->width_window = 0;
-	data->move = 0;
-	check_args(ac, av);
-	dimension_rect(av, data);
-	parsing(av, data);
-	if (symbole_check(data) == 1)
-		msg_err_1(data);
-	if (wall_check(data) == 1)
-		msg_err_2(data);
-	if (rect_check(data) == 1)
-		msg_err_3(data);
-	if (item_position_out_check(data) == 1)
-		msg_err_4(data);
+	mlx_destroy_image(data->mlx_ptr, data->grass.img);
+	mlx_destroy_image(data->mlx_ptr, data->bee.img);
+	mlx_destroy_image(data->mlx_ptr, data->flower.img);
+	mlx_destroy_image(data->mlx_ptr, data->wall.img);
+	mlx_destroy_image(data->mlx_ptr, data->hive.img);
+	mlx_destroy_image(data->mlx_ptr, data->bee_hive.img);
+	mlx_destroy_image(data->mlx_ptr, data->bee_flower.img);
 }

@@ -26,7 +26,13 @@ SRC			=	main.c	\
 				init_img.c	\
 				map_manager.c	\
 				perror_exit.c	\
-				handle_direction.c
+				up_dir.c	\
+				down_dir.c	\
+				left_dir.c	\
+				right_dir.c	\
+				no_c.c	\
+				exit_properly.c	\
+				destroy_img.c
 OBJ			=	$(SRC:.c=.o)
 RM 			=	rm -rf
 SUPPR		=	\033[00m

@@ -51,17 +51,18 @@ typedef struct	s_data
 	t_imag	bee_flower;
 	int		width_window;
 	int		height_window;
+	int		move;
 	t_pos	perso;
 }	t_data;
 
 int		handle_keypress(int keysym, t_data *data);
-int		handle_direction(int keysym, t_data *data);
 int		render(t_data *data);
 int		rect_check(t_data *data);
 int		wall_check(t_data *data);
 int		item_position_out_check(t_data *data);
 int		symbole_check(t_data *data);
 int		open_fd(char **av);
+int 	no_c(t_data *data);
 void	dimension_rect(char **av, t_data *data);
 void	initialize(t_data *data);
 void	free_map(t_data *data);
@@ -78,6 +79,12 @@ void	display_map(t_data *data);
 void	init_img(t_data *data);
 void	map_manager(t_data *data);
 void	perror_exit(void);
+void	up_dir(t_data *data);
+void	down_dir(t_data *data);
+void	left_dir(t_data *data);
+void	right_dir(t_data *data);
+void	exit_properly(t_data *data);
+void	destroy_img(t_data *data);
 
 #endif
 

@@ -14,7 +14,15 @@
 
 int	handle_keypress(int keysym, t_data *data)
 {
+	if (keysym == XK_w)
+		up_dir(data);
+	if (keysym == XK_s)
+		down_dir(data);
+	if (keysym == XK_d)
+		right_dir(data);
+	if (keysym == XK_a)
+		left_dir(data);
 	if (keysym == XK_Escape)
-		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+			exit_properly(data);
 	return (0);
 }
