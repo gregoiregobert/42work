@@ -29,8 +29,10 @@ void dimension_rect(char **av, t_data *data)
 	data->width_window--;
 	while (tmp)
 	{
+		free(tmp);
 		data->height_window++;
 		tmp = get_next_line(fd);
 	}
+	free(tmp);
 	close(fd);
 }

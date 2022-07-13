@@ -24,7 +24,7 @@ void	parsing(char **av, t_data *data)
 	i = -1;
 	while (++i < data->height_window)
 	{
-		data->map[i] = malloc(sizeof(char) * (data->width_window + 1));
+		data->map[i] = malloc(sizeof(char) * (data->width_window));
 		if (!data->map[i])
 		{
 			free_map(data);
