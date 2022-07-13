@@ -4,19 +4,27 @@ FLAGS_LIB	=	-Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 NAME		=	so_long
 MLX			=	minilibx-linux/libmlx.a
 MLX_DIR 	=	minilibx-linux
-LIBFT		=	../libft/libft.a
-LIB_DIR		=	../libft
+LIBFT		=	./libft/libft.a
+LIB_DIR		=	./libft
 SRC			=	main.c	\
 				handle_keypress.c	\
 				render.c	\
 				initialize.c	\
+				open_fd.c	\
 				dimension_rect.c	\
 				free_map.c	\
 				parsing.c	\
 				rect_check.c	\
 				wall_check.c	\
 				item_position_out_check.c \
-				pars_manager.c	
+				symbole_check.c	\
+				pars_manager.c	\
+				check_args.c	\
+				msg_err.c	\
+				display_tile.c	\
+				display_map.c	\
+				init_img.c	\
+				map_manager.c
 OBJ			=	$(SRC:.c=.o)
 RM 			=	rm -rf
 SUPPR		=	\033[00m

@@ -27,13 +27,13 @@ int	item_position_out_check(t_data *data)
 	while (data->map[++j])
 	{
 		i = -1;
-		while (data-map[j][++i])
+		while (data->map[j][++i])
 		{
-			if (data-map[j][i] == 'C')
+			if (data->map[j][i] == 'C')
 				item++;
-			if (data-map[j][i] == 'E')
+			if (data->map[j][i] == 'E')
 				out++;
-			if (data-map[j][i] == 'P')
+			if (data->map[j][i] == 'P')
 				position++;
 		}
 	}

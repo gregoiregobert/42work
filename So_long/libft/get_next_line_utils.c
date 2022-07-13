@@ -10,19 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-
-int	ft_strlen(char *str)
-{
-	int	i;
-	int	len;
-
-	len = 0;
-	i = 0;
-	while (str[i++])
-		len++;
-	return (len);
-}
+#include "libft.h"
 
 char	*ft_strjoin_g(char *s1, char *s2)
 {
@@ -45,26 +33,6 @@ char	*ft_strjoin_g(char *s1, char *s2)
 	new_str[j] = 0;
 	free(s1);
 	return (new_str);
-}
-
-char	*ft_strdup(char *str)
-{
-	int	len;
-	int	i;
-	char	*new;
-
-	i = 0;
-	len = ft_strlen(str);
-	new = malloc(sizeof(char) * (len + 1));
-	if (!new)
-		return (0);
-	while (len--)
-	{
-		new[i] = str[i];
-		i++;
-	}
-	new[i] = 0;
-	return (new);
 }
 
 char	*cut_at(char *str, int n)

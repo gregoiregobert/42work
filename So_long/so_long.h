@@ -13,6 +13,7 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
+# include "libft/libft.h"
 # include "minilibx-linux/mlx.h"
 # include "minilibx-linux/mlx_int.h"
 # include <stdlib.h>
@@ -38,7 +39,7 @@ typedef struct	s_data
 	t_imag	grass;
 	t_imag	bee;
 	t_imag	flower;
-	t_imag	bush;
+	t_imag	wall;
 	t_imag	hive;
 	int		width_window;
 	int		height_window;
@@ -46,19 +47,26 @@ typedef struct	s_data
 
 int		handle_keypress(int keysym, t_data *data);
 int		render(t_data *data);
-int		dimension_rect(char **av, t_data *data);
 int		rect_check(t_data *data);
 int		wall_check(t_data *data);
 int		item_position_out_check(t_data *data);
-void	render_background(t_data *data, int color);
+int		symbole_check(t_data *data);
+int		open_fd(char **av);
+void	dimension_rect(char **av, t_data *data);
 void	initialize(t_data *data);
 void	free_map(t_data *data);
 void	parsing(char **av, t_data *data);
-void	pars_manager(char **av, t_data *data);
+void	pars_manager(int av, char **ac, t_data *data);
+void	check_args(int ac, char **av);
+void	msg_err_0(void);
 void	msg_err_1(t_data *data);
 void	msg_err_2(t_data *data);
 void	msg_err_3(t_data *data);
 void	msg_err_4(t_data *data);
+void	display_tile(t_data *data, int j, int i);
+void	display_map(t_data *data);
+void	init_img(t_data *data);
+void	map_manager(t_data *data);
 
 #endif
 

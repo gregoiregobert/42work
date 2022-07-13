@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   symbole_check.c                                    :+:      :+:    :+:   */
+/*   check_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/09 18:23:50 by ggobert           #+#    #+#             */
-/*   Updated: 2022/07/09 18:23:55 by ggobert          ###   ########.fr       */
+/*   Created: 2022/07/12 17:40:15 by ggobert           #+#    #+#             */
+/*   Updated: 2022/07/12 17:40:18 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	symbole_check(t_data *data)
+void	check_args(int ac, char **av)
 {
-	int	i;
-	int	j;
-
-	j = -1;
-	while(data->map[++j])
-	{
-		i = -1;
-		while(data->map[j][++i])
-			if (data->map[j][i] != '1' && data->map[j][i] != '0'
-				&& data->map[j][i] != 'C' && data->map[j][i] != 'E'
-				&&	data->map[j][i] != 'P')
-				return (1);
-	}
-	return (0);
+	if (ac != 2)
+		msg_err_0();
+	if (ft_strncmp(av[1] + (ft_strlen(av[1]) - 4), ".ber", 4) != 0)
+		msg_err_0();
 }

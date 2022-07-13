@@ -12,25 +12,25 @@
 
 #include "so_long.h"
 
-int	dimension_rect(char **av, t_data *data)
+void dimension_rect(char **av, t_data *data)
 {
 	int		fd;
 	char	*tmp;
 
 	fd = open(av[1], O_RDONLY);
-	if (fd == 0)
+	if (fd <= 0)
 	{
-		perror(strerror(errno));
+		perror(NULL);
 		exit(EXIT_FAILURE);
 	}
 	tmp = get_next_line(fd);
 	while (tmp[data->width_window])
 		data->width_window++;
+	data->width_window--;
 	while (tmp)
 	{
 		data->height_window++;
 		tmp = get_next_line(fd);
 	}
 	close(fd);
-	return (0);
 }

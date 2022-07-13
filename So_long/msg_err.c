@@ -12,10 +12,17 @@
 
 #include "so_long.h"
 
+void	msg_err_0(void)
+{
+	write(2, "Need a .ber", 12);
+	write(2, "\n", 1);
+	exit(EXIT_FAILURE);
+}
+
 void	msg_err_1(t_data *data)
 {
 	write(2, "Symbole not allowed", 20);
-	write(2, '\n', 1);
+	write(2, "\n", 1);
 	free_map(data);
 	exit(EXIT_FAILURE);
 }
@@ -23,7 +30,7 @@ void	msg_err_1(t_data *data)
 void	msg_err_2(t_data *data)
 {
 	write(2, "Map have to be surround by wall", 32);
-	write(2, '\n', 1);
+	write(2, "\n", 1);
 	free_map(data);
 	exit(EXIT_FAILURE);
 }
@@ -31,7 +38,7 @@ void	msg_err_2(t_data *data)
 void	msg_err_3(t_data *data)
 {
 	write(2, "Map has to be a rectangle", 26);
-	write(2, '\n', 1);
+	write(2, "\n", 1);
 	free_map(data);
 	exit(EXIT_FAILURE);
 }
@@ -39,7 +46,7 @@ void	msg_err_3(t_data *data)
 void	msg_err_4(t_data *data)
 {
 	write(2, "wrong number of item, exit or character", 40);
-	write(2, '\n', 1);
+	write(2, "\n", 1);
 	free_map(data);
 	exit(EXIT_FAILURE);
 }

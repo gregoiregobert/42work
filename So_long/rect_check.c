@@ -16,8 +16,8 @@ int	rect_check(t_data *data)
 {
 	int	i;
 
-	i = 0;
-	while (data->map[i])
+	i = -1;
+	while (data->map[++i])
 		if (strlen(data->map[i]) != data->width_window)
 			return (1);
 	return (0);

@@ -72,11 +72,13 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 /*Get Next Line*/
 
-char	*ft_read_until(int fd, char *ret);
-char	*get_next_line(int fd, int check);
+int		ft_nl(char *str);
+int		ft_n_nl(char *str);
+char	*ft_read(char *show, int fd);
+char	*get_next_line(int fd);
+char	*cut_at(char *str, int n);
+char	*after_line(char *str, char *stat, int n);
 char	*ft_strjoin_g(char *s1, char *s2);
-char	*ft_strnback(char *s, size_t n);
-int		ft_check_newline(char *ret);
-int		ft_len_newline(char *str);
+
 
 #endif

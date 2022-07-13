@@ -17,18 +17,17 @@ void	parsing(char **av, t_data *data)
 	int		fd;
 	int		i;
 
-	if (ft_strncmp(av[1] + (ft_strlen(av[1] - 3)), ".ber", 3) != 0)
-		return (1);
+	fd = open_fd(av);
 	data->map = malloc(sizeof(char*) * (data->height_window + 1));
 	if (!data->map)
 	{
 		perror(strerror(errno));
 		exit(EXIT_FAILURE);
 	}
-	i = 0;
-	while (i > data->width_window)
+	i = -1;
+	while (++i < data->height_window)
 	{
-		data->map[i] = malloc(sizeof(char) * (data->width_window + 1))
+		data->map[i] = malloc(sizeof(char) * (data->width_window + 1));
 		if (!data->map[i])
 		{
 			free_map(data);
@@ -36,7 +35,8 @@ void	parsing(char **av, t_data *data)
 			exit(EXIT_FAILURE);
 		}
 		data->map[i] = get_next_line(fd);
-		i++;
+		data->map[i][strlen(data->map[i]) - 1] = 0;
 	}
 	data->map[i] = 0;
+	close(fd);
 }

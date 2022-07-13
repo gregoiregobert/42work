@@ -14,6 +14,9 @@
 
 void	free_map(t_data *data)
 {
+	int	i;
+
+	i = 0;
 	if (data->map)
 	{
 		while (data->map[i])
