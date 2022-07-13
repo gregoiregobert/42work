@@ -20,10 +20,7 @@ void	parsing(char **av, t_data *data)
 	fd = open_fd(av);
 	data->map = malloc(sizeof(char*) * (data->height_window + 1));
 	if (!data->map)
-	{
-		perror(strerror(errno));
-		exit(EXIT_FAILURE);
-	}
+		perror_exit();
 	i = -1;
 	while (++i < data->height_window)
 	{
@@ -31,8 +28,7 @@ void	parsing(char **av, t_data *data)
 		if (!data->map[i])
 		{
 			free_map(data);
-			perror(strerror(errno));
-			exit(EXIT_FAILURE);
+			perror_exit();
 		}
 		data->map[i] = get_next_line(fd);
 		data->map[i][strlen(data->map[i]) - 1] = 0;

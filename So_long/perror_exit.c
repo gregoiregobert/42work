@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   perror_exit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/23 12:40:14 by ggobert           #+#    #+#             */
-/*   Updated: 2022/06/23 12:40:17 by ggobert          ###   ########.fr       */
+/*   Created: 2022/07/13 14:58:42 by ggobert           #+#    #+#             */
+/*   Updated: 2022/07/13 14:59:06 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(int ac, char **av)
+void	perror_exit(void)
 {
-	t_data	data;
-
-	pars_manager(ac , av, &data);
-	initialize(&data);
-	map_manager(&data);
-	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &handle_keypress, &data);
-	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &handle_direction, &data);
-	mlx_loop(data.mlx_ptr);
-	mlx_destroy_display(data.mlx_ptr);
-	free_map(&data);
-	free(data.mlx_ptr);
+	perror(NULL);
+	exit(EXIT_FAILURE);
 }
+

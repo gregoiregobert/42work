@@ -22,6 +22,12 @@
 # include <errno.h>
 # include <stdio.h>
 
+typedef struct s_pos
+{
+	int	x;
+	int	y;
+}	t_pos;
+
 typedef struct s_imag
 {
 	void	*img;
@@ -41,11 +47,15 @@ typedef struct	s_data
 	t_imag	flower;
 	t_imag	wall;
 	t_imag	hive;
+	t_imag	bee_hive;
+	t_imag	bee_flower;
 	int		width_window;
 	int		height_window;
+	t_pos	perso;
 }	t_data;
 
 int		handle_keypress(int keysym, t_data *data);
+int		handle_direction(int keysym, t_data *data);
 int		render(t_data *data);
 int		rect_check(t_data *data);
 int		wall_check(t_data *data);
@@ -67,6 +77,7 @@ void	display_tile(t_data *data, int j, int i);
 void	display_map(t_data *data);
 void	init_img(t_data *data);
 void	map_manager(t_data *data);
+void	perror_exit(void);
 
 #endif
 

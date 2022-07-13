@@ -24,7 +24,9 @@ SRC			=	main.c	\
 				display_tile.c	\
 				display_map.c	\
 				init_img.c	\
-				map_manager.c
+				map_manager.c	\
+				perror_exit.c	\
+				handle_direction.c
 OBJ			=	$(SRC:.c=.o)
 RM 			=	rm -rf
 SUPPR		=	\033[00m

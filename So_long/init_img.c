@@ -24,4 +24,8 @@ void	init_img(t_data *data)
 	data->wall.addr = mlx_get_data_addr(data->wall.img, &data->wall.bpp, &data->wall.line_len, &data->wall.endian);
 	data->bee.img = mlx_xpm_file_to_image(data->mlx_ptr, "./Texture/bee.xpm", &data->bee.bpp, &data->bee.line_len);
 	data->bee.addr = mlx_get_data_addr(data->bee.img, &data->bee.bpp, &data->bee.line_len, &data->bee.endian);
+	data->bee_hive.img = mlx_xpm_file_to_image(data->mlx_ptr, "./Texture/bee-hive.xpm", &data->bee_hive.bpp, &data->bee_hive.line_len);
+	data->bee_hive.addr = mlx_get_data_addr(data->bee_hive.img, &data->bee_hive.bpp, &data->bee_hive.line_len, &data->bee_hive.endian);
+	data->bee_flower.img = mlx_xpm_file_to_image(data->mlx_ptr, "./Texture/bee-flower.xpm", &data->bee_flower.bpp, &data->bee_flower.line_len);
+	data->bee_flower.addr = mlx_get_data_addr(data->bee_flower.img, &data->bee_flower.bpp, &data->bee_flower.line_len, &data->bee_flower.endian);
 }
