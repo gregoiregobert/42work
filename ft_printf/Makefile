@@ -24,7 +24,7 @@ NAME	=	libftprintf.a
 
 CC		=	gcc
 
-RM		= rm -f
+RM		= 	rm -f
 
 CFLAGS	= -Wall -Wextra -Werror
 

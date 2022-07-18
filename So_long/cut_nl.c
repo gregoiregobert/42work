@@ -14,18 +14,18 @@
 
 char	*cut_nl(char *s)
 {
-	int	i;
-	int	j;
-	char *new;
+	int		i;
+	int		j;
+	char	*new;
 
 	i = 0;
 	j = -1;
-	while(s[i] != '\n')
+	while (s[i] != '\n')
 		i++;
 	new = malloc(sizeof(char) * (i + 1));
 	if (!new)
 		return (0);
-	while(++j < i)
+	while (++j < i)
 		new[j] = s[j];
 	new[j] = 0;
 	free(s);

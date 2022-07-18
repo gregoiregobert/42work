@@ -14,7 +14,6 @@
 # define FT_PRINTF_H
 # include <stdarg.h>
 # include <unistd.h>
-# include <libc.h>
 
 int					ft_printf(const char *command, ...);
 int					putchar_len(const char *command, int i, int len);

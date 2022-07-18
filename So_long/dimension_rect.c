@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-void dimension_rect(char **av, t_data *data)
+void	dimension_rect(char **av, t_data *data)
 {
 	int		fd;
 	char	*tmp;

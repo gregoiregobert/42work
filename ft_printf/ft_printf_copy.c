@@ -35,22 +35,21 @@ int	print_function(const char *command, int i, va_list *arg)
 	if (command[i] == 'X')
 		return (print_gx(arg));
 	if (command[i] == '%')
-		write(1, '%', 1);
+		write(1, "%", 1);
 	return (0);
 }
 
-int	print(const char *command, va_list *arg, int len, int pair)
+int	print(const char *command, va_list *arg, int len)
 {
 	int	i;
 
-	i = 0;
-	while (command[i])
+	i = -1;
+	while (command[++i])
 	{
 		if (command[i] != '%')
 			putchar_len(command, i++, len++);
 		else
-			i++;
-			print_function(command, i, arg);
+			print_function(command, ++i, arg);
 	}
 	return (len);
 }
@@ -59,13 +58,11 @@ int	ft_printf(const char *command, ...)
 {
 	va_list	arg;
 	int		len;
-	int		pair;
 	int		ret;
 
-	pair = 1;
 	len = 0;
 	va_start(arg, command);
-	ret = print(command, &arg, len, pair);
+	ret = print(command, &arg, len);
 	va_end(arg);
 	return (ret);
 }
