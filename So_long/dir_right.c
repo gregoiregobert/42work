@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   right_dir.c                                        :+:      :+:    :+:   */
+/*   dir_right.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/13 16:18:00 by ggobert           #+#    #+#             */
-/*   Updated: 2022/07/13 16:18:03 by ggobert          ###   ########.fr       */
+/*   Created: 2022/07/18 12:06:11 by ggobert           #+#    #+#             */
+/*   Updated: 2022/07/18 12:06:15 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	right_dir(t_data *data)
+void	dir_right(t_data *data)
 {
 	if (data->map[data->perso.y][data->perso.x + 1] == '1')
 		return;		
@@ -30,5 +30,7 @@ void	right_dir(t_data *data)
 		data->map[data->perso.y][data->perso.x] = 'E';
 	else
 		data->map[data->perso.y][data->perso.x] = '0';
+	data->move++;
+	printf("%d\n", data->move);
 	display_map(data);
 }

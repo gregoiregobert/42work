@@ -1,4 +1,4 @@
-CC			=	gcc 
+CC			=	gcc  -g3
 CFLAGS		=	
 FLAGS_LIB	=	-Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 NAME		=	so_long
@@ -26,13 +26,14 @@ SRC			=	main.c	\
 				init_img.c	\
 				map_manager.c	\
 				perror_exit.c	\
-				up_dir.c	\
-				down_dir.c	\
-				left_dir.c	\
-				right_dir.c	\
+				dir_up.c	\
+				dir_down.c	\
+				dir_left.c	\
+				dir_right.c	\
 				no_c.c	\
 				exit_properly.c	\
-				destroy_img.c
+				destroy_img.c	\
+				cut_nl.c
 OBJ			=	$(SRC:.c=.o)
 RM 			=	rm -rf
 SUPPR		=	\033[00m

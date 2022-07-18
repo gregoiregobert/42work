@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   down_dir.c                                         :+:      :+:    :+:   */
+/*   dir_left.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/13 16:17:40 by ggobert           #+#    #+#             */
-/*   Updated: 2022/07/13 16:17:42 by ggobert          ###   ########.fr       */
+/*   Created: 2022/07/18 12:06:28 by ggobert           #+#    #+#             */
+/*   Updated: 2022/07/18 12:06:32 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	down_dir(t_data *data)
-{
-	if (data->map[data->perso.y + 1][data->perso.x] == '1')
+void	dir_left(t_data *data)
+{	
+	if (data->map[data->perso.y][data->perso.x - 1] == '1')
 		return;		
-	else if (data->map[data->perso.y + 1][data->perso.x] == 'E')
+	else if (data->map[data->perso.y][data->perso.x - 1] == 'E')
 	{
 		if (no_c(data) == 0)
 			exit_properly(data);
-		data->map[data->perso.y + 1][data->perso.x] = 'U';
+		data->map[data->perso.y][data->perso.x - 1] = 'U';
 	}
-	else if (data->map[data->perso.y + 1][data->perso.x] == 'C')
-		data->map[data->perso.y + 1][data->perso.x] = 'O';
+	else if (data->map[data->perso.y][data->perso.x - 1] == 'C')
+		data->map[data->perso.y][data->perso.x - 1] = 'O';
 	else
-		data->map[data->perso.y + 1][data->perso.x] = 'P';
+		data->map[data->perso.y][data->perso.x - 1] = 'P';
 	if (data->map[data->perso.y][data->perso.x] == 'U')
 		data->map[data->perso.y][data->perso.x] = 'E';
 	else
 		data->map[data->perso.y][data->perso.x] = '0';
+	data->move++;
+	printf("%d\n", data->move);
 	display_map(data);
 }

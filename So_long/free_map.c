@@ -16,11 +16,11 @@ void	free_map(t_data *data)
 {
 	int	i;
 
-	i = 0;
+	i = -1;
 	if (data->map)
 	{
-		while (data->map[i])
-			free(data->map[i++]);
+		while (data->map[++i])
+			free(data->map[i]);
 		free(data->map);
 	}
 }

@@ -24,14 +24,8 @@ void	parsing(char **av, t_data *data)
 	i = -1;
 	while (++i < data->height_window)
 	{
-		data->map[i] = malloc(sizeof(char) * (data->width_window));
-		if (!data->map[i])
-		{
-			free_map(data);
-			perror_exit();
-		}
 		data->map[i] = get_next_line(fd);
-		data->map[i][strlen(data->map[i]) - 1] = 0;
+		data->map[i] = cut_nl(data->map[i]);
 	}
 	data->map[i] = 0;
 	close(fd);

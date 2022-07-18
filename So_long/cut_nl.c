@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_properly.c                                    :+:      :+:    :+:   */
+/*   cut_nl.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/13 16:47:51 by ggobert           #+#    #+#             */
-/*   Updated: 2022/07/13 16:47:53 by ggobert          ###   ########.fr       */
+/*   Created: 2022/07/14 13:18:14 by ggobert           #+#    #+#             */
+/*   Updated: 2022/07/14 13:18:19 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	exit_properly(t_data *data)
+char	*cut_nl(char *s)
 {
-	free_map(data);
-	destroy_img(data);
-	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	mlx_destroy_display(data->mlx_ptr);
-	free(data->mlx_ptr);
-	exit(EXIT_SUCCESS);
+	int	i;
+	int	j;
+	char *new;
+
+	i = 0;
+	j = -1;
+	while(s[i] != '\n')
+		i++;
+	new = malloc(sizeof(char) * (i + 1));
+	if (!new)
+		return (0);
+	while(++j < i)
+		new[j] = s[j];
+	new[j] = 0;
+	free(s);
+	return (new);
 }

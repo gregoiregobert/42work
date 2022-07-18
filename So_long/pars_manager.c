@@ -25,9 +25,9 @@ void	pars_manager(int ac, char **av, t_data *data)
 	parsing(av, data);
 	if (symbole_check(data) == 1)
 		msg_err_1(data);
-	if (wall_check(data) == 1)
-		msg_err_2(data);
 	if (rect_check(data) == 1)
+		msg_err_2(data);
+	if (wall_check(data) == 1)
 		msg_err_3(data);
 	if (item_position_out_check(data) == 1)
 		msg_err_4(data);
