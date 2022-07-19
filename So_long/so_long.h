@@ -65,6 +65,7 @@ typedef struct	s_data
 }	t_data;
 
 int		handle_keypress(int keysym, t_data *data);
+int		handle_cross(t_data *data);
 int		render(t_data *data);
 int		rect_check(t_data *data);
 int		wall_check(t_data *data);

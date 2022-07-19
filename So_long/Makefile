@@ -36,7 +36,8 @@ SRC			=	main.c						\
 				no_c.c						\
 				exit_properly.c				\
 				destroy_img.c				\
-				cut_nl.c
+				cut_nl.c					\
+				handle_cross.c				
 OBJ			=	$(SRC:.c=.o)
 RM 			=	rm -rf
 SUPPR		=	\033[00m
