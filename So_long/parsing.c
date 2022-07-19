@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:30:13 by ggobert           #+#    #+#             */
-/*   Updated: 2022/07/07 16:30:15 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/07/19 14:31:39 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	parsing(char **av, t_data *data)
 	int		i;
 
 	fd = open_fd(av);
-	data->map = malloc(sizeof(char*) * (data->height_window + 1));
+	data->map = malloc(sizeof(char *) * (data->height_window + 1));
 	if (!data->map)
 		perror_exit();
 	i = -1;

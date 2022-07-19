@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   no_c.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 16:30:46 by ggobert           #+#    #+#             */
-/*   Updated: 2022/07/13 16:30:48 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/07/19 14:29:14 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int no_c(t_data *data)
+int	no_c(t_data *data)
 {
 	int	i;
 	int	j;

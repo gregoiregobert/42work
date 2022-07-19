@@ -8,7 +8,6 @@ LIBFT		=	./libft/libft.a
 LIB_DIR		=	./libft
 SRC			=	main.c						\
 				handle_keypress.c			\
-				render.c					\
 				initialize.c				\
 				open_fd.c					\
 				dimension_rect.c			\
@@ -37,7 +36,8 @@ SRC			=	main.c						\
 				exit_properly.c				\
 				destroy_img.c				\
 				cut_nl.c					\
-				handle_cross.c				
+				handle_cross.c				\
+				position_perso.c
 OBJ			=	$(SRC:.c=.o)
 RM 			=	rm -rf
 SUPPR		=	\033[00m

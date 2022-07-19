@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 13:05:48 by ggobert           #+#    #+#             */
-/*   Updated: 2022/06/23 13:23:12 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/07/19 14:38:08 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,14 @@ typedef struct	s_data
 	int		width_window;
 	int		height_window;
 	int		move;
+	int		item;
+	int		position;
+	int		out;
 	t_pos	perso;
 }	t_data;
 
 int		handle_keypress(int keysym, t_data *data);
 int		handle_cross(t_data *data);
-int		render(t_data *data);
 int		rect_check(t_data *data);
 int		wall_check(t_data *data);
 int		item_position_out_check(t_data *data);
@@ -91,6 +93,9 @@ void	display_tile_hive(t_data *data, int j, int i);
 void	display_tile_bee(t_data *data, int j, int i);
 void	display_map(t_data *data);
 void	init_img(t_data *data);
+void	init_img_bee(t_data *data);
+void	init_img_flower(t_data *data);
+void	init_img_hive(t_data *data);
 void	map_manager(t_data *data);
 void	perror_exit(void);
 void	dir_up(t_data *data);
@@ -99,6 +104,7 @@ void	dir_left(t_data *data);
 void	dir_right(t_data *data);
 void	exit_properly(t_data *data);
 void	destroy_img(t_data *data);
+void	position_perso(t_data *data, int j, int i);
 
 #endif
 

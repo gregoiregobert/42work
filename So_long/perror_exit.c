@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   perror_exit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 14:58:42 by ggobert           #+#    #+#             */
-/*   Updated: 2022/07/13 14:59:06 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/07/19 14:28:31 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,4 +17,3 @@ void	perror_exit(void)
 	perror(NULL);
 	exit(EXIT_FAILURE);
 }
-
