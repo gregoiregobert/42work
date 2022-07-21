@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   height_rect.c                                      :+:      :+:    :+:   */
+/*   dimension_rect.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 17:03:32 by ggobert           #+#    #+#             */
-/*   Updated: 2022/07/09 17:06:21 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/07/21 13:36:31 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	dimension_rect(char **av, t_data *data)
 		exit(EXIT_FAILURE);
 	}
 	tmp = get_next_line(fd);
+	if (!tmp)
+		msg_err_5();
 	while (tmp[data->width_window])
 		data->width_window++;
 	data->width_window--;

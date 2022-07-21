@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   msg_err_1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/19 14:45:07 by ggobert           #+#    #+#             */
-/*   Updated: 2022/07/19 14:48:31 by ggobert          ###   ########.fr       */
+/*   Created: 2022/07/21 14:00:29 by ggobert           #+#    #+#             */
+/*   Updated: 2022/07/21 15:32:45 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	*ft_itoa(int nbr)
+void	msg_err_5(void)
 {
-	int	i;
+	write(2, "Need symbole in .ber", 21);
+	write(2, "\n", 1);
+	exit(EXIT_FAILURE);
+}
 
-	i = 0;
-	while (nbr > 0)
-	{
-		nbr /= 10;
-		i++;
-	}
+void	msg_err_6(void)
+{
+	write(2, "Only 1 arg allowed", 19);
+	write(2, "\n", 1);
+	exit(EXIT_FAILURE);
+}
+
+void	msg_err_7(t_data *data)
+{
+	write(2, "Img not found", 14);
+	write(2, "\n", 1);
+	exit_properly(data);
+	exit(EXIT_FAILURE);
 }

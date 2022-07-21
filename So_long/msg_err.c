@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   msg_err.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 15:21:04 by ggobert           #+#    #+#             */
-/*   Updated: 2022/07/12 15:21:27 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/07/21 15:33:02 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	msg_err_1(t_data *data)
 
 void	msg_err_2(t_data *data)
 {
-	write(2, "Map have to be a rectangle", 26);
+	write(2, "Map have to be a rectangle", 27);
 	write(2, "\n", 1);
 	free_map(data);
 	exit(EXIT_FAILURE);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cut_nl.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 13:18:14 by ggobert           #+#    #+#             */
-/*   Updated: 2022/07/14 13:18:19 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/07/21 13:29:28 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*cut_nl(char *s)
 
 	i = 0;
 	j = -1;
-	while (s[i] != '\n')
+	while (s[i] != '\n' && s[i])
 		i++;
 	new = malloc(sizeof(char) * (i + 1));
 	if (!new)

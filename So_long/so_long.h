@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 13:05:48 by ggobert           #+#    #+#             */
-/*   Updated: 2022/07/19 14:38:08 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/07/21 15:17:41 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,15 +87,18 @@ void	msg_err_1(t_data *data);
 void	msg_err_2(t_data *data);
 void	msg_err_3(t_data *data);
 void	msg_err_4(t_data *data);
+void	msg_err_5(void);
+void	msg_err_6(void);
+void	msg_err_7(t_data *data);
 void	display_tile(t_data *data, int j, int i);
 void	display_tile_flower(t_data *data, int j, int i);
 void	display_tile_hive(t_data *data, int j, int i);
 void	display_tile_bee(t_data *data, int j, int i);
 void	display_map(t_data *data);
 void	init_img(t_data *data);
-void	init_img_bee(t_data *data);
-void	init_img_flower(t_data *data);
-void	init_img_hive(t_data *data);
+void	init_img_1(t_data *data);
+void	init_img_2(t_data *data);
+void	init_img_3(t_data *data);
 void	map_manager(t_data *data);
 void	perror_exit(void);
 void	dir_up(t_data *data);
@@ -105,6 +108,7 @@ void	dir_right(t_data *data);
 void	exit_properly(t_data *data);
 void	destroy_img(t_data *data);
 void	position_perso(t_data *data, int j, int i);
+void	img_protect(t_data *data);
 
 #endif
 

@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_args.c                                       :+:      :+:    :+:   */
+/*   img_protect.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/12 17:40:15 by ggobert           #+#    #+#             */
-/*   Updated: 2022/07/21 14:03:03 by ggobert          ###   ########.fr       */
+/*   Created: 2022/07/21 14:08:58 by ggobert           #+#    #+#             */
+/*   Updated: 2022/07/21 14:16:30 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	check_args(int ac, char **av)
+void	img_protect(t_data *data)
 {
-	if (ac != 2)
-		msg_err_6();
-	if (ft_strncmp(av[1] + (ft_strlen(av[1]) - 4), ".ber", 4) != 0)
-		msg_err_0();
+	if (!data->grass.img || !data->flower.img || !data->bee.img
+			|| !data->bee_r.img || !data->bee_l.img || !data->bee_d.img
+			|| !data->wall.img || !data->hive.img || !data->bee_flower.img
+			|| !data->bee_flower_r.img || !data->bee_flower_l.img || !data->bee_flower_d.img
+			|| !data->bee_hive.img || !data->bee_hive_r.img || !data->bee_hive_l.img
+			|| !data->bee_hive_d.img)
+		msg_err_7(data);
 }

@@ -20,6 +20,7 @@ SRC			=	main.c						\
 				pars_manager.c				\
 				check_args.c				\
 				msg_err.c					\
+				msg_err_1.c					\
 				display_tile.c				\
 				display_tile_flower.c		\
 				display_tile_hive.c			\
@@ -37,7 +38,8 @@ SRC			=	main.c						\
 				destroy_img.c				\
 				cut_nl.c					\
 				handle_cross.c				\
-				position_perso.c
+				position_perso.c			\
+				img_protect.c
 OBJ			=	$(SRC:.c=.o)
 RM 			=	rm -rf
 SUPPR		=	\033[00m
