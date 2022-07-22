@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 15:32:09 by ggobert           #+#    #+#             */
-/*   Updated: 2022/02/10 18:45:08 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/07/22 14:18:59 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,4 @@ char	*ft_strdup(char *str);
 char	*cut_at(char *str, int n);
 char	*after_line(char *str, char *stat, int n);
 
-# endif
+#endif

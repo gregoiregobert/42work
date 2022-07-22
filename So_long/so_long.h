@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 13:05:48 by ggobert           #+#    #+#             */
-/*   Updated: 2022/07/21 15:17:41 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/07/22 14:10:12 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,16 @@ typedef struct s_imag
 {
 	void	*img;
 	char	*addr;
-	int 	bpp;
-	int 	line_len;
-	int 	endian;
+	int		bpp;
+	int		line_len;
+	int		endian;
 }	t_imag;
 
-typedef struct	s_data
+typedef struct s_data
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
-	char 	**map;
+	char	**map;
 	t_imag	grass;
 	t_imag	bee;
 	t_imag	bee_r;
@@ -74,7 +74,7 @@ int		wall_check(t_data *data);
 int		item_position_out_check(t_data *data);
 int		symbole_check(t_data *data);
 int		open_fd(char **av);
-int 	no_c(t_data *data);
+int		no_c(t_data *data);
 char	*cut_nl(char *s);
 void	dimension_rect(char **av, t_data *data);
 void	initialize(t_data *data);
@@ -102,13 +102,17 @@ void	init_img_3(t_data *data);
 void	map_manager(t_data *data);
 void	perror_exit(void);
 void	dir_up(t_data *data);
+void	dir_wall_up(t_data *data);
 void	dir_down(t_data *data);
+void	dir_wall_down(t_data *data);
 void	dir_left(t_data *data);
+void	dir_wall_left(t_data *data);
 void	dir_right(t_data *data);
+void	dir_wall_right(t_data *data);
 void	exit_properly(t_data *data);
 void	destroy_img(t_data *data);
+void	destroy_img_1(t_data *data);
 void	position_perso(t_data *data, int j, int i);
 void	img_protect(t_data *data);
 
 #endif
-

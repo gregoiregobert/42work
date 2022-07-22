@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 18:48:44 by ggobert           #+#    #+#             */
-/*   Updated: 2022/02/11 13:56:20 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/07/22 14:17:57 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int	ft_strlen(char *str)
 
 char	*ft_strjoin_g(char *s1, char *s2)
 {
-	int	i;
-	int	j;
-	int 	len;
+	int		i;
+	int		j;
+	int		len;
 	char	*new_str;
 
 	i = 0;
@@ -49,8 +49,8 @@ char	*ft_strjoin_g(char *s1, char *s2)
 
 char	*ft_strdup(char *str)
 {
-	int	len;
-	int	i;
+	int		len;
+	int		i;
 	char	*new;
 
 	i = 0;
@@ -71,7 +71,7 @@ char	*cut_at(char *str, int n)
 {
 	int		i;
 	char	*new;
-	
+
 	i = 0;
 	new = malloc(sizeof(char) * (n + 1));
 	if (!new)
@@ -86,7 +86,7 @@ char	*cut_at(char *str, int n)
 	return (new);
 }
 
-char	*after_line(char *str, char *stat,  int n)
+char	*after_line(char *str, char *stat, int n)
 {
 	int		i;
 	int		j;

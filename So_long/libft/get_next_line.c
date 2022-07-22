@@ -3,27 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 18:32:52 by ggobert           #+#    #+#             */
-/*   Updated: 2022/02/11 14:03:07 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/07/22 13:35:10 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 
-int ft_nl(char *str)
+int	ft_nl(char *str)
 {
 	int	i;
 
 	i = 0;
 	if (!str)
-		return(-1);
+		return (-1);
 	while (str[i])
 		if (str[i++] == '\n')
 			return (1);
-	return (0);	
+	return (0);
 }
 
 int	ft_n_nl(char *str)
@@ -41,9 +41,9 @@ int	ft_n_nl(char *str)
 
 char	*ft_read(char *show, int fd)
 {
-	int	count;
+	int		count;
 	char	*buf;
-	
+
 	count = BUFFER_SIZE;
 	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
@@ -54,7 +54,7 @@ char	*ft_read(char *show, int fd)
 		if (count < 1)
 		{
 			free(buf);
-			return(show);
+			return (show);
 		}
 		buf[count] = 0;
 		show = ft_strjoin_g(show, buf);
@@ -62,7 +62,6 @@ char	*ft_read(char *show, int fd)
 	free(buf);
 	return (show);
 }
-
 
 char	*get_next_line(int fd)
 {

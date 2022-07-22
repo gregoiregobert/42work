@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 14:00:45 by ggobert           #+#    #+#             */
-/*   Updated: 2021/12/10 17:38:30 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/07/22 13:22:39 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,5 @@ char	*get_next_line(int fd);
 char	*cut_at(char *str, int n);
 char	*after_line(char *str, char *stat, int n);
 char	*ft_strjoin_g(char *s1, char *s2);
-
 
 #endif

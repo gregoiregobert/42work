@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 14:13:45 by ggobert           #+#    #+#             */
-/*   Updated: 2022/07/21 15:30:29 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/07/22 11:56:19 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,15 @@ void	init_img_1(t_data *data)
 	data->bee_hive_l.img = mlx_xpm_file_to_image(data->mlx_ptr,
 			"./Texture/bee-hive_left.xpm", &data->bee_hive_l.bpp,
 			&data->bee_hive_l.line_len);
-	data->bee_hive_d.img = mlx_xpm_file_to_image(data->mlx_ptr,
-			"./Texture/bee-hive_down.xpm", &data->bee_hive_d.bpp,
-			&data->bee_hive_d.line_len);
-	img_protect(data);
 	init_img_2(data);
 }
 
 void	init_img_2(t_data *data)
 {
+	data->bee_hive_d.img = mlx_xpm_file_to_image(data->mlx_ptr,
+			"./Texture/bee-hive_down.xpm", &data->bee_hive_d.bpp,
+			&data->bee_hive_d.line_len);
+	img_protect(data);
 	data->grass.addr = mlx_get_data_addr(data->grass.img, &data->grass.bpp,
 			&data->grass.line_len, &data->grass.endian);
 	data->hive.addr = mlx_get_data_addr(data->hive.img, &data->hive.bpp,

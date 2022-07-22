@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 17:00:35 by ggobert           #+#    #+#             */
-/*   Updated: 2022/07/21 15:29:32 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/07/22 11:30:59 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ void	destroy_img(t_data *data)
 		mlx_destroy_image(data->mlx_ptr, data->bee_l.img);
 	if (data->bee_r.img)
 		mlx_destroy_image(data->mlx_ptr, data->bee_r.img);
+	destroy_img_1(data);
+}
+
+void	destroy_img_1(t_data *data)
+{
 	if (data->bee_d.img)
 		mlx_destroy_image(data->mlx_ptr, data->bee_d.img);
 	if (data->bee_flower.img)
