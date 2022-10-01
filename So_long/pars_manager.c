@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 14:46:41 by ggobert           #+#    #+#             */
-/*   Updated: 2022/07/19 14:37:45 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/01 15:44:13 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,6 @@ void	pars_manager(int ac, char **av, t_data *data)
 		msg_err_3(data);
 	if (item_position_out_check(data) == 1)
 		msg_err_4(data);
+	if (find_way(data) == 0)
+		msg_err_8(data);
 }

@@ -1,4 +1,4 @@
-CC			=	gcc  -g3
+CC			=	gcc -g3 -fsanitize=address
 CFLAGS		=	
 FLAGS_LIB	=	-Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 NAME		=	so_long
@@ -39,7 +39,12 @@ SRC			=	main.c						\
 				cut_nl.c					\
 				handle_cross.c				\
 				position_perso.c			\
-				img_protect.c
+				img_protect.c				\
+				find_way.c					\
+				test_up.c					\
+				test_down.c					\
+				test_right.c				\
+				test_left.c					
 OBJ			=	$(SRC:.c=.o)
 RM 			=	rm -rf
 SUPPR		=	\033[00m
