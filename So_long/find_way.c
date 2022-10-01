@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 15:17:32 by gregoiregob       #+#    #+#             */
-/*   Updated: 2022/10/01 16:16:03 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/01 16:59:13 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,6 @@ int	find_way(t_data *data)
 	while (data->way.C != data->item || data->way.E != 1)
 	{
 		i = -1;
-		printf("\nmove = %d\n", data->way.move);
-		while (data->copy[++i])
-			printf("%s\n", data->copy[i]);
-		printf("\n");
 		if (data->copy[data->way.y][data->way.x + 1] != '1'
 			&& data->copy[data->way.y][data->way.x + 1] != 'i')
 			test_right(data);
@@ -48,18 +44,17 @@ int	find_way(t_data *data)
 				data->copy[data->way.y][data->way.x] = '1'; 
 			if (data->copy[data->way.y][data->way.x] == 'P')
 				return (0);
-			else if ((data->way.move - 1) % 10 == 0)
+			else if (backtrack_move(data) == 'r')
 				data->way.x--;
-			else if ((data->way.move - 2) % 10 == 0)
+			else if (backtrack_move(data) == 'd')
 				data->way.y--;
-			else if ((data->way.move - 3) % 10 == 0)
+			else if (backtrack_move(data) == 'l')
 				data->way.x++;
-			else if ((data->way.move - 4) % 10 == 0)
+			else if (backtrack_move(data) == 'u')
 				data->way.y++;
-			data->way.move /= 10;
+			rm_lastmove(data);
 		}
 	}
-	printf("c = %d\nE = %d\n", data->way.C, data->way.E);
 	return(1);
 }
 

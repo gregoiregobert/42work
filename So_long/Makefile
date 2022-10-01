@@ -44,7 +44,8 @@ SRC			=	main.c						\
 				test_up.c					\
 				test_down.c					\
 				test_right.c				\
-				test_left.c					
+				test_left.c					\
+				backtrack_move.c
 OBJ			=	$(SRC:.c=.o)
 RM 			=	rm -rf
 SUPPR		=	\033[00m

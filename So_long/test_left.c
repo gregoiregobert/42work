@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 14:32:29 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/01 15:54:13 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/01 16:52:03 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ void    test_left(t_data *data)
 		return;
 	if (data->copy[data->way.y][data->way.x] != 'P')
 		data->copy[data->way.y][data->way.x] = 'i';
-	data->way.move = data->way.move * 10 + 3;
+	new_move(data, 'l');
 	data->way.x--;
 }

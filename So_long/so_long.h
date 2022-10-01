@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 13:05:48 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/01 15:44:33 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/01 16:48:54 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ typedef struct s_imag
 
 typedef struct s_way
 {
-	int	C;
-	int	E;
-	int	move;
-	int	x;
-	int	y;
+	int		C;
+	int		E;
+	char	*move;
+	int		x;
+	int		y;
 }	t_way;
 
 typedef struct s_data
@@ -87,6 +87,7 @@ int		open_fd(char **av);
 int		rect_check(t_data *data);
 int		symbole_check(t_data *data);
 int		wall_check(t_data *data);
+char	backtrack_move(t_data *data);
 char	*cut_nl(char *s);
 void	check_args(int ac, char **av);
 void	destroy_img(t_data *data);
@@ -112,6 +113,7 @@ void	init_img(t_data *data);
 void	init_img_1(t_data *data);
 void	init_img_2(t_data *data);
 void	init_img_3(t_data *data);
+void	init_move(t_data *data, char c);
 void	initialize(t_data *data);
 void	free_map(t_data *data);
 void	map_copy(t_data *data);
@@ -125,10 +127,12 @@ void	msg_err_5(void);
 void	msg_err_6(void);
 void	msg_err_7(t_data *data);
 void	msg_err_8(t_data *data);
+void	new_move(t_data *data, char c);
 void	pars_manager(int av, char **ac, t_data *data);
 void	parsing(char **av, t_data *data);
 void	perror_exit(void);
 void	position_perso(t_data *data, int j, int i);
+void	rm_lastmove(t_data *data);
 void	test_down(t_data *data);
 void	test_left(t_data *data);
 void	test_right(t_data *data);
