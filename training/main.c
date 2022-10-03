@@ -3,19 +3,12 @@
 #include <stdlib.h>
 #include <errno.h>
 #include <unistd.h>
+#include "../libft/libft.h"
 
-int	ft_strlen(char *s)
+int	main()
 {
-	int i;
+	char *l = "l";
 
-	i = 0;
-	while(*s++)
-		i++;
-	return (i);
-}
-
-int	main(int ac, char **av)
-{
-	printf("%s\n",av[1] + (ft_strlen(av[1]) - 3));
+	printf("%ld\n", ft_strlen(l));
 }
 

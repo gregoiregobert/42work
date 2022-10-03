@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 16:18:40 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/01 16:58:11 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/03 10:42:11 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	new_move(t_data *data, char c)
 	if (data->way.move == 0)
 	{
 		init_move(data, c);
-		return;
+		return ;
 	}
 	tmp = ft_strdup(data->way.move);
 	free(data->way.move);

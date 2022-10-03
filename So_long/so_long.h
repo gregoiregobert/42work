@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 13:05:48 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/01 16:48:54 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/03 11:08:12 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ typedef struct s_imag
 
 typedef struct s_way
 {
-	int		C;
-	int		E;
+	int		c;
+	int		e;
 	char	*move;
 	int		x;
 	int		y;
@@ -83,6 +83,7 @@ int		handle_cross(t_data *data);
 int		handle_keypress(int keysym, t_data *data);
 int		item_position_out_check(t_data *data);
 int		no_c(t_data *data);
+int		no_way(t_data *data);
 int		open_fd(char **av);
 int		rect_check(t_data *data);
 int		symbole_check(t_data *data);
@@ -107,7 +108,7 @@ void	display_tile_flower(t_data *data, int j, int i);
 void	display_tile_hive(t_data *data, int j, int i);
 void	display_tile_bee(t_data *data, int j, int i);
 void	exit_properly(t_data *data);
-void    find_p(t_data *data);
+void	find_p(t_data *data);
 void	img_protect(t_data *data);
 void	init_img(t_data *data);
 void	init_img_1(t_data *data);
