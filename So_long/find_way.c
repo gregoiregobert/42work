@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 15:17:32 by gregoiregob       #+#    #+#             */
-/*   Updated: 2022/10/03 11:56:34 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/03 13:44:47 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	find_way(t_data *data)
 {
+	int	i;
+
 	data->way.x = data->perso.x;
 	data->way.y = data->perso.y;
 	while (data->way.c != data->item || data->way.e != 1)
@@ -23,16 +25,13 @@ int	find_way(t_data *data)
 			&& data->copy[data->way.y][data->way.x + 1] != 'P')
 			test_right(data);
 		else if (data->copy[data->way.y + 1][data->way.x] != '1'
-			&& data->copy[data->way.y + 1][data->way.x] != 'i'
-			&& data->copy[data->way.y + 1][data->way.x] != 'P')
+			&& data->copy[data->way.y + 1][data->way.x] != 'i')
 			test_down(data);
 		else if (data->copy[data->way.y][data->way.x - 1] != '1'
-				&& data->copy[data->way.y][data->way.x - 1] != 'i'
-				&& data->copy[data->way.y][data->way.x - 1] != 'P')
+				&& data->copy[data->way.y][data->way.x - 1] != 'i')
 			test_left(data);
 		else if (data->copy[data->way.y - 1][data->way.x] != '1'
-				&& data->copy[data->way.y - 1][data->way.x] != 'i'
-				&& data->copy[data->way.y - 1][data->way.x] != 'P')
+				&& data->copy[data->way.y - 1][data->way.x] != 'i')
 			test_up(data);
 		else
 			if (no_way(data) == 0)
@@ -43,9 +42,11 @@ int	find_way(t_data *data)
 
 int	no_way(t_data *data)
 {
-	if (data->copy[data->way.y][data->way.x] != 'P')
-		data->copy[data->way.y][data->way.x] = '1';
-	if (data->copy[data->way.y][data->way.x] == 'P')
+	data->copy[data->way.y][data->way.x] = '1';
+	if (data->copy[data->way.y][data->way.x + 1] == '1'
+		&& data->copy[data->way.y + 1][data->way.x] == '1'
+		&& data->copy[data->way.y][data->way.x - 1] == '1'
+		&& data->copy[data->way.y - 1][data->way.x] == '1')
 		return (0);
 	else if (backtrack_move(data) == 'r')
 		data->way.x--;

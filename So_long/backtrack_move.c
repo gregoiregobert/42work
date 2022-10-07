@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 16:18:40 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/03 10:42:11 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/03 13:08:39 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	rm_lastmove(t_data *data)
 	char	*tmp;
 
 	i = -1;
+	if (!data->way.move)
+		return ;
 	tmp = ft_strdup(data->way.move);
 	free(data->way.move);
 	data->way.move = malloc(ft_strlen(tmp));

@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 14:00:45 by ggobert           #+#    #+#             */
-/*   Updated: 2022/07/22 13:22:39 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/06 15:05:25 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 # include <unistd.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
+#  define BUFFER_SIZE 1000
 # endif
 
-typedef struct s_list
+typedef struct s_listmake
 {
 	void			*content;
 	struct s_list	*next;
