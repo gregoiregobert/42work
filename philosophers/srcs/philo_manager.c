@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   philo_manager.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/07 11:31:28 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/07 15:17:46 by ggobert          ###   ########.fr       */
+/*   Created: 2022/10/07 15:17:48 by ggobert           #+#    #+#             */
+/*   Updated: 2022/10/07 15:29:34 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosopher.h"
+#include "philosopher.c"
 
-int	main(int ac, char **av)
+void	philo_manager(t_data *data)
 {
-	t_data *data;
-	
-	data = init_data();
-	parsing_manager(data, ac ,av);
-	philo_manager(data);
+	init_philo(data);
+}
+
+void	init_philo(t_data *data)
+{
+	data->th = malloc(sizeof(pthread_t) * data->nb_philo);
+	if ()
 }
