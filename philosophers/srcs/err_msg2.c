@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   err_msg2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/07 11:31:28 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/08 16:12:05 by ggobert          ###   ########.fr       */
+/*   Created: 2022/10/08 12:13:54 by ggobert           #+#    #+#             */
+/*   Updated: 2022/10/08 14:19:25 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-int	main(int ac, char **av)
+void	err_msg_5(void)
 {
-	t_data	*data;
+	write(2, ERR_PTHR, ft_strlen(ERR_PTHR));
+	exit(EXIT_FAILURE);
+}
 
-	data = init_data();
-	gettimeofday(&data->start, 0);
-	parsing_manager(data, ac, av);
-	philo_manager(data);
+void	err_msg_6(void)
+{
+	write(2, ERR_THJOIN, ft_strlen(ERR_THJOIN));
+	exit(EXIT_FAILURE);
 }

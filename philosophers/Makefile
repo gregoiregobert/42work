@@ -1,10 +1,12 @@
 NAME		=	philosopher
-CFLAGS		=	-MMD -Wall -Werror -Wextra
+CFLAGS		=	-pthread -MMD -Wall -Werror -Wextra
 SRCS		=	main.c				\
 				err_msg.c			\
+				err_msg2.c			\
 				parsing_manager.c	\
 				utils.c				\
-				init_data.c
+				init_data.c			\
+				philo_manager.c
 OBJS		=	$(addprefix $(OBJS_PATH)/,$(SRCS:.c=.o))
 DEPS		=	$(OBJS:.o=.d)
 RM			=	rm -rf

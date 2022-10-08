@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:11:14 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/07 14:18:23 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/08 18:16:54 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,8 @@ t_data	*init_data(void)
 	data = malloc(sizeof(t_data));
 	if (!data)
 		err_msg_2();
-	return(data);
+	data->fork = malloc(sizeof(int) * data->nb_philo);
+	if (data->fork)
+		err_msg_2();
+	return (data);
 }

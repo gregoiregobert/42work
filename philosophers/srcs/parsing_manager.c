@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:32:38 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/07 15:07:30 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/08 14:20:56 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	parsing_manager(t_data *data, int ac, char **av)
 
 void	checks_args(int ac, char **av)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (ac < 5 || ac > 6)
