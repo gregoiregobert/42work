@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:11:14 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/10 11:12:11 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/10 17:15:42 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 t_data	*init_data(char **av)
 {
 	t_data	*data;
-	t_philo	*philo;
 
 	data = malloc(sizeof(t_data));
 	if (!data)
@@ -23,25 +22,70 @@ t_data	*init_data(char **av)
 		write(2, ERR_MALLOC, ft_strlen(ERR_MALLOC));
 		return (0);
 	}
-	data->fork = malloc(sizeof(int) * av[1]);
-	if (!data->fork)
-	{
-		free(data);
-		write(2, ERR_MALLOC, ft_strlen(ERR_MALLOC));
+	data->death = 0;
+	if (init_fork(data, av) == -1)
 		return (0);
-	}
 	if (alloc_philo(data, av) == -1)
 		return (0);
+	pthread_mutex_init(&data->dead, 0);
+	pthread_mutex_init(&data->write, 0);
 	return (data);
 }
 
 int	alloc_philo(t_data *data, char **av)
 {
-	data->philo = malloc(sizeof(t_philo) * av[1]);
-	if (!philo)
+	int	i;
+
+	i = -1;
+	data->philo = malloc(sizeof(t_philo*) * ft_atoi(av[1]));
+	if (!data->philo)
 	{
-		while (data->fork)
+		while (++i < ft_atoi(av[1]))
+			free(data->fork++);
 		write(2, ERR_MALLOC, ft_strlen(ERR_MALLOC));
 		return (-1);
 	}
+	while (++i < ft_atoi(av[1]))
+	{
+		data->philo[i] = malloc(sizeof(t_philo));
+		data->philo[i]->data = data;
+		if (!data->philo[i])
+		{
+			while (*data->philo)
+				free(*data->philo++);
+			free(data->philo);
+			free(data);
+			return (-1);
+		}
+	}
+	return (0);
 }
+
+int	init_fork(t_data *data, char **av)
+{
+	int	i;
+	
+	i = -1;
+	data->fork = malloc(sizeof(pthread_mutex_t) * ft_atoi(av[1]));
+	if (!data->fork)
+	{
+		free(data);
+		write(2, ERR_MALLOC, ft_strlen(ERR_MALLOC));
+		return (-1);
+	}
+	i = -1;
+	while (++i)
+	{
+		if (pthread_mutex_init(&data->fork[i], 0) != 0)
+		{
+			while (i-- > -1)
+			{
+				pthread_mutex_destroy(&data->fork[i]);
+				write(2, ERR_MUTEX, ft_strlen(ERR_MUTEX));
+				return (-1);
+			}
+		}		
+	}
+	return (0);
+}
+
