@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:31:28 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/08 16:12:05 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/10 11:11:10 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,14 @@
 
 int	main(int ac, char **av)
 {
+	int		i;
 	t_data	*data;
 
-	data = init_data();
-	gettimeofday(&data->start, 0);
-	parsing_manager(data, ac, av);
+	
+	data = init_data(av);
+	if (!data)
+		return (0);
+	if (parsing_manager(data, ac, av) == -1)
+		return (0);
 	philo_manager(data);
 }

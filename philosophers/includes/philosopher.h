@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:00:02 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/08 18:14:27 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/10 11:40:31 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,16 @@
 # define ERR_NEG "arguments must be positive value\n"
 # define ERR_PTHR "failed to create thread\n"
 # define ERR_THJOIN "failed to join thread\n"
+# define ERR_TIME "gettimeofday failed\n"
 
 pthread_mutex_t	mutex;
+
+typedef struct s_philo
+{
+	int				index;
+	pthread_t		th;
+	t_data 			*data;	
+}	t_philo;
 
 typedef struct s_data
 {
@@ -38,30 +46,24 @@ typedef struct s_data
 	int				eat;
 	int				sleep;
 	int				many_meal;
+	int				index;
 	int				death;
 	int				*fork;
-	pthread_t		*th;
+	t_philo			**philo;
 	struct timeval	sec;
 	struct timeval	start;
 }	t_data;
 
-void	checks_args(int ac, char **av);
-void	check_value(t_data *data, int ac);
-void	err_msg_0(void);
-void	err_msg_1(void);
-void	err_msg_2(void);
-void	err_msg_3(void);
-void	err_msg_4(void);
-void	err_msg_5(void);
-void	err_msg_6(void);
-long	get_time(t_data *data);
 void	init_philo(t_data *data);
 void	parsing(t_data *data, int ac, char **av);
-void	parsing_manager(t_data *data, int ac, char **av);
-void	philo_manager(t_data *data);
 void	*philosopher();
+int		check_value(t_data *data, int ac);
+int		checks_args(int ac, char **av);
 int		ft_atoi(const char *str);
 int		ft_isdigit(int c);
+int		get_time(t_data *data);
+int		parsing_manager(t_data *data, int ac, char **av);
+int		philo_manager(t_data *data);
 int		str_isdigit(char *str);
 size_t	ft_strlen(const char *str);
 t_data	*init_data(void);

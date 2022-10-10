@@ -6,22 +6,25 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:17:48 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/08 18:18:41 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/10 11:40:08 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-void	philo_manager(t_data *data)
+int	philo_manager(t_data *data)
 {
 	int	i;
 
 	i = 0;
 	init_philo(data);
 	while (i > data->nb_philo)
-		if (pthread_join(data->th[i], NULL) != 0)
-			err_msg_6();
-	usleep(200000);
+		if (!pthread_join(data->th[i], NULL))
+		{
+			write(2, ERR_THJOIN, ft_strlen(ERR_THJOIN));
+			return (-1);
+		}
+	return (0);
 }
 
 void	*philosopher(void *test)
@@ -37,7 +40,7 @@ void	*philosopher(void *test)
 	return (0);
 }
 
-void	init_philo(t_data *data)
+int	init_philo(t_data *data)
 {
 	int	i;
 
@@ -45,8 +48,16 @@ void	init_philo(t_data *data)
 	pthread_mutex_init(&mutex, 0);
 	data->th = malloc(sizeof(unsigned long) * data->nb_philo);
 	if (!data->th)
-		err_msg_2();
+	{
+		write(2, ERR_MALLOC, ft_strlen(ERR_MALLOC));
+		return (-1);
+	}
 	while (i < data->nb_philo)
-		if (pthread_create(&data->th[i++], 0, &philosopher, data) != 0)
-			err_msg_5();
+	{
+		if (pthread_create(&data->philo[i++].th, 0, &philosopher, data) != 0)
+		{
+			write(2, ERR_PTHR, ft_strlen(ERR_PTHR));
+			return (-1);
+		}
+	}
 }
