@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:32:38 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/10 13:49:24 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/11 10:53:22 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ void	parsing(t_data *data, int ac, char **av)
 	data->death = 0;
 	if (ac == 6)
 		data->many_meal = ft_atoi(av[5]);
-	else 
-		data->many_meal = 0;
+	else
+		data->many_meal = -1;
 }
 
 int	check_value(t_data *data, int ac)
@@ -71,10 +71,12 @@ int	check_value(t_data *data, int ac)
 		return (-1);
 	}
 	if (ac == 6)
+	{
 		if (data->many_meal < 1)
 		{
 			write(2, ERR_NEG, ft_strlen(ERR_NEG));
 			return (-1);
 		}
+	}
 	return (0);
 }

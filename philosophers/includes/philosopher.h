@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:00:02 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/10 17:11:03 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/11 11:18:19 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,13 @@
 # define ERR_MUTEX "failed to init mutex\n"
 # define ERR_TIME "gettimeofday failed\n"
 
-
 typedef struct s_philo
 {
 	int				index;
 	int				many_meal;
 	long			last_meal;
 	pthread_t		th;
-	struct s_data 	*data;	
+	struct s_data	*data;	
 }	t_philo;
 
 typedef struct s_data
@@ -57,14 +56,12 @@ typedef struct s_data
 	struct timeval	start;
 }	t_data;
 
-void	am_i_dead(t_philo *philo);
 void	parsing(t_data *data, int ac, char **av);
 void	write_dead(t_philo *philo);
 void	write_eat(t_philo *philo);
-void	write_fork(t_philo *philo);
 void	write_sleep(t_philo *philo);
 void	write_think(t_philo *philo);
-void	*philosopher();
+void	*philosopher(void *arg);
 int		alloc_philo(t_data *data, char **av);
 int		any_victime(t_philo *philo);
 int		check_death(t_philo *philo);
@@ -79,6 +76,8 @@ int		philo_manager(t_data *data);
 int		routine(t_philo	*philo);
 int		routine_last_philo(t_philo	*philo);
 int		str_isdigit(char *str);
+int		write_fork(t_philo *philo, int index);
+int		write_fork_2(t_philo *philo, int index, int index_2);
 long	get_time(t_data *data);
 size_t	ft_strlen(const char *str);
 t_data	*init_data(char **av);

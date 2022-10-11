@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:50:38 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/10 10:51:21 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/11 10:56:53 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,6 @@ long	get_time(t_data *data)
 		write(2, ERR_TIME, ft_strlen(ERR_TIME));
 		return (-1);
 	}
-	return ((data->sec.tv_sec * 1000 + data->sec.tv_usec / 1000) 
-			- (data->start.tv_sec * 1000 + data->start.tv_usec / 1000));
+	return ((data->sec.tv_sec * 1000 + data->sec.tv_usec / 1000)
+		- (data->start.tv_sec * 1000 + data->start.tv_usec / 1000));
 }

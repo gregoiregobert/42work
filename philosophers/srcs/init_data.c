@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:11:14 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/10 17:15:42 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/11 10:54:55 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	alloc_philo(t_data *data, char **av)
 	int	i;
 
 	i = -1;
-	data->philo = malloc(sizeof(t_philo*) * ft_atoi(av[1]));
+	data->philo = malloc(sizeof(t_philo *) * ft_atoi(av[1]));
 	if (!data->philo)
 	{
 		while (++i < ft_atoi(av[1]))
@@ -64,7 +64,7 @@ int	alloc_philo(t_data *data, char **av)
 int	init_fork(t_data *data, char **av)
 {
 	int	i;
-	
+
 	i = -1;
 	data->fork = malloc(sizeof(pthread_mutex_t) * ft_atoi(av[1]));
 	if (!data->fork)
@@ -88,4 +88,3 @@ int	init_fork(t_data *data, char **av)
 	}
 	return (0);
 }
-
