@@ -7,7 +7,8 @@ SRCS		=	main.c				\
 				philo_manager.c		\
 				philo_routine.c		\
 				philo_routine2.c	\
-				philo_death.c
+				philo_death.c		\
+				free_all.c
 OBJS		=	$(addprefix $(OBJS_PATH)/,$(SRCS:.c=.o))
 DEPS		=	$(OBJS:.o=.d)
 RM			=	rm -rf

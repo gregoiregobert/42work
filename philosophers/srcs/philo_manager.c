@@ -6,28 +6,27 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:17:48 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/11 11:54:19 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/11 13:00:24 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-int	philo_manager(t_data *data)
+void	philo_manager(t_data *data)
 {
 	int	i;
 
 	i = -1;
 	if (init_philo(data) == -1)
-		return (-1);
+		return ;
 	while (++i < data->nb_philo)
 	{
 		if (pthread_join(data->philo[i]->th, NULL) != 0)
 		{
 			write(2, ERR_THJOIN, ft_strlen(ERR_THJOIN));
-			return (-1);
+			return ;
 		}
 	}
-	return (0);
 }
 
 void	*philosopher(void *arg)

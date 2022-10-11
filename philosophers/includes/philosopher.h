@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:00:02 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/11 11:18:19 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/11 14:47:33 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,10 @@ typedef struct s_data
 	struct timeval	start;
 }	t_data;
 
+void	free_all(t_data *data);
+void	init_val(t_data *data, int i);
 void	parsing(t_data *data, int ac, char **av);
+void	philo_manager(t_data *data);
 void	write_dead(t_philo *philo);
 void	write_eat(t_philo *philo);
 void	write_sleep(t_philo *philo);
@@ -72,7 +75,6 @@ int		ft_isdigit(int c);
 int		init_philo(t_data *data);
 int		init_fork(t_data *data, char **av);
 int		parsing_manager(t_data *data, int ac, char **av);
-int		philo_manager(t_data *data);
 int		routine(t_philo	*philo);
 int		routine_last_philo(t_philo	*philo);
 int		str_isdigit(char *str);

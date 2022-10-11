@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/07 11:31:28 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/11 13:29:27 by ggobert          ###   ########.fr       */
+/*   Created: 2022/10/11 13:22:59 by ggobert           #+#    #+#             */
+/*   Updated: 2022/10/11 14:45:17 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-int	main(int ac, char **av)
+void	free_all(t_data *data)
 {
-	t_data	*data;
+	int	i;
 
-	data = init_data(av);
-	if (!data)
-		return (0);
-	if (parsing_manager(data, ac, av) == -1)
-		return (0);
-	philo_manager(data);
-	free_all(data);
+	i = -1;
+	while (++i < data->nb_philo)
+		free(data->philo[i]);
+	free(data->philo);
+	free(data->fork);
+	free(data);
 }
