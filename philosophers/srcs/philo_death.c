@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:24:19 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/11 11:21:19 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/11 11:29:04 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	check_death(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->data->dead);
 	if (get_time(philo->data) - philo->last_meal
-	> philo->data->die && philo->data->death == 0)
+		> philo->data->die && philo->data->death == 0)
 		philo->data->death = philo->index;
 	if (any_victime(philo) != 0 || philo->many_meal == philo->data->many_meal)
 	{

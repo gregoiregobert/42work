@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:17:48 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/11 10:56:20 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/11 11:54:19 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,13 @@ int	init_philo(t_data *data)
 	i = -1;
 	while (++i < data->nb_philo)
 	{
-		usleep(500);
+		usleep(20);
 		data->philo[i]->index = i;
 		if (pthread_create(&data->philo[i]->th, 0, &philosopher,
 				(void *)data->philo[i]) != 0)
 		{
 			write(2, ERR_PTHR, ft_strlen(ERR_PTHR));
-			return (-1);
+			return (0);
 		}
 	}
 	return (0);
