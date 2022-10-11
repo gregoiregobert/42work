@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:00:02 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/11 14:47:33 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/11 15:40:42 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ void	write_sleep(t_philo *philo);
 void	write_think(t_philo *philo);
 void	*philosopher(void *arg);
 int		alloc_philo(t_data *data, char **av);
-int		any_victime(t_philo *philo);
 int		check_death(t_philo *philo);
 int		check_value(t_data *data, int ac);	
 int		checks_args(int ac, char **av);

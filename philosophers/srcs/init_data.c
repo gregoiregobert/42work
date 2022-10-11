@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:11:14 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/11 14:47:25 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/11 16:35:04 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ t_data	*init_data(char **av)
 		write(2, ERR_MALLOC, ft_strlen(ERR_MALLOC));
 		return (0);
 	}
-	data->death = 0;
 	if (init_fork(data, av) == -1)
 		return (0);
 	if (alloc_philo(data, av) == -1)

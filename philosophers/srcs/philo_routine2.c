@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:29:00 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/11 14:17:01 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/11 16:21:04 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	routine_last_philo(t_philo	*philo)
 	usleep(philo->data->eat * 1000);
 	pthread_mutex_unlock(&philo->data->fork[philo->index]);
 	pthread_mutex_unlock(&philo->data->fork[0]);
-	if (check_death(philo) != 0)
+	if (check_death(philo) != 0 || philo->many_meal == philo->data->many_meal)
 		return (1);
 	write_sleep(philo);
 	usleep(philo->data->sleep * 1000);
@@ -38,7 +38,7 @@ int	routine_last_philo(t_philo	*philo)
 void	write_think(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->data->write);
-	if (!philo->data->death)
+	if (philo->data->death < 0)
 		printf("%ld %d is thinking\n", get_time(philo->data), philo->index);
 	pthread_mutex_unlock(&philo->data->write);
 }

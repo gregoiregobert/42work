@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:17:48 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/11 13:00:24 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/11 16:34:52 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,10 @@ void	*philosopher(void *arg)
 				return (0);
 		}
 		else
+		{
 			if (routine(philo) != 0)
 				return (0);
+		}
 	}
 	return (0);
 }
