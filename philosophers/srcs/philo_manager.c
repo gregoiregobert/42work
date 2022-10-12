@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:17:48 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/11 16:34:52 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/12 11:43:22 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,18 @@ int	init_philo(t_data *data)
 	int	i;
 
 	i = -1;
+	if (gettimeofday(&data->start, 0) == -1)
+		return (-1);
 	while (++i < data->nb_philo)
 	{
 		usleep(20);
 		data->philo[i]->index = i;
+		data->philo[i]->many_meal = 0;
 		if (pthread_create(&data->philo[i]->th, 0, &philosopher,
 				(void *)data->philo[i]) != 0)
 		{
 			write(2, ERR_PTHR, ft_strlen(ERR_PTHR));
-			return (0);
+			return (-1);
 		}
 	}
 	return (0);

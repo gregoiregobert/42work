@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:32:38 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/11 16:35:11 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/12 11:43:09 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int	parsing_manager(t_data *data, int ac, char **av)
 {
-	if (gettimeofday(&data->start, 0) == -1)
-		return (-1);
 	if (checks_args(ac, av) == -1)
 		return (-1);
 	parsing(data, ac, av);
