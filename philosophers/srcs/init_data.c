@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:11:14 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/12 10:42:39 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/13 16:15:14 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,15 @@ int	alloc_philo(t_data *data, char **av)
 	int	i;
 
 	i = -1;
-	data->philo = malloc(sizeof(t_philo *) * ft_atoi(av[1]));
+	data->philo = malloc(sizeof(t_philo *) * (ft_atoi(av[1]) + 1));
 	if (!data->philo)
 	{
-		while (++i < ft_atoi(av[1]))
+		while (++i < ft_atoi(av[1]) + 1)
 			free(data->fork++);
 		write(2, ERR_MALLOC, ft_strlen(ERR_MALLOC));
 		return (-1);
 	}
-	while (++i < ft_atoi(av[1]))
+	while (++i < ft_atoi(av[1]) + 1)
 	{
 		data->philo[i] = malloc(sizeof(t_philo));
 		if (!data->philo[i])

@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:00:02 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/12 14:30:06 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/13 13:24:40 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,14 @@
 # define ERR_ARGS "wrong number of arguments\n"
 # define ERR_ARGTYPE "arguments must be numeric\n"
 # define ERR_MALLOC "malloc failed\n"
-# define ERR_NBPHILO "2 philosophers minimum\n"
+# define ERR_NBPHILO "one philosophers minimum\n"
 # define ERR_NEG "arguments must be positive value\n"
 # define ERR_PTHR "failed to create thread\n"
 # define ERR_THJOIN "failed to join thread\n"
 # define ERR_MUTEX "failed to init mutex\n"
 # define ERR_TIME "gettimeofday failed\n"
+# define ERR_TIME "gettimeofday failed\n"
+# define ERR_THDET "failed to detach thread\n"
 
 typedef struct s_philo
 {
@@ -58,31 +60,32 @@ typedef struct s_data
 
 void	free_all(t_data *data);
 void	init_val(t_data *data, int i);
+void	last_meal(t_philo * philo);
 void	parsing(t_data *data, int ac, char **av);
 void	philo_manager(t_data *data);
 void	write_dead(t_philo *philo);
 void	write_eat(t_philo *philo);
+void	write_fork(t_philo *philo);
 void	write_sleep(t_philo *philo);
 void	write_think(t_philo *philo);
 void	*philosopher(void *arg);
 int		alloc_philo(t_data *data, char **av);
-int		anticipate_death(t_philo *philo, int action);
-int		any_death(t_philo *philo);
-int		check_death(t_philo *philo);
+int		any_death(t_philo *philo, int index, int index2);
 int		check_value(t_data *data, int ac);	
 int		checks_args(int ac, char **av);
+int		death_control(t_philo *philo);
 int		ft_atoi(const char *str);
 int		ft_isdigit(int c);
 int		init_philo(t_data *data);
 int		init_fork(t_data *data, char **av);
+int		one_philo(t_philo *philo);
 int		parsing_manager(t_data *data, int ac, char **av);
 int		routine(t_philo	*philo);
 int		routine_last_philo(t_philo	*philo);
 int		str_isdigit(char *str);
-int		write_fork(t_philo *philo, int index);
-int		write_fork_2(t_philo *philo, int index, int index_2);
 long	get_time(t_data *data);
 size_t	ft_strlen(const char *str);
 t_data	*init_data(char **av);
+void	write_something(t_philo *philo);
 
 #endif

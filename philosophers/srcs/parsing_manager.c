@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:32:38 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/12 11:43:09 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/13 13:24:33 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	parsing(t_data *data, int ac, char **av)
 
 int	check_value(t_data *data, int ac)
 {
-	if (data->nb_philo < 2)
+	if (data->nb_philo < 1)
 	{
 		write(2, ERR_NBPHILO, ft_strlen(ERR_NBPHILO));
 		return (-1);
