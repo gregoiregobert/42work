@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:29:00 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/14 14:29:08 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/14 15:03:51 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int	routine_last_philo(t_philo	*philo)
 	if (any_death(philo, philo->index, 0) != 0)
 		return (1);
 	write_fork(philo);
-	last_meal(philo);
 	write_eat(philo);
+	last_meal(philo);
 	usleep(philo->data->eat * 1000);
 	pthread_mutex_unlock(&philo->data->fork[philo->index]);
 	pthread_mutex_unlock(&philo->data->fork[0]);

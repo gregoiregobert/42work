@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:00:02 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/14 14:29:46 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/14 15:04:27 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,5 @@ int		who_are_you(t_philo *philo);
 long	get_time(t_data *data);
 size_t	ft_strlen(const char *str);
 t_data	*init_data(char **av);
-void	write_something(t_philo *philo, int index);
 
 #endif

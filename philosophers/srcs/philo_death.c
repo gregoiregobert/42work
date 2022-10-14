@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:24:19 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/14 14:29:25 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/14 14:41:06 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,5 @@ void	write_dead(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->data->write);
 	printf("%ld	%d died\n", get_time(philo->data), philo->data->death);
-	pthread_mutex_unlock(&philo->data->write);
-}
-
-void	write_something(t_philo *philo, int index)
-{
-	pthread_mutex_lock(&philo->data->write);
-	printf("___index %d %p\n", index + 1, &philo->data->fork[index]);
 	pthread_mutex_unlock(&philo->data->write);
 }
