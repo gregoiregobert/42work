@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:17:48 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/14 13:53:36 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/14 17:41:12 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,34 +41,46 @@ void	*philosopher(void *arg)
 	philo = (t_philo *)arg;
 	while (1)
 	{
-		if (who_are_you(philo) == -1)
-			return (0);
+		if (philo->index == -1)
+		{
+			if (death_control(philo) == -1)
+				return (0);
+		}
+		else if (philo->index == philo->data->nb_philo - 1)
+		{
+			if (are_you_last_pair(philo) == -1)
+				return (0);
+		}
+		else
+			if (are_you_pair(philo) == -1)
+				return (0);
 	}
 	return (0);
 }
 
-int	who_are_you(t_philo *philo)
+int	are_you_pair(t_philo *philo)
 {
-	if (philo->index == -1)
-	{
-		if (death_control(philo) == -1)
-			return (-1);
-	}
-	else if (philo->index == philo->data->nb_philo - 1)
-	{
-		if (routine_last_philo(philo) != 0)
-			return (-1);
-	}
-	else if (philo->index % 2 == 1)
+	if (philo->index % 2 == 1)
 	{
 		if (routine(philo) != 0)
 			return (-1);
 	}
 	else
+		if (routine_pair(philo) != 0)
+			return (-1);
+	return (0);
+}
+
+int	are_you_last_pair(t_philo *philo)
+{
+	if (philo->index % 2 == 1)
 	{
-		if (routine_impair(philo) != 0)
+		if (routine_last_philo(philo) != 0)
 			return (-1);
 	}
+	else
+		if (routine_last_philo_pair(philo) != 0)
+			return (-1);
 	return (0);
 }
 
@@ -81,7 +93,7 @@ int	init_philo(t_data *data)
 		return (-1);
 	while (++i <= data->nb_philo)
 	{
-		if (i % 2 == 0)
+		if (i % 2 == 1)
 			usleep(50);
 		if (i == data->nb_philo)
 			data->philo[i]->index = -1;

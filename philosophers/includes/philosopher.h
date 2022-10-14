@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:00:02 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/14 15:04:27 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/14 17:57:29 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ void	write_think(t_philo *philo);
 void	*philosopher(void *arg);
 int		alloc_philo(t_data *data, char **av);
 int		any_death(t_philo *philo, int index, int index2);
+int		are_you_pair(t_philo *philo);
+int		are_you_last_pair(t_philo *philo);
 int		check_value(t_data *data, int ac);	
 int		checks_args(int ac, char **av);
 int		control_time(t_philo *philo, int i);
@@ -84,10 +86,10 @@ int		init_fork(t_data *data, char **av);
 int		one_philo(t_philo *philo);
 int		parsing_manager(t_data *data, int ac, char **av);
 int		routine(t_philo	*philo);
-int		routine_impair(t_philo	*philo);
+int		routine_pair(t_philo *philo);
 int		routine_last_philo(t_philo	*philo);
+int		routine_last_philo_pair(t_philo	*philo);
 int		str_isdigit(char *str);
-int		who_are_you(t_philo *philo);
 long	get_time(t_data *data);
 size_t	ft_strlen(const char *str);
 t_data	*init_data(char **av);

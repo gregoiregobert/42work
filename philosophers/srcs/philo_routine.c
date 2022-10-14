@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:54 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/14 15:04:17 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/14 17:20:51 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	routine(t_philo	*philo)
 {
+	usleep(500);
 	pthread_mutex_lock(&philo->data->fork[philo->index]);
 	if (any_death(philo, philo->index, -1) != 0)
 		return (1);
@@ -37,7 +38,7 @@ int	routine(t_philo	*philo)
 	return (0);
 }
 
-int	routine_impair(t_philo	*philo)
+int	routine_pair(t_philo	*philo)
 {
 	pthread_mutex_lock(&philo->data->fork[philo->index + 1]);
 	if (any_death(philo, philo->index + 1, -1) != 0)
