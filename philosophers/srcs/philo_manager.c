@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:17:48 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/13 17:08:40 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/14 13:53:36 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,21 +41,33 @@ void	*philosopher(void *arg)
 	philo = (t_philo *)arg;
 	while (1)
 	{
-		if (philo->index == -1)
-		{
-			if (death_control(philo) == -1)
-				return (0);
-		}
-		else if (philo->index == philo->data->nb_philo - 1)
-		{
-			if (routine_last_philo(philo) != 0)
-				return (0);
-		}
-		else
-		{
-			if (routine(philo) != 0)
-				return (0);
-		}
+		if (who_are_you(philo) == -1)
+			return (0);
+	}
+	return (0);
+}
+
+int	who_are_you(t_philo *philo)
+{
+	if (philo->index == -1)
+	{
+		if (death_control(philo) == -1)
+			return (-1);
+	}
+	else if (philo->index == philo->data->nb_philo - 1)
+	{
+		if (routine_last_philo(philo) != 0)
+			return (-1);
+	}
+	else if (philo->index % 2 == 1)
+	{
+		if (routine(philo) != 0)
+			return (-1);
+	}
+	else
+	{
+		if (routine_impair(philo) != 0)
+			return (-1);
 	}
 	return (0);
 }
@@ -69,11 +81,12 @@ int	init_philo(t_data *data)
 		return (-1);
 	while (++i <= data->nb_philo)
 	{
-		if (i % 2 != 0)
-			usleep(200);
-		data->philo[i]->index = i;
+		if (i % 2 == 0)
+			usleep(50);
 		if (i == data->nb_philo)
 			data->philo[i]->index = -1;
+		else
+			data->philo[i]->index = i;
 		data->philo[i]->many_meal = 0;
 		if (pthread_create(&data->philo[i]->th, 0, &philosopher,
 				(void *)data->philo[i]) != 0)

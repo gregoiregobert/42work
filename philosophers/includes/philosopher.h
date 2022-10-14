@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:00:02 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/13 13:24:40 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/14 14:29:46 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,12 @@ typedef struct s_data
 	int				eat;
 	int				sleep;
 	int				many_meal;
+	int				meal_control;
 	int				death;
 	pthread_mutex_t	write;
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	dead;
+	pthread_mutex_t	meal;
 	t_philo			**philo;
 	struct timeval	sec;
 	struct timeval	start;
@@ -60,7 +62,7 @@ typedef struct s_data
 
 void	free_all(t_data *data);
 void	init_val(t_data *data, int i);
-void	last_meal(t_philo * philo);
+void	last_meal(t_philo *philo);
 void	parsing(t_data *data, int ac, char **av);
 void	philo_manager(t_data *data);
 void	write_dead(t_philo *philo);
@@ -73,6 +75,7 @@ int		alloc_philo(t_data *data, char **av);
 int		any_death(t_philo *philo, int index, int index2);
 int		check_value(t_data *data, int ac);	
 int		checks_args(int ac, char **av);
+int		control_time(t_philo *philo, int i);
 int		death_control(t_philo *philo);
 int		ft_atoi(const char *str);
 int		ft_isdigit(int c);
@@ -81,11 +84,13 @@ int		init_fork(t_data *data, char **av);
 int		one_philo(t_philo *philo);
 int		parsing_manager(t_data *data, int ac, char **av);
 int		routine(t_philo	*philo);
+int		routine_impair(t_philo	*philo);
 int		routine_last_philo(t_philo	*philo);
 int		str_isdigit(char *str);
+int		who_are_you(t_philo *philo);
 long	get_time(t_data *data);
 size_t	ft_strlen(const char *str);
 t_data	*init_data(char **av);
-void	write_something(t_philo *philo);
+void	write_something(t_philo *philo, int index);
 
 #endif

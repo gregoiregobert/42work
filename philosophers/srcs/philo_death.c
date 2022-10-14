@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:24:19 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/13 17:09:36 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/14 14:29:25 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,32 @@ int	death_control(t_philo *philo)
 		usleep(1000);
 		i = -1;
 		while (++i < philo->data->nb_philo)
-		{		
-			pthread_mutex_lock(&philo->data->dead);
-			if (get_time(philo->data) - philo->data->philo[i]->last_meal
-				> philo->data->die && philo->data->death == -1)
-			{
-				philo->data->death = philo->data->philo[i]->index + 1;
-				pthread_mutex_unlock(&philo->data->dead);
-				write_dead(philo);
+			if (control_time(philo, i) == 1)
 				return (1);
-			}
-			pthread_mutex_unlock(&philo->data->dead);
-		}
 		pthread_mutex_lock(&philo->data->dead);
 		if (philo->data->death == -2)
 			return (0);
 		pthread_mutex_unlock(&philo->data->dead);
 	}
+	return (0);
+}
+
+int	control_time(t_philo *philo, int i)
+{
+	pthread_mutex_lock(&philo->data->dead);
+	if (get_time(philo->data) - philo->data->philo[i]->last_meal
+		> philo->data->die && philo->data->death == -1)
+	{
+		philo->data->death = philo->data->philo[i]->index + 1;
+		pthread_mutex_unlock(&philo->data->dead);
+		write_dead(philo);
+		return (1);
+	}
+	pthread_mutex_unlock(&philo->data->dead);
+	pthread_mutex_lock(&philo->data->meal);
+	if (philo->data->meal_control == philo->data->nb_philo)
+		philo->data->death = 0;
+	pthread_mutex_unlock(&philo->data->meal);
 	return (0);
 }
 
@@ -64,9 +73,9 @@ void	write_dead(t_philo *philo)
 	pthread_mutex_unlock(&philo->data->write);
 }
 
-void	write_something(t_philo *philo)
+void	write_something(t_philo *philo, int index)
 {
 	pthread_mutex_lock(&philo->data->write);
-	printf("--------CONTROL\n");
+	printf("___index %d %p\n", index + 1, &philo->data->fork[index]);
 	pthread_mutex_unlock(&philo->data->write);
 }

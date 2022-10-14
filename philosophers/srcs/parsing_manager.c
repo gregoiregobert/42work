@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:32:38 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/13 13:24:33 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/14 14:20:57 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	parsing(t_data *data, int ac, char **av)
 	data->die = ft_atoi(av[2]);
 	data->eat = ft_atoi(av[3]);
 	data->sleep = ft_atoi(av[4]);
+	data->meal_control = 0;
 	data->death = -1;
 	if (ac == 6)
 		data->many_meal = ft_atoi(av[5]);

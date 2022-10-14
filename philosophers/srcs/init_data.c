@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:11:14 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/13 16:15:14 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/14 14:17:32 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_data	*init_data(char **av)
 		return (0);
 	pthread_mutex_init(&data->dead, 0);
 	pthread_mutex_init(&data->write, 0);
+	pthread_mutex_init(&data->meal, 0);
 	return (data);
 }
 
@@ -82,13 +83,10 @@ int	init_fork(t_data *data, char **av)
 	{
 		if (pthread_mutex_init(&data->fork[i], 0) != 0)
 		{
-			while (i-- > -1)
-			{
-				free(&data->fork[i]);
-				write(2, ERR_MUTEX, ft_strlen(ERR_MUTEX));
-				return (-1);
-			}
+			free(data->fork);
 			free(data);
+			write(2, ERR_MUTEX, ft_strlen(ERR_MUTEX));
+			return (-1);
 		}		
 	}
 	return (0);
