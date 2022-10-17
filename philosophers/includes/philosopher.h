@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:00:02 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/17 14:21:08 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/17 14:54:54 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ int		ft_atoi(const char *str, int *ret);
 int		ft_isdigit(int c);
 int		init_death_control(t_data *data);
 int		init_philo(t_data *data);
+int 	init_nbphilo(t_data *data, char **av);
 int		one_philo(t_philo *philo);
 int		parsing(t_data *data, int ac, char **av);
 int		parsing_manager(t_data *data, int ac, char **av);

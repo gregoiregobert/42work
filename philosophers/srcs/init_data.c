@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:11:14 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/17 13:13:33 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/17 14:55:43 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,8 @@ t_data	*init_data(char **av)
 		write(2, ERR_MALLOC, ft_strlen(ERR_MALLOC));
 		return (0);
 	}
-	if (ft_atoi(av[1], &data->nb_philo) == 1)
-	{
-		free(data);
+	if (init_nbphilo(data, av) == -1)
 		return (0);
-	}
 	if (alloc_fork(data) == -1)
 		return (0);
 	if (alloc_philo(data) == -1)
@@ -93,6 +90,22 @@ int	alloc_fork(t_data *data)
 			write(2, ERR_MUTEX, ft_strlen(ERR_MUTEX));
 			return (-1);
 		}		
+	}
+	return (0);
+}
+
+int init_nbphilo(t_data *data, char **av)
+{
+	if (ft_atoi(av[1], &data->nb_philo) == 1)
+	{
+		free(data);
+		return (-1);
+	}
+	if (data->nb_philo < 1)
+	{
+		free(data);
+		write(2, ERR_NBPHILO, ft_strlen(ERR_NBPHILO));
+		return (-1);
 	}
 	return (0);
 }
