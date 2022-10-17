@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:11:14 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/14 14:17:32 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/17 13:13:33 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,14 @@ t_data	*init_data(char **av)
 		write(2, ERR_MALLOC, ft_strlen(ERR_MALLOC));
 		return (0);
 	}
-	if (init_fork(data, av) == -1)
+	if (ft_atoi(av[1], &data->nb_philo) == 1)
+	{
+		free(data);
 		return (0);
-	if (alloc_philo(data, av) == -1)
+	}
+	if (alloc_fork(data) == -1)
+		return (0);
+	if (alloc_philo(data) == -1)
 		return (0);
 	pthread_mutex_init(&data->dead, 0);
 	pthread_mutex_init(&data->write, 0);
@@ -32,20 +37,20 @@ t_data	*init_data(char **av)
 	return (data);
 }
 
-int	alloc_philo(t_data *data, char **av)
+int	alloc_philo(t_data *data)
 {
 	int	i;
 
 	i = -1;
-	data->philo = malloc(sizeof(t_philo *) * (ft_atoi(av[1]) + 1));
+	data->philo = malloc(sizeof(t_philo *) * (data->nb_philo + 1));
 	if (!data->philo)
 	{
-		while (++i < ft_atoi(av[1]) + 1)
+		while (++i < data->nb_philo + 1)
 			free(data->fork++);
 		write(2, ERR_MALLOC, ft_strlen(ERR_MALLOC));
 		return (-1);
 	}
-	while (++i < ft_atoi(av[1]) + 1)
+	while (++i < data->nb_philo + 1)
 	{
 		data->philo[i] = malloc(sizeof(t_philo));
 		if (!data->philo[i])
@@ -67,19 +72,19 @@ void	init_val(t_data *data, int i)
 	data->philo[i]->last_meal = 0;
 }
 
-int	init_fork(t_data *data, char **av)
+int	alloc_fork(t_data *data)
 {
 	int	i;
 
 	i = -1;
-	data->fork = malloc(sizeof(pthread_mutex_t) * ft_atoi(av[1]));
+	data->fork = malloc(sizeof(pthread_mutex_t) * data->nb_philo);
 	if (!data->fork)
 	{
 		free(data);
 		write(2, ERR_MALLOC, ft_strlen(ERR_MALLOC));
 		return (-1);
 	}
-	while (++i < ft_atoi(av[1]))
+	while (++i < data->nb_philo)
 	{
 		if (pthread_mutex_init(&data->fork[i], 0) != 0)
 		{

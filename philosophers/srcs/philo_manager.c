@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:17:48 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/14 17:41:12 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/17 14:32:08 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	philo_manager(t_data *data)
 	i = -1;
 	if (init_philo(data) == -1)
 		return ;
+	if (init_death_control(data) == -1)
+		return ;
 	while (++i < data->nb_philo)
 	{
 		if (pthread_join(data->philo[i]->th, NULL) != 0)
@@ -27,11 +29,27 @@ void	philo_manager(t_data *data)
 			return ;
 		}
 	}
-	if (pthread_detach(data->philo[i]->th) != 0)
+}
+
+int	init_philo(t_data *data)
+{
+	int	i;
+
+	i = -1;
+	if (gettimeofday(&data->start, 0) == -1)
+		return (-1);
+	while (++i < data->nb_philo)
 	{
-		write(2, ERR_THDET, ft_strlen(ERR_THDET));
-		return ;
+		data->philo[i]->index = i;
+		data->philo[i]->many_meal = 0;
+		if (pthread_create(&data->philo[i]->th, 0, &philosopher,
+				(void *)data->philo[i]) != 0)
+		{
+			write(2, ERR_PTHR, ft_strlen(ERR_PTHR));
+			return (-1);
+		}
 	}
+	return (0);
 }
 
 void	*philosopher(void *arg)
@@ -41,12 +59,7 @@ void	*philosopher(void *arg)
 	philo = (t_philo *)arg;
 	while (1)
 	{
-		if (philo->index == -1)
-		{
-			if (death_control(philo) == -1)
-				return (0);
-		}
-		else if (philo->index == philo->data->nb_philo - 1)
+		if (philo->index == philo->data->nb_philo - 1)
 		{
 			if (are_you_last_pair(philo) == -1)
 				return (0);
@@ -81,31 +94,5 @@ int	are_you_last_pair(t_philo *philo)
 	else
 		if (routine_last_philo_pair(philo) != 0)
 			return (-1);
-	return (0);
-}
-
-int	init_philo(t_data *data)
-{
-	int	i;
-
-	i = -1;
-	if (gettimeofday(&data->start, 0) == -1)
-		return (-1);
-	while (++i <= data->nb_philo)
-	{
-		if (i % 2 == 1)
-			usleep(50);
-		if (i == data->nb_philo)
-			data->philo[i]->index = -1;
-		else
-			data->philo[i]->index = i;
-		data->philo[i]->many_meal = 0;
-		if (pthread_create(&data->philo[i]->th, 0, &philosopher,
-				(void *)data->philo[i]) != 0)
-		{
-			write(2, ERR_PTHR, ft_strlen(ERR_PTHR));
-			return (-1);
-		}
-	}
 	return (0);
 }

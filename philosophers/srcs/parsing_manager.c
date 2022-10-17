@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:32:38 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/14 14:20:57 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/17 13:14:38 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,11 @@ int	parsing_manager(t_data *data, int ac, char **av)
 {
 	if (checks_args(ac, av) == -1)
 		return (-1);
-	parsing(data, ac, av);
+	if (parsing(data, ac, av) == -1)
+	{
+		free_all(data);
+		return (-1);
+	}
 	if (check_value(data, ac) == -1)
 		return (-1);
 	return (0);
@@ -43,18 +47,24 @@ int	checks_args(int ac, char **av)
 	return (0);
 }
 
-void	parsing(t_data *data, int ac, char **av)
+int	parsing(t_data *data, int ac, char **av)
 {
-	data->nb_philo = ft_atoi(av[1]);
-	data->die = ft_atoi(av[2]);
-	data->eat = ft_atoi(av[3]);
-	data->sleep = ft_atoi(av[4]);
+	if (ft_atoi(av[2], &data->die) == 1)
+		return (-1);
+	if (ft_atoi(av[3], &data->eat) == 1)
+		return (-1);
+	if (ft_atoi(av[4], &data->sleep) == 1)
+		return (-1);
 	data->meal_control = 0;
 	data->death = -1;
 	if (ac == 6)
-		data->many_meal = ft_atoi(av[5]);
+	{
+		if (ft_atoi(av[5], &data->many_meal) == 1)
+			return (-1);
+	}
 	else
 		data->many_meal = -1;
+	return (0);
 }
 
 int	check_value(t_data *data, int ac)

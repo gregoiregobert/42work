@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:50:38 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/11 10:56:53 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/17 13:04:34 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,21 +41,28 @@ int	str_isdigit(char *str)
 	return (1);
 }
 
-int	ft_atoi(const char *str)
+int	ft_atoi(const char *str, int *ret)
 {
 	int	pos;
-	int	ret;
 
 	pos = 1;
-	ret = 0;
+	*ret = 0;
 	while ((*str >= 9 && *str <= 13) || *str == ' ')
 		str++;
 	if (*str == '-' || *str == '+')
 		if (*str++ == '-')
 			pos *= -1;
 	while (*str >= '0' && *str <= '9')
-		ret = ret * 10 + (*str++ - '0');
-	return (ret * pos);
+	{
+		*ret = *ret * 10 + (*str++ - '0');
+		if (*ret > INT_MAX || *ret < 0)
+		{
+			write(2, ERR_INT, ft_strlen(ERR_INT));
+			return (1);
+		}
+	}
+	*ret *= pos;
+	return (0);
 }
 
 long	get_time(t_data *data)
