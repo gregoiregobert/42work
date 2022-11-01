@@ -20,30 +20,30 @@ vpath %.h $(HEADERS)
 vpath %.c $(SRCS_PATH) 
 vpath %.o $(OBJS_PATH) 
 
-all = $(NAME)
+all 				:	$(NAME)
 
-$(NAME)			:	$(OBJS)
+$(NAME)				:	$(OBJS)
 	@gcc $(CFLAGS) $(OBJS) -I $(HEADERS) -o $(NAME)
 
 $(OBJS_PATH)/%.o	:	%.c
 	@gcc $(CFLAGS) -I $(HEADERS) -c $< -o $@
 
-$(OBJS)			:	| $(OBJS_PATH)
+$(OBJS)				:	| $(OBJS_PATH)
 
 $(OBJS_PATH)		:
 	@mkdir -p $(OBJS_PATH)
 
-clean			:
+clean				:
 	@$(RM) $(OBJS_PATH)
 
-fclean			:
+fclean				:
 	@make clean
 	@$(RM) $(NAME)
 
-re				:
+re					:
 	@make fclean
 	@make all
 
 -include $(DEPS)
 
-.PHONY			:	all clean fclean re
+.PHONY				:	all clean fclean re

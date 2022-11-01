@@ -6,13 +6,13 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:11:14 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/17 14:55:43 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/18 16:02:23 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-t_data	*init_data(char **av)
+t_data	*init_data(char **av, int ac)
 {
 	t_data	*data;
 
@@ -22,7 +22,7 @@ t_data	*init_data(char **av)
 		write(2, ERR_MALLOC, ft_strlen(ERR_MALLOC));
 		return (0);
 	}
-	if (init_nbphilo(data, av) == -1)
+	if (init_nbphilo(data, av, ac) == -1)
 		return (0);
 	if (alloc_fork(data) == -1)
 		return (0);
@@ -94,8 +94,13 @@ int	alloc_fork(t_data *data)
 	return (0);
 }
 
-int init_nbphilo(t_data *data, char **av)
+int	init_nbphilo(t_data *data, char **av, int ac)
 {
+	if (ac < 5 || ac > 6)
+	{
+		write(2, ERR_ARGS, ft_strlen(ERR_ARGS));
+		return (-1);
+	}
 	if (ft_atoi(av[1], &data->nb_philo) == 1)
 	{
 		free(data);

@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:32:38 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/17 14:51:39 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/18 16:04:07 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	parsing_manager(t_data *data, int ac, char **av)
 {
-	if (checks_args(ac, av) == -1)
+	if (checks_args(av) == -1)
 		return (-1);
 	if (parsing(data, ac, av) == -1)
 	{
@@ -26,16 +26,11 @@ int	parsing_manager(t_data *data, int ac, char **av)
 	return (0);
 }
 
-int	checks_args(int ac, char **av)
+int	checks_args(char **av)
 {
 	int	i;
 
 	i = 0;
-	if (ac < 5 || ac > 6)
-	{
-		write(2, ERR_ARGS, ft_strlen(ERR_ARGS));
-		return (-1);
-	}
 	while (av[++i])
 	{
 		if (str_isdigit(av[i]) == 0)

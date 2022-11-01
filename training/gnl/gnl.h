@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   gnl.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/07 11:31:28 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/18 16:02:28 by ggobert          ###   ########.fr       */
+/*   Created: 2022/11/01 13:23:25 by ggobert           #+#    #+#             */
+/*   Updated: 2022/11/01 17:02:36 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosopher.h"
+#ifndef		GNL_H
+# define	GNL_H
+ 
+# include <fcntl.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
 
-int	main(int ac, char **av)
-{
-	t_data	*data;
+char	*ft_strdup(char *str);
+char	*gnl(int fd);
+char	*ft_strjoin_free(char *str1, char *str2, int free_s1, int free_s2);
+int		is_nl(char *str);
+void	before_after_nl(char **tmp, char *rest);
 
-	data = init_data(av, ac);
-	if (!data)
-		return (0);
-	if (parsing_manager(data, ac, av) == -1)
-		return (0);
-	philo_manager(data);
-	free_all(data);
-}
+#endif

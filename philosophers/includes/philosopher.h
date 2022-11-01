@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:00:02 by ggobert           #+#    #+#             */
-/*   Updated: 2022/10/17 14:54:54 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/18 16:03:56 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,13 @@ int		any_death(t_philo *philo, int index, int index2);
 int		are_you_pair(t_philo *philo);
 int		are_you_last_pair(t_philo *philo);
 int		check_value(t_data *data, int ac);	
-int		checks_args(int ac, char **av);
+int		checks_args(char **av);
 int		control_time(t_data *data, int i);
 int		ft_atoi(const char *str, int *ret);
 int		ft_isdigit(int c);
 int		init_death_control(t_data *data);
 int		init_philo(t_data *data);
-int 	init_nbphilo(t_data *data, char **av);
+int		init_nbphilo(t_data *data, char **av, int ac);
 int		one_philo(t_philo *philo);
 int		parsing(t_data *data, int ac, char **av);
 int		parsing_manager(t_data *data, int ac, char **av);
@@ -98,6 +98,6 @@ int		routine_last_philo_pair(t_philo	*philo);
 int		str_isdigit(char *str);
 long	get_time(t_data *data);
 size_t	ft_strlen(const char *str);
-t_data	*init_data(char **av);
+t_data	*init_data(char **av, int ac);
 
 #endif

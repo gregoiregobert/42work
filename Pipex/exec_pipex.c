@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipex.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggobert <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:51:13 by ggobert           #+#    #+#             */
-/*   Updated: 2022/06/14 16:15:56 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/10/21 11:44:21 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,28 @@ int	execute_cmd(t_cmd *cmd, char **ev)
 	int	i;
 
 	i = 0;
+	//________pipe init
 	while (i < cmd->nb_cmd)
 		if (pipe(cmd->fd[i++]) == -1)
 			return (1);
+	//________open redir
 	cmd->err = ft_open(cmd);
+	//________fork
 	i = 0;
 	while (i < cmd->nb_cmd)
 	{
 		cmd->pid[i] = fork();
 		if (cmd->pid[i] < 0)
 			return (3);
+	//________process
 		if (cmd->pid[i] == 0)
 			multi_pid(i, cmd, ev, cmd->err);
 		i++;
 	}
 	i = -1;
+	//________close all fd
 	ft_close_all(cmd);
+	//________WAIT
 	while (++i < cmd->nb_cmd)
 		wait(NULL);
 	if (cmd->err != 0)
@@ -73,10 +79,12 @@ void	ft_close_all(t_cmd *cmd)
 
 int	multi_pid(int i, t_cmd *cmd, char **ev, int err)
 {
+	//cas d'err
 	if ((err == 1 || err == 3) && i == 0)
 		close_exit(cmd);
 	if (err >= 2 && i == cmd->nb_cmd - 1)
 		close_exit(cmd);
+	//dup
 	if (i == 0)
 		dup2(cmd->fd_file[0], STDIN_FILENO);
 	else
@@ -85,7 +93,9 @@ int	multi_pid(int i, t_cmd *cmd, char **ev, int err)
 		dup2(cmd->fd_file[1], STDOUT_FILENO);
 	else
 		dup2(cmd->fd[i + 1][1], STDOUT_FILENO);
+	//close all fd
 	ft_close_all(cmd);
+	//execve
 	if (ft_strncmp(cmd->cmd[i][0], "\0", 1) == 0
 			&& cmd->err != i + 1 && cmd->err != 3)
 		err_cmd();
