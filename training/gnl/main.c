@@ -6,7 +6,7 @@
 /*   By: ggobert <ggobert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 11:14:48 by ggobert           #+#    #+#             */
-/*   Updated: 2022/11/01 17:07:04 by ggobert          ###   ########.fr       */
+/*   Updated: 2022/11/02 15:36:56 by ggobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,17 @@ int	main(int ac, char **av)
 {
 	int fd;
 	char *buff;
+	int i;
 	
-	fd = open(av[--ac], O_RDONLY);
-	buff = gnl(fd);
-	while (buff)
+	(void)ac;
+	i = -1;
+	buff = 0;
+	fd = open(av[1], O_RDONLY);
+	while (++i < 50)
 	{
-		printf("%s", buff);
 		buff = gnl(fd);
+		printf("%s", buff);
+		free(buff);
 	}
-	free(buff);
+	close(fd);
 }

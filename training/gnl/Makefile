@@ -2,7 +2,7 @@ NAME		= gnl_training
 SRCS		=	gnl.c 	\
 				main.c	
 CC			=  gcc
-CFLAGS		= -Wall -Werror -Wextra -D BUFFER_SIZE=42
+CFLAGS		= -Wall -Werror -Wextra -D BUFFER_SIZE=5
 OBJ_PATH	= obj
 RM			=  rm -rf
 OBJ		=	$(addprefix $(OBJ_PATH)/,$(SRCS:.c=.o))
@@ -32,7 +32,7 @@ fclean			:
 
 re				:
 	make fclean
-	make re
+	make all
 
 -include $(DEPS)
 
