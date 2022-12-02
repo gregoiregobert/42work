@@ -24,7 +24,7 @@ class	PhoneBook
 		~PhoneBook(void);
 
 		Contact	tel[8];
-		static int oldest;
+		int i;
 };
 
 #endif

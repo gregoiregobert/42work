@@ -2,7 +2,7 @@ NAME		=	Phonebook
 OBJ_PATH	=	objs
 SRCS		=	main.cpp \
 				PhoneBook.class.cpp	
-CC			=	g++
+CC			=	c++
 CFLAGS		=	-MMD -Wall -Werror -Wextra -std=c++98
 RM			=	rm -rf
 OBJS		=	$(addprefix $(OBJ_PATH)/,$(SRCS:.cpp=.o))
