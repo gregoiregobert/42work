@@ -20,20 +20,21 @@ Account::~Account(void)
 			<< "index:" << _accountIndex
 			<< ";amount:" << _amount 
 			<< ";closed"
+			<< getNbAccounts()
 			<< std::endl;
 }
 
-static int	Account::getNbAccounts( void )
+int	Account::getNbAccounts( void )
 {
-	return (this->_nbAccounts);
+	return (Account::_nbAccounts);
 }
 
-static int	getTotalAmount( void )
+int	Account::getTotalAmount( void )
 {
-
+	return (Account::_totalAmount);
 }
 
-static void	displayAccountsInfos( void )
-{
+// static void	displayAccountsInfos( void )
+// {
 
-}
+// }
