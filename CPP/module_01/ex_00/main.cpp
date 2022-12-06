@@ -3,10 +3,14 @@
 int	main()
 {
 	std::string myname;
-	Zombie	*x;
+	Zombie	*dead;
 
-	std::cin >> myname;
-	x = newZombie(myname);
+	std::cout << "zombie's name on heap:" << std::endl;
+	std::getline(std::cin, myname, '\n');
+	dead = newZombie(myname);
+	std::cout << "zombie's name on stack:" << std::endl;
+	std::getline(std::cin, myname, '\n');
 	randomChump(myname);
-	delete x;
+	dead->announce();
+	delete dead;
 }

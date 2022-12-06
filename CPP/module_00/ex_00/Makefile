@@ -1,6 +1,6 @@
 NAME		=	megaphone
 OBJ_PATH	=	objs
-SRCS		=	main.cpp
+SRCS		=	megaphone.cpp
 CC			=	c++
 CFLAGS		=	-MMD -Wall -Werror -Wextra -std=c++98
 RM			=	rm -rf

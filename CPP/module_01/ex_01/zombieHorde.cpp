@@ -1,5 +1,19 @@
 #include "Zombie.hpp"
 
+Zombie* newZombie( std::string name )
+{
+	Zombie	*Z = new Zombie(name);
+
+	return (Z);
+}
+
+Zombie* zombieHorde( int N, std::string name )
+{
+	Zombie	*Z = new Zombie[N];
+	
+
+}
+
 Zombie::Zombie(std::string name) : _name(name)
 {
 	return;

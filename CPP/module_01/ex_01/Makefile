@@ -46,7 +46,7 @@ $(NAME)			: $(OBJS)
 	@echo "n"
 	@sleep 1e-1
 	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
-	@echo "$(GRAS)CPP_ex_00 $(GREEN)$(GRAS)$(CLIGNO)OK$(SUPPR)"
+	@echo "$(GRAS)CPP_ex_01 $(GREEN)$(GRAS)$(CLIGNO)OK$(SUPPR)"
 
 $(OBJ_PATH)/%.o	: %.cpp
 	@$(CC) $(CFLAGS) -c $< -o $@

@@ -22,34 +22,35 @@ std::string	cut_at_ten(std::string str)
 
 void	ft_display_contact(int i, PhoneBook *phbook)
 {
-	std::cout << "First name	: " << phbook->tel[i].first_name << std::endl;
-	std::cout << "Last name	: "  << phbook->tel[i].last_name << std::endl;
-	std::cout << "Nickname	: "  << phbook->tel[i].nickname << std::endl;
-	std::cout << "Number		: "  << phbook->tel[i].number << std::endl;
-	std::cout << "Darkest secret	: "  << phbook->tel[i].darkest_secret << std::endl;
+	std::cout << "First name	: " << phbook->tel[i].getFirst_name() << std::endl;
+	std::cout << "Last name	: "  << phbook->tel[i].getLast_name() << std::endl;
+	std::cout << "Nickname	: "  << phbook->tel[i].getNickname() << std::endl;
+	std::cout << "Number		: "  << phbook->tel[i].getNumber() << std::endl;
+	std::cout << "Darkest secret	: "  << phbook->tel[i].getDarkest_secret() << std::endl;
 }
 
 void	ft_search(PhoneBook *phbook)
 {
-	int	i;
-	int tmp;
+	int			i;
+	int			index;
+	std::string tmp;
 
 	i = -1;
 	while (++i < 8)
 	{
 		std::cout << i
-		<< "|" << cut_at_ten(phbook->tel[i].first_name)
-		<< "|" << cut_at_ten(phbook->tel[i].last_name)
-		<< "|" << cut_at_ten(phbook->tel[i].nickname)
+		<< "|" << cut_at_ten(phbook->tel[i].getFirst_name())
+		<< "|" << cut_at_ten(phbook->tel[i].getLast_name())
+		<< "|" << cut_at_ten(phbook->tel[i].getNickname())
 		<< std::endl;
 	}
 	std::cout << "Hit index of contact you want to see" << std::endl;
-	std::cin >> tmp;
-	if (tmp > 7 || std::cin.fail() == 1)
+	std::getline(std::cin, tmp, '\n');
+	index = tmp[0] - '0';
+	if (index > 7 || index < 0)
 		std::cout << "Index does't exist" << std::endl;
 	else
-		ft_display_contact(tmp, phbook);
-	std::cin.clear();
+		ft_display_contact(index, phbook);
 }
 
 void	ft_add(PhoneBook *phbook)
@@ -57,20 +58,20 @@ void	ft_add(PhoneBook *phbook)
 	std::string	tmp;
 
 	std::cout << "First name:" << std::endl;
-	std::cin >> tmp;
-	phbook->tel[phbook->i].first_name = tmp;
+	std::getline(std::cin, tmp, '\n');
+	phbook->tel[phbook->i].setFirst_name(tmp);
 	std::cout << "Last name:" << std::endl;
-	std::cin >> tmp;
-	phbook->tel[phbook->i].last_name = tmp;
+	std::getline(std::cin, tmp, '\n');
+	phbook->tel[phbook->i].setLast_name(tmp);
 	std::cout << "Nickname:" << std::endl;
-	std::cin >> tmp;
-	phbook->tel[phbook->i].nickname = tmp;
+	std::getline(std::cin, tmp, '\n');
+	phbook->tel[phbook->i].setNickname(tmp);
 	std::cout << "Number:" << std::endl;
-	std::cin >> tmp;
-	phbook->tel[phbook->i].number = tmp;
+	std::getline(std::cin, tmp, '\n');
+	phbook->tel[phbook->i].setNumber(tmp);
 	std::cout << "Darkest secret:" << std::endl;
-	std::cin >> tmp;
-	phbook->tel[phbook->i].darkest_secret = tmp;
+	std::getline(std::cin, tmp, '\n');
+	phbook->tel[phbook->i].setDarkest_secret(tmp);
 	phbook->i++;
 	if (phbook->i > 7)
 		phbook->i = 0;
@@ -84,8 +85,9 @@ int	main()
 	phbook.i = 0;
 	while (istream != "EXIT")
 	{
-		std::cin.clear();
-		std::cin >> istream;
+		std::getline(std::cin, istream, '\n');
+		if (std::cin.eof())
+			break;
 		if (istream == "ADD")
 			ft_add(&phbook);
 		if (istream == "SEARCH")
