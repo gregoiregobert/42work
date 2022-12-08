@@ -1,8 +1,6 @@
-NAME		=	ex_01
+NAME		=	ex_02
 OBJ_PATH	=	objs
-SRCS		=	main.cpp		\
-				zombieHorde.cpp	\
-				Zombie.cpp
+SRCS		=	main.cpp
 CC			=	c++
 CFLAGS		=	-MMD -Wall -Werror -Wextra -std=c++98
 RM			=	rm -rf
@@ -45,7 +43,7 @@ $(NAME)			: $(OBJS)
 	@echo "n"
 	@sleep 1e-1
 	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
-	@echo "$(GRAS)CPP_ex_01 $(GREEN)$(GRAS)$(CLIGNO)OK$(SUPPR)"
+	@echo "$(GRAS)CPP_ex_02 $(GREEN)$(GRAS)$(CLIGNO)OK$(SUPPR)"
 
 $(OBJ_PATH)/%.o	: %.cpp
 	@$(CC) $(CFLAGS) -c $< -o $@

@@ -1,4 +1,4 @@
-NAME		=	Zombie
+NAME		=	ex_00
 OBJ_PATH	=	objs
 SRCS		=	main.cpp		\
 				newZombie.cpp	\
