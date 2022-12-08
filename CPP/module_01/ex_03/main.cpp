@@ -17,7 +17,7 @@ int main()
 		std::cout << "\n********Human B********\n" << std::endl;
 		Weapon club = Weapon("crude spiked club");
 		HumanB jim("Jim");
-		std::
+		jim.attack();
 		jim.setWeapon(club);
 		jim.attack();
 		club.setType("some other type of club");

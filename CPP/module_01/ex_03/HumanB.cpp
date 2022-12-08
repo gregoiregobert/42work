@@ -3,6 +3,7 @@
 HumanB::HumanB(std::string name) : _name(name)
 {
 	std::cout << "HumanB was born" << std::endl;
+	this->_weapon = 0;
 	return ;
 }
 
@@ -12,13 +13,17 @@ HumanB::~HumanB(void)
 	return ;
 }
 
-void	HumanB::setWeapon(Weapon weapon)
+void	HumanB::setWeapon(Weapon &weapon)
 {
 	this->_weapon = &weapon;
 }
 
 void	HumanB::attack(void)
 {
-	std::cout << this->_name << " attacks with their "
-			<< this->_weapon->getType() << std::endl;
+	if (!this->_weapon)
+		std::cout << "Punch has no effect on Zombies... " << std::endl;
+	else
+		std::cout << this->_name << " attacks with their "
+				<< this->_weapon->getType() << std::endl;
 }
+
