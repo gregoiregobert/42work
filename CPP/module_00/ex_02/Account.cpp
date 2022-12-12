@@ -17,6 +17,9 @@ Account::Account(int init_dep) : _amount(init_dep)
 			<< ";created"
 			<< std::endl;
 	nbacc++;
+
+	Account::_nbAccounts += 1;
+	Account::_totalAmount += init_dep;
 }
 
 Account::~Account(void)
@@ -27,6 +30,8 @@ Account::~Account(void)
 			<< ";closed"
 			<< getNbAccounts()
 			<< std::endl;
+
+	Account::_nbAccounts -= 1;
 }
 
 int	Account::getNbAccounts( void )
@@ -51,5 +56,11 @@ int Account::getNbWithdrawals( void )
 
 void	Account::displayAccountsInfos( void )
 {
-	
+	//accounts:8;total:20049;deposits:0;withdrawals:0
+	std::cout << "accounts:" << Account::_nbAccounts
+		<< ";total:" << Account::_totalAmount
+		<< ";deposits:" << Account::_totalNbDeposits
+		<< ";withdrawals:" << Account::_totalNbWithdrawals
+		<< std::endl;
+
 }
