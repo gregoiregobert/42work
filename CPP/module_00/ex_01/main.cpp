@@ -46,7 +46,7 @@ void	ft_search(PhoneBook *phbook)
 	}
 	std::cout << "Type index of contact you want to see" << std::endl;
 	std::getline(std::cin, tmp, '\n');
-	index = tmp[0] - '0';
+	index = atoi(tmp.c_str());
 	if (index > 7 || index < 0)
 		std::cout << "Index does't exist" << std::endl;
 	else
@@ -61,27 +61,32 @@ void	ft_add(PhoneBook *phbook)
 	std::getline(std::cin, tmp, '\n');
 	while (tmp.length() == 0)
 		std::getline(std::cin, tmp, '\n');
-	phbook->tel[phbook->i].setFirst_name(tmp);
+	phbook->setContactFirst_name(tmp, phbook->getIndex);
+
 	std::cout << "Last name:" << std::endl;
 	std::getline(std::cin, tmp, '\n');
 	while (tmp.length() == 0)
 		std::getline(std::cin, tmp, '\n');
 	phbook->tel[phbook->i].setLast_name(tmp);
+
 	std::cout << "Nickname:" << std::endl;
 	std::getline(std::cin, tmp, '\n');
 	while (tmp.length() == 0)
 		std::getline(std::cin, tmp, '\n');
 	phbook->tel[phbook->i].setNickname(tmp);
+
 	std::cout << "Number:" << std::endl;
 	std::getline(std::cin, tmp, '\n');
 	while (tmp.length() == 0)
 		std::getline(std::cin, tmp, '\n');
 	phbook->tel[phbook->i].setNumber(tmp);
+
 	std::cout << "Darkest secret:" << std::endl;
 	std::getline(std::cin, tmp, '\n');
 	while (tmp.length() == 0)
 		std::getline(std::cin, tmp, '\n');
 	phbook->tel[phbook->i].setDarkest_secret(tmp);
+
 	phbook->i++;
 	if (phbook->i > 7)
 		phbook->i = 0;
@@ -92,7 +97,7 @@ int	main()
 	PhoneBook	phbook;
 	std::string	istream;
 
-	phbook.i = 0;
+	phbook.setIndex(0);
 	while (istream != "EXIT")
 	{
 		std::getline(std::cin, istream, '\n');

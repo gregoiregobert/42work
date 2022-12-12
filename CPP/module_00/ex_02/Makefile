@@ -1,7 +1,6 @@
 NAME		=	Account
 OBJ_PATH	=	objs
-SRCS		=	Account.cpp \
-				tests.cpp
+SRCS		=	testh.cpp
 CC			=	c++
 CFLAGS		=	-MMD -Wall -Werror -Wextra -std=c++98
 RM			=	rm -rf
