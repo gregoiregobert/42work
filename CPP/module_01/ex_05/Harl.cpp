@@ -1,4 +1,6 @@
-#include "Harl.class.hpp"
+#include "Harl.hpp"
+
+typedef	void(*Fonction)(void);
 
 Harl::Harl(void)
 {
@@ -35,14 +37,14 @@ void	Harl::error(void)
 	std::cout << "This is unacceptable ! I want to speak to the manager now." << std::endl;
 }
 
-
-
 void	Harl::complain( std::string level )
 {
-	enum level {debug, info, waring, error}
+	void	(Harl::*fct[4])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+	std::string lev[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 
-	switch(level)
+	for (int i = 0; i < 4; i++)
 	{
-		case 1: fct = this->debug();
+		if (level == lev[i])
+			(this->*fct[i])();
 	}
 }
