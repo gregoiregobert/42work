@@ -8,37 +8,37 @@
 
 Fixed::Fixed()
 {
-	std::cout << "Default constructor called" << std::endl;
+	// std::cout << "Default constructor called" << std::endl;
 	_value = 0;
 }
 
 Fixed::~Fixed()
 {
-	std::cout << "Destructor called" << std::endl;
+	// std::cout << "Destructor called" << std::endl;
 }
 
 Fixed &Fixed::operator=(const Fixed& other)
 {
-	std::cout << "Copy assignment operator called" << std::endl;
+	// std::cout << "Copy assignment operator called" << std::endl;
 	_value = other.getRawBits();
 	return *this;
 }
 
 Fixed::Fixed(const Fixed& other)
 {
-	std::cout << "Copy constructor called" << std::endl;
+	// std::cout << "Copy constructor called" << std::endl;
 	_value = other.getRawBits();
 }
 
 Fixed::Fixed(const int nb)
 {
-	std::cout << "Int constructor called" << std::endl;
+	// std::cout << "Int constructor called" << std::endl;
 	_value = nb << Fixed::fractionnalBits;
 }
 
 Fixed::Fixed(const float nb)
 {
-	std::cout << "Float constructor called" << std::endl;
+	// std::cout << "Float constructor called" << std::endl;
 	_value = roundf(nb * (1 << Fixed::fractionnalBits));
 }
 
