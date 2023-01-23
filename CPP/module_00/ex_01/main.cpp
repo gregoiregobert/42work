@@ -58,7 +58,7 @@ void	ft_search(PhoneBook *phbook)
 	std::cout << "Type index of contact you want to see" << std::endl;
 	std::getline(std::cin, tmp, '\n');
 	index = atoi(tmp.c_str());
-	if (index > 7 || index < 0 || !str_isdigit(tmp.c_str()))
+	if (index > 7 || index < 0 || !str_isdigit(tmp.c_str()) || tmp.length() == 0)
 		std::cout << "Index does't exist" << std::endl;
 	else
 		ft_display_contact(index, phbook);
@@ -71,31 +71,46 @@ void	ft_add(PhoneBook *phbook)
 	std::cout << "First name:" << std::endl;
 	std::getline(std::cin, tmp, '\n');
 	while (tmp.length() == 0)
+	{
+		std::cout << "Can't be empty" << std::endl;
 		std::getline(std::cin, tmp, '\n');
+	}
 	phbook->setContactFirst_name(tmp, phbook->getIndex());
 
 	std::cout << "Last name:" << std::endl;
 	std::getline(std::cin, tmp, '\n');
 	while (tmp.length() == 0)
+	{
+		std::cout << "Can't be empty" << std::endl;
 		std::getline(std::cin, tmp, '\n');
+	}
 	phbook->setContactLast_name(tmp, phbook->getIndex());
 
 	std::cout << "Nickname:" << std::endl;
 	std::getline(std::cin, tmp, '\n');
 	while (tmp.length() == 0)
+	{
+		std::cout << "Can't be empty" << std::endl;
 		std::getline(std::cin, tmp, '\n');
+	}
 	phbook->setContactNickname(tmp, phbook->getIndex());
 
 	std::cout << "Number:" << std::endl;
 	std::getline(std::cin, tmp, '\n');
 	while (tmp.length() == 0)
+	{
+		std::cout << "Can't be empty" << std::endl;
 		std::getline(std::cin, tmp, '\n');
+	}
 	phbook->setContactNumber(tmp, phbook->getIndex());
 
 	std::cout << "Darkest secret:" << std::endl;
 	std::getline(std::cin, tmp, '\n');
 	while (tmp.length() == 0)
+	{
+		std::cout << "Can't be empty" << std::endl;
 		std::getline(std::cin, tmp, '\n');
+	}
 	phbook->setContactDarkest_secret(tmp, phbook->getIndex());
 
 	phbook->setIndex(phbook->getIndex() + 1);
@@ -111,6 +126,7 @@ int	main()
 	phbook.setIndex(0);
 	while (istream != "EXIT")
 	{
+		std::cout << "ADD for add contact\nSEARCH to access the contact menu\nEXIT to quit" << std::endl;
 		std::getline(std::cin, istream, '\n');
 		if (std::cin.eof())
 			break;

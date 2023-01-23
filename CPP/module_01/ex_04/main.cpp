@@ -30,7 +30,8 @@ std::string	find_replace(char *s_find, char *s_replace, std::string line)
 	found = line.find(s_find);
 	while (found != std::string::npos)
 	{
-		line.replace(found, find.length(), replace);
+		line.erase(found, find.length());
+		line.insert(found, replace);
 		tmp_found = found;
 		found = line.find(s_find, tmp_found);
 	}

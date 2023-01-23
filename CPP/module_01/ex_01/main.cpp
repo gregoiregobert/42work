@@ -2,7 +2,7 @@
 
 int	main(void)
 {
-	Zombie	*Z;
+	Zombie		*Z;
 	std::string name;
 
 	std::cout << "Because we don't have time, we will call all your Zombies with the same name : ";
