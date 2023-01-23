@@ -12,5 +12,7 @@ int main( void )
 	std::cout << a << std::endl;
 	std::cout << b << std::endl;
 	std::cout << Fixed::max( a, b ) << std::endl;
+
+	std::cout << "\033[1;31mbold red text\033[0m\n" << std::endl;
 	return 0;
 }
