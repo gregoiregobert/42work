@@ -1,4 +1,4 @@
-NAME		=	m03_ex01
+NAME		=	m02_ex01
 OBJ_PATH	=	objs
 SRCS		=	main.cpp		\
 				Fixed.cpp

@@ -1,7 +1,7 @@
-NAME		=	m02_ex02
+NAME		=	m03_ex00
 OBJ_PATH	=	objs
 SRCS		=	main.cpp		\
-				Fixed.cpp
+				ClapTrap.cpp
 CC			=	c++
 CFLAGS		=	-MMD -Wall -Werror -Wextra -std=c++98
 RM			=	rm -rf
