@@ -1,7 +1,10 @@
-NAME		=	m02_ex00
+NAME		=	m04_ex02
 OBJ_PATH	=	objs
 SRCS		=	main.cpp		\
-				Fixed.cpp
+				AAnimal.cpp		\
+				Cat.cpp			\
+				Dog.cpp			\
+				Brain.cpp
 CC			=	c++
 CFLAGS		=	-MMD -Wall -Werror -Wextra -std=c++98
 RM			=	rm -rf
@@ -41,10 +44,10 @@ $(NAME)			: $(OBJS)
 	@sleep 1e-1
 	@echo -n "o"
 	@sleep 1e-1
-	@echo "n"
+	@echo "n$(SUPPR)"
 	@sleep 1e-1
 	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
-	@echo "$(GRAS)Module_02 ex_00 $(GREEN)$(GRAS)$(CLIGNO)OK$(SUPPR)"
+	@echo "$(GRAS)Module_04 ex_02 $(GREEN)$(GRAS)$(CLIGNO)OK$(SUPPR)"
 
 $(OBJ_PATH)/%.o	: %.cpp
 	@$(CC) $(CFLAGS) -c $< -o $@
