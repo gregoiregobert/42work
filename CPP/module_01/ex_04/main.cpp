@@ -32,7 +32,7 @@ std::string	find_replace(char *s_find, char *s_replace, std::string line)
 	{
 		line.erase(found, find.length());
 		line.insert(found, replace);
-		tmp_found = found;
+		tmp_found = found + replace.length();
 		found = line.find(s_find, tmp_found);
 	}
 	return (line);

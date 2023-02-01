@@ -9,7 +9,7 @@ class Bureaucrat;
 
 class Form
 {
-    private:
+    protected:
 
         Form();
 
