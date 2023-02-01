@@ -1,4 +1,4 @@
-NAME		=	m05_ex01
+NAME		=	m05_ex02
 OBJ_PATH	=	objs
 SRCS		=	main.cpp		\
 				Bureaucrat.cpp	\
@@ -45,7 +45,7 @@ $(NAME)			: $(OBJS)
 	@echo "n$(SUPPR)"
 	@sleep 1e-1
 	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
-	@echo "$(GRAS)Module_05 ex_01 $(GREEN)$(GRAS)$(CLIGNO)OK$(SUPPR)"
+	@echo "$(GRAS)Module_05 ex_02 $(GREEN)$(GRAS)$(CLIGNO)OK$(SUPPR)"
 
 $(OBJ_PATH)/%.o	: %.cpp
 	@$(CC) $(CFLAGS) -c $< -o $@
