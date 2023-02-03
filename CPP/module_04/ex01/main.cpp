@@ -4,6 +4,7 @@
 int main()
 {
 	Animal* jungle[20];
+	Animal	NotAbstract;
 
 	for (int i = 0; i < 10; i++)
 		jungle[i] = new Cat();
@@ -21,7 +22,7 @@ int main()
 	std::cout << jungle[9]->getType() << " said :\"" 
 			<< jungle[9]->getBrain()->getIdea(0) << "\"\n"
 			<< std::endl;
-	std::cout << "\n\33[1;37m/**** ******** ****/\33[0m\n" << std::endl;
+	std::cout << "\n\33[1;37m/**** Destructor ****/\33[0m\n" << std::endl;
 
 
 	for (int i = 0; i < 20; i++)

@@ -13,7 +13,7 @@ class WrongAnimal
 		
 		WrongAnimal();
 		WrongAnimal( const WrongAnimal& other);
-		~WrongAnimal();
+		virtual ~WrongAnimal();
 
 		WrongAnimal &operator=(const WrongAnimal& other);
 		

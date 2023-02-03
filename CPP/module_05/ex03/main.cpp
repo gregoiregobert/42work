@@ -52,7 +52,7 @@ int	main()
 		Intern	Jade;
 		Form *formulaire2;
 		
-		formulaire2 = Jade.makeForm("nimp", "nimp");
+		formulaire2 = Jade.makeForm("nimp", "Pouleeet");
 	}
 	catch(std::exception &e){
 		std::cerr << e.what() << std::endl;

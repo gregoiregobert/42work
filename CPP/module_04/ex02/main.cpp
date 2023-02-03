@@ -5,8 +5,7 @@ int main()
 {
 	AAnimal* jungle[20];
 
-	// AAnimal lol;
-	// AAnimal *try_it = new AAnimal();
+	// AAnimal IsAbstract;
 
 	for (int i = 0; i < 10; i++)
 		jungle[i] = new Cat();

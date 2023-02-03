@@ -6,7 +6,7 @@ class WrongCat : public WrongAnimal
 
 		WrongCat( void );
 		WrongCat( const WrongCat &src );
-		~WrongCat( void );
+		virtual ~WrongCat( void );
 
 		WrongCat &operator=( const WrongCat& other );
 };

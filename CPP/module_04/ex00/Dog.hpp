@@ -6,7 +6,7 @@ class Dog : public Animal
 
 		Dog( void );
 		Dog( const Dog &src );
-		~Dog( void );
+		virtual ~Dog( void );
 
 		Dog &operator=( const Dog& other );
 

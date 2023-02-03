@@ -59,6 +59,6 @@ Form	*Intern::makeForm( std::string formName, std::string formTarget )
 	for (int i = 0; i < 3; i++)
 		if (type[i] == formName)
 			return ( (this->*fct[i])(formTarget) );
-	std::cout << "The intern can't find form!" << std::endl;
+	std::cout << "The intern can't find \033[1;31m" << formName << "\033[0m form!" << std::endl;
 	return (0);
 }
