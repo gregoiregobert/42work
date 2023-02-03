@@ -25,7 +25,7 @@ class Form
 
         Form( std::string name , int gradeToSign , int gradeToExec );
         Form( const Form& other );
-        ~Form();
+        virtual ~Form();
 
         Form& operator=( const Form& other );
 
@@ -34,9 +34,9 @@ class Form
         int         getLowestGrade_toSign() const;
         int         getlowestGrade_toExec() const;
 
-        void			checkGrade_toSign() const;
-		void			checkExec( const Bureaucrat& executor ) const;
-        void			beSigned( const Bureaucrat &guy );
+        void    checkGrade_toSign() const;
+		void	checkExec( const Bureaucrat& executor ) const;
+        void    beSigned( const Bureaucrat &guy );
 		virtual void	execute( const Bureaucrat& executor ) const = 0;
 
         class GradeTooHighException : public std::exception

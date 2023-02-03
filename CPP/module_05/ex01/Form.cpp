@@ -91,13 +91,8 @@ void Form::beSigned( const Bureaucrat &guy )
 		std::cout << "\033[1;33m" << _name << "\033[0m" << " is already signed."
 				<< std::endl;
 	}
-	else if (guy.getGrade() <_lowestGrade_toExec || guy.getGrade() > _lowestGrade_toSign)
-	{
-		std::cout << "\033[1;33m" << _name << "\033[0m" 
-				<< " has to be signed by a bureaucrat whose grade is at least "
-				<< _lowestGrade_toSign 
-				<< std::endl;
-	}
+	else if (guy.getGrade() > _lowestGrade_toSign)
+		throw GradeTooLowToSign();
 	else
 	{
 		_signed = true;

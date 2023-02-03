@@ -1,11 +1,12 @@
-NAME		=	m05_ex02
+NAME		=	m05_ex03
 OBJ_PATH	=	objs
 SRCS		=	main.cpp					\
 				Bureaucrat.cpp				\
 				Form.cpp					\
 				ShrubberyCreationForm.cpp	\
 				PresidentialPardonForm.cpp	\
-				RobotomyRequestForm.cpp
+				RobotomyRequestForm.cpp		\
+				Intern.cpp
 CC			=	c++
 CFLAGS	=	-MMD -Wall -Werror -Wextra -std=c++98
 RM			=	rm -rf
@@ -48,7 +49,7 @@ $(NAME)			: $(OBJS)
 	@echo "n$(SUPPR)"
 	@sleep 1e-1
 	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
-	@echo "$(GRAS)Module_05 ex_02 $(GREEN)$(GRAS)$(CLIGNO)OK$(SUPPR)"
+	@echo "$(GRAS)Module_05 ex_03 $(GREEN)$(GRAS)$(CLIGNO)OK$(SUPPR)"
 
 $(OBJ_PATH)/%.o	: %.cpp
 	@$(CC) $(CFLAGS) -c $< -o $@

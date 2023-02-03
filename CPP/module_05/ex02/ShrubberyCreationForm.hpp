@@ -1,3 +1,5 @@
+#ifndef SHRUBBERYCREATIONFORM_H
+# define SHRUBBERYCREATIONFORM_H
 #include "Form.hpp"
 
 class ShrubberyCreationForm : public Form
@@ -17,6 +19,8 @@ class ShrubberyCreationForm : public Form
 		ShrubberyCreationForm &operator=( const ShrubberyCreationForm& other );
 
 
-		std::string	getTraget();
-		void	beExec( const Bureaucrat &guy );
+		std::string	getTarget() const;
+		virtual void	execute( const Bureaucrat &executor ) const;
 };
+
+#endif

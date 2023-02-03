@@ -1,7 +1,5 @@
 #include "Harl.hpp"
 
-typedef	void(*Fonction)(void);
-
 Harl::Harl(void)
 {
 	std::cout << "constructor Harl was called." << std::endl;
@@ -36,6 +34,8 @@ void	Harl::error(void)
 {
 	std::cout << "This is unacceptable ! I want to speak to the manager now." << std::endl;
 }
+
+typedef	void(*Fonction)(void);
 
 void	Harl::complain( std::string level )
 {

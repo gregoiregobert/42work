@@ -56,13 +56,13 @@ class Form
 			}
 		};
 
-        class GradeDifference : public std::exception
+        class GradeTooLowToSign : public std::exception
 		{
 			public:
 
 			virtual const char* what() const throw()
 			{
-				return ("\033[1;31mGrades difference is negative\033[0m");
+				return ("\033[1;31mGrade too low to sign\033[0m");
 			}
 		};
 };

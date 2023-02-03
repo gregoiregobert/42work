@@ -7,7 +7,7 @@ int	main()
 	try{
 		Bureaucrat Phil("Phil", 120);
 		Bureaucrat Dude("Dude", 10);
-		Form	A555("A555", 150, 14);
+		Form	A555("A555", 9, 14);
 		Form	B12("B12", 1, 1);
 		// Form	B45("B45", 0, 151);
 		// Form	B46("B45", 0, 1);
