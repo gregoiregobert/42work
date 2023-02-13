@@ -84,6 +84,8 @@ bool	Analyst::str_syntaxe( std::string str ) const
 		if (!isdigit(x))
 			return (0);
 	}
+	if (++i < (int)str.length())
+		return (0);
 	return (1);
 }
 
@@ -174,21 +176,9 @@ void	Analyst::is_double() const
 	else
 		std::cout << "char :		Non printable character" << std::endl;
 
-	if (int_overflow(_input))
-		std::cout << "int :		overflow" << std::endl;
-	else
-		std::cout << "int :		" << static_cast<int>(d) << std::endl;
-	
-	if (is_integer(_input))
-	{
-		std::cout << "double :	" << d << ".0" << std::endl;
-		std::cout << "float :		" << static_cast<float>(d) << ".0f" << std::endl;
-	}
-	else
-	{
-		std::cout << "double :	" << d << std::endl;
-		std::cout << "float :		" << static_cast<float>(d) << "f" << std::endl;
-	}
+	print_int(d);
+	print_double(d);
+	print_float(d);
 	throw End();
 }
 
@@ -204,20 +194,66 @@ void	Analyst::is_float() const
 	else
 		std::cout << "char :		Non printable character" << std::endl;
 
+	print_int(f);
+	print_double(f);
+	print_float(f);
+	throw End();
+}
+
+/***** Print ******/
+
+void	Analyst::print_int( double d ) const
+{
+	if (int_overflow(_input))
+		std::cout << "int :		overflow" << std::endl;
+	else
+		std::cout << "int :		" << static_cast<int>(d) << std::endl;
+}
+
+void	Analyst::print_int( float f ) const
+{
 	if (int_overflow(_input))
 		std::cout << "int :		overflow" << std::endl;
 	else
 		std::cout << "int :		" << static_cast<int>(f) << std::endl;
-	
-	if (is_integer(_input))
-	{
-		std::cout << "double :	" << static_cast<double>(f) << ".0" << std::endl;
-		std::cout << "float :		" << f << ".0f" << std::endl;
-	}
+}
+
+void	Analyst::print_float( double d ) const
+{
+	if (float_overflow( _input ))
+		std::cout << "float :		overflow" << std::endl;
+	else if (is_integer(_input))
+		std::cout << "float :		" << static_cast<float>(d) << ".0f" << std::endl;
 	else
-	{
-		std::cout << "double :	" << static_cast<double>(f) << std::endl;
+		std::cout << "float :		" << static_cast<float>(d) << "f" << std::endl;
+}
+
+void	Analyst::print_float( float f ) const
+{
+	if (float_overflow( _input ))
+		std::cout << "float :		overflow" << std::endl;
+	else if (is_integer(_input))
+		std::cout << "float :		" << f << ".0f" << std::endl;
+	else
 		std::cout << "float :		" << f << "f" << std::endl;
-	}
-	throw End();
+}
+
+void	Analyst::print_double( double d ) const
+{
+	if (double_overflow(_input))
+		std::cout << "double :	overflow" << std::endl;
+	else if (is_integer(_input))
+		std::cout << "double :	" << d << ".0" << std::endl;
+	else
+		std::cout << "double :	" << d << std::endl;
+}
+
+void	Analyst::print_double( float f ) const
+{
+	if (double_overflow(_input))
+		std::cout << "double :		overflow" << std::endl;
+	else if (is_integer(_input))
+		std::cout << "double :	" << static_cast<double>(f) << ".0" << std::endl;
+	else
+		std::cout << "double :	" << static_cast<double>(f) << std::endl;
 }

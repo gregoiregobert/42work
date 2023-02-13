@@ -31,6 +31,13 @@ class Analyst
 		bool	special_character() const;
 		void	print_special_double( std::string spe ) const;
 		void	print_special_float( std::string spe ) const;
+		void	print_int( char c ) const;
+		void	print_int( double d ) const;
+		void	print_int( float f ) const;
+		void	print_float( double d ) const;
+		void	print_float( float f) const;
+		void	print_double( double d ) const;
+		void	print_double( float f ) const;
 
 	/******************************/
 	/*         Exceptions         */

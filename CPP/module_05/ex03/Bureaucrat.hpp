@@ -14,7 +14,7 @@ class Bureaucrat
 
 		Bureaucrat();
 
-		std::string	_name;
+		std::string	const _name;
 		int			_grade;
 		static const int	highestGrade = 1;
 		static const int	lowestGrade = 150;

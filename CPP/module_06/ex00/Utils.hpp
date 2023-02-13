@@ -13,5 +13,6 @@ bool	is_dot( std::string str );
 bool	is_f( std::string str );
 bool 	int_overflow( std::string input );
 bool 	float_overflow( std::string input );
+bool	double_overflow( std::string input );
 
 #endif

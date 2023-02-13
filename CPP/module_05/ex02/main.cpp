@@ -19,7 +19,6 @@ int	main()
 		ShrubberyCreationForm Tree("backyard");
 		PresidentialPardonForm Pardon("Arthur");
 		RobotomyRequestForm	Robot("Bender");
-		// Form	B45("B45", 0, 151);
 
 		std::cout << "\n//****************************************************//\n"
 			<< "//                                                    //\n"
@@ -81,12 +80,9 @@ int	main()
 			<< std::endl;
 		RobotomyRequestForm	Robot("Bender");
 		Bureaucrat Dude("Dude", 150);
-		// Bureaucrat Michel("Michel", 151);
-		// Bureaucrat Louis("Louis", -1);
-		// Form	A45("A45", 154, 22);
 
-		// Robot.execute(Dude);
 		Dude.signForm(Robot);
+		// Robot.execute(Dude);
 	}
 	catch(std::exception &e){
 		std::cerr << e.what() << std::endl;

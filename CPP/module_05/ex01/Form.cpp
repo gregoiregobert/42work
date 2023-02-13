@@ -78,9 +78,9 @@ int			Form::getlowestGrade_toExec() const
 
 void	Form::checkGrade_toSign() const
 {
-	if ( _lowestGrade_toSign > _lowestGrade || _lowestGrade_toSign < _highestGrade )
+	if ( _lowestGrade_toSign > _lowestGrade || _lowestGrade_toExec > _lowestGrade )
 		throw Form::GradeTooLowException();
-	else if ( _lowestGrade_toExec < _highestGrade || _lowestGrade_toExec > _lowestGrade )
+	else if ( _lowestGrade_toExec < _highestGrade || _lowestGrade_toSign < _highestGrade )
 		throw Form::GradeTooHighException();
 }
 

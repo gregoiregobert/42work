@@ -18,17 +18,15 @@ Bureaucrat::Bureaucrat( std::string name , int grade ) : _name(name) , _grade (g
 	std::cout << "\033[1;34mBureaucrat\033[0m constructor called" << std::endl;
 }
 
-Bureaucrat::Bureaucrat( const Bureaucrat& other )
+Bureaucrat::Bureaucrat( const Bureaucrat& other ) : _name(other._name)
 {
 	std::cout << "\033[1;34mBureaucrat\033[0m copy constructor called" << std::endl;
-	_name = other._name;
 	_grade = other._grade;
 }
 
 Bureaucrat &Bureaucrat::operator=( const Bureaucrat& other )
 {
 	std::cout << "\033[1;34mBureaucrat\033[0m copy assignment called" << std::endl;
-	_name = other._name;
 	_grade = other._grade;
 	return ( *this );
 }

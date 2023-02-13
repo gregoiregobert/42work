@@ -47,7 +47,7 @@ bool	is_f( std::string str )
 	return (0);
 }
 
-bool int_overflow( std::string input )
+bool	int_overflow( std::string input )
 {
 	double d;
 	std::istringstream ss(input);
@@ -58,13 +58,24 @@ bool int_overflow( std::string input )
 	return (0);
 }
 
-bool float_overflow( std::string input )
+bool	float_overflow( std::string input )
 {
 	double d;
 	std::istringstream ss(input);
 	ss >> d;
 
 	if (d > std::numeric_limits<float>::max() || d < std::numeric_limits<float>::min())
+		return (1);
+	return (0);
+}
+
+bool	double_overflow( std::string input )
+{
+	long double ld;
+	std::istringstream ss(input);
+	ss >> ld;
+
+	if (ld > std::numeric_limits<double>::max() || ld < std::numeric_limits<double>::min())
 		return (1);
 	return (0);
 }
