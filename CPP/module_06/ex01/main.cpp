@@ -18,6 +18,8 @@ int	main( void )
 
 	ptr->data = "Hi, how's going";
 	raw = serialize(ptr);
+	std::cout << &ptr << std::endl;
+	std::cout << raw << std::endl;
 	new_ptr = deserialize(raw);
 	std::cout << "new_ptr->data = " << new_ptr->data << std::endl;
 }
