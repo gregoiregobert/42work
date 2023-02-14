@@ -1,10 +1,6 @@
-NAME		=	m06_ex02
+NAME		=	m07_ex00
 OBJ_PATH	=	objs
-SRCS		=	main.cpp	\
-				Base.cpp	\
-				A.cpp		\
-				B.cpp		\
-				C.cpp
+SRCS		=	main.cpp
 CC			=	c++
 CFLAGS	=	-MMD -Wall -Werror -Wextra -std=c++98
 RM			=	rm -rf
@@ -47,7 +43,7 @@ $(NAME)			: $(OBJS)
 	@echo "n$(SUPPR)"
 	@sleep 1e-1
 	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
-	@echo "$(GRAS)Module_06 ex_02 $(GREEN)$(GRAS)$(CLIGNO)OK$(SUPPR)"
+	@echo "$(GRAS)Module_07 ex_00 $(GREEN)$(GRAS)$(CLIGNO)OK$(SUPPR)"
 
 $(OBJ_PATH)/%.o	: %.cpp
 	@$(CC) $(CFLAGS) -c $< -o $@
