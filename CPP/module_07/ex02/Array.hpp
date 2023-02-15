@@ -13,15 +13,70 @@ class Array
 
 	public:
 
-		Array();
-		Array( unsigned int n );
-		Array( const Array& other );
-		~Array();
+		//****************************************************//
+		//               Constructor/Destructor               //
+		//                      Coplien                       //
+		//****************************************************//
 
-		Array &operator=( const Array& other );
-		T &operator[]( size_t index );
+		Array<T>()  : _n( 0 ), _array( 0 )
+		{
+			std::cout << "Empty  array constructor called" << std::endl;
+		}
 
-		unsigned int	size();
+		Array<T>( unsigned int n ) : _n( n )
+		{
+			std::cout << "Array constructor called" << std::endl;
+			_array = new T[_n];
+		}
+
+		~Array<T>()
+		{
+			std::cout << "Array destrucotr called" << std::endl;
+			delete []_array;
+		}
+
+		Array<T>	&operator=( const Array& other )
+		{
+			std::cout << "Copy assginment called" << std::endl;
+			if ( other._n > 0 )
+			{
+				_n = other._n;
+				_array = new T[_n];
+				for ( int i = 0; i < (int)_n; i++ )
+					_array[i] = other._array[i];
+			}
+			else
+				_array = 0;
+			return (*this);
+		}
+
+		Array<T>( const Array& other )
+		{
+			std::cout << "Copy constructor called" << std::endl;
+			*this = other;
+		}
+
+		//****************************************************//
+		//                    Function(s)                     //
+		//****************************************************//
+
+		unsigned int	size()
+		{
+			return ( _n );
+		}
+
+		//****************************************************//
+		//                      Operator                      //
+		//****************************************************//
+
+		T	&operator[]( size_t index )
+		{
+			if ( index > _n || !index )
+				throw WrongIndex();
+			else
+				return ( _array[index] );
+		}
+
 
 	/******************************/
 	/*        Exception(s)        */

@@ -47,6 +47,9 @@ $(NAME)			: $(OBJS)
 
 $(OBJ_PATH)/%.o	: %.cpp
 	@$(CXX) $(CXXFLAGS) -c $< -o $@
+	
+$(OBJ_PATH)/%.o	: %.tpp
+	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(OBJS)			: | $(OBJ_PATH)
 
