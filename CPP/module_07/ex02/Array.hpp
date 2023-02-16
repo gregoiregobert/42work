@@ -31,8 +31,9 @@ class Array
 
 		~Array<T>()
 		{
-			std::cout << "Array destrucotr called" << std::endl;
-			delete []_array;
+			std::cout << "Array destructor called" << std::endl;
+			if (_array)
+				delete [] _array;
 		}
 
 		Array<T>	&operator=( const Array& other )
@@ -46,7 +47,10 @@ class Array
 					_array[i] = other._array[i];
 			}
 			else
+			{
+				_n = 0;
 				_array = 0;
+			}
 			return (*this);
 		}
 
