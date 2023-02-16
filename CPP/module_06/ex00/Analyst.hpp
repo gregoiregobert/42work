@@ -49,7 +49,7 @@ class Analyst
 
 		virtual const char* what() const throw()
 		{
-			return ("\033[1;31mError : no value has been set\033[0m");
+			return ("\033[1;31mError : wrong number of value has been set\033[0m");
 		}
 	};
 

@@ -4,7 +4,7 @@
 int main(int ac, char **av)
 {
 	try{
-		if (ac < 2)
+		if (ac != 2)
 			throw Analyst::EnoughArg();
 		
 		Analyst one(av[1]);
