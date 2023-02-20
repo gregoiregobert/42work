@@ -2,6 +2,7 @@
 # define EASYFIND_HPP
 
 #include <stdexcept>
+#include <iostream>
 
 class NotFound : public std::exception{
 	public:

@@ -18,8 +18,9 @@ int main()
 
 	std::vector<int>::iterator it = vec.begin();
 	for (int i = 0; i < (int)vec.size(); i++)
-		std::cout << *it << ' ';
+		std::cout << *it++ << ' ';
 	std::cout << std::endl;
+	
 	try{
 		easyfind(vec, 1);
 	}
