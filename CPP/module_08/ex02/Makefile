@@ -1,7 +1,6 @@
 NAME		=	m08_ex02
 OBJ_PATH	=	objs
-SRCS		=	main.cpp	\
-				Span.cpp	
+SRCS		=	main.cpp
 CXX			=	c++
 CXXFLAGS	=	-MMD -Wall -Werror -Wextra -std=c++98
 RM			=	rm -rf

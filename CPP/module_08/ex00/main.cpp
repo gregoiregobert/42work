@@ -8,8 +8,10 @@
 int main()
 {
 	std::vector<int> vec;
-	int value; 
+	int value;
+	int search = 1;
 
+	std::cout << "\033[1mWe look after \033[1;33m" << search << "\033[0m" << std::endl;
 	srand(time(NULL));
 	for (int i = 0; i < 5; i++){
 		value = rand() % 10;
@@ -22,7 +24,7 @@ int main()
 	std::cout << std::endl;
 	
 	try{
-		easyfind(vec, 1);
+		easyfind(vec, search);
 	}
 	catch(std::exception &e){
 		std::cerr << e.what() << std::endl;

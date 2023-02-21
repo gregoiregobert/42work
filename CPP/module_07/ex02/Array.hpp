@@ -75,12 +75,11 @@ class Array
 
 		T	&operator[]( size_t index )
 		{
-			if ( index > _n )
+			if ( index >= _n )
 				throw WrongIndex();
 			else
 				return ( _array[index] );
 		}
-
 
 	/******************************/
 	/*        Exception(s)        */
