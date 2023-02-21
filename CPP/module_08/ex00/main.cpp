@@ -9,7 +9,7 @@ int main()
 {
 	std::vector<int> vec;
 	int value;
-	int search = 1;
+	int search = 5;
 
 	std::cout << "\033[1mWe look after \033[1;33m" << search << "\033[0m" << std::endl;
 	srand(time(NULL));
