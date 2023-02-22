@@ -14,10 +14,7 @@ class NotFound : public std::exception{
 template<class T>
 void	easyfind(T cont, int search)
 {
-	typename T::iterator it;
-	for (it = cont.begin(); it < cont.end(); it++)
-		if (*it == search)
-			return ;
+	
 	throw NotFound();
 }
 
