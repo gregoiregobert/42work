@@ -1,0 +1,6 @@
+[mysqld]
+user = ggobert
+pid-file = /run/mysqld/mysqld.pid
+datadir = /var/lib/mysql
+socket = /var/run/mysqld/mysqld.sock
+log_error = /var/log/mysql/mariadb_error.log
