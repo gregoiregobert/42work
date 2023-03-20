@@ -1,6 +1,6 @@
-FROM	alpine:3.17
+FROM	alpine:3.13
 
-COPY	nginx.conf /etc/nginx/nginx.conf
+COPY	conf/nginx.conf /etc/nginx/nginx.conf
 
 RUN apk update && \
     apk add nginx && \

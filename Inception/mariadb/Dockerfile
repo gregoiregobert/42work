@@ -1,7 +1,10 @@
-FROM alpine:3.17
+FROM alpine:3.13
 
-RUN apk add --no-cache mariadb mariadb-client
+RUN apk update && \
+	apk upgrade && \
+	apk add --no-cache mariadb-client 
 
-COPY mariadb.cnf /etc/mysql/mariadb.cnf
+COPY /conf/mariadb.conf /etc/mysql/maria.conf.d/
+COPY /tool/configure.sh /tmp/configure.sh
 
-CMD ["mysqld"]
+ENTRYPOINT [ "sh", "/tmp/configure.sh" ]

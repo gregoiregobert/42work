@@ -1,22 +1,25 @@
-FROM alpine:3.17
+FROM alpine:3.13
 
 RUN apk update && apk upgrade && apk add --no-cache \
+    wget \
+    tar \
+    php7 \
     php7-fpm \
     php7-mysqli \
     php7-json \
     php7-openssl \
     php7-curl \
     php7-zlib \
-    php7-gd \
     php7-xml \
-    php7-dom \
     php7-phar \
-    php7-iconv \
-    php7-mbstring \
+    php7-intl \
+    php7-dom \
+    php7-xmlreader \
+    php7-ctype \
     php7-session \
-    wordpress
+    php7-mbstring
 
-COPY php-fpm.conf /etc/php7/php-fpm.conf
+COPY conf/php-fpm.conf /etc/php7/php-fpm.conf
 
 CMD ["php-fpm7", "-F"]
 
