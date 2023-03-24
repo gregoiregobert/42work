@@ -2,8 +2,6 @@ FROM	alpine:3.13
 
 COPY	conf/nginx.conf /etc/nginx/nginx.conf
 
-COPY    conf/sysctl.conf /etc/sysctl.conf
-
 RUN apk update && \
     apk add nginx && \
     apk add openssl && \

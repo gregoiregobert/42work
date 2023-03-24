@@ -19,6 +19,8 @@ RUN apk update && apk upgrade && apk add --no-cache \
     php7-session \
     php7-mbstring
 
+RUN	adduser -S nginx &&	addgroup -S nginx
+
 COPY conf/php-fpm.conf /etc/php7/php-fpm.conf
 
 CMD ["php-fpm7", "-F"]
