@@ -20,9 +20,13 @@ RUN apk update && apk upgrade && apk add --no-cache \
     php7-mbstring
 
 RUN	adduser -S nginx &&	addgroup -S nginx
-
 COPY conf/php-fpm.conf /etc/php7/php-fpm.conf
 
-CMD ["php-fpm7", "-F"]
+RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+RUN chmod +x wp-cli.phar
+RUN cp wp-cli.phar /usr/bin/wp
 
-# "-F" : foreground, utiliser pour le debogage caril affiche les erreurs sur le term.
+WORKDIR /var/www/html/wordpress
+
+COPY tools/configure.sh /tmp/configure.sh
+ENTRYPOINT [ "sh", "/tmp/configure.sh" ]
