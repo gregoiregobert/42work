@@ -22,7 +22,7 @@ RUN apk update && apk upgrade && apk add --no-cache \
 RUN	adduser -S nginx &&	addgroup -S nginx
 COPY conf/php-fpm.conf /etc/php7/php-fpm.conf
 
-COPY conf/index.php /var/www/html/index.php
+COPY conf/index.php /tmp/index.php
 
 #wp-cli : gerer wordpress depuis le terminal
 RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
