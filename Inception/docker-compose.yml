@@ -8,7 +8,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - "~/Documents/42work/Inception/website:/var/www/html"
+      - "./website:/var/www/html"
     depends_on:
       - wordpress
     networks:
@@ -21,7 +21,7 @@ services:
     ports:
       - "9000:80"
     volumes:
-      - "~/Documents/42work/Inception/website:/var/www/html"
+      - ".website:/var/www/html"
     depends_on:
       - mariadb
     networks:
