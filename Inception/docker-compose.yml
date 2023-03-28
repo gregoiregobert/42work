@@ -19,7 +19,7 @@ services:
     build: wordpress/
     container_name: wordpress
     ports:
-      - "8000:80"
+      - "9000:80"
     volumes:
       - "~/Documents/42work/Inception/website:/var/www/html"
     depends_on:

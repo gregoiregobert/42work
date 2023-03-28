@@ -5,10 +5,10 @@ while ! mariadb -h$MYSQL_HOST -u$WP_DATABASE_USR -p$WP_DATABASE_PWD $WP_DATABASE
     sleep 3
 done
 
-if [ ! -f "/var/www/html/index.html" ]; then
+if [ ! -f "/var/www/html/index.php" ]; then
 
     # static website
-    mv /tmp/index.html /var/www/html/index.html
+    mv /tmp/index.php /var/www/html/index.php
 
     # adminer
     wget https://github.com/vrana/adminer/releases/download/v4.8.1/adminer-4.8.1-mysql-en.php -O /var/www/html/adminer.php &> /dev/null
@@ -19,9 +19,6 @@ if [ ! -f "/var/www/html/index.html" ]; then
     wp core install --url=$DOMAIN_NAME/wordpress --title=$WP_TITLE --admin_user=$WP_ADMIN_USR --admin_password=$WP_ADMIN_PWD --admin_email=$WP_ADMIN_EMAIL --skip-email --allow-root
     wp user create $WP_USR $WP_EMAIL --role=author --user_pass=$WP_PWD --allow-root
     wp theme install inspiro --activate --allow-root
-
-    wp plugin install redis-cache --activate --allow-root
-    wp plugin update --all --allow-root
 
 fi
 
