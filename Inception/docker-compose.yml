@@ -14,6 +14,8 @@ services:
     networks:
       - frontend
     restart: always
+    env_file:
+      -.env
 
   wordpress:
     build: wordpress/
@@ -28,6 +30,8 @@ services:
     - frontend
     - backend
     restart: always
+    env_file:
+      -.env
 
   mariadb:
     build: mariadb/
@@ -39,6 +43,8 @@ services:
     networks:
       - backend
     restart : always
+    env_file:
+      -.env
   
 networks:
   frontend:
