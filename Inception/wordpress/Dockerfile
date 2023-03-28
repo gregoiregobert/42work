@@ -32,6 +32,6 @@ RUN cp wp-cli.phar /usr/bin/wp
 WORKDIR /var/www/html/wordpress
 
 
-COPY tools/configure.sh /tmp/configure.sh
-ENTRYPOINT [ "sh", "/tmp/configure.sh" ]
-#CMD ["php-fpm7", "-F"]
+# COPY tools/configure.sh /tmp/configure.sh
+# ENTRYPOINT [ "sh", "/tmp/configure.sh" ]
+CMD ["php-fpm7", "-F"]

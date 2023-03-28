@@ -11,11 +11,12 @@ if [ ! -d "/var/lib/mysql/mysql" ]; then
 
 	# init database
 	mysql_install_db --basedir=/usr --datadir=/var/lib/mysql --user=mysql --rpm > /dev/null
+	sudo mariadb-upgrade -u root -p
 
-# 	tfile=`mktemp`
-# 	if [ ! -f "$tfile" ]; then
-# 		return 1
-# 	fi
+	# tfile=`mktemp`
+	# if [ ! -f "$tfile" ]; then
+	# 	return 1
+	# fi
 
 # 	# https://stackoverflow.com/questions/10299148/mysql-error-1045-28000-access-denied-for-user-billlocalhost-using-passw
 # 	cat << EOF > $tfile
@@ -36,8 +37,9 @@ if [ ! -d "/var/lib/mysql/mysql" ]; then
 # 	rm -f $tfile
 fi
 
-# allow remote connections
+# # allow remote connections
 # sed -i "s|skip-networking|# skip-networking|g" /etc/my.cnf.d/mariadb-server.cnf
 # sed -i "s|.*bind-address\s*=.*|bind-address=0.0.0.0|g" /etc/my.cnf.d/mariadb-server.cnf
 
-exec /usr/bin/mysqld --user=mysql
+sudo mariadb-upgrade -u root -p
+exec /usr/bin/mysqld --user=mysql 
