@@ -1,12 +1,12 @@
 FROM debian:buster
 
-RUN apt update -y; apt upgrade -y; \
+RUN apt update; \
     apt install -y php7.3 \
     php-mysqli \
-    php-fmp \
-    mariaclient \
-    curl \
-    sandmail 
+    php-fpm \
+    mariadb-client \
+    wget \
+    sendmail 
 
 COPY conf/php-fpm.conf /etc/php/7.3/fpm/pool.d
 

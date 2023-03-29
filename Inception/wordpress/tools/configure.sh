@@ -1,9 +1,7 @@
 #!/bin/sh
 
-# wait for mysql
-# while ! mariadb -h$MYSQL_HOST -u$WP_DATABASE_USR -p$WP_DATABASE_PWD $WP_DATABASE_NAME &>/dev/null; do
-#     sleep 1
-# done
+mkdir -p /run/php/
+touch /run/php/php7.3-fpm.pid
 
 if [ ! -f "/var/www/html/index.php" ]; then
 
@@ -12,4 +10,4 @@ if [ ! -f "/var/www/html/index.php" ]; then
 fi
 
 echo "Wordpress started on :9000"
-/usr/sbin/php-fpm -F -R
+/usr/sbin/php-fpm7.3 -F -R

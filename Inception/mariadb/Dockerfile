@@ -1,12 +1,11 @@
-FROM alpine:3.16
+FROM debian:buster
 
-
-RUN apt update; apt upgrade; \
+RUN apt update; \
 	apt install -y mariadb-server
 
 COPY /conf/mariadb.conf /etc/mysql/maria.conf.d/
 
-RUN service mysql start
+RUN service mysql start && mysql<
 
 COPY /conf/conf.sh /tmp/conf.sh
 

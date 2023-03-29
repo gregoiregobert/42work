@@ -1,15 +1,15 @@
 FROM	debian:buster
 
-COPY	conf/nginx.conf /etc/nginx/conf.d/nginx.conf
 
-RUN apt update; apt upgrade; \
+RUN apt update; \
     apt install -y nginx openssl 
 
-    # openssl dhparam -out /etc/nginx/dhparam.pem 2048 && \
-RUN openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 \
+RUN openssl req -newkey rsa:4096 -days 365 -nodes -x509 \
         -subj "/C=FR/ST=FR/L=Paris" \
-		-out /etc/nginx/server.crt \
-        -keyout /etc/nginx/server.key 
+		-out /etc/ssl/certs/nginx.crt \
+        -keyout /etc/ssl/private/nginx.key 
+
+COPY	conf/default /etc/nginx/sites-enabled/default
 
 EXPOSE	443
 
