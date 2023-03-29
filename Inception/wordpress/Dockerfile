@@ -1,5 +1,6 @@
-FROM alpine:3.13
+FROM alpine:3.16
 
+RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories 
 RUN apk update && apk upgrade && apk add --no-cache \
     wget \
     tar \

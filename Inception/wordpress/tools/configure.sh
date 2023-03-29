@@ -12,4 +12,4 @@ if [ ! -f "/var/www/html/index.php" ]; then
 fi
 
 echo "Wordpress started on :9000"
-/usr/sbin/php-fpm7 -F -R
+/usr/sbin/php-fpm -F -R
