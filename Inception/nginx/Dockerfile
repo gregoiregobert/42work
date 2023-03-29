@@ -1,17 +1,15 @@
-FROM	alpine:3.16
+FROM	debian:buster
 
 COPY	conf/nginx.conf /etc/nginx/conf.d/nginx.conf
 
-RUN apk update && \
-    apk add nginx && \
-    apk add openssl && \
+RUN apt update; apt upgrade; \
+    apt install -y nginx openssl 
+
     # openssl dhparam -out /etc/nginx/dhparam.pem 2048 && \
-    openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 \
+RUN openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 \
         -subj "/C=FR/ST=FR/L=Paris" \
 		-out /etc/nginx/server.crt \
         -keyout /etc/nginx/server.key 
-
-RUN mkdir -p /run/nginx
 
 EXPOSE	443
 

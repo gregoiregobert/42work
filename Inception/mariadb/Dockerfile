@@ -1,11 +1,12 @@
 FROM alpine:3.16
 
 
-RUN apk update && \
-	apk upgrade && \
-	apk add --no-cache mariadb mariadb-client
+RUN apt update; apt upgrade; \
+	apt install -y mariadb-server
 
 COPY /conf/mariadb.conf /etc/mysql/maria.conf.d/
+
+RUN service mysql start
 
 COPY /conf/conf.sh /tmp/conf.sh
 

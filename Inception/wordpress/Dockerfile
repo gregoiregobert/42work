@@ -1,36 +1,19 @@
-FROM alpine:3.16
+FROM debian:buster
 
-RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories 
-RUN apk update && apk upgrade && apk add --no-cache \
-    wget \
-    tar \
-    php7 \
-    php7-fpm \
-    php7-mysqli \
-    php7-json \
-    php7-openssl \
-    php7-curl \
-    php7-zlib \
-    php7-xml \
-    php7-phar \
-    php7-intl \
-    php7-dom \
-    php7-xmlreader \
-    php7-ctype \
-    php7-session \
-    php7-mbstring
+RUN apt update -y; apt upgrade -y; \
+    apt install -y php7.3 \
+    php-mysqli \
+    php-fmp \
+    mariaclient \
+    curl \
+    sandmail 
 
-RUN	adduser -S nginx &&	addgroup -S nginx
-COPY conf/php-fpm.conf /etc/php7/php-fpm.conf
-
-COPY conf/index.php /tmp/index.php
+COPY conf/php-fpm.conf /etc/php/7.3/fpm/pool.d
 
 #wp-cli : gerer wordpress depuis le terminal
 RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 RUN chmod +x wp-cli.phar
-RUN cp wp-cli.phar /usr/bin/wp
-
-WORKDIR /var/www/html/wordpress
+RUN cp wp-cli.phar /usr/local/bin/wp
 
 
 COPY tools/configure.sh /tmp/configure.sh
