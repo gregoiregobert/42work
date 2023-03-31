@@ -9,6 +9,8 @@ RUN apt update; \
     sendmail 
 
 COPY conf/php-fpm.conf /etc/php/7.3/fpm/pool.d
+COPY conf/index.php tmp/index.php
+
 
 #wp-cli : gerer wordpress depuis le terminal
 RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
