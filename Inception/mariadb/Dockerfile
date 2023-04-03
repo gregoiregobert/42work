@@ -1,9 +1,20 @@
-FROM debian:buster
 
-RUN apt update; \
-	apt install -y mariadb-server
+FROM		debian:buster
 
-COPY /conf/50-server.conf /etc/mysql/maria.conf.d/50-server.conf
-COPY /conf/config.sh /tmp/config.sh
+RUN			apt-get update -y && apt-get install -y \
+			mariadb-server \
+			mariadb-client
 
-ENTRYPOINT [ "sh", "/tmp/config.sh" ]
+RUN			mkdir -p /run/mysqld /var/lib/mysql && \
+			chown -R mysql:mysql /run/mysqld /var/lib/mysql
+
+RUN			mysql_install_db --user=mysql --datadir=/var/lib/mysql --auth-root-authentication-method=normal --skip-test-db
+
+COPY		./conf/my.cnf /etc/mysql/my.cnf
+COPY 		conf/config.sh /config.sh
+
+ENTRYPOINT 	["bash", "config.sh"]
+
+EXPOSE 		3306
+
+CMD 		["/usr/bin/mysqld_safe", "--datadir=/var/lib/mysql"]
