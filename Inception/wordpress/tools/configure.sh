@@ -1,16 +1,44 @@
 #!/bin/sh
 
-chown -R www-data /var/www/html
-chmod -R 775 /var/www/html
+if [ ! -f /var/www/html/wp-config.php ]; then
+	cd /var/www/html
 
-mkdir -p /run/php/
-touch /run/php/php7.3-fpm.pid
+	wp core download --allow-root
 
-if [ ! -f "/var/www/html/index.php" ]; then
+	until mysqladmin --user=${SQL_USER} --password=${SQL_PWD} --host=mariadb ping; do
+		sleep 2
+	done
 
-    # static website
-    mv /tmp/index.php /var/www/html/index.php
-fi
+	echo "Creation d'un fichier de configuration Wordpress avec User Mysql"
+	wp config create	--dbname=${SQL_DATABASE} \
+						--dbuser=${SQL_USER} \
+						--dbpass=${SQL_PASSWORD} \
+						--dbhost=mariadb:3306 \
+						--allow-root
+	echo "OK"
 
-echo "Wordpress started on :9000"
-/usr/sbin/php-fpm7.3 -F -R
+	echo "Installation de Wordpress "
+	wp core install		--url=ggobert.42.fr \
+						--title="Inception" \
+						--admin_user=${WP_ADMIN_LOGIN} \
+						--admin_password=${WP_ADMIN_PWD} \
+						--admin_email=${WP_ADMIN_EMAIL} \
+						--skip-email \
+						--allow-root
+	echo "OK"
+
+	echo "Creation d'un second user"
+	wp user create 		${WP_USR} ${WP_EMAIL} \
+						--user_pass=${WP_PWD} \
+						--role=author \
+						--allow-root
+	echo "OK"
+
+	echo "Installation du theme"
+	wp theme install twentytwentyone --activate --allow-root
+	echo "OK"
+
+fi;
+
+echo "Starting PHP-FPM..."
+exec "$@"
