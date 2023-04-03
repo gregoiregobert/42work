@@ -3,9 +3,7 @@ FROM debian:buster
 RUN apt update; \
 	apt install -y mariadb-server
 
-COPY /conf/mariadb.conf /etc/mysql/maria.conf.d/
-COPY /conf/createdb.sql /
+COPY /conf/50-server.conf /etc/mysql/maria.conf.d/50-server.conf
+COPY /conf/config.sh /tmp/config.sh
 
-RUN service mysql start && mysql < createdb.sql && rm -f createdb.sql
-
-CMD /usr/bin/mysqld_safe
+ENTRYPOINT [ "sh", "/tmp/config.sh" ]
