@@ -7,7 +7,7 @@ services:
     ports:
       - "443:443"
     volumes:
-      - website_volume:/var/www/html
+      - wordpress_volume:/var/www/html
     depends_on:
       - wordpress
     networks:
@@ -20,7 +20,7 @@ services:
     build: wordpress/
     container_name: wordpress
     volumes:
-      - website_volume:/var/www/html
+      - wordpress_volume:/var/www/html
     depends_on:
       - mariadb
     networks:
@@ -52,9 +52,9 @@ volumes:
       device: /home/ggobert/data/mariadb_volume
       o: bind
 
-  website_volume:
+  wordpress_volume:
     driver: local
     driver_opts:
       type: none
-      device: /home/ggobert/data/website_volume
+      device: /home/ggobert/data/wordpress_volume
       o: bind
