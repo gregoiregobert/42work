@@ -1,7 +1,8 @@
 server {
     listen 80;
     server_name ggobert.42.fr;
-    return 301 https://127.0.0.1$request_uri;
+
+    return 301 https://ggobert.42.fr$request_uri;
 }
 
 server {
