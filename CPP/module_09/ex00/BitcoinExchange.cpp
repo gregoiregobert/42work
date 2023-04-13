@@ -1,4 +1,4 @@
-#include "BitcionExchange.hpp"
+#include "BitcoinExchange.hpp"
 
 //****************************************************//
 //               Constructor/Destructor               //
@@ -36,22 +36,91 @@ BitcoinExchange	&BitcoinExchange::operator=( const BitcoinExchange &other )
 //                    Function(s)                     //
 //****************************************************//
 
+int BitcoinExchange::check_nb( std::string line )
+{
+	std::string tmp;
+	int nb;
+
+	tmp.append(line, 5, 2);
+	std::istringstream iss(tmp);
+	iss >> nb;
+	if (nb > 12)
+		return (1);
+	
+	tmp.erase();
+	std::cout << tmp << 
+	tmp.append(line, 8, 2);
+	std::istringstream iss1(tmp);
+	iss1 >> nb;
+	if (nb > 31)
+		return (1);
+	return (0);
+
+	tmp.erase();
+	tmp.append(line, 13, line.size());
+	std::istringstream iss2(tmp);
+	iss2 >> nb;
+	if (nb > 1000)
+	{
+		std::cerr << "Error: too large number." << std::endl;
+		return (2);
+	}
+	return (0);
+}
 
 
+int	BitcoinExchange::check_line( std::string line )
+{
+	int i = 0;
+	const char *c = line.c_str();
 
-//****************************************************//
-//                    No_member(s)                     //
-//****************************************************//
+	if ( line.at(4) != '-' && line.at(7) != '-' &&
+		line.at(10) != ' ' && line.at(11) != '|' && line.at(12) != ' ')
+		return (1);
 
-// std::ostream &operator<<(std::ostream &out, Span &value)
-// {
-// 	std::vector<int>::iterator it = value.getNb_it_begin();
+	while ( i < 4 )
+		if ( !isdigit( c[i++] ) )
+			return (1);
 
-// 	for (int i = 0; i < (int)value.get_manyAdd(); i++)
-// 	{
-// 		out << *it << ' ';
-// 		it++;
-// 	}
+	while ( i < 7 )
+		if ( !isdigit( c[i++] ) )
+			return (1);
+	
+	while ( i < 10 )
+		if ( !isdigit( c[i++] ) )
+			return (1);
 
-//     return (out);
-// }
+	while ( i < (int)line.size() && c[i] != '.' )
+		if ( !isdigit( c[i++] ) )
+			return (1);
+	
+	if ( c[i] == '.' && i+1 != (int)line.size())
+		i++;
+
+	while ( i < (int)line.size() )
+		if ( !isdigit( c[i++] ) )
+			return (1);
+
+	if (check_nb(line) == 1)
+		return (1);
+	return (0);
+}
+
+void	BitcoinExchange::put_csv_in_map()
+{
+	std::string line;
+	std::ifstream ifs(data.csv);
+	if (ifs.fail())
+	{
+		std::cout << "Error: could not open csv file." << std::endl;
+		return (0);
+	}
+
+	while ( std::getline( ifs, line ) )
+	{
+		_Data.emplace( line.substr( line.begin(), line.find(',') - 1 ),
+						line.substr( line.find( "," ) + 1, line.end()) );
+	}
+	for (std::map<std::string, std::string>::iterator it=_Data.begin(); it!=_Data.end(); ++it)
+    std::cout << it->first << " => " << it->second << std::endl;
+}

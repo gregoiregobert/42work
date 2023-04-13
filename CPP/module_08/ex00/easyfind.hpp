@@ -14,7 +14,6 @@ class NotFound : public std::exception{
 template<class T>
 void	easyfind(T cont, int search)
 {
-	
 	throw NotFound();
 }
 
