@@ -25,6 +25,7 @@ class BitcoinExchange
 		int		check_line( std::string line );
 		void	put_csv_in_map();
 		void	show_Data();
+		void	compare_to_csv( std::string line );
 				
 		class TooLarge : public std::exception{
 			public:

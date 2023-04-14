@@ -121,6 +121,26 @@ void	BitcoinExchange::put_csv_in_map()
 		std::cout << "Error: could not open csv file." << std::endl;
 
 	while ( std::getline( ifs, line ) )
-		_Data.insert( std::pair<std::string, std::string> (line.substr( 0, line.find(',') - 1 ),
-						line.substr( line.find( "," ) + 1, line.size())) );
+		_Data.insert( std::pair<std::string, std::string> (line.substr( 0, line.find(',') ),
+						line.substr( line.find( "," ) + 1, line.size() ) ) );
+}
+
+void	BitcoinExchange::compare_to_csv( std::string line )
+{
+	std::map<std::string, std::string>::iterator it;
+
+	it = _Data.lower_bound(  line.substr( 0,  10 ) );
+	if (it != _Data.begin() && it != _Data.end() )
+		it--;
+
+	std::istringstream iss(line.substr( 13, line.size() ));
+	std::istringstream iss2(it->second);
+	float value_of_bitcoin;
+	float nb_of_bitcoin;
+	
+	iss >> nb_of_bitcoin;
+	iss2 >> value_of_bitcoin;
+	
+	std::cout << line.substr( 0, 10 ) << " => " << line.substr( 13, line.size() ) 
+				<< " = " << value_of_bitcoin * nb_of_bitcoin << std::endl;
 }

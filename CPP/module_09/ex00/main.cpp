@@ -17,12 +17,13 @@ int	main(int ac, char ** av)
 		return (0);
 	}
 
+	Bitcoin.put_csv_in_map();
 	while ( std::getline( ifs, line ) )
 	{
 		try{
 			ret = Bitcoin.check_line( line );
 			if ( !ret )
-				std::cout << line << std::endl; // compare to map;
+				Bitcoin.compare_to_csv( line );
 			else if ( ret == 1 )
 				std::cerr << "\033[1;31mError: bad input => \033[0m" << line << std::endl; 
 		}
@@ -30,6 +31,5 @@ int	main(int ac, char ** av)
 			std::cerr << e.what() << std::endl;
 		}
 	}
-	Bitcoin.put_csv_in_map();
 }
 
