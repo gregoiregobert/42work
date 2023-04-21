@@ -1,10 +1,8 @@
 #ifndef RPN_HPP
 # define RPN_HPP
 
-#include <queue>
+#include <deque>
 #include <iostream>
-#include <fstream>
-#include <sstream>
 #include <cctype>
 #include <cstddef>
 
@@ -15,7 +13,7 @@ class RPN
 		int	_ac;
 		char **_av;
 		std::string _input;
-		std::queue<char> _stack;
+		std::deque<int> _stack;
 
 	public:
 
@@ -26,7 +24,13 @@ class RPN
 		RPN &operator=( const RPN& other);
 
 		void	check_input();
-		void	RPN::calculation();
+		void	calculation();
+		void	operation_manager( char c );
+		void	addition();
+		void	soustraction();
+		void	multiply();
+		void	division();
+
 
 		class TooManyArg : public std::exception{
 			public:
@@ -42,7 +46,7 @@ class RPN
 			}
 		};
 
-		class BadFormat : public std::exception{
+		class BadInput : public std::exception{
 			public:
 			virtual const char* what() const throw(){
 				return ("\033[1;31mError: Bad input.\033[0m");

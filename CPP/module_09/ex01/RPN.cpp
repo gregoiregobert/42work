@@ -30,6 +30,7 @@ RPN	&RPN::operator=( const RPN &other )
 	// std::cout << "RPN copy constructor called" << std::endl;
 	_ac = other._ac;
 	_av = other._av;
+	_input = other._input;
 	_stack = other._stack;
 	return (*this);
 }
@@ -49,21 +50,104 @@ void	RPN::check_input()
 	if (found != std::string::npos)
 		throw RPN::WrongChar();
 
-	char *char_input = _av[1];
 	for (int i = 0; i < (int)_input.size(); i++)
 	{
 		if (i % 2 == 1)
 		{
-			if (char_input[i] != ' ')
-				throw BadFormat();
+			if (_input.at(i) != ' ')
+				throw BadInput();
 		}
 		else 
-			if (char_input[i] == ' ')
-				throw BadFormat();
-	}
+			if (_input.at(i) == ' ')
+				throw BadInput();
+	} 
 }
 
 void	RPN::calculation()
 {
+
+	for ( int i = 0; i < (int)_input.size(); i++ )
+	{
+		if ( isdigit( _input.at(i) ) )
+			_stack.push_front( _input.at(i) - '0' );
+		if ( !isdigit( _input.at(i) ) && _input.at(i) != ' ')
+			operation_manager( _input.at(i) );
+	}
+
+	if (_stack.size() != 1 )
+		throw BadInput();
+
+	std::cout << _stack.front() << std::endl;
+}
+
+void	RPN::operation_manager( char c )
+{
+	void ( RPN::*fct[] )() = {&RPN::addition, &RPN::soustraction, &RPN::multiply, &RPN::division};
+
+	std::string operand = "+-*/";
+
+	if ( _stack.size() < 2 )
+		throw BadInput();
 	
+	for ( int i = 0; i < (int)operand.size(); i++ )
+		if ( operand.at(i) == c )
+			(this->*fct[i])();
+}
+
+// ******** OPERATION ******* //
+
+void	RPN::addition()
+{
+	int a;
+	int b;
+
+	a = _stack.front();
+	_stack.pop_front();
+
+	b = _stack.front();
+	_stack.pop_front();
+
+	_stack.push_front(a + b);
+}
+
+void	RPN::soustraction()
+{
+	int a;
+	int b;
+
+	a = _stack.front();
+	_stack.pop_front();
+
+	b = _stack.front();
+	_stack.pop_front();
+
+	_stack.push_front(a - b);
+}
+
+void	RPN::multiply()
+{
+	int a;
+	int b;
+
+	a = _stack.front();
+	_stack.pop_front();
+
+	b = _stack.front();
+	_stack.pop_front();
+
+	_stack.push_front(a * b);
+}
+
+void	RPN::division()
+{
+	int a;
+	int b;
+
+	a = _stack.front();
+	_stack.pop_front();
+
+	b = _stack.front();
+	_stack.pop_front();
+
+	_stack.push_front(a / b);
 }
