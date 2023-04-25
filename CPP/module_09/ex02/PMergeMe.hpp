@@ -4,9 +4,9 @@
 #include <vector>
 #include <list>
 #include <iostream>
-#include <sstream>
-#include <cctype>
 #include <cstdlib>
+#include <sys/time.h>
+
 
 class PMergeMe
 {
@@ -24,8 +24,12 @@ class PMergeMe
 		PMergeMe &operator=( const PMergeMe& other);
 
 		void			put_in_list();
-		std::list<int>	recursive_sort(std::list<int> array);
-		std::list<int>	insert(std::list<int> left, std::list<int> right);
+		std::list<int>	recursive_sort_list(std::list<int> array);
+		std::list<int>	insert_list(std::list<int> left, std::list<int> right);
+
+		void				put_in_vector();
+		std::vector<int>	recursive_sort_vector(std::vector<int> array);
+		std::vector<int>	insert_vector(std::vector<int> left, std::vector<int> right);
 
 		class NoArg : public std::exception{
 			public:
