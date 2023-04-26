@@ -130,7 +130,7 @@ void	BitcoinExchange::compare_to_csv( std::string line )
 	std::map<std::string, std::string>::iterator it;
 
 	it = _Data.lower_bound(  line.substr( 0,  10 ) );
-	if (it != _Data.begin() && it != _Data.end() )
+	if (it != _Data.begin() && it != _Data.end() && line.substr( 0,  10 ).compare( it->first ) )
 		it--;
 
 	std::istringstream iss(line.substr( 13, line.size() ));
