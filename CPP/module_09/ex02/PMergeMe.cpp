@@ -41,9 +41,11 @@ void	PMergeMe::put_in_list()
 	std::list<int> list;
 	struct timeval tv;
 
+// TIMER START
 	gettimeofday(&tv, NULL);
 	double start = 10e5 * tv.tv_sec + tv.tv_usec;
 
+// PUSH
 	for (int i = 1; i < _ac; i++)
 	{
 		if (std::atoi(_av[i]) < 1)
@@ -51,19 +53,30 @@ void	PMergeMe::put_in_list()
 		list.push_back(std::atoi(_av[i]));
 	}
 
+// SIZE ERROR
 	if (list.size() > 3000)
 		throw TooManyArg();
 
+// DUPLICATES ERROR
+	int size = list.size();
+	list.unique();
+	if ( size > (int)list.size() )
+		throw Duplicates();
+
+// TEXT
 	std::cout << "Before : ";
 	for (std::list<int>::iterator it = list.begin(); it != list.end(); it++)
 		std::cout <<*it << " ";
 	std::cout << std::endl;
 
+// ALGO
 	list = recursive_sort_list(list);
 
+// TIMER STOP
 	gettimeofday(&tv, NULL);
 	double end = 10e5 * tv.tv_sec + tv.tv_usec;
 
+// TEXT
 	std::cout << "After : ";
 	for (std::list<int>::iterator it = list.begin(); it != list.end(); it++)
 		std::cout <<*it << " ";
@@ -75,6 +88,7 @@ void	PMergeMe::put_in_list()
 
 std::list<int>	PMergeMe::recursive_sort_list(std::list<int> array)
 {
+// DIVIDED ARRAY
 	if (array.size() > 2)
 	{
 		std::list<int> left;
@@ -91,6 +105,8 @@ std::list<int>	PMergeMe::recursive_sort_list(std::list<int> array)
 		}
 		return ( insert_list( recursive_sort_list( left ), recursive_sort_list( right ) ) );
 	}
+
+// SORT SMALLEST ARRAY
 	else
 	{
 		if (array.size() > 1)
@@ -146,9 +162,11 @@ void	PMergeMe::put_in_vector()
 	std::vector<int> vector;
 	struct timeval tv;
 
+// TIMER START
 	gettimeofday(&tv, NULL);
 	double start = 10e5 * tv.tv_sec + tv.tv_usec;
 
+// PUSH
 	for (int i = 1; i < _ac; i++)
 	{
 		if (std::atoi(_av[i]) < 1)
@@ -156,16 +174,20 @@ void	PMergeMe::put_in_vector()
 		vector.push_back(std::atoi(_av[i]));
 	}
 
+// TEXT
 	// std::cout << "Before : ";
 	// for (std::vector<int>::iterator it = vector.begin(); it != vector.end(); it++)
 	// 	std::cout <<*it << " ";
 	// std::cout << std::endl;
 
+// ALGO
 	vector = recursive_sort_vector(vector);
 
+// TIMER STOP
 	gettimeofday(&tv, NULL);
 	double end = 10e5 * tv.tv_sec + tv.tv_usec;
 
+// TEXT
 	// std::cout << "After : ";
 	// for (std::vector<int>::iterator it = vector.begin(); it != vector.end(); it++)
 	// 	std::cout <<*it << " ";

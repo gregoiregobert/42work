@@ -51,5 +51,12 @@ class PMergeMe
 				return ("\033[1;31mError: Too Many arguments.\033[0m");
 			}
 		};
+
+		class Duplicates : public std::exception{
+			public:
+			virtual const char* what() const throw(){
+				return ("\033[1;31mError: Duplicates arguments.\033[0m");
+			}
+		};
 };
 #endif
