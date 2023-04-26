@@ -51,6 +51,9 @@ void	PMergeMe::put_in_list()
 		list.push_back(std::atoi(_av[i]));
 	}
 
+	if (list.size() > 3000)
+		throw TooManyArg();
+
 	std::cout << "Before : ";
 	for (std::list<int>::iterator it = list.begin(); it != list.end(); it++)
 		std::cout <<*it << " ";
@@ -153,20 +156,20 @@ void	PMergeMe::put_in_vector()
 		vector.push_back(std::atoi(_av[i]));
 	}
 
-	std::cout << "Before : ";
-	for (std::vector<int>::iterator it = vector.begin(); it != vector.end(); it++)
-		std::cout <<*it << " ";
-	std::cout << std::endl;
+	// std::cout << "Before : ";
+	// for (std::vector<int>::iterator it = vector.begin(); it != vector.end(); it++)
+	// 	std::cout <<*it << " ";
+	// std::cout << std::endl;
 
 	vector = recursive_sort_vector(vector);
 
 	gettimeofday(&tv, NULL);
 	double end = 10e5 * tv.tv_sec + tv.tv_usec;
 
-	std::cout << "After : ";
-	for (std::vector<int>::iterator it = vector.begin(); it != vector.end(); it++)
-		std::cout <<*it << " ";
-	std::cout << std::endl;
+	// std::cout << "After : ";
+	// for (std::vector<int>::iterator it = vector.begin(); it != vector.end(); it++)
+	// 	std::cout <<*it << " ";
+	// std::cout << std::endl;
 
 	std::cout <<  "Time to process a range of " << vector.size() << " elements with std::vector : "
 			<< end - start << " us" << std::endl;

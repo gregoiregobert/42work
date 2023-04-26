@@ -44,5 +44,12 @@ class PMergeMe
 				return ("\033[1;31mError: Bad Input.\033[0m");
 			}
 		};
+
+		class TooManyArg : public std::exception{
+			public:
+			virtual const char* what() const throw(){
+				return ("\033[1;31mError: Too Many arguments.\033[0m");
+			}
+		};
 };
 #endif
