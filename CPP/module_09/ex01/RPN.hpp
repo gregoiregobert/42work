@@ -52,6 +52,13 @@ class RPN
 				return ("\033[1;31mError: Bad input.\033[0m");
 			}
 		};
+
+		class ZeroDiv : public std::exception{
+			public:
+			virtual const char* what() const throw(){
+				return ("\033[1;31mError: Division by 0 is a paradoxe.\033[0m");
+			}
+		};
 };
 
 #endif

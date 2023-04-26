@@ -149,5 +149,8 @@ void	RPN::division()
 	b = _stack.front();
 	_stack.pop_front();
 
+	if ( a == 0 || b == 0 )
+		throw ZeroDiv();
+
 	_stack.push_front(a / b);
 }
