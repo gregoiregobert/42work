@@ -70,7 +70,7 @@ void	RPN::calculation()
 	{
 		if ( isdigit( _input.at(i) ) )
 			_stack.push_front( _input.at(i) - '0' );
-		if ( !isdigit( _input.at(i) ) && _input.at(i) != ' ')
+		else if ( !isdigit( _input.at(i) ) && _input.at(i) != ' ')
 			operation_manager( _input.at(i) );
 	}
 
@@ -88,10 +88,12 @@ void	RPN::operation_manager( char c )
 
 	if ( _stack.size() < 2 )
 		throw BadInput();
+
 	
 	for ( int i = 0; i < (int)operand.size(); i++ )
 		if ( operand.at(i) == c )
 			(this->*fct[i])();
+	
 }
 
 // ******** OPERATION ******* //
@@ -107,7 +109,7 @@ void	RPN::addition()
 	b = _stack.front();
 	_stack.pop_front();
 
-	_stack.push_front(a + b);
+	_stack.push_front(b + a);
 }
 
 void	RPN::soustraction()
@@ -120,8 +122,8 @@ void	RPN::soustraction()
 
 	b = _stack.front();
 	_stack.pop_front();
-
-	_stack.push_front(a - b);
+	
+	_stack.push_front(b - a);
 }
 
 void	RPN::multiply()
@@ -134,8 +136,8 @@ void	RPN::multiply()
 
 	b = _stack.front();
 	_stack.pop_front();
-
-	_stack.push_front(a * b);
+	
+	_stack.push_front(b * a);
 }
 
 void	RPN::division()
@@ -151,6 +153,6 @@ void	RPN::division()
 
 	if ( a == 0 || b == 0 )
 		throw ZeroDiv();
-
-	_stack.push_front(a / b);
+	
+	_stack.push_front(b / a);
 }

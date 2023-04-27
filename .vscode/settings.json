@@ -4,7 +4,8 @@
         "get_next_line.h": "c",
         "string.h": "c",
         "fcntl.h": "c",
-        "wait.h": "c"
+        "wait.h": "c",
+        "ostream": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }
