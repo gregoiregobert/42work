@@ -23,6 +23,8 @@ int	main(int ac, char ** av)
 	Bitcoin.put_csv_in_map();
 	while ( std::getline( ifs, line ) )
 	{
+		if (!line.size() )
+			continue;
 		try{
 			ret = Bitcoin.check_line( line );
 			if ( !ret )

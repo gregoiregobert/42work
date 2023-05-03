@@ -121,7 +121,8 @@ void	BitcoinExchange::put_csv_in_map()
 		std::cout << "Error: could not open csv file." << std::endl;
 
 	while ( std::getline( ifs, line ) )
-		_Data.insert( std::pair<std::string, std::string> (line.substr( 0, line.find(',') ),
+		if ( (int)line.size() )
+			_Data.insert( std::pair<std::string, std::string> (line.substr( 0, line.find(',') ),
 						line.substr( line.find( "," ) + 1, line.size() ) ) );
 }
 
