@@ -75,6 +75,9 @@ int	BitcoinExchange::check_line( std::string line )
 	int i = 0;
 	const char *c = line.c_str();
 
+	if ( (int)line.size() < 14 )
+		return (1);
+
 	if ( line.at(4) != '-' || line.at(7) != '-' ||
 		line.at(10) != ' ' || line.at(11) != '|' || line.at(12) != ' ')
 		return (1);
