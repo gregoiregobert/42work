@@ -11,13 +11,14 @@
 # **************************************************************************** #
 
 NAME	=	training
-SRCS	=	main.c 
+SRCS	=	main.c \
+			Channel.cpp
 OBJS	=	$(SRCS:.c=.o)
 RM		=	rm -f
-CC		=	gcc
+CXX		=	c++
 LIBFT	=	../libft/libft.a
 LIB_DIR	=	../libft
-CFLAGS	=	-Wall -Werror -Wextra -g3
+CXXFLAGS	=	-MMD -Wall -Werror -Wextra -std=c++98
 SUPPR	=	\033[00m
 GRAS	=	\033[01m
 CLIGNO	=	\033[05m
@@ -33,11 +34,11 @@ $(LIBFT)	:
 	@make -sC $(LIB_DIR)
 
 $(NAME)		: $(OBJS) $(LIBFT)
-	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBFT)
+	@$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME) $(LIBFT)
 	@echo "$(GRAS)$(YELLOW)Training $(SUPPR)$(CLIGNO)Compilation$(SUPPR)"
 
 %.o			: %.c libft/*.c
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
 
 clean		:
