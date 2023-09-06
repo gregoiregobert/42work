@@ -1,56 +1,70 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: palbanes <marvin@42.fr>                    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/04/08 13:38:54 by palbanes          #+#    #+#              #
-#    Updated: 2022/04/16 18:10:10 by palbanes         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+NAME		=	training
+OBJ_PATH	=	objs
+SRCS		=	main.cpp	\
+				Warlock.cpp	
+CC			=	c++
+CFLAGS	=	-MMD -Wall -Werror -Wextra -std=c++98
+RM			=	rm -rf
+OBJS		=	$(addprefix $(OBJ_PATH)/,$(SRCS:.cpp=.o))
+DEPS		=	$(OBJS:.o=.d)
 
-NAME	=	training
-SRCS	=	main.c \
-			Channel.cpp
-OBJS	=	$(SRCS:.c=.o)
-RM		=	rm -f
-CXX		=	c++
-LIBFT	=	../libft/libft.a
-LIB_DIR	=	../libft
-CXXFLAGS	=	-MMD -Wall -Werror -Wextra -std=c++98
-SUPPR	=	\033[00m
-GRAS	=	\033[01m
-CLIGNO	=	\033[05m
-GREEN	=	\033[32m
-YELLOW	=	\033[33m
-BLUE	=	\033[34m
-RED		=	\033[31m
-WHITE	=	\033[37m
+SUPPR		=	\033[00m
+GRAS		=	\033[01m
+CLIGNO		=	\033[05m
+GREEN		=	\033[32m
+YELLOW		=	\033[33m
+RED			=	\033[31m
+WHITE		=	\033[37m
 
-all			: $(NAME)
+vpath @%.o $(OBJ_PATH)
 
-$(LIBFT)	:	
-	@make -sC $(LIB_DIR)
+all				: $(NAME)
 
-$(NAME)		: $(OBJS) $(LIBFT)
-	@$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME) $(LIBFT)
-	@echo "$(GRAS)$(YELLOW)Training $(SUPPR)$(CLIGNO)Compilation$(SUPPR)"
+$(NAME)			: $(OBJS)
+	@echo -n "C"
+	@sleep 1e-1
+	@echo -n "o"
+	@sleep 1e-1
+	@echo -n "m"
+	@sleep 1e-1
+	@echo -n "p"
+	@sleep 1e-1
+	@echo -n "i"
+	@sleep 1e-1
+	@echo -n "l"
+	@sleep 1e-1
+	@echo -n "a"
+	@sleep 1e-1
+	@echo -n "t"
+	@sleep 1e-1
+	@echo -n "i"
+	@sleep 1e-1
+	@echo -n "o"
+	@sleep 1e-1
+	@echo "n$(SUPPR)"
+	@sleep 1e-1
+	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	@echo "$(GRAS)TRAINING $(GREEN)$(GRAS)$(CLIGNO)OK$(SUPPR)"
 
-%.o			: %.c libft/*.c
-	@$(CXX) $(CXXFLAGS) -c $< -o $@
+$(OBJ_PATH)/%.o	: %.cpp
+	@$(CC) $(CFLAGS) -c $< -o $@
 
+$(OBJS)			: | $(OBJ_PATH)
 
-clean		:
-	@make clean -sC $(LIB_DIR)
-	@$(RM) $(OBJS)
-	@echo "$(BLUE)$(GRAS)CLEAN$(SUPPR)"
+$(OBJ_PATH)		:
+	@mkdir -p $(OBJ_PATH)
 
-fclean		: clean
-	@make fclean -sC $(LIB_DIR)
-	@$(RM) $(NAME) 
-	@echo "$(GRAS)$(WHITE)All $(RED)gone...$(SUPPR)"
+clean			:
+	@${RM} $(OBJ_PATH)
 
-re			: fclean all
+fclean			:
+	@make clean
+	@${RM} ${NAME}
 
-.PHONY		: all clean fclean re bonus
+re				:
+	@make fclean
+	@make all
+
+-include $(DEPS)
+
+.PHONY			: all clean fclean re
