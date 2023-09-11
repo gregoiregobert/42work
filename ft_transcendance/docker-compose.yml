@@ -7,5 +7,5 @@ services:
     ports:   
       - "8080:80"   
     volumes:   
-      - /goinfre/trans_volume:/home
+      - /goinfre/ggobert:/home
 
