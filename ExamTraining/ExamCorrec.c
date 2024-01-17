@@ -35,7 +35,7 @@ int main(int argc, char **argv)
     serverAddress.sin_port = htons(atoi(argv[1]));  
 
     if (bind(serverSocket, (struct sockaddr *)&serverAddress, sizeof(serverAddress)) < 0) 
-    {~
+    {
         perror("Error binding server socket");  
         exit(1);                             
     }
@@ -47,7 +47,7 @@ int main(int argc, char **argv)
     }
 
     FD_ZERO(&activeSockets);                  
-    FD_SET(serverSocket, &activeSockets);     
+    FD_SET(serverSocket, &readySockets);     
     int maxSocket = serverSocket;             
 
     while (1) 
