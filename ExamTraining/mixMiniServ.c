@@ -6,7 +6,7 @@
 #include <stdio.h>
 
 #define MAX_CLIENTS 128    
-#define BUFFER_SIZE 200000 
+#define BUFFER_SIZE 20000000 
 
 int main(int argc, char **argv) 
 {
@@ -101,16 +101,28 @@ int main(int argc, char **argv)
                     } 
                     else 
                     {
-                        buffer[bytesRead] = '\0';            
-                        sprintf(buffer, "client %d: %s\n", socketId, buffer); 
+						buffer[bytesRead] = '\0';
+						char tmpBuf[bytesRead + 1];
+						int j = -1;
 
-                        for (int i = 0; i < next_id; i++) 
-                        {
-                            if (clientSockets[i] != socketId) 
-                            {
-                                send(clientSockets[i], buffer, strlen(buffer), 0);  
-                            }
-                        }
+						for (int i = 0; i < strlen(buffer); i++) {
+
+							tmpBuf[++j] = buffer[i];
+
+							if (buffer[i] == '\n')
+							{
+
+								tmpBuf[j] = '\0';
+								char msg[bytesRead + 1];
+								sprintf(msg, "client %d: %s\n", socketId, tmpBuf); 
+								for (int i = 0; i < next_id; i++) 
+									if (clientSockets[i] != socketId) 
+										send(clientSockets[i], msg, strlen(buffer), 0);
+								bzero(msg, strlen(msg));
+								bzero(tmpBuf, strlen(tmpBuf));
+								j = -1;
+							}
+						}
                     }
                 }
             }
