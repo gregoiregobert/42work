@@ -8,13 +8,13 @@
 
 typedef struct s_clients {
     int     id;
-    char    msg[9000000];
+    char    msg[2000000];
 } t_clients;
 
 t_clients   clients[1024];
 fd_set      readfds, writefds, active;
 int         fdMax = 0, idNext = 0;
-char        bufferRead[9000000], bufferWrite[9000000];
+char        bufferRead[2000000], bufferWrite[2000000];
 
 void    ftError(char *str) {
     if (str)
