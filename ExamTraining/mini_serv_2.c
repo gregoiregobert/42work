@@ -8,13 +8,13 @@
 
 typedef struct s_clients {
     int     id;
-    char    msg[2000000];
+    char    msg[1024];
 } t_clients;
 
 t_clients   clients[1024];
 fd_set      readfds, writefds, active;
 int         fdMax = 0, idNext = 0;
-char        bufferRead[2000000], bufferWrite[2000000];
+char        bufferRead[120000], bufferWrite[120000];
 
 void    ftError(char *str) {
     if (str)
@@ -82,10 +82,8 @@ int main(int ac, char **av) {
                     break;
                 }
                 else {
-					int j = -1;
-
-                    for (int i = 0; i < res; i++) {
-                        clients[fdI].msg[++j] = bufferRead[i];
+                    for (int i = 0, j = strlen(clients[fdI].msg); i < res; i++, j++) {
+                        clients[fdI].msg[j] = bufferRead[i];
                         if (clients[fdI].msg[j] == '\n') {
                             clients[fdI].msg[j] = '\0';
                             sprintf(bufferWrite, "client %d: %s\n", clients[fdI].id, clients[fdI].msg);

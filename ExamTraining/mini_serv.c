@@ -69,7 +69,7 @@ int main(int argc, char **argv)
                     if (clientSocket < 0) 
                     {
                         perror("Error accepting client connection");  
-                        exit(1);                         
+                        exit(1);                   
                     }
 
                     FD_SET(clientSocket, &activeSockets);     
@@ -80,7 +80,7 @@ int main(int argc, char **argv)
 
                     clientSockets[next_id++] = clientSocket;  
                 } 
-                else 
+                else
                 {
                     int bytesRead = recv(socketId, buffer, sizeof(buffer) - 1, 0);  
 
