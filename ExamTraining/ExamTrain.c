@@ -1,38 +1,39 @@
-#include <stdlib.h>
-#include <stdio.h>
 #include <unistd.h>
+#include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 
 #define MAX_CLIENT 128
 #define BUFFER_SIZE 120000
 
-typedef struct s_client {
+typedef struct s_clients {
 	int id;
 	char msg[1024];
-} t_client;
+} t_clients;
 
-fd_set activeSockets, readySockets;
-int	next_id = 0, maxSocket = 0;
-char writeBuf[BUFFER_SIZE], readBuf[BUFFER_SIZE];
-t_client clients[MAX_CLIENT];
+fd_set	activeSockets, readySockets;
+int		next_id = 0, maxSockets = 0;
+char	writeBuf[BUFFER_SIZE], readBuf[BUFFER_SIZE];
+t_clients clients[MAX_CLIENT];
 
 void	ft_error() {
-	perror("Fatal Error");
+	perror("Fatal error");
 	exit(1);
 }
 
 void	sendAll(int not) {
-	for (int i = 0; i <= maxSocket; i++)
+	for (int i = 0; i <= maxSockets; i++)
 		if (FD_ISSET(i, &activeSockets) && i != not)
 			send(i, writeBuf, strlen(writeBuf), 0);
 }
 
-int main(int argc, char **argv)
+int main(int argc, char **argv) 
 {
-	if (argc != 2) {
-		fprintf(stderr, "Wrong number of arguments");
+	if (argc != 2)
+	{
+		fprintf(stderr, "Wrong number of arguments\n");
 		exit(1);
 	}
 
@@ -50,20 +51,21 @@ int main(int argc, char **argv)
 
 	if (listen(serverSocket, MAX_CLIENT) < 0)
 		ft_error();
-	
+		
 	FD_ZERO(&activeSockets);
 	FD_SET(serverSocket, &activeSockets);
-	maxSocket = serverSocket;
+	maxSockets = serverSocket;
 
 	while(1)
 	{
 		readySockets = activeSockets;
-		if (select(maxSocket + 1, &readySockets, NULL, NULL, NULL) < 0)
+
+		if (select(maxSockets + 1, &readySockets, NULL, NULL, NULL) < 0)
 			ft_error();
 
-		for (int socketId = 0; socketId <= maxSocket; socketId++)
+		for (int socketId = 0; socketId <= maxSockets; socketId++)
 		{
-			if (FD_ISSET(socketId, &readySockets))
+			if (FD_ISSET(socketId, &activeSockets))
 			{
 				if (socketId == serverSocket)
 				{
@@ -71,10 +73,11 @@ int main(int argc, char **argv)
 					if (clientSocket < 0)
 						ft_error();
 					FD_SET(clientSocket, &activeSockets);
-					maxSocket = (clientSocket > maxSocket) ? clientSocket : maxSocket;
+					maxSockets = (clientSocket > maxSockets) ? clientSocket : maxSockets;
 
 					sprintf(writeBuf, "server: client %d just arrived\n", next_id);
 					sendAll(clientSocket);
+					printf("laaaa\n");
 
 					clients[clientSocket].id = next_id++;
 				}
@@ -88,18 +91,17 @@ int main(int argc, char **argv)
 						FD_CLR(socketId, &activeSockets);
 						close(socketId);
 					}
-					else 
+					else
 					{
-						for (int i = 0, j = strlen(clients[socketId].msg); i < bytesRead; i++, j++)
+						for(int i = 0, j = strlen(clients[socketId].msg); i < bytesRead; i++, j++)
 						{
 							clients[socketId].msg[j] = readBuf[i];
 							if (readBuf[i] == '\n')
-							{		
+							{
 								clients[socketId].msg[j] = '\0';
 								sprintf(writeBuf, "client %d: %s\n", clients[socketId].id, clients[socketId].msg);
 								sendAll(socketId);
-								bzero(clients[socketId].msg, sizeof(clients[socketId].msg));
-								j = -1;
+								bzero(&clients[socketId].msg, sizeof(clients[socketId].msg));
 							}
 						}
 					}
