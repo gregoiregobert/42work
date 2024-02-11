@@ -1,99 +1,107 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include <netdb.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
-#include <stdlib.h>
-#include <stdio.h>
 
-typedef struct s_clients {
-    int     id;
-    char    msg[1024];
+typedef struct s_clients{
+	int id;
+	char msg[1024];
 } t_clients;
 
-t_clients   clients[1024];
-fd_set      readfds, active;
-int         fdMax = 0, idNext = 0;
-char        readBuf[120000], writeBuf[120000];
+t_clients clients[128];
+fd_set writefds, readfds, active;
+int nextId = 0, fdMax = 0;
+char writeBuf[120000], readBuf[120000];
 
-void    ftError() {
+void	ft_error() {
 	perror("Fatal error");
-    exit(1);
+	exit(1);
 }
 
-void    sendAll(int not) {
-    for(int i = 0; i <= fdMax; i++)
-        if(FD_ISSET(i, &active) && i != not)
-            send(i, writeBuf, strlen(writeBuf), 0);
+void	sendAll(int not) {
+	for (int i = 0; i <= fdMax; i++)
+		if (FD_ISSET(i, &active) && i != not)
+			send(i, writeBuf, strlen(writeBuf), 0);
 }
 
-int main(int ac, char **av) {
-    if (ac != 2)
-    {
-		fprintf(stderr, "Wrong number of arguments");
+int main(int ac, char **av)
+{
+	if (ac != 2)
+	{
+		fprintf(stderr, "Wrong number of arguments\n");
 		exit(1);
 	}
 
-    int sockfd = socket(AF_INET, SOCK_STREAM, 0);
-    if (sockfd < 0)
-        ftError();
+	int serverSock = socket(AF_INET, SOCK_STREAM, 0);
+	if (serverSock < 0)
+		ft_error();
 
-    struct sockaddr_in  servaddr = {0};
-    servaddr.sin_family = AF_INET;
-	servaddr.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
-	servaddr.sin_port = htons(atoi(av[1]));
+	struct sockaddr_in serverAddr = {0};
+	serverAddr.sin_family = AF_INET;
+	serverAddr.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
+	serverAddr.sin_port = htons(atoi(av[1]));
 
-    if ((bind(sockfd, (const struct sockaddr *)&servaddr, sizeof(servaddr))) < 0)
-        ftError();
+	if (bind(serverSock, (struct sockaddr *)&serverAddr, sizeof(serverAddr)) < 0)
+		ft_error();
 
-    if (listen(sockfd, 128) < 0)
-        ftError();
+	if (listen(serverSock, 128) < 0)
+		ft_error();
 
-    FD_ZERO(&active);
-    FD_SET(sockfd, &active);
-    fdMax = sockfd;
+	FD_ZERO(&active);
+	FD_SET(serverSock, &active);
+	fdMax = serverSock;
 
-    while(1)
+	while(1)
 	{
-        readfds = active;
-        if (select(fdMax + 1, &readfds, NULL, NULL, NULL) < 0)
-            ftError();
+		writefds = readfds = active;
+		if (select(fdMax + 1, &readfds, &writefds, NULL, NULL) < 0)
+			ft_error();
 
-        for(int fdI = 0; fdI <= fdMax; fdI++) {
-            if (FD_ISSET(fdI, &readfds) && fdI == sockfd)
+		for (int fdI = 0; fdI <= fdMax; fdI++)
+		{
+			if (FD_ISSET(fdI, &readfds))
 			{
-                int connfd = accept(sockfd, NULL, NULL);
-                if (connfd < 0)
-                    ftError();
-                fdMax = connfd > fdMax ? connfd : fdMax;
-                clients[connfd].id = idNext++;
-                FD_SET(connfd, &active);
-                sprintf(writeBuf, "server: client %d just arrived\n", clients[connfd].id);
-                sendAll(connfd);
-            }
-            if (FD_ISSET(fdI, &readfds) && fdI != sockfd)
-			{
-                int res = recv(fdI, readBuf, sizeof(readBuf), 0);
-                if (res <= 0) {
-                    sprintf(writeBuf, "server: client %d just left\n", clients[fdI].id);
-                    sendAll(fdI);
-                    FD_CLR(fdI, &active);
-                    close(fdI);
-                }
-                else
+				if (fdI == serverSock)
 				{
-                    for (int i = 0, j = strlen(clients[fdI].msg); i < res; i++, j++) {
-                        clients[fdI].msg[j] = readBuf[i];
-                        if (clients[fdI].msg[j] == '\n') {
-                            clients[fdI].msg[j] = '\0';
-                            sprintf(writeBuf, "client %d: %s\n", clients[fdI].id, clients[fdI].msg);
-                            sendAll(fdI);
-                            bzero(&clients[fdI].msg, strlen(clients[fdI].msg));
-                            j = -1;
-                        }
-                    }
-                }
-            }
-        }
-    }
+					int clientSock = accept(serverSock, NULL, NULL);
+					if (clientSock < 0)
+						ft_error();
+					fdMax = (clientSock > fdMax) ? clientSock : fdMax;
+					clients[clientSock].id = nextId++;
+					FD_SET(clientSock, &active);
+					sprintf(writeBuf, "server: client %d just arrived\n", clients[clientSock].id);
+					sendAll(clientSock);
+				}
+				else
+				{
+					int res = recv(fdI, readBuf, sizeof(readBuf), 0);
+					if (res <= 0)
+					{
+						sprintf(writeBuf, "server: client %d just left\n", clients[fdI].id);
+						sendAll(fdI);
+						FD_CLR(fdI, &active);
+						close(fdI);
+					}
+					else
+					{
+						for (int i = 0, j = strlen(clients[fdI].msg); i < res; i++, j++)
+						{
+							clients[fdI].msg[j] = readBuf[i];
+							if (clients[fdI].msg[j] == '\n')
+							{
+								clients[fdI].msg[j] = '\0';
+								sprintf(writeBuf, "client %d: %s\n", clients[fdI].id, clients[fdI].msg);
+								sendAll(fdI);
+								bzero(&clients[fdI].msg, sizeof(clients[fdI].msg));
+								j = -1;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	return 0;
 }
