@@ -5,24 +5,26 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 
-typedef struct s_clients{
+typedef struct sclients {
 	int id;
-	char msg[1024];
+	char msg[120000];
 } t_clients;
 
 t_clients clients[128];
-fd_set writefds, readfds, active;
+fd_set readfds, writefds, active;
 int nextId = 0, fdMax = 0;
 char writeBuf[120000], readBuf[120000];
 
-void	ft_error() {
+void	ft_error()
+{
 	perror("Fatal error");
 	exit(1);
 }
 
-void	sendAll(int not) {
+void	sendAll(int not)
+{
 	for (int i = 0; i <= fdMax; i++)
-		if (FD_ISSET(i, &active) && i != not)
+		if (FD_ISSET(i, &writefds) && i != not)
 			send(i, writeBuf, strlen(writeBuf), 0);
 }
 
@@ -41,7 +43,7 @@ int main(int ac, char **av)
 	struct sockaddr_in serverAddr = {0};
 	serverAddr.sin_family = AF_INET;
 	serverAddr.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
-	serverAddr.sin_port = htons(atoi(av[1]));
+	serverAddr.sin_port = htons(atoi(av[1]));;
 
 	if (bind(serverSock, (struct sockaddr *)&serverAddr, sizeof(serverAddr)) < 0)
 		ft_error();
@@ -55,7 +57,7 @@ int main(int ac, char **av)
 
 	while(1)
 	{
-		writefds = readfds = active;
+		readfds = writefds = active;
 		if (select(fdMax + 1, &readfds, &writefds, NULL, NULL) < 0)
 			ft_error();
 
@@ -66,13 +68,13 @@ int main(int ac, char **av)
 				if (fdI == serverSock)
 				{
 					int clientSock = accept(serverSock, NULL, NULL);
-					if (clientSock < 0)
+					if (clientSock < 0)			
 						ft_error();
 					fdMax = (clientSock > fdMax) ? clientSock : fdMax;
 					clients[clientSock].id = nextId++;
-					FD_SET(clientSock, &active);
 					sprintf(writeBuf, "server: client %d just arrived\n", clients[clientSock].id);
 					sendAll(clientSock);
+					FD_SET(clientSock, &active);
 				}
 				else
 				{
@@ -94,7 +96,7 @@ int main(int ac, char **av)
 								clients[fdI].msg[j] = '\0';
 								sprintf(writeBuf, "client %d: %s\n", clients[fdI].id, clients[fdI].msg);
 								sendAll(fdI);
-								bzero(&clients[fdI].msg, sizeof(clients[fdI].msg));
+								bzero(&clients[fdI].msg, strlen(clients[fdI].msg));
 								j = -1;
 							}
 						}
