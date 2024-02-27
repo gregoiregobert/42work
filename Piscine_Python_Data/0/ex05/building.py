@@ -1,5 +1,6 @@
 import sys
 import string
+import readline
 
 def count_type_of_character(text):
 	upper_count = sum(1 for char in text if char.isupper())
@@ -18,12 +19,8 @@ def count_type_of_character(text):
 def main():
 
 	if len(sys.argv) == 1:
-		while 1:
-			try:
-				text = input()
-			except EOFError:
-				break
-			text += '\n'
+		print("What is the text to count?")
+		text = sys.stdin.readline()
 		count_type_of_character(text)
 	elif len(sys.argv) == 2:
 		text = sys.argv[1]
