@@ -1,4 +1,5 @@
 import sys
+from time import sleep
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 from load_image import ft_load
@@ -18,6 +19,8 @@ def zoom(path: str):
 
 	roi = image[int(top):int(bottom), int(left):int(right)]
 
+	plt.imshow(image)
+	plt.show()
 	plt.imshow(roi)
 	plt.show()
 
