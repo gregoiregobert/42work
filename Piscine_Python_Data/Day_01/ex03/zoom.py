@@ -1,16 +1,10 @@
 import sys
-from time import sleep
 import matplotlib.pyplot as plt
-import matplotlib.image as mpimg
 from load_image import ft_load
 
-def zoom(path: str):
-	try:
-		image = mpimg.imread(path)
-	except:
-		print("Error")
-
-	height, width, channels = image.shape
+def zoom(image):
+		
+	height, width = image.size
 
 	left = width / 4
 	top = height / 4
@@ -19,14 +13,23 @@ def zoom(path: str):
 
 	roi = image[int(top):int(bottom), int(left):int(right)]
 
-	plt.imshow(image)
-	plt.show()
+	height_r, width_r = roi.size
+	shape = (height_r, width_r, len(roi[0][0]))
+	print(f"New shape after slicing: {shape}")
+	print(roi)
+
 	plt.imshow(roi)
 	plt.show()
 
 def main():
-	ft_load(sys.argv[1])
-	zoom(sys.argv[1])
+
+	try:
+		assert len(sys.argv) == 1, "AssertionError: wrong number of arguments"
+	except AssertionError as m:
+		print(m)
+		sys.exit(1)
+
+	zoom( ft_load("../ex02/landscape.jpg") )
 
 if __name__ == "__main__":
 	main()

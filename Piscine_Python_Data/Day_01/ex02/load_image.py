@@ -1,33 +1,30 @@
-from PIL import Image
 import sys
+import numpy
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 
-def ft_load(path: str) -> list:
+def ft_load(path: str) -> 'numpy.ndarray':
+
+	"""
+    Load an image from the specified path.
+
+    Parameters:
+    - path (str): The path to the image file.
+
+    Returns:
+    - image (numpy.ndarray): The image data as a NumPy array.
+	"""
 
 	try:
-		image = Image.open(path)
-		image2 = mpimg.imread(path)
-	except:
-		print("error")
+		assert path.endswith(".jpg") or path.endswith(".jpeg"), "AssertionError: File type is not supported"
+	except AssertionError as m:
+		print(m)
+		sys.exit(1)
 
-	width, height = image.size
+	image = mpimg.imread(path)
+	width, height, channels = image.shape
 
-	image_rgb = [[[0, 0, 0] for _ in range(width)] for _ in range(height)]
-
-	for y in range(height):
-		for x in range(width):
-			r, g, b = image.getpixel((x, y))
-			image_rgb[y][x] = [r, g, b]
-
-	shape = (width, height, len(image_rgb[0][0]))
+	shape = (width, height, channels)
 	print(f"The shape of image is: {shape}")
 
-	return image_rgb
-
-def main():
-	ft_load(sys.argv[1])
-	# print(ft_load(sys.argv[1]))
-
-if __name__== "__main__":
-	main()
+	return image
