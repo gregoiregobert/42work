@@ -1,16 +1,11 @@
 import sys
 import matplotlib.pyplot as plt
-import matplotlib.image as mpimg
 import numpy as np
 from load_image import ft_load
 
-def rotate(path: str):
+def zoom(image):
 
-	try:
-		image = mpimg.imread(path)
-	except:
-		print("Error")
-
+	print(image)
 	height, width, channels = image.shape
 
 	left = width / 4
@@ -20,6 +15,11 @@ def rotate(path: str):
 
 	zoomed = image[int(top):int(bottom), int(left):int(right)]
 
+	return zoomed
+
+
+def rotate(zoomed):
+
 	height, width, channels = zoomed.shape
 
 	rotate = np.zeros((width, height, channels), dtype=zoomed.dtype)
@@ -28,21 +28,14 @@ def rotate(path: str):
 		for j in range(width):
 			rotate[width - j - 1, i] = zoomed[i, j]
 
-	plt.imshow(zoomed)
-	plt.show()
+	print(f"New shape after Transpose: {zoomed.shape}")
+	print(rotate)
 	plt.imshow(rotate)
 	plt.show()
 
 def main():
 
-	try:
-		assert len(sys.argv) == 2, "AssertionError: wrong number of arguments"
-	except AssertionError as m:
-		print(m)
-		sys.exit(1)
-
-	ft_load( sys.argv[1] )
-	rotate( sys.argv[1] )
+	rotate( zoom ( ft_load( "../ex02/animal.jpeg" ) ) )
 
 if __name__ == "__main__":
 	main()

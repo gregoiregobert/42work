@@ -3,8 +3,10 @@ import matplotlib.pyplot as plt
 from load_image import ft_load
 
 def zoom(image):
-		
-	height, width = image.size
+	
+
+	print(image)
+	height, width, channels = image.shape
 
 	left = width / 4
 	top = height / 4
@@ -13,7 +15,7 @@ def zoom(image):
 
 	roi = image[int(top):int(bottom), int(left):int(right)]
 
-	height_r, width_r = roi.size
+	height_r, width_r, channels_r = roi.shape
 	shape = (height_r, width_r, len(roi[0][0]))
 	print(f"New shape after slicing: {shape}")
 	print(roi)
@@ -23,13 +25,7 @@ def zoom(image):
 
 def main():
 
-	try:
-		assert len(sys.argv) == 1, "AssertionError: wrong number of arguments"
-	except AssertionError as m:
-		print(m)
-		sys.exit(1)
-
-	zoom( ft_load("../ex02/landscape.jpg") )
+	zoom( ft_load("../ex02/animal.jpeg") )
 
 if __name__ == "__main__":
 	main()

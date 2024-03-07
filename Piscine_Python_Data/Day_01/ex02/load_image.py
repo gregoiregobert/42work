@@ -21,10 +21,12 @@ def ft_load(path: str) -> 'numpy.ndarray':
 		print(m)
 		sys.exit(1)
 
-	image = mpimg.imread(path)
-	width, height, channels = image.shape
-
-	shape = (width, height, channels)
-	print(f"The shape of image is: {shape}")
+	try:
+		image = mpimg.imread(path)
+	except FileNotFoundError:
+		print("Error: File not found")
+		sys.exit(1)
+		
+	print(f"The shape of image is: {image.shape}")
 
 	return image
