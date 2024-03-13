@@ -12,10 +12,7 @@ def graphic(data):
 	country_data = country_data._append(data[data['country'] == 'Armenia'])
 
 	years = country_data.columns[1:]  # Assuming years start from the second column
-	life_expectancy = country_data.values.tolist()[0][1:]
-
-	print(country_data.values)
-
+	life_expectancy = country_data.values[0][1:]
 
 	plt.figure(figsize=(8, 6))
 	plt.plot(years, life_expectancy)
