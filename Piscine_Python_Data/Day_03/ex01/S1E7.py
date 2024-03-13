@@ -6,7 +6,7 @@ class Baratheon(Character):
 
 	def __init__(self, first_name, is_alive=True):
 		super().__init__(first_name, is_alive)
-		self.familiy_name = 'Baratheon'
+		self.family_name = 'Baratheon'
 		self.eyes = 'brown'
 		self.hairs = 'dark'
 
@@ -14,7 +14,7 @@ class Baratheon(Character):
 		self.is_alive = False
 
 	def __str__(self):
-		Vector = (self.familiy_name, self.eyes, self.hairs)
+		Vector = (self.family_name, self.eyes, self.hairs)
 		return f"<Vector: {Vector}>"
 	
 	def __repr__(self):
@@ -25,7 +25,7 @@ class Lannister(Character):
 
 	def __init__(self, first_name, is_alive=True):
 		super().__init__(first_name, is_alive)
-		self.familiy_name = 'Lannister'
+		self.family_name = 'Lannister'
 		self.eyes = 'blue'
 		self.hairs = 'light'
 
@@ -37,7 +37,7 @@ class Lannister(Character):
 
 
 	def __str__(self):
-		Vector = (self.familiy_name, self.eyes, self.hairs)
+		Vector = (self.family_name, self.eyes, self.hairs)
 		return f"<Vector: {Vector}>"
 
 	def __repr__(self):
