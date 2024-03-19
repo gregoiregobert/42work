@@ -6,6 +6,8 @@ def ft_statistics(*args: any, **kwargs: any) -> None:
 		if kwargs[i] == 'mean':
 			try:
 				assert len(args), "ERROR"
+				for j in args:
+					assert isinstance(j, (int, float)), "ERROR"
 				print('mean :', round(sum(args) / len(args), 1))
 			except AssertionError as m:
 				print(m)
@@ -13,6 +15,8 @@ def ft_statistics(*args: any, **kwargs: any) -> None:
 		if kwargs[i] == 'median':
 			try:
 				assert len(args), "ERROR"
+				for j in args:
+					assert isinstance(j, (int, float)), "ERROR"
 				n = len(args)
 				sorted_lst = sorted(list(args))
 				if n % 2 == 0:
@@ -28,6 +32,8 @@ def ft_statistics(*args: any, **kwargs: any) -> None:
 		if kwargs[i] == 'quartile':
 			try:
 				assert len(args), "ERROR"
+				for j in args:
+					assert isinstance(j, (int, float)), "ERROR"
 				sorted_lst = sorted(list(args))
 				n = len(sorted_lst)
 
@@ -44,6 +50,8 @@ def ft_statistics(*args: any, **kwargs: any) -> None:
 		if kwargs[i] == 'std':
 			try:
 				assert len(args), "ERROR"
+				for j in args:
+					assert isinstance(j, (int, float)), "ERROR"
 				n = len(args)
 				mean = float(sum(args) / len(args))
 				variance = sum((x - mean) ** 2 for x in args) / n
@@ -55,6 +63,8 @@ def ft_statistics(*args: any, **kwargs: any) -> None:
 		if kwargs[i] == 'var':
 			try:
 				assert len(args), "ERROR"
+				for j in args:
+					assert isinstance(j, (int, float)), "ERROR"
 				n = len(args)
 				mean = float(sum(args) / len(args))
 				variance = sum((x - mean) ** 2 for x in args) / n
