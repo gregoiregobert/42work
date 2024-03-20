@@ -6,7 +6,7 @@ if len(sys.argv) == 1:
 
 try:
     assert len(sys.argv) == 2, \
-"AssertionError: more than one argument is provided"
+        "AssertionError: more than one argument is provided"
 except AssertionError as msg:
     print(msg)
     sys.exit(1)
