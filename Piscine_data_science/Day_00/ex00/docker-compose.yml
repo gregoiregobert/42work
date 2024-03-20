@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:latest
+    container_name: Postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ggobert
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_DB: piscineds
