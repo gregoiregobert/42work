@@ -33,7 +33,7 @@ Turn in green the color of the image received.
     """
 
     green = np.copy(image)
-    green[:, :, 2:] = 0
+    green[:, :, 0::2] = 0
     plt.imshow(green)
     plt.show()
 
@@ -48,6 +48,7 @@ Turn in blue the color of the image received.
     blue[:, :, :2] = 0
     plt.imshow(blue)
     plt.show()
+    print(blue.shape)
 
 
 def ft_grey(image) -> 'np.ndarray':
