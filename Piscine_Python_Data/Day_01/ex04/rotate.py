@@ -3,6 +3,7 @@ import numpy as np
 from load_image import ft_load
 
 
+
 def zoom(image):
 
     print(image)

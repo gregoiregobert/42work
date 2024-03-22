@@ -17,15 +17,15 @@ def ft_load(path: str) -> 'numpy.ndarray':
 
     try:
         assert path.endswith(".jpg") or path.endswith(".jpeg"), \
-            "AssertionError: File type is not supported"
+            "Error: File type is not supported"
     except AssertionError as m:
         print(m)
         sys.exit(1)
 
     try:
         image = mpimg.imread(path)
-    except FileNotFoundError:
-        print("Error: File not found")
+    except:
+        print("Error: File cannot be open")
         sys.exit(1)
 
     print(f"The shape of image is: {image.shape}")

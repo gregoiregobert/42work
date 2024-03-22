@@ -1,4 +1,4 @@
-from load_image import ft_load
+from ..ex02.load_image import ft_load
 from pimp_image import ft_invert
 from pimp_image import ft_red
 from pimp_image import ft_green
