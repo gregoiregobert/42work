@@ -24,7 +24,7 @@ def ft_load(path: str) -> 'numpy.ndarray':
 
     try:
         image = mpimg.imread(path)
-    except:
+    except Exception:
         print("Error: File cannot be open")
         sys.exit(1)
 

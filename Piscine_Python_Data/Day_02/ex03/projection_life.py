@@ -26,7 +26,6 @@ def graphic(data_gross, data_life_expect):
     merged_data_1900 = pd.merge(data_1900_gdp, data_1900_le,
                                 left_index=True, right_index=True)
 
-    print(merged_data_1900)
     plt.scatter(merged_data_1900['1900_x'], merged_data_1900['1900_y'])
     plt.title('1900')
     plt.xlabel('Gross domestic product')

@@ -5,7 +5,7 @@ from load_csv import load
 
 def graphic(data):
 
-    country_name = 'France'
+    country_name = 'Belgium'
 
     country_data = data[data['country'] == country_name]
     country_data = country_data._append(data[data['country'] == 'Armenia'])
