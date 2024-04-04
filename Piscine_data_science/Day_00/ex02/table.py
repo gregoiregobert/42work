@@ -16,6 +16,16 @@ folder_path = '/mnt/nfs/homes/ggobert/Downloads/subject/customer'
 
 for file_name in os.listdir(folder_path):
     if file_name == 'data_2022_dec.csv':
-        print(os.path)
+        table_name = os.path.splitext(file_name)[0]
+
+columns = [
+    "event_time TIMESTAMP",
+    "event_type TEXT",
+    "product_id INTEGER",
+    "price MONEY",
+    "user_id DECIMAL",
+    "user_session VARCHAR"
+]
+
 
 conn.close()
