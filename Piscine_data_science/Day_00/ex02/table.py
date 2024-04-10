@@ -23,7 +23,7 @@ for file_name in os.listdir(folder_path):
 # Creating the table
 cur.execute(f"""
     CREATE TABLE IF NOT EXISTS {table_name} (
-        event_time TIMESTAMP,
+        event_time DATETIME,
         event_type TEXT,
         product_id INTEGER,
         price MONEY,
@@ -31,7 +31,7 @@ cur.execute(f"""
         user_session VARCHAR
     )
 """)
-print("Table execute succefully")
+print("Table created succefully")
 
 # Open CSV 
 with open(folder_path + '/data_2022_dec.csv', 'r') as csv_file:
