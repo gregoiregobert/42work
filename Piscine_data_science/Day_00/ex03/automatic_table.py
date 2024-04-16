@@ -17,13 +17,13 @@ cur = conn.cursor()
 folder_path = '/mnt/nfs/homes/ggobert/Downloads/subject/customer'
 
 for file_name in os.listdir(folder_path):
-    if file_name.endswith('.csv'):
+    if file_name.endswith('.csv') and file_name != "Test.csv":
         table_name = os.path.splitext(file_name)[0]
 
         # Creating the table
         cur.execute(f"""
             CREATE TABLE IF NOT EXISTS {table_name} (
-                event_time DATETIME,
+                event_time TIMESTAMP,
                 event_type TEXT,
                 product_id INTEGER,
                 price MONEY,
