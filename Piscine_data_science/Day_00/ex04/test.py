@@ -39,3 +39,4 @@ for file_name in os.listdir(folder_path):
 conn.commit()
 cur.close()
 conn.close()
+merge_query = merge_query.rsplit(' UNION ALL ', 1)[0]

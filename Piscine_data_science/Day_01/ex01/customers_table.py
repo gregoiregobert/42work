@@ -23,6 +23,10 @@ for file_name in os.listdir(folder_path):
 
     merge_query += f"SELECT * FROM {table_name} UNION ALL "
 
+merge_query = merge_query.rsplit(' UNION ALL ', 1)[0]
+
+cur.execute(merge_query)
+
 print("Tables merged successfully")
 
 conn.commit()
