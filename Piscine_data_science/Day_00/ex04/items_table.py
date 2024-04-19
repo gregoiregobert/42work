@@ -25,7 +25,7 @@ for file_name in os.listdir(folder_path):
             CREATE TABLE IF NOT EXISTS {table_name} (
                 product_id INT,
                 category_id BIGINT,
-                caterogy_code TEXT,
+                category_code TEXT,
                 brand TEXT
             )
         """)
