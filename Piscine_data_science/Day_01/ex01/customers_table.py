@@ -18,7 +18,7 @@ merge_query = "CREATE TABLE customers AS "
 folder_path = '/mnt/nfs/homes/ggobert/Downloads/subject/customer'
 
 for file_name in os.listdir(folder_path):
-    if file_name.endswith('.csv') and file_name.startswith("data_"):
+    if file_name.endswith('.csv') and file_name.startswith("data_") and file_name != "data_2023_feb.csv":
         table_name = os.path.splitext(file_name)[0]
 
     merge_query += f"SELECT * FROM {table_name} UNION ALL "
