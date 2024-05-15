@@ -1,6 +1,8 @@
 import psycopg2
 import matplotlib.pyplot as plt
 import pandas as pd
+from matplotlib.dates import DateFormatter, MonthLocator
+import calendar
 
 # Connecting to the Database
 print("Trying to connect to db")
@@ -13,6 +15,7 @@ conn = psycopg2.connect(
 print("Connection success!")
 cur = conn.cursor()
 
+#--------- LINEAR GRAPH ---------#
 cur.execute("""
     SELECT DATE(event_time) AS purchase_date,
         COUNT(DISTINCT user_id) AS distinct_users
@@ -26,23 +29,40 @@ cur.execute("""
 # Fetch the results
 results = cur.fetchall()
 df = pd.DataFrame(results, columns=['purchase_date', 'distinct_users'])
+df['purchase_date'] = pd.to_datetime(df['purchase_date'])
+
 
 # Plotting
 plt.figure(figsize=(6, 4))
-plt.plot(df['purchase_date'], df['distinct_users'], linestyle='-')
+plt.plot(df['purchase_date'], df['distinct_users'])
 
 # Formatting the plot
-plt.title('Number of Different Users Making a Purchase Each Day')
-plt.xlabel('Date')
-plt.ylabel('Number of Users')
+plt.ylabel('Number of customers')
 
-month_names = df['purchase_date'].dt.strftime('%B').unique()
-plt.xticks(df['purchase_date'].unique(), month_names, rotation=45)
+ax = plt.gca()
+ax.xaxis.set_major_locator(MonthLocator())
+ax.xaxis.set_major_formatter(DateFormatter('%b'))
 
 # Show plot
-plt.tight_layout()
+plt.grid()
 plt.show()
 
+#------- BAR GRAPH --------#
+
+df['date'] = df['purchase_date'].dt.strftime('%Y-%m')
+# df['date'] = df['date'].apply(lambda x: calendar.month_name[int(x.split('-')[1])][:3])
+distinct_users_by_month = df.groupby('date')['distinct_users'].sum()
+
+# Plotting
+plt.figure(figsize=(6, 4))
+plt.bar(distinct_users_by_month.index, distinct_users_by_month.values)
+
+# Formatting the plot
+plt.ylabel('total sales in million of A')
+
+# Show plot
+plt.grid()
+plt.show()
 
 # Close cursor and connection
 cur.close()
