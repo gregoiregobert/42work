@@ -35,10 +35,9 @@ df['purchase_date'] = pd.to_datetime(df['purchase_date'])
 # Plotting
 plt.figure(figsize=(6, 4))
 plt.plot(df['purchase_date'], df['distinct_users'])
-
-# Formatting the plot
 plt.ylabel('Number of customers')
 
+# Ordering by month on the x axis
 ax = plt.gca()
 ax.xaxis.set_major_locator(MonthLocator())
 ax.xaxis.set_major_formatter(DateFormatter('%b'))
@@ -49,13 +48,32 @@ plt.show()
 
 #------- BAR GRAPH --------#
 
-df['date'] = df['purchase_date'].dt.strftime('%Y-%m')
-# df['date'] = df['date'].apply(lambda x: calendar.month_name[int(x.split('-')[1])][:3])
-distinct_users_by_month = df.groupby('date')['distinct_users'].sum()
+cur.execute("""
+    SELECT 
+        CONCAT(EXTRACT(YEAR FROM event_time), '-', EXTRACT(MONTH FROM event_time)) AS date_,
+        COUNT(*) AS purchase_count
+    FROM 
+        customers
+    WHERE 
+        event_type = 'purchase'
+    GROUP BY 
+        date_;
+""")
+
+results = cur.fetchall()
+df2 = pd.DataFrame(results, columns=['date', 'purchase_count'])
+
+def month_number_to_name(month_number):
+    return calendar.month_name[int(month_number)]
+
+# Extract month number from date and convert it to month name
+df2['date'] = df2['date'].apply(lambda x: month_number_to_name(x.split('-')[1])[:3])
+
+df2['purchase_count_m'] = df2['purchase_count'] / 1000000
 
 # Plotting
 plt.figure(figsize=(6, 4))
-plt.bar(distinct_users_by_month.index, distinct_users_by_month.values)
+plt.bar(df2['date'], df2['purchase_count_m'])
 
 # Formatting the plot
 plt.ylabel('total sales in million of A')
