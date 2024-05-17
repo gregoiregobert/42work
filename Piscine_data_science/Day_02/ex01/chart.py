@@ -82,6 +82,42 @@ plt.ylabel('total sales in million of A')
 plt.grid()
 plt.show()
 
+#------- STACK GRAPH --------#
+
+cur.execute("""
+    SELECT 
+        event_time::date AS event_date, 
+        AVG(price::numeric) AS average_spending
+    FROM 
+        customers
+    WHERE 
+        event_type = 'purchase'
+    GROUP BY 
+        event_time::date
+    ORDER BY 
+        event_time::date;
+""")
+
+results = cur.fetchall()
+df3 = pd.DataFrame(results, columns=['date', 'average_spending'])
+
+# Plotting
+fig, ax = plt.subplots()
+ax.stackplot(df3['date'], df3['average_spending'])
+plt.ylabel('Average spend/customers in A')
+
+# Ordering by month on the x axis
+ax = plt.gca()
+ax.xaxis.set_major_locator(MonthLocator())
+ax.xaxis.set_major_formatter(DateFormatter('%b'))
+
+ax.set_xlim(df3['date'].min(), df3['date'].max())
+
+# Show plot
+plt.grid()
+plt.show()
+
+
 # Close cursor and connection
 cur.close()
 conn.close()
