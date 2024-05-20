@@ -55,7 +55,7 @@ cur.execute("""
     FROM 
         customers
     WHERE 
-        event_type = 'purchase'
+        event_type IN ('purchase')
     GROUP BY 
         date_;
 """)
