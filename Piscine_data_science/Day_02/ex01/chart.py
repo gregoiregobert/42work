@@ -117,7 +117,6 @@ ax.set_xlim(df3['date'].min(), df3['date'].max())
 plt.grid()
 plt.show()
 
-
 # Close cursor and connection
 cur.close()
 conn.close()
