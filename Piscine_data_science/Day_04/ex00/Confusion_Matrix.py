@@ -6,19 +6,24 @@ list = {
      1 : 'Truth'
 }
 
-
 for i in range(len(sys.argv) - 1):
     with open(f"{os.getcwd()}/{sys.argv[i + 1]}", 'r') as file:
         list[i] = [line.strip() for line in file.readlines()]
 
-p_jedi = sum(1 for p in  list[0] if p == 'Jedi')
-p_sith = 100 - p_jedi
+rp = sum(1 for t, p in zip(list[0], list[1]) if p == 'Jedi' and t == 'Jedi')
+print('rp', rp)
 
-t_jedi = sum(1 for t in list[1] if t == 'Jedi')
-t_sith = 100 - t_jedi
+wp = sum(1 for t, p in zip(list[0], list[1]) if p == 'Jedi' and t == 'Sith')
+print('wp', wp)
 
-print('p_jedi', p_jedi, 'p_sith', p_sith, 't_jedi', t_jedi, 't_sith', t_sith)
+rn = sum(1 for t, p in zip(list[0], list[1]) if p == 'Sith' and t == 'Sith')
+print('rn', rn)
+
+wn = sum(1 for t, p in zip(list[0], list[1]) if p == 'Sith' and t == 'Jedi')
+print('wn', wn)
 
 accuracy = sum(1 for t, p in zip(list[0], list[1]) if t == p) / len(list[1])
 
+Confusion_matirx = [[rp, wp],
+                    [rn, wn]]
 
