@@ -13,8 +13,9 @@ print("Connection success!")
 cur = conn.cursor()
 
 
-# Find the table's name
-folder_path = '/mnt/nfs/homes/ggobert/Downloads/subject/customer'
+# Folder location ( A CHANGER EN FONCTION DE LA CORRECTION )
+# folder_path = '/mnt/nfs/homes/ggobert/Downloads/subject/customer'
+folder_path = "/Users/gregoiregobert/Downloads/subject/customer"
 
 for file_name in os.listdir(folder_path):
     if file_name == 'data_2022_dec.csv':
@@ -23,7 +24,7 @@ for file_name in os.listdir(folder_path):
 # Creating the table
 cur.execute(f"""
     CREATE TABLE IF NOT EXISTS {table_name} (
-        event_time DATETIME,
+        event_time TIMESTAMP,
         event_type TEXT,
         product_id INTEGER,
         price MONEY,

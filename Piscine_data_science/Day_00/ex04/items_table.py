@@ -13,8 +13,9 @@ print("Connection success!")
 cur = conn.cursor()
 
 
-# Find the table's name
-folder_path = '/mnt/nfs/homes/ggobert/Downloads/subject/item'
+# Folder location ( À CHANGER EN FONCTION DE LA CORRECTION )
+# folder_path = '/mnt/nfs/homes/ggobert/Downloads/subject/item'
+folder_path = '/Users/gregoiregobert/Downloads/subject/item'
 
 for file_name in os.listdir(folder_path):
     if file_name.endswith('.csv'):
