@@ -15,7 +15,7 @@ cur = conn.cursor()
 
 # Folder location ( À CHANGER EN FONCTION DE LA CORRECTION )
 # folder_path = '/mnt/nfs/homes/ggobert/Downloads/subject/item'
-folder_path = '/Users/gregoiregobert/Downloads/subject/item'
+folder_path = '/Users/gregoiregobert/Downloads/42/subject/item'
 
 for file_name in os.listdir(folder_path):
     if file_name.endswith('.csv'):
@@ -34,7 +34,6 @@ for file_name in os.listdir(folder_path):
 
         # Open csv_files
         with open(folder_path +  '/' + file_name, 'r') as csv_file:
-            next(csv_file)  # Skip header row
             cur.copy_expert(f"COPY {table_name} FROM STDIN CSV HEADER", csv_file)
         print(f"{file_name} copied succefully")
 
