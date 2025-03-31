@@ -45,6 +45,7 @@ print(f"max      {max_result:.6f}")
 
 
 #--------- BOXPLOT GRAPH ---------#
+
 plt.figure(figsize=(8, 6))
 flierprops = dict(linewidth=2, color='red', marker='D', markersize=2, markerfacecolor='green', markeredgecolor='green')
 plt.boxplot(results, vert=False, patch_artist=True, boxprops=dict(facecolor='green', color='green'), flierprops=flierprops)   
@@ -53,6 +54,7 @@ plt.ylim(0.9, 1.1)
 plt.show()
 
 #--------- ZOOM BOXPLOT GRAPH ---------#
+
 plt.figure(figsize=(8, 6))
 flierprops = dict(markersize=0)
 plt.boxplot(results, vert=False, patch_artist=True, boxprops=dict(facecolor='green', color='black'), flierprops=flierprops)   
@@ -62,6 +64,7 @@ plt.ylim(0.9, 1.1)
 plt.show()
 
 #--------- BASKETBOXPLOT GRAPH ---------#
+
 cur.execute("""
     SELECT 
         AVG(session_total) AS average_price_per_session
@@ -87,7 +90,7 @@ plt.figure(figsize=(8, 6))
 flierprops = dict(linewidth=1, color='red', marker='D', markersize=2, markerfacecolor='green', markeredgecolor='magenta')
 plt.boxplot(results2, vert=False, patch_artist=True, boxprops=dict(facecolor='magenta', color='black'), flierprops=flierprops)   
 plt.ylim(0.9, 1.1)
-# plt.xlim(0, 130)
+plt.xlim(-50, 530)
 plt.show()
 
 
