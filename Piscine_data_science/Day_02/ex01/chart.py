@@ -37,8 +37,10 @@ plt.figure(figsize=(6, 4))
 plt.plot(df['purchase_date'], df['distinct_users'])
 plt.ylabel('Number of customers')
 
-# Ordering by month on the x axis
+# gca = get current axe, permet de manipuler le label.
 ax = plt.gca()
+
+# Permet d'avoir pour le label la précision d'un mois à la place de la date pour chaques point
 ax.xaxis.set_major_locator(MonthLocator())
 ax.xaxis.set_major_formatter(DateFormatter('%b'))
 
@@ -77,6 +79,7 @@ plt.bar(df2['date'], df2['purchase_count_m'])
 
 # Formatting the plot
 plt.ylabel('total sales in million of A')
+plt.xlabel('month')
 
 # Show plot
 plt.grid()
@@ -105,6 +108,7 @@ df3 = pd.DataFrame(results, columns=['date', 'average_spending'])
 fig, ax = plt.subplots()
 ax.stackplot(df3['date'], df3['average_spending'])
 plt.ylabel('Average spend/customers in A')
+plt.xlabel('month')
 
 # Ordering by month on the x axis
 ax = plt.gca()
