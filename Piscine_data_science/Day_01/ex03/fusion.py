@@ -20,6 +20,7 @@ cur.execute("""
         t1.user_id,
         t1.event_type,
         t1.user_session,
+        t1.product_id,
         t2.category_id,
         t2.category_code,
         t2.brand
