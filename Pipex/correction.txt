@@ -1,0 +1,17 @@
+Probleme avec pipex sans argument car affichage success au lieu d'un retour erreur [OK]
+
+Probleme avec nombre d'argument pour la partie mandatory et la partie bonus [OK]
+
+
+/!\ Mettre un message d'erreur par pipe ==> verifie l'originale
+-InFile inexistant mais le reste de la commande = continue le pipe [OK]
+
+-1ere Commande inexistante  = continue le pipe [OK]
+
+Creer le OutFile avec 644 et non 777 pour reproduire le vrai pipe [OK]
+
+Gerer quand les args sont vides '' [OK]
+
+Gerer le cas avec env -i [non géré]
+
+Gerer execve echoue ??? [OK]

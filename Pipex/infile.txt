@@ -1,0 +1,4 @@
+1 Tous les penseurs sont occupes
+2 Tous les travailleurs sont occupes
+1 Si les penseurs sont des travailleurs
+2 Travaillent-ils a la pensee?
