@@ -14,8 +14,8 @@ cur = conn.cursor()
 
 
 # Folder location ( A CHANGER EN FONCTION DE LA CORRECTION )
-# folder_path = '/mnt/nfs/homes/ggobert/Downloads/subject/customer'
-folder_path = "/Users/gregoiregobert/Downloads/subject/customer"
+# folder_path = "/Users/gregoiregobert/Downloads/subject/customer"
+folder_path = '/mnt/nfs/homes/ggobert/Downloads/subject/customer'
 
 for file_name in os.listdir(folder_path):
     if file_name == 'data_2022_dec.csv':

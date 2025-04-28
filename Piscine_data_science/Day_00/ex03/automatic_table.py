@@ -14,31 +14,45 @@ cur = conn.cursor()
 
 
 # Find the table's name
-# folder_path = '/mnt/nfs/homes/ggobert/Downloads/subject/customer'
-folder_path = '/Users/gregoiregobert/Downloads/42/subject/customer'
+# folder_path = '/Users/gregoiregobert/Downloads/42/subject/customer'
+folder_path = '/mnt/nfs/homes/ggobert/Downloads/subject/customer'
 
 
 for file_name in os.listdir(folder_path):
     if file_name.endswith('.csv') and file_name != "Test.csv":
         table_name = os.path.splitext(file_name)[0]
 
-        # Creating the table
-        cur.execute(f"""
-            CREATE TABLE IF NOT EXISTS {table_name} (
-                event_time TIMESTAMP,
-                event_type TEXT,
-                product_id INTEGER,
-                price MONEY,
-                user_id DECIMAL,
-                user_session VARCHAR
-            )
-        """)
-        print(f"Table {table_name} created succefully")
 
-        # Open csv_files
-        with open(folder_path +  '/' + file_name, 'r') as csv_file:
-            cur.copy_expert(f"COPY {table_name} FROM STDIN CSV HEADER", csv_file)
-        print(f"{file_name} copied succefully")
+        cur.execute(f"""
+            SELECT EXISTS (
+                SELECT 1
+                FROM information_schema.tables 
+                WHERE table_name = '{table_name}'
+            );
+        """)
+
+        # Récupérer le résultat (True ou False)
+        table_exists = cur.fetchone()[0]
+
+        if not table_exists:
+            # Creating the table
+            cur.execute(f"""
+                CREATE TABLE IF NOT EXISTS {table_name} (
+                    event_time TIMESTAMP,
+                    event_type TEXT,
+                    product_id INTEGER,
+                    price MONEY,
+                    user_id DECIMAL,
+                    user_session VARCHAR
+                )
+            """)
+            print(f"Table {table_name} created succefully")
+
+
+            # Open csv_files
+            with open(folder_path +  '/' + file_name, 'r') as csv_file:
+                cur.copy_expert(f"COPY {table_name} FROM STDIN CSV HEADER", csv_file)
+            print(f"{file_name} copied succefully")
 
 conn.commit()
 cur.close()

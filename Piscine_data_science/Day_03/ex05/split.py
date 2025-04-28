@@ -23,7 +23,8 @@ def split_to_csv(X ,y):
     val_df.to_csv('Validation_knight.csv', index=False)
 
 def main():
-    df = pd.read_csv(f"{os.getcwd()}/Train_knight.csv")
+    folder = "/home/ggobert/Downloads"
+    df = pd.read_csv(folder + "/Train_knight.csv")
     X, y = determine_target(df) 
     split_to_csv(X,y)
 
