@@ -7,9 +7,9 @@ from sklearn.metrics import f1_score
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
 
-def loadData(Train_csv, Test_csv):
-    train_df = pd.read_csv(Train_csv)
-    test_df = pd.read_csv(Test_csv)
+def loadData():
+    train_df = pd.read_csv('../ex04/Train_knight.csv')
+    test_df = pd.read_csv('../ex04/Test_knight.csv')
 
     train_df['knight'] = train_df['knight'].map({'Sith': 0, 'Jedi': 1})
 
@@ -27,7 +27,7 @@ def loadData(Train_csv, Test_csv):
 def findBestK(X, y):
     X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=5)
 
-    k_value = range(1, 21)
+    k_value = range(1, 20)
     f1_scores = []
 
     for k in k_value:
@@ -48,7 +48,7 @@ def findBestK(X, y):
 
     return best_k
 
-def trainModel(X, y, test_df, best_K):
+def predict(X, y, test_df, best_K):
     knn = KNeighborsClassifier(n_neighbors=best_K)
     knn.fit(X, y)
 
@@ -61,10 +61,14 @@ def writePrediction(predictions):
             f.write(f"{pred}\n")
 
 def main():
-    X, y, test_df = loadData(sys.argv[1], sys.argv[2])
+    X, y, test_df = loadData()
     bestK = findBestK(X, y)
-    predictions = trainModel(X, y, test_df, bestK)
+    predictions = predict(X, y, test_df, bestK)
     writePrediction(predictions)
 
 if __name__ == "__main__":
     main()
+
+# Le knn va dans le predict rechercher les voisins les plus proches
+# et determiner sa classe en fonction d'eux, s'il a plus de voisins
+# rouge que bleu le point sera determiner comme rouge.

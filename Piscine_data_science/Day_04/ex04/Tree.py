@@ -7,10 +7,11 @@ from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 
 # Loading datas
-def load_data(Train_knight, Test_knight):
-    train_df = pd.read_csv(Train_knight)
-    test_df = pd.read_csv(Test_knight)
+def load_data():
+    train_df = pd.read_csv('Train_knight.csv')
+    test_df = pd.read_csv('Test_knight.csv')
     return train_df, test_df
+
 
 # Train model
 def train_model(train_df, f1_array):
@@ -30,7 +31,7 @@ def train_model(train_df, f1_array):
     f1_array.append(f1)
     print(f"Validation_set F1 Score: {f1 * 100:.2f}%")
     
-    return model
+    return model, f1_array
 
 def predict_and_save(model, test_df):
     predictions = model.predict(test_df)
@@ -62,21 +63,13 @@ def print_f1_scores(f1_array):
 
 
 def main():
-
-    if len(sys.argv) != 3:
-        print("Usage: python Tree.py <Train_knight.csv> <Test_knight.csv>")
-        sys.exit(1)
-
-    train_file = sys.argv[1]
-    test_file = sys.argv[2]
-
     # Load the data
-    train_df, test_df = load_data(train_file, test_file)
+    train_df, test_df = load_data()
 
     # Train the model
     f1_array = []
-    for _ in range(100):
-        model = train_model(train_df, f1_array)
+    for _ in range(15):
+        model,f1_array = train_model(train_df, f1_array)
 
     print_f1_scores(f1_array)
 
@@ -87,3 +80,11 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# Le random forest classifier genere plusieurs decision_tree_classifier et choisi
+# ensuite la majorite.
+
+# Le decision_tree_classifier lui va diviser la classification en plusieurs question pour
+# generer ses categories.
+# Est-ce que ca fait plus de 6cm? oui. pomme banane.
+# Est-ce que c'est rouge? oui. pomme.

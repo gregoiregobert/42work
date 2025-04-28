@@ -1,17 +1,18 @@
 import sys
 import pandas as pd
 from sklearn.ensemble import VotingClassifier
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.svm import SVC
 from sklearn.metrics import f1_score
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import GridSearchCV
 
 # Loading datas
-def load_data(Train_knight, Test_knight):
-    train_df = pd.read_csv(Train_knight)
-    test_df = pd.read_csv(Test_knight)
+def load_data():
+    train_df = pd.read_csv('../ex04/Train_knight.csv')
+    test_df = pd.read_csv('../ex04/Test_knight.csv')
 
     scaler = StandardScaler()
     test_df_scaled = scaler.fit_transform(test_df)
@@ -21,8 +22,8 @@ def load_data(Train_knight, Test_knight):
 def train_model(train_df):
    
     train_df['knight'] = train_df['knight'].map({'Sith': 0, 'Jedi': 1})
-    X = train_df.drop(columns= 'knight')  # Features
-    y = train_df['knight']   # Target
+    X = train_df.drop(columns= 'knight')    # Features
+    y = train_df['knight']                  # Target
 
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X)
@@ -31,14 +32,14 @@ def train_model(train_df):
     X_train, X_val, y_train, y_val = train_test_split(X_scaled, y, test_size=0.2, random_state=42)
 
     # Generating and training model
-    log_clf = LogisticRegression()
-    tree_clf = DecisionTreeClassifier()
-    svm_clf = SVC(probability=True)
+    knn_clf = KNeighborsClassifier(n_neighbors=7)
+    tree_clf = RandomForestClassifier(n_estimators=15)
+    logr_clf = LogisticRegression()
 
     voting_clf = VotingClassifier(estimators=[
-        ('lr', log_clf), 
-        ('dt', tree_clf), 
-        ('svc', svm_clf)
+        ('lr', logr_clf), 
+        ('rt', tree_clf), 
+        ('knn', knn_clf)
     ], voting='hard')
 
     voting_clf.fit(X_train, y_train)
@@ -58,16 +59,8 @@ def predict_and_save(model, test_df):
             f.write(f"{pred}\n")
 
 def main():
-
-    if len(sys.argv) != 3:
-        print("Usage: python Tree.py <Train_knight.csv> <Test_knight.csv>")
-        sys.exit(1)
-
-    train_file = sys.argv[1]
-    test_file = sys.argv[2]
-
     # Load the data
-    train_df, test_df = load_data(train_file, test_file)
+    train_df, test_df = load_data()
 
     # Train the model
     model = train_model(train_df)
