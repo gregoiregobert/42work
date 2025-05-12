@@ -17,8 +17,7 @@ cur.execute("DROP TABLE IF EXISTS customers;")
 merge_query = "CREATE TABLE customers AS "
 
 # Find the table's name
-folder_path = '/Users/gregoiregobert/Downloads/42/subject/customer'
-folder_path = '/mnt/nfs/homes/ggobert/Downloads/subject/customer'
+folder_path = '/home/ggobert/Downloads/subject/customer'
 
 for file_name in os.listdir(folder_path):
     if file_name.endswith('.csv') and file_name.startswith("data_"):

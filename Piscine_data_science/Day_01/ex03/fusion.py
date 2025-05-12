@@ -13,22 +13,23 @@ cur = conn.cursor()
 
 
 cur.execute("""
-    CREATE TABLE new_table AS
-    SELECT 
-        t1.event_time,
-        t1.price,
-        t1.user_id,
-        t1.event_type,
-        t1.user_session,
-        t1.product_id,
-        t2.category_id,
-        t2.category_code,
-        t2.brand
-    FROM customers t1
-    FULL OUTER JOIN item t2 ON t1.product_id = t2.product_id;
+CREATE TABLE item_dedup AS
+SELECT DISTINCT ON (product_id) *
+FROM item
+ORDER BY 
+  product_id,
+  brand ASC NULLS LAST,
+  category_code ASC NULLS LAST,
+  category_id ASC NULLS LAST;
 
-    DROP TABLE customers;
-    ALTER TABLE new_table RENAME TO customers
+CREATE TABLE a AS
+SELECT 
+    c.*,
+    i.category_id,
+    i.category_code,
+    i.brand
+FROM customers c
+LEFT JOIN item_dedup i ON c.product_id = i.product_id;
 """)
 print("customers and item were merged each together")
 

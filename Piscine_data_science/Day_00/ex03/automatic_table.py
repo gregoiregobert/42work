@@ -15,7 +15,7 @@ cur = conn.cursor()
 
 # Find the table's name
 # folder_path = '/Users/gregoiregobert/Downloads/42/subject/customer'
-folder_path = '/mnt/nfs/homes/ggobert/Downloads/subject/customer'
+folder_path = '/home/ggobert/Downloads/subject/customer/'
 
 
 for file_name in os.listdir(folder_path):
