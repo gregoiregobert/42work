@@ -30,6 +30,9 @@ SELECT
     i.brand
 FROM customers c
 LEFT JOIN item_dedup i ON c.product_id = i.product_id;
+
+ALTER TABLE customers RENAME TO customers_old;
+ALTER TABLE a RENAME TO customers;
 """)
 print("customers and item were merged each together")
 
