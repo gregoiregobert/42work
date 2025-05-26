@@ -22,25 +22,27 @@ fn = sum(1 for t, p in zip(list[0], list[1]) if p == 'Sith' and t == 'Jedi')
 total_jedi = sum(1 for t in list[1] if t == 'Jedi')
 total_sith = sum(1 for t in list[1] if t == 'Sith')
 
+# Parmi les éléments classés comme Jedi/Sith, combien sont corrects ?
 precision_jedi = round(tp / (tp + fp), 2)
 precision_sith = round(tn / (tn + fn), 2)
 
+# Pourcentage de bonne prediction
 accuracy = sum(1 for t, p in zip(list[0], list[1]) if t == p) / len(list[1])
 
+# Combien ai-je trouvé de Jedi juste/Sith juste
 recall_jedi = round(tp / (tp + fn), 2)
 recall_sith =  round(tn / (tn + fp), 2)
 
-f1_score_jedi = round(((2 * accuracy * recall_jedi) / (accuracy + recall_jedi)), 2)
-f1_score_sith  = round(((2 * accuracy * recall_sith) / (accuracy + recall_sith)), 2)
+# Moyenne entre précision et rappel
+f1_score_jedi = round(((2 * precision_jedi * recall_jedi) / (precision_jedi + recall_jedi)), 2)
+f1_score_sith  = round(((2 * precision_sith * recall_sith) / (precision_sith + recall_sith)), 2)
 
 cm = [[tp, fp],
     [fn, tn]]
 
-tableau = np.zeros((3, 4))
 colonnes = ['precision', 'recall', 'f1_score', 'total']
-lignes = ['Jedi', 'Sith', 'Accuracy']
 
-df = pd.DataFrame(tableau, index=lignes, columns=colonnes)
+df = pd.DataFrame(columns=colonnes)
 
 df.loc['Jedi'] = [precision_jedi, recall_jedi, f1_score_jedi, total_jedi]
 df.loc['Sith'] = [precision_sith, recall_sith, f1_score_sith, total_sith]
