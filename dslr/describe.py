@@ -26,8 +26,13 @@ def my_max(serie):
 
 
 def my_mean(serie):
-    for i in serie:
+    serie = serie.dropna()
+    size = my_count(serie)
 
+    add_all = 0
+    for i in serie:
+        add_all += i
+    return add_all / size
 
 
 def my_quantile(serie, percent):
@@ -47,10 +52,37 @@ def my_quantile(serie, percent):
         return serie.iloc[lower]
 
 
-def describe(df)
+def my_std(serie):
+    serie = serie.dropna()
+    
+    # Étape 1 : moyenne
+    mean = sum(serie) / len(serie)
+
+    # Étape 2 & 3 : somme des carrés des écarts à la moyenne
+    squared_diffs = [(i - mean) ** 2 for i in serie]
+    sum_squared_diffs = sum(squared_diffs)
+
+    # Étape 4 : division par (n - 1)
+    variance = sum_squared_diffs / (len(serie) - 1)
+
+    # Étape 5 : racine carrée
+    std_dev = variance ** 0.5
+
+    return std_dev
+
+
+def describe(df):
+    # colonne de note numérique (des notes) uniquement
+    num_col = []
+
+    for column in df.columns:
+        if df[f'{column}'].apply(type).eq(float).all():
+            num_col.append(column)
     df_describe = pd.DataFrame(columns=num_col)
 
     df_describe.loc['count'] = [my_count(df[col]) for col in num_col]
+    df_describe.loc['mean']  = [my_mean(df[col]) for col in num_col]
+    df_describe.loc['std']   = [my_std(df[col]) for col in num_col]
     df_describe.loc['min']   = [my_min(df[col]) for col in num_col]
     df_describe.loc['25%']   = [my_quantile(df[col], 0.25) for col in num_col]
     df_describe.loc['50%']   = [my_quantile(df[col], 0.5) for col in num_col]
@@ -59,13 +91,15 @@ def describe(df)
 
     return df_describe
 
+
 def main():
-    folder = "/home/ggobert/Downloads"
+    folder = "/home/ggobert/Downloads" #42
+    folder = "/Users/gregoiregobert/Downloads/42" #mac perso
     df = pd.read_csv(folder + "/datasets/dataset_train.csv")
 
-    num_col = []
-    for column in df.columns:
-        if df[f'{column}'].apply(type).eq(float).all():
-            num_col.append(column)
+    df_describe = describe(df)
+    print(df_describe)
 
     
+if __name__ == "__main__":
+    main()
