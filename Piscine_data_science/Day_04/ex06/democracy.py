@@ -53,6 +53,7 @@ def train_model(train_df):
 
 def predict_and_save(model, test_df):
     predictions = model.predict(test_df)
+    predictions = ['Jedi' if pred == 1 else 'Sith' for pred in predictions]                      # ICI
     
     with open("Tree.txt", 'w') as f:
         for pred in predictions:

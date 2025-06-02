@@ -56,6 +56,7 @@ def predict(X, y, test_df, best_K):
     return predictions
 
 def writePrediction(predictions):
+    predictions = ['Jedi' if pred == 1 else 'Sith' for pred in predictions]
     with open("KNN.txt", 'w') as f:
         for pred in predictions:
             f.write(f"{pred}\n")
