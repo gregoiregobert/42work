@@ -26,6 +26,7 @@ def trainModel(mileage, price, learning_rate, iterations):
     theta0 = 0
     theta1 = 0
     history = []
+    theta_history = []
 
     for _ in range(iterations):
         prediction = theta0 + theta1 * mileage
@@ -37,8 +38,9 @@ def trainModel(mileage, price, learning_rate, iterations):
 
         cost = compute_cost(mileage, price, theta0, theta1)
         history.append(cost)
+        theta_history.append((theta0, theta1))
     
-    return theta0, theta1, history
+    return theta0, theta1, history, theta_history
 
 def saveModel(theta0, theta1, prix_mean, prix_std, kilometrage_mean, kilometrage_std):
     """Sauvegarde les paramètres theta0 et theta1 dans un fichier."""
@@ -50,39 +52,39 @@ def std_mean(price):
     x_std = np.std(price)
     return x_mean, x_std
 
-def animate_cost(history):
-    fig, ax = plt.subplots()
-    ax.set_xlim(0, len(history))
-    ax.set_ylim(0, max(history) * 1.1)
-    line, = ax.plot([], [], lw=2)
-    ax.set_title("Évolution de la fonction de coût")
-    ax.set_xlabel("Itérations")
-    ax.set_ylabel("Coût (MSE)")
-
-    def update(frame):
-        x = np.arange(frame)
-        y = history[:frame]
-        line.set_data(x, y)
-        return line,
-
-    ani = FuncAnimation(fig, update, frames=len(history), interval=100, blit=True)
+def show_cost_function(history):
+    """Affiche simplement la courbe statique de l'évolution du coût (MSE)."""
+    plt.figure(figsize=(10, 6))
+    plt.plot(np.arange(len(history)), history, color='blue', lw=2)
+    plt.title("Évolution de la fonction de coût")
+    plt.xlabel("Itérations")
+    plt.ylabel("Coût (MSE)")
+    plt.grid(True)
     plt.show()
 
-def plot_data_and_model(mileage, price, theta0, theta1):
-    """Affiche les données du CSV et la droite de régression linéaire."""
-    plt.figure(figsize=(10, 6))
-    plt.scatter(mileage, price, color='blue', label='Données')
-    
-    # Générer des valeurs x pour tracer la droite
-    x_vals = np.linspace(min(mileage), max(mileage), 100)
-    y_vals = theta0 + theta1 * x_vals
-    plt.plot(x_vals, y_vals, color='red', label='Régression linéaire')
 
-    plt.title("Prix en fonction du kilométrage")
-    plt.xlabel("Kilométrage")
-    plt.ylabel("Prix")
-    plt.legend()
-    plt.grid(True)
+# Fonction d'animation du model
+def animate_model(mileage, price, theta_history):
+    fig, ax = plt.subplots()
+    ax.scatter(mileage, price, color='blue', label='Données')
+    line, = ax.plot([], [], color='red', lw=2, label='Modèle')
+    ax.set_xlim(min(mileage), max(mileage))
+    ax.set_ylim(min(price), max(price))
+    ax.set_title("Apprentissage du modèle")
+    ax.set_xlabel("Kilométrage (normalisé)")
+    ax.set_ylabel("Prix (normalisé)")
+    ax.legend()
+    ax.grid(True)
+
+    x_vals = np.linspace(min(mileage), max(mileage), 100)
+
+    def update(frame):
+        theta0, theta1 = theta_history[frame]
+        y_vals = theta0 + theta1 * x_vals
+        line.set_data(x_vals, y_vals)
+        return line,
+
+    ani = FuncAnimation(fig, update, frames=len(theta_history), interval=200, blit=True)
     plt.show()
 
 def main():
@@ -90,13 +92,13 @@ def main():
     learning_rate = 0.3
     iterations = 15
 
-    theta0, theta1, history = trainModel(kilometrage_norm, prix_norm, learning_rate, iterations)
+    theta0, theta1, history, theta_history = trainModel(kilometrage_norm, prix_norm, learning_rate, iterations)
     prix_mean, prix_std = std_mean(price)
     kilometrage_mean, kilometrage_std = std_mean(mileage)
     saveModel(theta0, theta1, prix_mean, prix_std, kilometrage_mean, kilometrage_std)
     print(f"Entraînement terminé : theta0 = {theta0}, theta1 = {theta1}")
-    plot_data_and_model(kilometrage_norm, prix_norm, theta0, theta1)
-    animate_cost(history)
+    show_cost_function(history)
+    animate_model(kilometrage_norm, prix_norm, theta_history)
 
 if __name__ == "__main__":
     main()
