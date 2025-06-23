@@ -9,16 +9,15 @@ from sklearn.model_selection import train_test_split
 
 
 def encode_house(df):
-    classes = sorted(df['Hogwarts House'].unique())
-
-    # Encodage : texte → entier
-    label_to_int = {label: idx for idx, label in enumerate(classes)}
-
-    # Décodage : entier → texte
-    int_to_label = {idx: label for label, idx in label_to_int.items()}
+    houses = {
+        'Gryffindor':0,
+        'Hufflepuff':1,
+        'Ravenclaw':2,
+        'Slytherin':3
+    }
 
     # Encodage
-    df['House_encoded'] = df['Hogwarts House'].map(label_to_int)
+    df['House_encoded'] = df['Hogwarts House'].map(houses)
     
     return df
 

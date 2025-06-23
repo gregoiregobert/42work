@@ -32,13 +32,27 @@ def normalize_data(df):
     
     return X_train_scaled
 
+def reverse_encode(y_pred):
+    houses = {
+        0:'Gryffindor',
+        1:'Hufflepuff',
+        2:'Ravenclaw',
+        3:'Slytherin'
+    }
+    df = pd.DataFrame(y_pred, columns=["Hogwarts House"])
+    df['Hogwarts House'] = df['Hogwarts House'].map(houses)
+
+    df.index.name = "Index"
+    return df
+
 def main():
     with open("weights.pkl", "rb") as f:
         weights = pickle.load(f)
     df = load_df()
     X_test_scaled = normalize_data(df)
     y_pred = predict_one_vs_all(X_test_scaled, weights)
-
+    df = reverse_encode(y_pred)
+    df.to_csv("houses.csv")  
 
 if __name__ == "__main__":
     main()
