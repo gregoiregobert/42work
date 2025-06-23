@@ -1,9 +1,11 @@
+import sys
+import pickle
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.metrics import accuracy_score
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
-import matplotlib.pyplot as plt
-import pandas as pd
-import numpy as np
-import pickle
 
 
 def encode_house(df):
@@ -20,10 +22,12 @@ def encode_house(df):
     
     return df
 
+
 def load_clean_df():
     folder = "/Users/gregoiregobert/Downloads/42" #mac perso
     folder = "/home/ggobert/Downloads" #42
-    df = pd.read_csv(folder + "/datasets/dataset_train.csv")
+    arg = sys.argv[1]
+    df = pd.read_csv(folder + "/datasets/" + arg)
 
     # Maison -> gryffondor = 0, serpentard = 1 ... etc
     df = encode_house(df)
@@ -37,7 +41,6 @@ def load_clean_df():
     X_train, X_test, y_train, y_test = train_test_split(
         X, y,
         test_size=0.2,
-        random_state=42,
         stratify=y  # Garde la même répartition des classes
     )
     return X_train, X_test, y_train, y_test 
@@ -94,6 +97,53 @@ def train_logistic_one_vs_all(X, y, lr, epochs):
     return weights, losses_per_class
 
 
+def train_logistic_one_vs_all_sgd(X, y, lr, epochs):
+    n_samples, n_features = X.shape
+    n_classes_to_predict = 4
+    weights = np.zeros((n_classes_to_predict, n_features + 1))  # +1 pour le biais
+    losses_per_class = []
+
+    # Ajout du biais
+    X_bias = np.c_[np.ones((n_samples, 1)), X]
+
+    for c in range(n_classes_to_predict):
+        y_binary = (y == c).astype(int)
+        w = np.zeros(n_features + 1)
+        losses = []
+
+        for epoch in range(epochs):
+            # Shuffle à chaque époque
+            indices = np.random.permutation(n_samples)
+            X_shuffled = X_bias[indices]
+            y_shuffled = y_binary[indices]
+
+            for i in range(n_samples):
+                xi = X_shuffled[i].reshape(1, -1) 
+                yi = y_shuffled[i]
+
+                z = np.dot(xi, w)
+                pred = 1 / (1 + np.exp(-z))
+                error = pred - yi
+                gradient = xi.T * error
+
+                w -= lr * gradient.flatten()
+
+            loss, _ = loss_and_gradient(X_bias, y_binary, w)
+            losses.append(loss)
+
+        weights[c] = w
+        losses_per_class.append(losses)
+
+    return weights, losses_per_class
+
+
+def predict_one_vs_all(X, all_weights):
+    m = X.shape[0]
+    X_bias = np.hstack([np.ones((m, 1)), X])
+    probs = sigmoid(X_bias @ all_weights.T)  # shape (m, num_classes)
+    return np.argmax(probs, axis=1)
+
+
 def print_log_loss(losses_per_class):
     for i, losses in enumerate(losses_per_class):
         plt.plot(losses, label=f"Classe {i}")
@@ -105,13 +155,55 @@ def print_log_loss(losses_per_class):
     plt.grid(True)
     plt.show()
 
+
+def plot_decision_boundaries(X, y, weights):
+    colors = ['red', 'green', 'blue', 'orange']
+    labels = ['Gryffindor', 'Hufflepuff', 'Ravenclaw', 'Slytherin']
+
+    # Scatter des données
+    for class_idx in range(4):
+        plt.scatter(
+            X[y == class_idx][:, 0],
+            X[y == class_idx][:, 1],
+            c=colors[class_idx],
+            label=labels[class_idx],
+            alpha=0.6
+        )
+
+    # Génération des frontières de décision (une par classe)
+    x_vals = np.linspace(X[:, 0].min(), X[:, 0].max(), 200)
+    for class_idx, w in enumerate(weights):
+        # w0 + w1 * x1 + w2 * x2 = 0 → x2 = -(w0 + w1 * x1) / w2
+        if w[2] != 0:  # éviter la division par 0
+            y_vals = -(w[0] + w[1] * x_vals) / w[2]
+            plt.plot(x_vals, y_vals, linestyle='--')
+
+    plt.xlabel("Herbology (normalisé)")
+    plt.ylabel("Astronomy (normalisé)")
+    plt.title("Frontières de décision One-vs-All")
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+
 def main():
+    # Charger les données
     X_train, X_test, y_train, y_test  = load_clean_df()
+
+    # Entrainement
     X_train_scaled, X_test_scaled = normalize(X_train, X_test)
-    weights, losses_per_class = train_logistic_one_vs_all(X_train_scaled, y_train, lr=10, epochs=20)
+    # weights, losses_per_class = train_logistic_one_vs_all(X_train_scaled, y_train, lr=1, epochs=200)
+    weights, losses_per_class = train_logistic_one_vs_all_sgd(X_train_scaled, y_train, lr=0.01, epochs=50)
     print_log_loss(losses_per_class)
+    plot_decision_boundaries(X_test_scaled, y_test, weights)
+
+    # tester ave les 20% du test
+    y_pred = predict_one_vs_all(X_test_scaled, weights)
+    accuracy = accuracy_score(y_test, y_pred)
+    print(f"Précision : {accuracy:.2f}")
+
     with open("weights.pkl", "wb") as f:
-        pickle.dump({"weights": weights, "X_test_scaled":X_test_scaled, "y_test":y_test}, f)
+        pickle.dump(weights, f)
 
 if __name__ == '__main__':
     main()
