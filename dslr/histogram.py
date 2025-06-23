@@ -3,8 +3,8 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-folder = "/home/ggobert/Downloads" #42
 folder = "/Users/gregoiregobert/Downloads/42" #mac perso
+folder = "/home/ggobert/Downloads" #42
 df = pd.read_csv(folder + "/datasets/dataset_train.csv")
 
 num_col = []

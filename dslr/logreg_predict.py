@@ -46,8 +46,12 @@ def reverse_encode(y_pred):
     return df
 
 def main():
-    with open("weights.pkl", "rb") as f:
-        weights = pickle.load(f)
+    try:
+        with open("weights.pkl", "rb") as f:
+            weights = pickle.load(f)
+    except:
+        print("No model parameters\nExecute 'logreg.py dataset_train.csv'")
+        exit()
     df = load_df()
     X_test_scaled = normalize_data(df)
     y_pred = predict_one_vs_all(X_test_scaled, weights)

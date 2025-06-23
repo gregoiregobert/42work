@@ -25,8 +25,16 @@ def encode_house(df):
 def load_clean_df():
     folder = "/Users/gregoiregobert/Downloads/42" #mac perso
     folder = "/home/ggobert/Downloads" #42
-    arg = sys.argv[1]
-    df = pd.read_csv(folder + "/datasets/" + arg)
+    try:
+        arg = sys.argv[1]
+    except:
+        print('No arguments')
+        exit()
+    try:
+        df = pd.read_csv(folder + "/datasets/" + arg)
+    except:
+        print("dataset not found")
+        exit()
 
     # Maison -> gryffondor = 0, serpentard = 1 ... etc
     df = encode_house(df)
