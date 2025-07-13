@@ -145,6 +145,48 @@ def train_logistic_one_vs_all_stochastic(X, y, lr, epochs):
     return weights, losses_per_class
 
 
+def train_logistic_one_vs_all_minibatch(X, y, lr, epochs, batch_size=32):
+    n_samples, n_features = X.shape
+    n_classes_to_predict = 4
+    weights = np.zeros((n_classes_to_predict, n_features + 1))  # +1 pour le biais
+    losses_per_class = []
+
+    # Ajout du biais
+    X_bias = np.c_[np.ones((n_samples, 1)), X]
+
+    for c in range(n_classes_to_predict):
+        y_binary = (y == c).astype(int)
+        w = np.zeros(n_features + 1)
+        losses = []
+
+        for epoch in range(epochs):
+            # Shuffle chaque époque
+            indices = np.random.permutation(n_samples)
+            X_shuffled = X_bias[indices]
+            y_shuffled = y_binary[indices]
+
+            # Boucle par mini-batchs
+            for start_idx in range(0, n_samples, batch_size):
+                end_idx = min(start_idx + batch_size, n_samples)
+                X_batch = X_shuffled[start_idx:end_idx]
+                y_batch = y_shuffled[start_idx:end_idx]
+
+                z = np.dot(X_batch, w)
+                pred = 1 / (1 + np.exp(-z))
+                error = pred - y_batch
+                gradient = (X_batch.T @ error) / len(y_batch)
+
+                w -= lr * gradient
+
+            loss, _ = loss_and_gradient(X_bias, y_binary, w)
+            losses.append(loss)
+
+        weights[c] = w
+        losses_per_class.append(losses)
+
+    return weights, losses_per_class
+
+
 def predict_one_vs_all(X, all_weights):
     m = X.shape[0]
     X_bias = np.hstack([np.ones((m, 1)), X])
