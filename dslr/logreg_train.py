@@ -23,8 +23,8 @@ def encode_house(df):
 
 
 def load_clean_df():
-    folder = "/Users/gregoiregobert/Downloads/42" #mac perso
     folder = "/home/ggobert/Downloads" #42
+    folder = "/Users/gregoiregobert/Downloads/42" #mac perso
     try:
         arg = sys.argv[1]
     except:
@@ -48,7 +48,8 @@ def load_clean_df():
     X_train, X_test, y_train, y_test = train_test_split(
         X, y,
         test_size=0.2,
-        stratify=y  # Garde la même répartition des classes
+        stratify=y,  # Garde la même répartition des classes
+        # random_state=1 # si on veut avoir un resultat optimal à chaque fois
     )
     return X_train, X_test, y_train, y_test 
 
@@ -104,7 +105,7 @@ def train_logistic_one_vs_all(X, y, lr, epochs):
     return weights, losses_per_class
 
 
-def train_logistic_one_vs_all_sgd(X, y, lr, epochs):
+def train_logistic_one_vs_all_stochastic(X, y, lr, epochs):
     n_samples, n_features = X.shape
     n_classes_to_predict = 4
     weights = np.zeros((n_classes_to_predict, n_features + 1))  # +1 pour le biais
@@ -200,7 +201,7 @@ def main():
     # Entrainement
     X_train_scaled, X_test_scaled = normalize(X_train, X_test)
     # weights, losses_per_class = train_logistic_one_vs_all(X_train_scaled, y_train, lr=1, epochs=200)
-    weights, losses_per_class = train_logistic_one_vs_all_sgd(X_train_scaled, y_train, lr=0.01, epochs=50)
+    weights, losses_per_class = train_logistic_one_vs_all_stochastic(X_train_scaled, y_train, lr=0.01, epochs=50)
     print_log_loss(losses_per_class)
     plot_decision_boundaries(X_test_scaled, y_test, weights)
 

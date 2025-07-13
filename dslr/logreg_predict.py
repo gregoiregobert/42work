@@ -8,8 +8,8 @@ from sklearn.preprocessing import StandardScaler
 
 
 def load_df():
-    folder = "/Users/gregoiregobert/Downloads/42" #mac perso
     folder = "/home/ggobert/Downloads" #42
+    folder = "/Users/gregoiregobert/Downloads/42" #mac perso
     arg = sys.argv[1]
     df = pd.read_csv(folder + "/datasets/" + arg)
 
