@@ -13,6 +13,13 @@ def handle_client(conn):
                 break
             move = json.loads(data.decode())
             print("Reçu du client :", move)
+
+            # template du json :
+            # ai_response = {
+            #   "to_place": [ { "x": 1, "y":2 }, "color": "white" ]
+            #   "to_remove": [ { "x":2, "y":5 }, { "x": 1, "y":2 } ]
+            # }
+
             # Simule un coup IA (à droite du dernier et supprime le deux a gauche)
             ai_response = {
                 "to_place": [
