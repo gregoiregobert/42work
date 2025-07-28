@@ -1,7 +1,11 @@
 import tkinter as tk
+import socket
+import json
 
 BOARD_SIZE = 19
 CELL_SIZE = 40
+HOST = 'localhost'
+PORT = 65432
 
 class GomokuGUI:
     def __init__(self, root, mode):
@@ -36,9 +40,23 @@ class GomokuGUI:
 
         if self.mode == "ai" and self.current_player == "black":
             # Le joueur est noir, l'IA joue en blanc
-            ai_move = self.mock_ai_move(x, y)
-            if ai_move:
-                self.place_stone(ai_move["x"], ai_move["y"], "white")
+            ai_data = self.get_ai_move(x, y)
+            self.handle_backend_data(ai_data)
+
+
+    def handle_backend_data(self, ai_data):
+        if ai_data:
+            # placer les pierres indiquées
+            for stone in ai_data.get("to_place", []):
+                self.place_stone(stone["x"], stone["y"], stone["color"])
+
+            # supprimer les pierres indiquées
+            for stone in ai_data.get("to_remove", []):
+                pos = (stone["x"], stone["y"])
+                if pos in self.stones:
+                    self.stones.pop(pos)
+                    # Supprimer visuellement : ici, pour simplifier, on peut redraw canvas entier
+                    self.redraw_stones()
 
 
     def place_stone(self, x, y, color):
@@ -54,11 +72,28 @@ class GomokuGUI:
         elif self.mode == "ai" and color == "white":
             self.current_player = "black"
 
-    def mock_ai_move(self, player_x, player_y):
-        candidate = (player_x + 1, player_y)
-        if candidate not in self.stones and 0 <= candidate[0] < BOARD_SIZE:
-            return {"x": candidate[0], "y": candidate[1]}
-        return None
+
+    def get_ai_move(self, player_x, player_y):
+        try:
+            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+                s.connect((HOST, PORT))  # 1. Connexion au backend
+                move = {"x": player_x, "y": player_y}
+                s.sendall(json.dumps(move).encode())  # 2. Envoi du coup joué
+                response = s.recv(1024)  # 3. Lecture de la réponse IA
+                ai_move = json.loads(response.decode())  # 4. Décodage
+                return ai_move  # {'x': ..., 'y': ...}
+        except Exception as e:
+            print("Erreur de communication :", e)
+            return None
+
+    def redraw_stones(self):
+        self.canvas.delete("all")
+        self.draw_board()
+        for (x, y), color in self.stones.items():
+            px = x * CELL_SIZE + CELL_SIZE // 2
+            py = y * CELL_SIZE + CELL_SIZE // 2
+            radius = CELL_SIZE // 2 - 2
+            self.canvas.create_oval(px - radius, py - radius, px + radius, py + radius, fill=color)
 
 class StartMenu:
     def __init__(self, root):
