@@ -1,6 +1,8 @@
 import tkinter as tk
 import socket
 import json
+from PIL import Image, ImageTk
+
 
 BOARD_SIZE = 19
 CELL_SIZE = 40
@@ -23,6 +25,41 @@ class GomokuGUI:
         self.stones = {}
         self.current_player = "black"
 
+        # Socket
+        self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        try:
+            self.sock.connect((HOST, PORT))
+            print("Connexion au backend établie")
+        except Exception as e:
+            print("Erreur connexion au backend :", e)
+            self.sock = None
+        # Mode
+        self.send({"mode":mode})
+
+    def send(self, data):
+        if not self.sock:
+            print("Socket non connecté")
+            return
+        try:
+            message = json.dumps(data).encode()
+            self.sock.sendall(message)
+        except Exception as e:
+            print("Erreur envoi :", e)
+
+    def receive(self):
+        if not self.sock:
+            print("Socket non connecté")
+            return None
+        try:
+            response = self.sock.recv(4096)
+            if response:
+                return json.loads(response.decode())
+            else:
+                return None
+        except Exception as e:
+            print("Erreur réception :", e)
+            return None
+
 
     def draw_board(self):
         for i in range(BOARD_SIZE):
@@ -39,8 +76,9 @@ class GomokuGUI:
         self.place_stone(x, y, self.current_player)
 
         if self.mode == "ai" and self.current_player == "black":
-            # Le joueur est noir, l'IA joue en blanc
-            ai_data = self.get_ai_move(x, y)
+            self.send({"x": x, "y": y})
+            # Attends la réponse IA
+            ai_data = self.receive()
             self.handle_backend_data(ai_data)
 
 
@@ -72,19 +110,6 @@ class GomokuGUI:
         elif self.mode == "ai" and color == "white":
             self.current_player = "black"
 
-
-    def get_ai_move(self, player_x, player_y):
-        try:
-            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-                s.connect((HOST, PORT))  # 1. Connexion au backend
-                move = {"x": player_x, "y": player_y}
-                s.sendall(json.dumps(move).encode())  # 2. Envoi du coup joué
-                response = s.recv(1024)  # 3. Lecture de la réponse IA
-                ai_move = json.loads(response.decode())  # 4. Décodage
-                return ai_move  # {'x': ..., 'y': ...}
-        except Exception as e:
-            print("Erreur de communication :", e)
-            return None
 
     def redraw_stones(self):
         self.canvas.delete("all")
