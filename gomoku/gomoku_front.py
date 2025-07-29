@@ -12,8 +12,9 @@ PORT = 65432
 class GomokuGUI:
     def __init__(self, root, mode):
         self.root = root
-        self.mode = mode  # "human" ou "ai"
+        self.mode = mode  # "human", "ai", "demo"
         self.root.title("Gomoku Frontend")
+        self.root.after(10, lambda: self.center_window(root))  # centrer après l’affichage
 
         canvas_size = (BOARD_SIZE - 1) * CELL_SIZE + CELL_SIZE
         self.canvas = tk.Canvas(root, width=canvas_size, height=canvas_size, bg="burlywood3")
@@ -35,6 +36,16 @@ class GomokuGUI:
             self.sock = None
         # Mode
         self.send({"mode":mode})
+
+    def center_window(self, root):
+        root.update_idletasks()  # force le calcul de la taille réelle de la fenêtre
+        width = root.winfo_width()
+        height = root.winfo_height()
+        screen_width = root.winfo_screenwidth()
+        screen_height = root.winfo_screenheight()
+        x = (screen_width // 2) - (width // 2)
+        y = (screen_height // 2) - (height // 2)
+        root.geometry(f"+{x}+{y}")
 
     def send(self, data):
         if not self.sock:
@@ -78,18 +89,19 @@ class GomokuGUI:
         if self.mode == "ai" and self.current_player == "black":
             self.send({"x": x, "y": y})
             # Attends la réponse IA
-            ai_data = self.receive()
-            self.handle_backend_data(ai_data)
+            data = self.receive()
+            self.handle_backend_data(data)
 
 
-    def handle_backend_data(self, ai_data):
-        if ai_data:
+    def handle_backend_data(self, data):
+        if data:
             # placer les pierres indiquées
-            for stone in ai_data.get("to_place", []):
-                self.place_stone(stone["x"], stone["y"], stone["color"])
+            for stone in data.get("to_place", []):
+                if data.get("valid"):
+                    self.place_stone(stone["x"], stone["y"], stone["color"])
 
             # supprimer les pierres indiquées
-            for stone in ai_data.get("to_remove", []):
+            for stone in data.get("to_remove", []):
                 pos = (stone["x"], stone["y"])
                 if pos in self.stones:
                     self.stones.pop(pos)
@@ -124,8 +136,19 @@ class StartMenu:
     def __init__(self, root):
         self.root = root
         self.root.title("Gomoku - Choix du mode")
-        self.frame = tk.Frame(root, padx=50, pady=50)
+        self.frame = tk.Frame(root, padx=200, pady=100)
         self.frame.pack()
+        root.overrideredirect(True)
+        root.after(10, lambda: self.center_window(root))  # centrer après l’affichage
+
+        self.title_label = tk.Label(
+            self.frame,
+            text="GOMOKU",
+            font=("Arial", 60, "bold"),
+            fg="white",
+        )
+        self.title_label.pack(pady=(0, 20))
+
 
         self.label = tk.Label(self.frame, text="Choisissez un mode de jeu", font=("Arial", 14))
         self.label.pack(pady=10)
@@ -136,6 +159,20 @@ class StartMenu:
         self.btn_ai = tk.Button(self.frame, text="Joueur vs IA", width=20, command=self.start_ai)
         self.btn_ai.pack(pady=5)
 
+        self.btn_ai = tk.Button(self.frame, text="Demo : IA vs IA", width=20, command=self.start_demo)
+        self.btn_ai.pack(pady=5)
+
+    def center_window(self, root):
+        root.update_idletasks()  # force le calcul de la taille réelle de la fenêtre
+        width = root.winfo_width()
+        height = root.winfo_height()
+        screen_width = root.winfo_screenwidth()
+        screen_height = root.winfo_screenheight()
+        x = (screen_width // 2) - (width // 2)
+        y = (screen_height // 2) - (height // 2)
+        root.geometry(f"+{x}+{y}")
+
+
     def start_human(self):
         self.frame.destroy()
         GomokuGUI(self.root, "human")
@@ -143,6 +180,10 @@ class StartMenu:
     def start_ai(self):
         self.frame.destroy()
         GomokuGUI(self.root, "ai")
+    
+    def start_demo(self):
+        self.frame.destroy()
+        GomokuGUI(self.root, "demo")
 
 def main():
     root = tk.Tk()

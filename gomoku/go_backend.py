@@ -6,35 +6,16 @@ HOST = 'localhost'
 PORT = 65432
 
 
-def handle_move(msg):
-    x, y = msg['x'], msg['y']
-    # traiter le coup joué
-    print(f"Move reçu en {x}, {y}")
+def rules(data):
+    return False
 
-def handle_game_over(msg):
-    winner = msg['winner']
-    print(f"Partie terminée, gagnant: {winner}")
 
-def handle_mode(msg):
-    mode = msg['mode']
-    print(f"Mode de jeu: {mode}")
-
-handlers = {
-    'move': handle_move,
-    'game_over': handle_game_over,
-    'mode': handle_mode,
-}
-
-def handle_message(msg):
-    msg_type = msg.get('type')
-    handler = handlers.get(msg_type)
-    if handler:
-        handler(msg)
-    else:
-        print("Message inconnu:", msg)
+def win(data):
+    return False
 
 
 def handle_client(conn):
+    mode = None
     with conn:
         while True:
             data = conn.recv(1024)
@@ -43,14 +24,15 @@ def handle_client(conn):
             data = json.loads(data.decode())
             print("Reçu du client :", data)
 
-            # template du json :
-            # ai_response = {
-            #   "to_place": [ { "x": 1, "y":2 }, "color": "white" ]
-            #   "to_redata": [ { "x":2, "y":5 }, { "x": 1, "y":2 } ]
-            # }
+            if "mode" in data:
+                mode = data["mode"]
+                print(f"Mode défini pour ce client : {mode}")
+                continue 
 
             # Simule un coup IA (à droite du dernier et supprime le deux a gauche)
             ai_response = {
+                "valid": rules(data),
+                "win": win(data),
                 "to_place": [
                     {"x": data["x"] + 1 if data["x"] + 1 < 19 else data["x"], "y": data["y"], "color": "white"}
                 ],
