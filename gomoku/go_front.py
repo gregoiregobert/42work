@@ -1,7 +1,6 @@
 import tkinter as tk
 import socket
 import json
-from PIL import Image, ImageTk
 
 
 BOARD_SIZE = 19
@@ -12,7 +11,6 @@ PORT = 65432
 class GomokuGUI:
     def __init__(self, root, mode):
         self.root = root
-        self.mode = mode  # "human", "ai", "demo"
         self.root.title("Gomoku Frontend")
         self.root.after(10, lambda: self.center_window(root))  # centrer après l’affichage
 
@@ -23,19 +21,22 @@ class GomokuGUI:
         self.draw_board()
 
         self.canvas.bind("<Button-1>", self.click_handler)
-        self.stones = {}
-        self.current_player = "black"
 
         # Socket
-        self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.sock = self.sock_conn()
+
+        # Mode
+        self.send({"mode":mode})
+
+    def sock_conn(self):
+        socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         try:
             self.sock.connect((HOST, PORT))
             print("Connexion au backend établie")
         except Exception as e:
             print("Erreur connexion au backend :", e)
             self.sock = None
-        # Mode
-        self.send({"mode":mode})
+        return socket
 
     def center_window(self, root):
         root.update_idletasks()  # force le calcul de la taille réelle de la fenêtre
@@ -80,17 +81,24 @@ class GomokuGUI:
 
 
     def click_handler(self, event):
+
         x = int(round((event.x - CELL_SIZE / 2) / CELL_SIZE))
         y = int(round((event.y - CELL_SIZE / 2) / CELL_SIZE))
-        if (x, y) in self.stones or not (0 <= x < BOARD_SIZE and 0 <= y < BOARD_SIZE):
-            return
-        self.place_stone(x, y, self.current_player)
+        self.send({"x": x, "y": y})
 
-        if self.mode == "ai" and self.current_player == "black":
-            self.send({"x": x, "y": y})
-            # Attends la réponse IA
-            data = self.receive()
-            self.handle_backend_data(data)
+        response = self.receive()
+        
+        if not response["rules"]:
+            return
+        
+        if response["win"]:
+            self.display_winner(response["win"])
+        
+        self.place_stone(x, y, response["color"])
+        
+        
+        # if (x, y) in self.stones or not (0 <= x < BOARD_SIZE and 0 <= y < BOARD_SIZE):
+        #   return
 
 
     def handle_backend_data(self, data):
@@ -110,7 +118,11 @@ class GomokuGUI:
 
 
     def place_stone(self, x, y, color):
+
+        # enregistrer le tableau des pierres dans le dict "stone"
         self.stones[(x, y)] = color
+
+        # dessiner la pierre
         px = x * CELL_SIZE + CELL_SIZE // 2
         py = y * CELL_SIZE + CELL_SIZE // 2
         radius = CELL_SIZE // 2 - 2

@@ -7,15 +7,17 @@ PORT = 65432
 
 
 def rules(data):
-    return False
+    return True
 
 
 def win(data):
-    return False
+    return None
 
 
 def handle_client(conn):
     mode = None
+    game_state = {}
+    
     with conn:
         while True:
             data = conn.recv(1024)
@@ -30,8 +32,8 @@ def handle_client(conn):
                 continue 
 
             # Simule un coup IA (à droite du dernier et supprime le deux a gauche)
-            ai_response = {
-                "valid": rules(data),
+            response = {
+                "rules": rules(data),
                 "win": win(data),
                 "to_place": [
                     {"x": data["x"] + 1 if data["x"] + 1 < 19 else data["x"], "y": data["y"], "color": "white"}
@@ -41,7 +43,7 @@ def handle_client(conn):
                     {"x": data["x"] - 2, "y": data["y"]}
                 ]
             }
-            conn.sendall(json.dumps(ai_response).encode())
+            conn.sendall(json.dumps(response).encode())
 
 def run_server():
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
