@@ -12,7 +12,9 @@ class GomokuGUI:
     def __init__(self, root, mode):
         self.root = root
         self.root.title("Gomoku Frontend")
-        self.root.after(10, lambda: self.center_window(root))  # centrer après l’affichage
+
+        # Centrer la fenêtre après l’affichage
+        self.root.after(10, lambda: self.center_window(root))
 
         canvas_size = (BOARD_SIZE - 1) * CELL_SIZE + CELL_SIZE
         self.canvas = tk.Canvas(root, width=canvas_size, height=canvas_size, bg="burlywood3")
@@ -20,6 +22,7 @@ class GomokuGUI:
 
         self.draw_board()
 
+        # Bind le click gauche
         self.canvas.bind("<Button-1>", self.click_handler)
 
         # Socket
@@ -28,15 +31,16 @@ class GomokuGUI:
         # Mode
         self.send({"mode":mode})
 
+
     def sock_conn(self):
-        socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         try:
-            self.sock.connect((HOST, PORT))
+            sock.connect((HOST, PORT))
             print("Connexion au backend établie")
         except Exception as e:
             print("Erreur connexion au backend :", e)
-            self.sock = None
-        return socket
+            sock = None
+        return sock
 
     def center_window(self, root):
         root.update_idletasks()  # force le calcul de la taille réelle de la fenêtre
@@ -48,6 +52,7 @@ class GomokuGUI:
         y = (screen_height // 2) - (height // 2)
         root.geometry(f"+{x}+{y}")
 
+
     def send(self, data):
         if not self.sock:
             print("Socket non connecté")
@@ -57,6 +62,7 @@ class GomokuGUI:
             self.sock.sendall(message)
         except Exception as e:
             print("Erreur envoi :", e)
+
 
     def receive(self):
         if not self.sock:
@@ -81,64 +87,23 @@ class GomokuGUI:
 
 
     def click_handler(self, event):
-
         x = int(round((event.x - CELL_SIZE / 2) / CELL_SIZE))
         y = int(round((event.y - CELL_SIZE / 2) / CELL_SIZE))
-        self.send({"x": x, "y": y})
 
+        self.send({"x": x, "y": y})
         response = self.receive()
-        
-        if not response["rules"]:
-            return
-        
         if response["win"]:
             self.display_winner(response["win"])
         
-        self.place_stone(x, y, response["color"])
-        
-        
-        # if (x, y) in self.stones or not (0 <= x < BOARD_SIZE and 0 <= y < BOARD_SIZE):
-        #   return
+        self.redraw(response)
 
 
-    def handle_backend_data(self, data):
-        if data:
-            # placer les pierres indiquées
-            for stone in data.get("to_place", []):
-                if data.get("valid"):
-                    self.place_stone(stone["x"], stone["y"], stone["color"])
-
-            # supprimer les pierres indiquées
-            for stone in data.get("to_remove", []):
-                pos = (stone["x"], stone["y"])
-                if pos in self.stones:
-                    self.stones.pop(pos)
-                    # Supprimer visuellement : ici, pour simplifier, on peut redraw canvas entier
-                    self.redraw_stones()
-
-
-    def place_stone(self, x, y, color):
-
-        # enregistrer le tableau des pierres dans le dict "stone"
-        self.stones[(x, y)] = color
-
-        # dessiner la pierre
-        px = x * CELL_SIZE + CELL_SIZE // 2
-        py = y * CELL_SIZE + CELL_SIZE // 2
-        radius = CELL_SIZE // 2 - 2
-        self.canvas.create_oval(px - radius, py - radius, px + radius, py + radius, fill=color)
-
-        # Après avoir placé une pierre, changer de joueur sauf si IA joue
-        if self.mode == "human":
-            self.current_player = "white" if color == "black" else "black"
-        elif self.mode == "ai" and color == "white":
-            self.current_player = "black"
-
-
-    def redraw_stones(self):
+    def redraw(self, response):
         self.canvas.delete("all")
         self.draw_board()
-        for (x, y), color in self.stones.items():
+
+        for stone in response["game_state"]:
+            x, y, color = stone["x"], stone["y"], stone["color"]
             px = x * CELL_SIZE + CELL_SIZE // 2
             py = y * CELL_SIZE + CELL_SIZE // 2
             radius = CELL_SIZE // 2 - 2
