@@ -3,32 +3,7 @@ import threading
 import json
 
 HOST = 'localhost'
-PORT = 65432
-
-
-def rules(data, game_state, current_player):
-    BOARD_SIZE = 19
-    x, y = data['x'], data['y']
-    authorized = True
-
-    if (x, y) in game_state or not (0 <= x < BOARD_SIZE and 0 <= y < BOARD_SIZE):
-        authorized = False
-
-    if authorized:
-        game_state[(x, y)] = current_player
-    return game_state
-
-
-def win(data):
-    return False
-
-
-def ai(data, game_state, current_player): # last change 23.08
-    x, y = data['x'], data['y']
-    current_player = "white" if current_player == "black" else "black"
-
-    game_state[(x, y)] = current_player
-    return game_state
+PORT = 65433
 
 
 def handle_client(conn):
@@ -44,31 +19,51 @@ def handle_client(conn):
                 mode = chosen_mode(data)
 
             else:
-                game_state = rules(data, game_state, current_player)
+                # [human vs ai] & [human vs human] : coup autorisé ?
+                game_state, authorized = rules(data, game_state, current_player)
 
+                # reaction en fonction du mode
                 if mode == "human":
                     current_player = "white" if current_player == "black" else "black"
-
                 if mode == "ai":
-                    game_state = ai(data, game_state)
+                    game_state = ai(data, game_state, current_player)
 
-                # Simule un coup IA (à droite du dernier et supprime le deux a gauche)
-                # response = {
-                #     "to_place": [
-                #         {"x": data["x"] + 1 if data["x"] + 1 < 19 else data["x"], "y": data["y"], "color": current_player}
-                #     ],
-                #     "to_remove": [
-                #         {"x": data["x"] - 1, "y": data["y"]},
-                #         {"x": data["x"] - 2, "y": data["y"]}
-                #     ]
-                # }
+                # Conversion pour envoie de l'état de jeu
                 json_game_state = [{"x": x, "y": y, "color": c} for (x, y), c in game_state.items()]
-
                 response = {
                     "game_state" : json_game_state,
-                    "win" : win(data)
+                    "win" : win(data),
+                    "authorized": authorized
                     }
+                # Envoie au front
                 conn.sendall(json.dumps(response).encode())
+
+
+def rules(data, game_state, current_player):
+    BOARD_SIZE = 19
+    x, y = data['x'], data['y']
+    authorized = True
+
+    if (x, y) in game_state or not (0 <= x < BOARD_SIZE and 0 <= y < BOARD_SIZE):
+        authorized = False
+
+    if authorized:
+        game_state[(x, y)] = current_player
+    return game_state, authorized
+
+
+def win(data):
+    return False
+
+
+def ai(data, game_state, current_player): # last change 23.08
+    x, y = data['x'], data['y']
+    current_player = "white" if current_player == "black" else "black"
+
+    game_state[(x - 1, y)] = current_player
+    game_state.pop((x + 1, y), None)
+
+    return game_state
 
 
 def received_data(conn):
@@ -76,7 +71,7 @@ def received_data(conn):
     if not data:
         return
     data = json.loads(data.decode())
-    print("Reçu du client :", data)
+    # print("Reçu du client :", data)
     return data
 
 

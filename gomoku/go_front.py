@@ -6,7 +6,7 @@ import json
 BOARD_SIZE = 19
 CELL_SIZE = 40
 HOST = 'localhost'
-PORT = 65432
+PORT = 65433
 
 class GomokuGUI:
     def __init__(self, root, mode):
@@ -92,6 +92,9 @@ class GomokuGUI:
 
         self.send({"x": x, "y": y})
         response = self.receive()
+
+        if not response["authorized"]:
+            return  # coup refusé, on ne fait rien
         if response["win"]:
             self.display_winner(response["win"])
         
